@@ -1,0 +1,61 @@
+.container {
+    height: 48px;
+    width: 100%;
+    display: flex;
+    border-bottom: 1.4px solid rgb(189, 188, 188);
+
+ 
+}
+
+.container_links li{
+    display: inline-block;
+    height: 100%;
+    width: 100px;
+ 
+    padding-top: 4px;
+   
+
+    
+}
+
+.container_links{
+   
+    height: 100%;
+    font-size: 13px;
+    margin-left: 20px;
+    
+  
+}
+
+.container_searchbar{
+    height: 100%;
+    width: 45%;
+   
+   
+}
+
+.container_imageprofile{
+    height:66%;
+    width: 32px;
+    margin: 9px 20px 0 10px;
+ 
+    border-radius: 25px;
+    border: 1px solid  rgb(189, 188, 188)
+    
+    
+
+}
+
+.left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start
+}
+
+.right{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end
+}
