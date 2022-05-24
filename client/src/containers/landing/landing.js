@@ -18,6 +18,8 @@ export function LandingPage() {
                  />
             ))}
            </div>
+
+          
         </div>
     )
 }

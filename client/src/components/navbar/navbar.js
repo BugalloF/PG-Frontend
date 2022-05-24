@@ -2,6 +2,7 @@ import React from 'react';
 import s from '../navbar/navbar.module.css'
 import { SearchBar } from '../searchbar/searchbar';
 import { NavLink } from 'react-router-dom'
+import { ImageProfile } from '../imageprofile/imageprofile';
 
 
 export function NavBar(){
@@ -16,7 +17,7 @@ export function NavBar(){
           </div>
             <div className={s.right}>
             <div className={s.container_searchbar}><SearchBar/></div>
-            <div className={s.container_imageprofile}></div>
+            <ImageProfile/>
             </div>
         </div>
     )
