@@ -2,6 +2,7 @@
 .container{
  height: 200px;
  width: 20%;
- background-color: red;
+ border: 1px solid  rgb(189, 188, 188);
  text-align: center;
 }
+
