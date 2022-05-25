@@ -9,7 +9,6 @@ function App() {
       <NavBar/>
       <Routes>
         <Route exact path={'/'} element={<LandingPage/>}/>
-        <Route exact path={'/feed'} element={<FeedPage/>}/>
       </Routes>
     </div>
   );
