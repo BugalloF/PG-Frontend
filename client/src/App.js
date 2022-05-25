@@ -1,7 +1,7 @@
 import { Route,Routes } from 'react-router-dom';
 import { NavBar } from './components/navbar/navbar';
 import { LandingPage } from './containers/landing/landing'
-import  FeedPage from './containers/feedpage/FeedPage.jsx'
+
 
 function App() {
   return (
