@@ -1,10 +1,11 @@
 .container {
+    position: absolute;
+    top: 0;
     height: 48px;
     width: 100%;
     display: flex;
     border-bottom: 1.4px solid rgb(189, 188, 188);
-
- 
+    background-color: rgb(243, 243, 243);
 }
 
 .container_links li{

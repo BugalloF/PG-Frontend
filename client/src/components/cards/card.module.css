@@ -1,0 +1,40 @@
+.Card{
+    margin: 10px;
+    display: inline-block;
+    position: relative;
+    height: 450px;
+    min-width: 100px;
+    max-width: 800px;
+    background-color: aqua;
+    object-fit: cover;
+    overflow: hidden;   
+}
+.Image{
+    height: 100%;
+}
+.UserName{
+    padding-left: 10px;
+    gap: 10px;
+    z-index: 10;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.301);
+    font-size: 12px;
+    
+}
+.UserName h1{
+    font-weight: 500;
+}
+.UserName img{
+    
+    object-fit: cover;
+    overflow: hidden; 
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+}

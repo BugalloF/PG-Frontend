@@ -1,5 +1,5 @@
 import React from "react";
-import { Carrucel } from "../../components/carrucel/carrucel";
+import { Carrucel } from "../../components/carousel/carrucel";
 import { Categories } from "../../components/categories/categories";
 import s from '../landing/landing.module.css';
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import s from '../carrucel/carrucel.module.css'
+import s from '../carousel/carrucel.module.css'
 
 
 
