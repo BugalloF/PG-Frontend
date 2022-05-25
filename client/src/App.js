@@ -2,7 +2,7 @@ import { Route,Routes } from 'react-router-dom';
 import { NavBar } from './components/navbar/navbar';
 import { LandingPage } from './containers/landing/landing'
 import { PostPage } from './containers/postpage/postpage';
-import { FeedPage } from './containers/feedpage/FeedPage';
+import  FeedPage  from './containers/feedpage/FeedPage';
 
 
 function App() {
