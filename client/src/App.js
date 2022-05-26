@@ -4,7 +4,6 @@ import { PostPage } from './containers/postpage/postpage';
 import  FeedPage  from './containers/feedpage/FeedPage';
 import { PostForm } from './components/postform/postform';
 import  LoginPage  from './containers/loginpage/LoginPage';
-import  {LandingPage}  from './containers/landing/LoginPage';
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
