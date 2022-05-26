@@ -9,7 +9,7 @@
     z-index: -10;
     clip-path: polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%);
     height: 100vh;
-    width: 40vw;
+    width: 42vw;
     display: flex;
     justify-content: center;
     object-fit: contain;
@@ -18,7 +18,7 @@
 }
 .darkener{
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.075);
+    background-color: rgba(0, 0, 0, 0.349);
     width: 100%;
     height: 100%;
     top: 0;
