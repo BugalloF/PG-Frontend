@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import React from "react";
 import s from "./card.module.css";
 import LoginCarousel from "../loginpage/loginCarousel";
+import { ImageProfile } from "../imageprofile/imageprofile";
+
+const image ="https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png"
+
 const Card = ({ post }) => {
 
 
@@ -15,7 +19,7 @@ const Card = ({ post }) => {
       
       <Link to="/profile/post.userid">
         <div className={s.UserName}>
-          <img src="https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png" alt="icono" />
+          <ImageProfile image={image}/>
           <h1>{post.UserName}</h1>
         </div>
       </Link>

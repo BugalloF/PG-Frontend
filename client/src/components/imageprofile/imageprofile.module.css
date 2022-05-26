@@ -1,7 +1,15 @@
-.container_imageprofile{
-    height: 32px;
-    width: 32px;
-    margin: 9px 20px 0 10px;
-    border-radius: 25px;
-    border: 1px solid  rgb(189, 188, 188)
+.big_image{
+    object-fit: cover;
+    overflow: hidden; 
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+}
+
+.litle_image{
+    object-fit: cover;
+    overflow: hidden; 
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
 }

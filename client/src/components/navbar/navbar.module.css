@@ -11,20 +11,21 @@
 .container_links li{
     display: inline-block;
     height: 100%;
-    width: 100px;
- 
-    padding-top: 4px;
-   
-
+    padding:2px  9px;
+    background-color: black;
+    border-radius:28px;
+    color: white;
+    text-align: center;
+    margin-left: 10px;
+    font-weight: 500;
     
 }
 
 .container_links{
-   
-    height: 100%;
-    font-size: 13px;
-    margin-left: 20px;
     
+    font-size: 13px;
+    margin-left: -25px;
+   
   
 }
 
@@ -35,7 +36,9 @@
    
 }
 
-
+.container_image{
+    margin-top: 6px;
+}
 
 .left{
     width: 50%;

@@ -3,6 +3,7 @@ import { ImageProfile } from "../imageprofile/imageprofile";
 import s from '../post/post.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+const image = "https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png"
 
 export function Post(props) {
     return (
@@ -15,7 +16,7 @@ export function Post(props) {
                     <div className={s.container_profile}>
                      <div className={s.profile}>
                       <div className={s.imageprofile}> 
-                          <ImageProfile/> 
+                          <ImageProfile image={image}/> 
                       </div>
                        <h4 className={s.name}>{props.name}asdasd</h4>
                        <button className={s.button_follow}>follow</button>
