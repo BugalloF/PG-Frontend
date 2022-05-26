@@ -1,0 +1,108 @@
+.container_info_profile{
+	border-bottom: 1.4px solid rgb(189, 188, 188);
+	padding: 20px 40px;
+	margin-top: 40px;
+}
+
+.profile{
+	display: flex;
+	align-items: center;
+}
+
+.profile img{
+	width: 100%;
+	max-height: 100px;
+	max-width: 100px;
+	min-height: 100px;
+	min-width: 100px;	
+	border-radius:50%;
+}
+
+.profile p{
+	font-weight: bolder;
+	font-size: 25px;
+	margin: 10px;
+}
+
+
+.profile button{
+	cursor: pointer;
+	margin:45px;
+	font-size: 20px;
+	font-weight: 500;
+	background: transparent;
+	padding: 10px;
+	border: 1px solid hsl(0deg 0% 67% / 82%);
+}
+
+.follows{
+	display: flex;
+}
+
+.follows p{
+	font-size: 25px;
+	margin:25px;
+}
+
+.top{
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
+}
+
+.description{
+	font-size: 25px;
+}
+
+
+.social_media{
+	font-size: 25px;
+	max-width: 225px;
+	display: flex;
+	justify-content: space-between;
+}
+
+	.facebook{
+		min-width: 45px;
+		min-height: 45px;
+	  	color: #0165E1;
+	}
+
+	.devianArt {
+		background: #05cc47;
+		color: #fff;
+		padding: 10px;	
+		border-radius: 50%;
+		min-width: 25px;
+		min-height: 25px;
+	}
+
+	.linkedin{
+		background: #0072b1;
+		color: #fff;
+		padding: 10px;	
+		border-radius: 50%;
+		min-width: 25px;
+		min-height: 25px;
+	}
+
+
+
+
+.container_image{
+	padding: 50px;
+	max-width: 2000px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+	.img{
+		max-height: 400px;
+		padding: 10px;
+		height: 100%;
+	}
+
+
