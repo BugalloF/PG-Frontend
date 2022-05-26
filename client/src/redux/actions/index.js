@@ -6,7 +6,7 @@ const compress = new Compress()
 
 export const GetAllPosts = () =>{
     return async function (dispatch) {
-      const allposts = await axios.get("https://artpage-api.herokuapp.com/art?from=2");
+      const allposts = await axios.get("https://artpage-api.herokuapp.com/art?from=0");
       dispatch({type: "GetPosts", payload: allposts.data.obras})
     }
 }
