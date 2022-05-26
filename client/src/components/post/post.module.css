@@ -7,6 +7,7 @@
     display: grid;
     grid-template-columns: 55% auto;
     grid-template-rows: 80%;
+    margin-top: 100px;
     
 
 }
