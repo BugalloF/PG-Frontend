@@ -9,11 +9,11 @@ const Card = ({postId, img, userId, userName}) => {
   console.log(img)
   return userId ? (
     <div className={s.Card}>
-      <Link to ={`/profile/posts/${postId}`}>
+      <Link to ={`/post/${postId}`}>
         <img src={img} alt="imagen" className={s.Image} />
       </Link>
       
-      <Link to={`/profile/posts/${userId}`}>
+      <Link to={`/profile/${userId}`}>
         <div className={s.UserName}>
           <ImageProfile image={image}/>
           <h1>{userName}</h1>
