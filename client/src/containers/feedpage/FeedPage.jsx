@@ -7,7 +7,6 @@ import { GetAllPosts, Post } from "../../redux/actions";
 
 const PrincipalPage = () => {
   const dispatch = useDispatch();
-  const compressed = useSelector((state) => state.compressedPost);
   const allPosts = useSelector((state) => state.posts);
 
   //objeto de prueba para carta
@@ -17,6 +16,7 @@ const PrincipalPage = () => {
   console.log(allPosts)
 
   function handleClick(e) {
+    console.log('evento',e)
     e.preventDefault();
     const files = [...e.target.files];
 
@@ -32,9 +32,11 @@ const PrincipalPage = () => {
             {
                 allPosts.map((card) => <Card postId={card.id} img={card.img} userId={114} userName={'elDemi'}/> )
             }
+             <input type="file" onChange={handleClick}/>
         </div>
     </div>):(<div>
        <h1 style={{margin: '20vw'}}>Cargando...</h1>
+       <input type="file" onChange={handleClick}/>
     </div>)
   );
 };
