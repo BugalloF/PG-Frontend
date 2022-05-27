@@ -11,6 +11,14 @@ export const GetAllPosts = () =>{
     }
 }
 
+export const GetAllCategories = () =>{
+  console.log('asd')
+  return async function (dispatch) {
+    const allcategories = await axios.get("https://artpage-api.herokuapp.com/categories");
+    dispatch({type: "GetCategories", payload: allcategories.data})
+  }
+}
+
 export const Post = (input) =>{
   return async function () {
     const postFull = await compress.compress(input, {

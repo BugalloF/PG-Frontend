@@ -14,6 +14,7 @@ const PrincipalPage = () => {
   React.useEffect(() => {
     dispatch(GetAllPosts());
   }, []);
+  console.log(allPosts)
 
   function handleClick(e) {
     e.preventDefault();
@@ -29,7 +30,7 @@ const PrincipalPage = () => {
     allPosts.length?(<div className={s.FeedPage}>
         <div className={s.Cards}>
             {
-                allPosts.map((card) => <Card postId={card.id} img={card.imgCompress} userId={114} userName={'elDemi'}/> )
+                allPosts.map((card) => <Card postId={card.id} img={card.img} userId={114} userName={'elDemi'}/> )
             }
         </div>
     </div>):(<div>
