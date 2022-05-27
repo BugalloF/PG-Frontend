@@ -6,14 +6,17 @@ import { PostForm } from './components/postform/postform';
 import  LoginPage  from './containers/loginpage/LoginPage';
 import { BrowserRouter } from "react-router-dom";
 
+
 function App() {
   return (
     <BrowserRouter>
     <div className="App">
+      
       <Routes>
-        <Route exact path={'/'} element={<FeedPage/>}/>
+     
+        <Route exact path={'/'} element={[<NavBar/>,<FeedPage/>]}/>
         <Route exact path={'/post/:IdPost'} element={<PostPage/>}/>
-        <Route exact path={'/create'} element={<PostForm/>}/>
+        <Route exact path={'/create'} element={[<NavBar/>,<PostForm/>]}/>
         <Route exact path={'/post/:IdPost'} element={[<PostPage/>, <NavBar/>]}/>
         <Route exact path={'/login'} element={<LoginPage/>}/>
       </Routes>

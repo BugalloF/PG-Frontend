@@ -1,8 +1,8 @@
 import React from 'react';
 import s from '../navbar/navbar.module.css'
 import { SearchBar } from '../searchbar/searchbar';
-import { NavLink } from 'react-router-dom'
 import { ImageProfile } from '../imageprofile/imageprofile';
+import { NavLink } from 'react-router-dom';
 
 const image = "https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png"
 
@@ -12,8 +12,8 @@ export function NavBar(){
         <div className={s.container}>
           <div className={s.left}>
           <ul className={s.container_links}>
-                <li>Home</li>
-                <li>Recommended</li>
+               <NavLink to={'/'}><li>Home</li></NavLink>
+               <NavLink to={'/create'}><li>New Post</li></NavLink>
                
             </ul>
           </div>
