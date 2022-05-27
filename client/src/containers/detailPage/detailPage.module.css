@@ -1,0 +1,41 @@
+.container_detailPage{
+	max-width: 1340px;
+	margin: 80px auto;	
+	display: flex;
+	flex-direction: column;
+	padding: 15px;
+}
+
+.container_comments{
+	border: 1.4px solid rgb(189, 188, 188);
+	margin: 20px 0;
+	max-height: 400px;
+	overflow-y: scroll;
+}
+
+
+.container_comments::-webkit-scrollbar{
+	border: 1.4px solid #ccc;
+}
+
+.container_comments::-webkit-scrollbar-thumb{
+	background: #808080;
+}
+
+
+
+.container_recommendation{
+	margin:auto;
+	text-align: center;
+	max-width: 1200px;
+}
+
+.container_recommendation h2{
+	font-size: 30px;
+	font-weight: 600;
+	padding-bottom: 30px;
+}
+
+
+
+
