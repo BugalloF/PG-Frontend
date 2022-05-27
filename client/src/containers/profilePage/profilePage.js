@@ -2,7 +2,12 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faLinkedinIn, faDeviantart } from '@fortawesome/free-brands-svg-icons';
 import s from './profilePage.module.css';
+import Profile from '../../components/profile/profile'
 
+
+// --------------------------------------------------------
+// -----------------------DATOS DE PRUEBA-------------
+// --------------------------------------------------------
 const imagenes = [
   'https://rockcontent.com/es/wp-content/uploads/sites/3/2017/06/thumbnail-1024x538.png',
   'https://getuikit.com/v2/docs/images/placeholder_600x400.svg',
@@ -11,6 +16,16 @@ const imagenes = [
   'https://imag.malavida.com/mvimgbig/download-fs/android-5-lollipop-18012-1.jpg',  
   'https://rockcontent.com/es/wp-content/uploads/sites/3/2017/06/thumbnail-1024x538.png',
 ]
+
+let userTest={
+    nombre:'NOMBRE',
+    perfil: 'https://cetram.org/wp-content/uploads/2020/08/6b854d6ba1c432a0129a84a93be32ad0.jpg',  
+}
+
+// --------------------------------------------------------
+// ---------------------------------------------------------
+// --------------------------------------------------------
+
 
 export default function ProfilePage() {
 
@@ -21,9 +36,7 @@ export default function ProfilePage() {
         
         <div className={s.top}>
           <div className={s.profile}>
-            <img src="https://cetram.org/wp-content/uploads/2020/08/6b854d6ba1c432a0129a84a93be32ad0.jpg" alt="FOTO DE PERFIL"/>
-            <p>NombreDeUsuario</p>
-            <button>Seguir</button>
+            <Profile userName={userTest.nombre} photo={userTest.perfil} follow={true} />
           </div>
           <div className={s.follows}>
             <p>seguidores</p>
