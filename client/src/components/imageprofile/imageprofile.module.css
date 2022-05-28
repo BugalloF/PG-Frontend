@@ -1,8 +1,8 @@
 .big_image{
     object-fit: cover;
     overflow: hidden; 
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     border-radius: 100%;
 }
 
@@ -12,4 +12,12 @@
     width: 38px;
     height: 38px;
     border-radius: 100%;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+   
 }

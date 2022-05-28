@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Detail } from "../../components/detail/detail";
 const Compress = require('compress.js').default;
 const compress = new Compress()
 //npm install compress.js --save
@@ -12,10 +13,16 @@ export const GetAllPosts = () =>{
 }
 
 export const GetAllCategories = () =>{
-  console.log('asd')
   return async function (dispatch) {
     const allcategories = await axios.get("https://artpage-api.herokuapp.com/categories");
     dispatch({type: "GetCategories", payload: allcategories.data})
+  }
+}
+
+export const GetDetail = (id) =>{
+  return async function (dispatch) {
+    const detailPost = await axios.get(`https://artpage-api.herokuapp.com/art/${id}`);
+    dispatch({type: "GetDetail", payload: detailPost.data[0]})
   }
 }
 

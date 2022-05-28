@@ -6,6 +6,7 @@ import { PostForm } from './components/postform/postform';
 import  LoginPage  from './containers/loginpage/LoginPage';
 import { BrowserRouter } from "react-router-dom";
 import ProfilePage from './containers/profilePage/profilePage';
+import DetailPage from './containers/detailPage/detailPage';
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
         <Route exact path={'/'} element={[<NavBar/>,<FeedPage/>]}/>
         <Route exact path={'/profile/:profileId'} element={[<ProfilePage/>, <NavBar/>]}/>
         <Route exact path={'/create'} element={[<NavBar/>,<PostForm/>]}/>
-        <Route exact path={'/post/:IdPost'} element={[<PostPage/>, <NavBar/>]}/>
+        <Route exact path={'/post/:idPost'} element={[<DetailPage/>, <NavBar/>]}/>
         <Route exact path={'/login'} element={<LoginPage/>}/>
       </Routes>
     </div>

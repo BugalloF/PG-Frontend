@@ -1,6 +1,7 @@
 const initialState = {
     posts: [],
     categries:[],
+    detail: {},
     compressedPost: '',
   };
   function rootReducer(state = initialState, action) {
@@ -23,6 +24,12 @@ const initialState = {
             ...state,
             categories: action.payload
           }
+        case 'GetDetail':
+          console.log(action.payload) 
+        return {
+          ...state,
+          detail: action.payload
+        }
       default:
         return state;
     }

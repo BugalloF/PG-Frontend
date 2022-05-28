@@ -17,9 +17,9 @@
     gap: 10px;
     z-index: 10;
     color: white;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    flex-direction: row;
+    flex-direction: row; */
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -27,6 +27,6 @@
     font-size: 12px;
     
 }
-.UserName h1{
+/* .UserName h1{
     font-weight: 500;
-}
+} */
