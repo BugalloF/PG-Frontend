@@ -74,7 +74,7 @@ button {
 	padding: 5px;
 }
 
-button:hover {
+.buttons_rigth button:hover {
 	background-color: #e9e9e9;
 }
 
