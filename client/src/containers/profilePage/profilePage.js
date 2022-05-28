@@ -2,7 +2,8 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faLinkedinIn, faDeviantart } from '@fortawesome/free-brands-svg-icons';
 import s from './profilePage.module.css';
-import Profile from '../../components/profile/profile'
+import { ImageProfile } from "../../components/imageprofile/imageprofile";
+
 
 
 // --------------------------------------------------------
@@ -25,7 +26,7 @@ let userTest={
 // --------------------------------------------------------
 // ---------------------------------------------------------
 // --------------------------------------------------------
-
+const image ="https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png"
 
 export default function ProfilePage() {
 
@@ -36,7 +37,7 @@ export default function ProfilePage() {
         
         <div className={s.top}>
           <div className={s.profile}>
-            <Profile userName={userTest.nombre} photo={userTest.perfil} follow={true} />
+            <ImageProfile image ={image} />
           </div>
           <div className={s.follows}>
             <p>seguidores</p>

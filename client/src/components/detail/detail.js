@@ -2,13 +2,13 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import s from './detail.module.css';
-import Profile from '../profile/profile'
+
+import { ImageProfile } from "../imageprofile/imageprofile";
+
+const image = "https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png"
 
 
-
-
-export default function Detail(props) {
-
+export function Detail(props) {
 
   return(
   	<div className={s.container}>
@@ -16,7 +16,7 @@ export default function Detail(props) {
       	<img src={props.image} alt="IMAGEN" className={s.img}/>
       	<div className={s.container_rigth}>
 
-	      	<Profile userName={props.user.nombre} photo={props.user.perfil} follow={true} />
+	      	<ImageProfile image={image} bigSize={true} name={'elDemi'} />
 
 	      	<p>{props.description}</p>     		
       	</div>

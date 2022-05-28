@@ -1,8 +1,13 @@
 import React from "react";
-import Detail from "../../components/detail/detail";
+import {Detail} from "../../components/detail/detail";
 import Comment from "../../components/comment/comment";
 import Card from "../../components/cards/card";
 import s from './detailPage.module.css';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { faStoreAlt } from "@fortawesome/free-solid-svg-icons";
+import { GetDetail } from "../../redux/actions";
+import { useParams } from "react-router-dom";
 
 // --------------------------------------------------------
 // -----------------------DATOS DE PRUEBA-------------
@@ -72,10 +77,18 @@ const detalleTest= {
 
 export default function DetailPage() {
 
+  const dispatch = useDispatch();
+  const detail = useSelector((state) => state.detail)
+  const {idPost} = useParams()
+
+  useEffect(() => {
+    dispatch(GetDetail(idPost))
+  },[]);
+
 
   return(
       <div className={s.container_detailPage}>
-        <Detail image={detalleTest.imagen} description={detalleTest.descripcion} user={userTest} amountComm={comentariosTest.length} />
+        <Detail image={detail.img} description={detail.content} user={userTest} amountComm={comentariosTest.length} />
 
         <div className={s.container_comments}>
           {comentariosTest.map(e=>(

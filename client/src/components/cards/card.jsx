@@ -15,8 +15,7 @@ const Card = ({postId, img, userId, userName}) => {
       
       <Link to={`/profile/${userId}`}>
         <div className={s.UserName}>
-          <ImageProfile image={image}/>
-          <h1>{userName}</h1>
+          <ImageProfile image={image} name={'elDemi'}/>
         </div>
       </Link>
     </div>
