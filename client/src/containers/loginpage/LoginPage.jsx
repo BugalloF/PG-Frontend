@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import LoginCarousel from "../../components/loginpage/loginCarousel";
-import {LoginForm} from '../../components/loginform/loginform'
+import LoginForm from '../../components/formLogin/loginForm'
 import s from './loginpage.module.css'
 
 
@@ -11,7 +11,7 @@ const LoginPage = () => {
     }, []);
     return (
         <div className={s.LoginPage}>
-            {/* <LoginForm></LoginForm> */}
+            <LoginForm></LoginForm>
             <LoginCarousel></LoginCarousel>
         </div>
     );
