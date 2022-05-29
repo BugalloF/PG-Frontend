@@ -62,7 +62,7 @@ function PostForm()
             input: [],
         });
         swal("The artwork was successfully uploaded!");
-        // navigate("/");
+        navigate("/");
     };
     
     
