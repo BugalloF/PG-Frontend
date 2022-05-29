@@ -2,7 +2,7 @@ import { Route,Routes } from 'react-router-dom';
 import { NavBar } from './components/navbar/navbar';
 import  PostPage  from './containers/detailPage/detailPage';
 import  FeedPage  from './containers/feedpage/FeedPage';
-import { PostForm } from './components/postform/postform';
+import PostForm from './components/postform/postform.jsx';
 import  LoginPage  from './containers/loginpage/LoginPage';
 import { BrowserRouter } from "react-router-dom";
 import ProfilePage from './containers/profilePage/profilePage';
