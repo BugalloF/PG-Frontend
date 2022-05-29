@@ -24,35 +24,18 @@ const PrincipalPage = () => {
  
 
   useEffect(() =>{
-    
-   
    dispatch(GetAllPosts(page,search,allPosts))
-   
-
   },[page,search])
-  console.log(allPosts)
-
-  function handleClick(e) {
-  
-    e.preventDefault();
-    const files = [...e.target.files];
-
-    if (files) {
-      console.log("img", e);
-      dispatch(Post(files));
-    }
-  }
 
   return (
     <InfiniteScroll
     dataLength={length}
     hasMore={true}
     next={() => setPage((page) => page + 1)}
-    loader = {<h1>loading...</h1>}
-    
+    loader = {<h1>loading...</h1>}  
     >
   
-    (<div className={s.FeedPage}>
+    <div className={s.FeedPage}>
       <div className={s.CategoryZone}>
         {
           allCategories?.map((cat) => <Categories title={cat.title}/>)
@@ -63,9 +46,8 @@ const PrincipalPage = () => {
             {
                 allPosts.map((card) => <Card postId={card.id} img={card.img} userId={114} userName={'elDemi'}/> )
             }
-             <input type="file" onChange={handleClick}/>
         </div>
-    </div>)
+    </div>
 
     </InfiniteScroll>
     

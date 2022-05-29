@@ -15,9 +15,9 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path={'/'} element={[<NavBar/>,<FeedPage/>]}/>
-        <Route exact path={'/profile/:profileId'} element={[<ProfilePage/>, <NavBar/>]}/>
+        <Route exact path={'/profile/:profileId'} element={[<NavBar/>,<ProfilePage/>]}/>
         <Route exact path={'/create'} element={[<NavBar/>,<PostForm/>]}/>
-        <Route exact path={'/post/:idPost'} element={[<DetailPage/>, <NavBar/>]}/>
+        <Route exact path={'/post/:idPost'} element={[<NavBar/>,<DetailPage/>]}/>
         <Route exact path={'/login'} element={<LoginPage/>}/>
       </Routes>
     </div>

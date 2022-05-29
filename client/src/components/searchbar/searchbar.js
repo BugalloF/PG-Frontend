@@ -25,6 +25,7 @@ export function SearchBar(){
                  <FontAwesomeIcon 
                  className={s.i} 
                  onClick={(e) => {
+                   e.preventDefault();
                    dispatch(SearchAll(arkWorks))
                  
                  }} 

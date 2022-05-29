@@ -1,7 +1,15 @@
 .FeedPage{
-    margin-top: 50px;
+    margin-top: 20px;
 }
 .Cards{
     display: inline-block;
     margin: 10px;
+}
+.CategoryZone{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 45px;
+    align-items: center;
+    overflow-x: hidden;
 }
