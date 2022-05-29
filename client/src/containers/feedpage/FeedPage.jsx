@@ -5,30 +5,33 @@ import s from "./feedpage.module.css";
 import { GetAllPosts, Post } from "../../redux/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const PrincipalPage = () => {
   const dispatch = useDispatch();
   const allPosts = useSelector((state) => state.posts);
+  const search = useSelector((state) => state.search);
   const length = useSelector((state) => state.length);
   const [page, setPage]= useState(0)
 
   //objeto de prueba para carta
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(GetAllPosts());
-    console.log('asd')
+  
   }, []);
+ 
+
+  useEffect(() =>{
+    
+   
+   dispatch(GetAllPosts(page,search,allPosts))
+   
+
+  },[page,search])
   console.log(allPosts)
 
-  React.useEffect(() =>{
-    console.log(page)
-
-    dispatch(GetAllPosts(page))
-    console.log(allPosts)
-
-  },[page])
-
   function handleClick(e) {
-    console.log('evento',e)
+  
     e.preventDefault();
     const files = [...e.target.files];
 
@@ -48,14 +51,14 @@ const PrincipalPage = () => {
     >
   
     (<div className={s.FeedPage}>
-      {console.log(allPosts)}
+     
         <div className={s.Cards}>
             {
                 allPosts.map((card) => <Card postId={card.id} img={card.img} userId={114} userName={'elDemi'}/> )
             }
              <input type="file" onChange={handleClick}/>
         </div>
-    </div>): <h1>Loading...</h1>
+    </div>)
 
     </InfiniteScroll>
     

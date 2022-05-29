@@ -3,24 +3,32 @@ const initialState = {
     length: 0,
     categries:[],
     detail: {},
+    search: '',
     compressedPost: '',
   };
   function rootReducer(state = initialState, action) {
     switch (action.type) {
       case "GetPosts":
-          console.log(action.payload)
+          console.log(action)
         if(action.page > 0){
           return {
             ...state,
             posts: state.posts.concat(action.payload.artWorks),
             length: action.payload.counter
           };
-        }else {
+        }else if(action.search) {
           return {
             ...state,
-            posts: action.payload.artWorks,
-            length: action.payload.counter
+            posts: action.payload,
+            
           }
+        }else{
+          
+            return {
+              ...state,
+              posts: action.payload.artWorks,
+              
+            }
         }
       case "MakePost":
           console.log(action.payload)
@@ -39,6 +47,13 @@ const initialState = {
         return {
           ...state,
           detail: action.payload
+        }
+        case 'SearchAll':
+          console.log(action)
+          return{
+            ...state,
+            search: action.payload,
+            
         }
       default:
         return state;
