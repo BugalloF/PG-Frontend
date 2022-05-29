@@ -3,6 +3,7 @@ import Card from "../../components/cards/card";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./feedpage.module.css";
+import {Categories} from '../../components/categories/categories'
 import { GetAllPosts, Post } from "../../redux/actions";
 
 const PrincipalPage = () => {
@@ -28,6 +29,7 @@ const PrincipalPage = () => {
 
   return (
     allPosts.length?(<div className={s.FeedPage}>
+      <Categories></Categories>
         <div className={s.Cards}>
             {
                 allPosts.map((card) => <Card postId={card.id} img={card.img} userId={114} userName={'elDemi'}/> )
