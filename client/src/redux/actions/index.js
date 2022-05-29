@@ -5,12 +5,13 @@ const compress = new Compress()
 //npm install compress.js --save
 
 
-export const GetAllPosts = () =>{
+export const GetAllPosts = (page=0) =>{
     return async function (dispatch) {
-      const allposts = await axios.get("https://artpage-api.herokuapp.com/art?from=0");
-      dispatch({type: "GetPosts", payload: allposts.data.obras})
+      const allposts = await axios.get(`https://artpage-api.herokuapp.com/art?from=${page}`);
+      dispatch({type: "GetPosts", payload: allposts.data , page:page})
     }
 }
+
 
 export const GetAllCategories = () =>{
   return async function (dispatch) {

@@ -1,5 +1,6 @@
 const initialState = {
     posts: [],
+    length: 0,
     categries:[],
     detail: {},
     compressedPost: '',
@@ -8,10 +9,19 @@ const initialState = {
     switch (action.type) {
       case "GetPosts":
           console.log(action.payload)
-        return {
-          ...state,
-          posts: action.payload,
-        };
+        if(action.page > 0){
+          return {
+            ...state,
+            posts: state.posts.concat(action.payload.artWorks),
+            length: action.payload.counter
+          };
+        }else {
+          return {
+            ...state,
+            posts: action.payload.artWorks,
+            length: action.payload.counter
+          }
+        }
       case "MakePost":
           console.log(action.payload)
         return {
