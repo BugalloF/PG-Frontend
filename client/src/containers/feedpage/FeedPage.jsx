@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../../components/cards/card";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./feedpage.module.css";
-import { ClearPosts, GetAllPosts, Post, resetPage, setPage } from "../../redux/actions";
+import {GetAllPosts,  setPage } from "../../redux/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -21,28 +21,18 @@ const PrincipalPage = () => {
 
 
   useEffect(() =>{
-     
+    
     dispatch(GetAllPosts(page,name.search))
    if(page !== 0){
     if( page ===   Math.floor(length/12)) setHasMore(false)
     }
-    return () => setHasMore(true)
-  
-
-  },[page,name])
+    return () => {
+      setHasMore(true)
       
-
+    }
   
-  // function handleClick(e) {
-  
-  //   e.preventDefault();
-  //   const files = [...e.target.files];
-
-  //   if (files) {
-     
-  //     dispatch(Post(files));
-  //   }
-  // }
+  },[page,name.search])
+      
 
 
   return (

@@ -5,6 +5,7 @@ const initialState = {
     page: 0,
     categries:[],
     detail: {},
+    profile: {},
     search: '',
     compressedPost: '',
   };
@@ -25,7 +26,12 @@ const initialState = {
               posts: [...state.posts,...action.payload.artWorks],
               length: action.payload.counter,
             };
-          }       
+          }
+      case 'GetProfile':
+        return {
+          ...state,
+          profile: action.payload
+        }       
         
       case "MakePost":
           

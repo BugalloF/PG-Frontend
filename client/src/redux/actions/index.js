@@ -17,11 +17,15 @@ export const GetAllPosts = (page=0, name = '') =>{
     }
 }
 
-// export const GetProfileByID = () => {
-//    return async function (dispatch){
-//      const profile = await axios.get()
-//    }
-// }
+export const GetProfileByID = (id) => {
+   return async function (dispatch){
+     const profile = await axios.get(`https://artpage-api.herokuapp.com/profile/${id}`)
+     dispatch({
+       type: 'GetProfile',
+       payload: profile
+     })
+   }
+}
 
 export const setPage = () => {
   return {

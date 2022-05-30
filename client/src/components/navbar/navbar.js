@@ -3,7 +3,7 @@ import s from '../navbar/navbar.module.css'
 import { SearchBar } from '../searchbar/searchbar';
 import { ImageProfile } from '../imageprofile/imageprofile';
 import { NavLink } from 'react-router-dom';
-import { GetAllPosts } from '../../redux/actions';
+import { resetPage } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 
 
@@ -16,7 +16,7 @@ export function NavBar(){
         <div className={s.container}>
           <div className={s.left}>
           <ul className={s.container_links}>
-               <NavLink  to={'/'}><li>Home</li></NavLink>
+               <NavLink onClick={()=>{dispatch(resetPage())}} to={'/'}><li>Home</li></NavLink>
                <NavLink to={'/create'}><li>New Post</li></NavLink>
                
             </ul>
