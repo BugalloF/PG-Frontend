@@ -48,6 +48,7 @@ export const GetAllCategories = () =>{
 }
 
 export const GetDetail = (id) =>{
+  console.log('holaaa')
   return async function (dispatch) {
     const detailPost = await axios.get(`https://artpage-api.herokuapp.com/art/${id}`);
     dispatch({type: "GetDetail", payload: detailPost.data[0]})

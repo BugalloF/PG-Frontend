@@ -9,7 +9,8 @@ const image = "https://rochester.kidsoutandabout.com/sites/default/files/digital
 
 
 export function Detail(props) {
-
+  console.log('props',props)
+  console.log('profile',props.profile)
   return(
   	<div className={s.container}>
       <div className={s.container_detail}>

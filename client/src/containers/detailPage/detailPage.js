@@ -80,15 +80,14 @@ export default function DetailPage() {
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.detail)
   const {idPost} = useParams()
-
   useEffect(() => {
     dispatch(GetDetail(idPost))
   },[]);
 
 
   return(
-      <div className={s.container_detailPage}>
-        <Detail image={detail.img} description={detail.content} user={userTest} amountComm={comentariosTest.length} profile ={detail.profile}/>
+     detail.id?( <div className={s.container_detailPage}>
+        <Detail image={detail.img} description={detail.content} user={userTest} amountComm={comentariosTest.length} profile={detail.profile}/>
 
         <div className={s.container_comments}>
           {comentariosTest.map(e=>(
@@ -108,6 +107,6 @@ export default function DetailPage() {
 
         </div>
 
-      </div>
+      </div>):(<div><h1>cargando...</h1></div>)
   )
 }
