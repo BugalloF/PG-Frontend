@@ -2,65 +2,91 @@ import React from "react";
 import Card from "../../components/cards/card";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./feedpage.module.css";
-import { GetAllPosts, Post } from "../../redux/actions";
+import { ClearPosts, GetAllPosts, Post, resetPage, setPage } from "../../redux/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 
 const PrincipalPage = () => {
   const dispatch = useDispatch();
   const allPosts = useSelector((state) => state.posts);
-  const search = useSelector((state) => state.search);
   const length = useSelector((state) => state.length);
-  const [page, setPage]= useState(0)
-
-  //objeto de prueba para carta
-  useEffect(() => {
-    dispatch(GetAllPosts());
-  
-  }, []);
+  const [hasMore, setHasMore] = useState(true)
+  const page = useSelector((state) => state.page)
+  const name = useLocation()
  
+ 
+  useEffect(()=>{
+    // dispatch(resetPage())
+    
+  
+  },[])
+
+  
+
+
 
   useEffect(() =>{
-    
-   
-   dispatch(GetAllPosts(page,search,allPosts))
-   
-
-  },[page,search])
-  console.log(allPosts)
-
-  function handleClick(e) {
   
-    e.preventDefault();
-    const files = [...e.target.files];
-
-    if (files) {
-      console.log("img", e);
-      dispatch(Post(files));
+    if(name.search){
+    
+      dispatch(GetAllPosts(page,name.search))
+  
+     }else 
+    dispatch(GetAllPosts(page))
+   if(page !== 0){
+    if( page ===   Math.floor(length/12)-1) setHasMore(false)
     }
+
+  return () => {setHasMore(true)
   }
+
+  },[page])
+      
+  
+
+  // function handleClick(e) {
+  
+  //   e.preventDefault();
+  //   const files = [...e.target.files];
+
+  //   if (files) {
+     
+  //     dispatch(Post(files));
+  //   }
+  // }
+
 
   return (
     <InfiniteScroll
-    dataLength={length}
+    
+    dataLength={allPosts.length}
     hasMore={true}
-    next={() => setPage((page) => page + 1)}
-    loader = {<h1>loading...</h1>}
+    next={() => dispatch(setPage())}
+    loader={<h4>Loading...</h4>}
+    endMessage={
+    <p style={{ textAlign: 'center' }}>
+      <b>Yay! You have seen it all</b>
+    </p>}
+    
     
     >
-  
-    (<div className={s.FeedPage}>
+  {console.log(page)}
+    <div className={s.FeedPage}>
+    
      
         <div className={s.Cards}>
             {
                 allPosts.map((card) => <Card postId={card.id} img={card.img} userId={114} userName={'elDemi'}/> )
             }
-             <input type="file" onChange={handleClick}/>
+          
         </div>
-    </div>)
+    </div>
 
     </InfiniteScroll>
+  
     
   );
 };

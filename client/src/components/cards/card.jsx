@@ -6,7 +6,7 @@ const image ="https://rochester.kidsoutandabout.com/sites/default/files/digitala
 
 const Card = ({postId, img, userId, userName}) => {
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
-  console.log(img)
+
   
   return userId ? (
     <div className={s.Card}>
