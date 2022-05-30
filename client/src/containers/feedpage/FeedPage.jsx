@@ -17,36 +17,22 @@ const PrincipalPage = () => {
   const page = useSelector((state) => state.page)
   const name = useLocation()
  
- 
-  useEffect(()=>{
-    // dispatch(resetPage())
-    
-  
-  },[])
-
-  
 
 
 
   useEffect(() =>{
-  
-    if(name.search){
-    
-      dispatch(GetAllPosts(page,name.search))
-  
-     }else 
-    dispatch(GetAllPosts(page))
+     
+    dispatch(GetAllPosts(page,name.search))
    if(page !== 0){
-    if( page ===   Math.floor(length/12)-1) setHasMore(false)
+    if( page ===   Math.floor(length/12)) setHasMore(false)
     }
-
-  return () => {setHasMore(true)
-  }
-
-  },[page])
-      
+    return () => setHasMore(true)
   
 
+  },[page,name])
+      
+
+  
   // function handleClick(e) {
   
   //   e.preventDefault();
@@ -63,7 +49,7 @@ const PrincipalPage = () => {
     <InfiniteScroll
     
     dataLength={allPosts.length}
-    hasMore={true}
+    hasMore={hasMore}
     next={() => dispatch(setPage())}
     loader={<h4>Loading...</h4>}
     endMessage={
@@ -73,7 +59,7 @@ const PrincipalPage = () => {
     
     
     >
-  {console.log(page)}
+  {console.log(allPosts)}
     <div className={s.FeedPage}>
     
      
@@ -86,6 +72,8 @@ const PrincipalPage = () => {
     </div>
 
     </InfiniteScroll>
+
+    
   
     
   );

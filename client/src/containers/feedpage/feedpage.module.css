@@ -1,5 +1,6 @@
 .FeedPage{
-    margin-top: 50px;
+    margin: 50px auto auto auto;
+    width: 95%;
 }
 .Cards{
     display: inline-block;
