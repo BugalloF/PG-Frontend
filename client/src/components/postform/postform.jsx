@@ -13,7 +13,7 @@ function PostForm()
     const dispatch = useDispatch();
     const categories = useSelector(state => state.categories);
     const [input, setInput] = useState({
-        id: "b4ca0846-0550-4bf2-93ee-73eb965109c7",
+        id: "06e8e9f9-75bc-4b20-b351-c4a5261cafdd",
         title: "",
         content: "",
         price: "",

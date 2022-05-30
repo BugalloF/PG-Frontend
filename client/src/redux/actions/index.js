@@ -6,26 +6,38 @@ const compress = new Compress()
 
 
 export const GetAllPosts = (page=0, name = '') =>{
-  var search;
-  if(name !== ''){
-    name=`&name=${name}`
-    page = 0
-    search= true
-  }  
+  if(name !== '')  name = '&' + name.slice(1)
 
     return async function (dispatch) {
       const allposts = await axios.get(`https://artpage-api.herokuapp.com/art?from=${page}${name}`);
-      dispatch({type: "GetPosts", payload: allposts.data , page:page, search:search})
+      dispatch({
+      type: "GetPosts", 
+      payload: allposts.data,
+    })
     }
 }
 
-export const SearchAll = (name) => {
+export const GetProfileByID = (id) => {
+   return async function (dispatch){
+     const profile = await axios.get(`https://artpage-api.herokuapp.com/profile/${id}`)
+     dispatch({
+       type: 'GetProfile',
+       payload: profile
+     })
+   }
+}
+
+export const setPage = () => {
   return {
-    type: 'SearchAll',
-    payload:name
+    type: 'setPage'
   }
 }
 
+export const resetPage = () => {
+  return {
+    type: 'resetPage'
+  }
+}
 
 
 export const GetAllCategories = () =>{

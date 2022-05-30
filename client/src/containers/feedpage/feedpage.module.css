@@ -3,9 +3,9 @@
 }
 .Cards{
     display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-    margin: 10px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 5px;
 }
 .CategoryZone{
     display: flex;

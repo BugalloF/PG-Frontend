@@ -2,36 +2,49 @@ import React from "react";
 import Card from "../../components/cards/card";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./feedpage.module.css";
-import { GetAllCategories, GetAllPosts, Post } from "../../redux/actions";
+import {GetAllPosts, GetAllCategories,  setPage } from "../../redux/actions";
+import Categories from '../../components/categories/categories'
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
-import Categories from "../../components/categories/categories";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const PrincipalPage = () => {
   const dispatch = useDispatch();
   const allPosts = useSelector((state) => state.posts);
   const allCategories = useSelector((state) => state.categories);
-  const search = useSelector((state) => state.search);
   const length = useSelector((state) => state.length);
-  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true)
+  const page = useSelector((state) => state.page)
+  const name = useLocation()
+ 
 
-  //objeto de prueba para carta
-  useEffect(() => {
-    dispatch(GetAllPosts());
-    dispatch(GetAllCategories());
-  }, []);
 
-  useEffect(() => {
-    dispatch(GetAllPosts(page, search, allPosts));
-  }, [page, search]);
+
+  useEffect(() =>{
+    
+    dispatch(GetAllPosts(page,name.search))
+    dispatch(GetAllCategories())
+   if(page !== 0){
+    if( page ===   Math.floor(length/12)) setHasMore(false)
+    }
+    return () => {
+      setHasMore(true)
+      
+    }
+  
+  },[page,name.search])
 
   return (
     <InfiniteScroll
-      dataLength={length}
-      hasMore={true}
-      next={() => setPage((page) => page + 1)}
-      loader={<h1>loading...</h1>}
+    dataLength={allPosts.length}
+    hasMore={hasMore}
+    next={() => dispatch(setPage())}
+    loader={<h4>Loading...</h4>}
+    endMessage={
+    <p style={{ textAlign: 'center' }}>
+      <b>Yay! You have seen it all</b>
+    </p>}
     >
       <div className={s.FeedPage}>
         <div className={s.CategoryZone}>

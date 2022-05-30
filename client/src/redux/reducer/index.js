@@ -1,62 +1,68 @@
 const initialState = {
-    posts: [],
-    length: 0,
-    categries:[],
-    detail: {},
-    search: '',
-    compressedPost: '',
-  };
-  function rootReducer(state = initialState, action) {
-    switch (action.type) {
-      case "GetPosts":
-          console.log(action)
-        if(action.page > 0){
+  posts: [],
+  search:[],
+  length: 0,
+  page: 0,
+  categries:[],
+  detail: {},
+  profile: {},
+  search: '',
+  compressedPost: '',
+};
+function rootReducer(state = initialState, action) {
+  console.log(action)
+  switch (action.type) {
+    case "GetPosts": 
+        if(state.page === 0){
           return {
             ...state,
-            posts: state.posts.concat(action.payload.artWorks),
-            length: action.payload.counter
+            posts: action.payload.artWorks,
+            length: action.payload.counter,
+
           };
-        }else if(action.search) {
+        }else {
           return {
             ...state,
-            posts: action.payload,
-            
-          }
-        }else{
-          
-            return {
-              ...state,
-              posts: action.payload.artWorks,
-              
-            }
+            posts: [...state.posts,...action.payload.artWorks],
+            length: action.payload.counter,
+          };
         }
-      case "MakePost":
-          console.log(action.payload)
-        return {
+    case 'GetProfile':
+      return {
+        ...state,
+        profile: action.payload
+      }       
+      
+    case "MakePost":
+        
+      return {
+        ...state,
+        compressedPost: action.payload,
+      };
+      case 'GetCategories':
+       
+        return{
           ...state,
-          compressedPost: action.payload,
-        };
-        case 'GetCategories':
-          console.log(action.payload)
-          return{
-            ...state,
-            categories: action.payload
-          }
-        case 'GetDetail':
-          console.log(action.payload) 
-        return {
-          ...state,
-          detail: action.payload
+          categories: action.payload
         }
-        case 'SearchAll':
-          console.log(action)
-          return{
-            ...state,
-            search: action.payload,
-            
-        }
-      default:
-        return state;
-    }
+      case 'GetDetail':
+       
+      return {
+        ...state,
+        detail: action.payload
+      }
+      case 'setPage':
+      return{
+        ...state,
+        page: ++state.page
+      }
+      case 'resetPage' :
+      return{
+        ...state,
+        page:0
+      }
+    default:
+      return state;
   }
-  export default rootReducer;
+}
+export default rootReducer;

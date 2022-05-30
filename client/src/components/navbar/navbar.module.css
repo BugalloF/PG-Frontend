@@ -1,4 +1,7 @@
 .container {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: 100%;
     position: sticky;
     z-index: 100;
     top: 0;
@@ -52,11 +55,4 @@
     height: 100%;
     display: flex;
     justify-content: flex-end
-}
-.blur{
-    position: absolute;
-    z-index: -10;
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    height: 100%;
 }
