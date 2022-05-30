@@ -40,11 +40,7 @@ const PrincipalPage = () => {
     dataLength={allPosts.length}
     hasMore={hasMore}
     next={() => dispatch(setPage())}
-    loader={<h4>Loading...</h4>}
-    endMessage={
-    <p style={{ textAlign: 'center' }}>
-      <b>Yay! You have seen it all</b>
-    </p>}
+   
     >
       <div className={s.FeedPage}>
         <div className={s.CategoryZone}>
