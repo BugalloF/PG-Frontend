@@ -2,9 +2,10 @@ import React from "react";
 import Card from "../../components/cards/card";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./feedpage.module.css";
-import {GetAllPosts,  setPage } from "../../redux/actions";
+import { GetAllCategories, GetAllPosts, Post, setPage } from "../../redux/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
+import Categories from '../../components/categories/categories'
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -21,7 +22,7 @@ const PrincipalPage = () => {
 
 
   useEffect(() =>{
-    
+    dispatch(GetAllCategories());
     dispatch(GetAllPosts(page,name.search))
    if(page !== 0){
     if( page ===   Math.floor(length/12)) setHasMore(false)
@@ -32,9 +33,6 @@ const PrincipalPage = () => {
     }
   
   },[page,name.search])
-      
-
-
   return (
     <InfiniteScroll
     
@@ -45,27 +43,23 @@ const PrincipalPage = () => {
     endMessage={
     <p style={{ textAlign: 'center' }}>
       <b>Yay! You have seen it all</b>
-    </p>}
-    
-    
-    >
+    </p>}>
+
   {console.log(allPosts)}
     <div className={s.FeedPage}>
-    
-     
+     <div className={s.CategoryZone}>
+        {
+          allCategories?.map((cat) => <Categories title={cat.title}/>)
+        }
+      </div>
         <div className={s.Cards}>
             {
                 allPosts.map((card) => <Card postId={card.id} img={card.img} userId={card.profileId}  userName={'elDemi'}/> )
             }
-          
         </div>
     </div>
 
     </InfiniteScroll>
-
-    
-  
-    
   );
 };
 

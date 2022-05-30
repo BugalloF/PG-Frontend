@@ -18,18 +18,9 @@ export function SearchBar(){
     const dispatch = useDispatch()
 
   
-    return(
+++return(
         
-            <form 
-            className={s.container}
-            onSubmit={
-              (e) => {
-                e.preventDefault()
-                dispatch(resetPage())
-                navigate(`?name=${artWork}`)
-              }
-            }
-            >
+           <form className={s.container} onSubmit={ (e) => { e.preventDefault() dispatch(resetPage()) navigate(`?name=${artWork}`) }}>
 
                 <div className={s.searchwrapper}>
                   <input 
@@ -38,14 +29,15 @@ export function SearchBar(){
                      className={s.search} 
                      placeholder="Search"
                    />
-                 <button className={s.i}><FontAwesomeIcon 
-                  
-                 
-                
-                 icon={faMagnifyingGlass} /></button>
+                 <button className={s.i}>
+                 <FontAwesomeIcon 
+                 className={s.i} 
+                 onClick={(e) => {
+                 e.preventDefault();
+                 dispatch(SearchAll(arkWorks))
+                 icon={faMagnifyingGlass} />
+                 </button>
                </div>
-
             </form>
-        
     )
 }

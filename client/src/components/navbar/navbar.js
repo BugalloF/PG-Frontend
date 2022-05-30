@@ -4,8 +4,12 @@ import { SearchBar } from '../searchbar/searchbar';
 import { ImageProfile } from '../imageprofile/imageprofile';
 import { NavLink } from 'react-router-dom';
 import { resetPage } from '../../redux/actions';
+import { GetAllPosts } from "../../redux/actions";
 import { useDispatch } from 'react-redux';
 
+
+const image =
+  "https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png";
 
 const image = "https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png"
 
@@ -26,8 +30,15 @@ export function NavBar(){
             <div className={s.container_image}>
             <ImageProfile image={image} bigSize={false}/>
             </div>
-            </div>
-           
+          </div>
         </div>
-    )
+        <div className={s.container_image}>
+          <ImageProfile image={image} bigSize={false} />
+        </div>
+      </div>
+      <div className={s.blur}>
+
+      </div>
+    </div>
+  );
 }
