@@ -65,7 +65,7 @@ const PrincipalPage = () => {
      
         <div className={s.Cards}>
             {
-                allPosts.map((card) => <Card postId={card.id} img={card.img} userId={114} userName={'elDemi'}/> )
+                allPosts.map((card) => <Card postId={card.id} img={card.img} userId={card.profileId}  userName={'elDemi'}/> )
             }
           
         </div>

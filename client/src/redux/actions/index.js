@@ -17,6 +17,12 @@ export const GetAllPosts = (page=0, name = '') =>{
     }
 }
 
+// export const GetProfileByID = () => {
+//    return async function (dispatch){
+//      const profile = await axios.get()
+//    }
+// }
+
 export const setPage = () => {
   return {
     type: 'setPage'
