@@ -16,10 +16,10 @@ export function NavBar() {
       <div className={s.left}>
         <ul className={s.container_links}>
           <NavLink onClick={() => dispatch(GetAllPosts())} to={"/"}>
-            <li>Home</li>
+            <li>Inicio</li>
           </NavLink>
           <NavLink to={"/create"}>
-            <li>New Post</li>
+            <li>Publicar</li>
           </NavLink>
         </ul>
       </div>
@@ -28,12 +28,12 @@ export function NavBar() {
           <SearchBar />
         </div>
         <div className={s.container_image}>
-          <ImageProfile image={image} bigSize={false} />
+          <NavLink to={"/login"}>
+            <ImageProfile image={image} bigSize={false} />
+          </NavLink>
         </div>
       </div>
-      <div className={s.blur}>
-
-      </div>
+      <div className={s.blur}></div>
     </div>
   );
 }

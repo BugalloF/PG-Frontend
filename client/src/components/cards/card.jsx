@@ -4,7 +4,7 @@ import s from "./card.module.css";
 import { ImageProfile } from "../imageprofile/imageprofile";
 const image ="https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png"
 
-const Card = ({postId, img, userId, userName}) => {
+const Card = ({postId, img, userId, userName, userImg}) => {
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
   console.log(img)
   
@@ -16,7 +16,7 @@ const Card = ({postId, img, userId, userName}) => {
       
       <Link to={`/profile/${userId}`}>
         <div className={s.UserName}>
-          <ImageProfile image={image} name={'elDemi'}/>
+          <ImageProfile image={userImg} name={userName}/>
         </div>
       </Link>
     </div>

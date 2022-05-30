@@ -53,7 +53,7 @@ function PostForm()
         e.preventDefault();
         dispatch(Post(input));
         setInput({
-            id: "94170069-fa65-442f-8a24-dd522d8a365c",
+            id: "8a29061c-493a-4f7d-9db6-c5605bedbe45",
             title: "",
             content: "",
             price: "",
@@ -70,21 +70,21 @@ function PostForm()
         <div className={s.container}>
             <form className={s.form} onSubmit={e => handleSubmit(e)}>
                 <div className={s.container_img}>
-                    <h4>Image</h4>
+                    <h4>Obra</h4>
                     <input onChange={e => handleChangeFile(e)} type="file" accept=".jpg, .jpeg, .png" /*value={input.img}*/ name="img"/>
                 </div>
                 
                 <div className={s.container_info}>
-                    <h4 className={s.title}>Title</h4>
+                    <h4 className={s.title}>Titulo</h4>
                     <input className={s.input} onChange={e => handleChange(e)} type="text" value={input.title} name="title"/>
                     
-                    <h4 className={s.title}>Content</h4>
+                    <h4 className={s.title}>Contenido</h4>
                     <textarea className={`${s.input} ${s.input_content}`} onChange={e => handleChange(e)} cols="30" rows="10" type="text" value={input.content} name="content"/>
                     
                     <div className={s.conteiner_input}>
-                        <label className={s.title}>Category</label>
+                        <label className={s.title}>Categoria</label>
                         <select className={s.select} onChange={e => handleChange(e)} name="category">
-                            <option hidden>Select one category</option>
+                            <option hidden>Selecciona una categoria</option>
                             {
                                 categories ? categories.map(e => (
                                     <option value={e.title} key={e.title}>{e.title}</option>
@@ -95,11 +95,11 @@ function PostForm()
                         </select>
                     </div>
                     
-                    <h4 className={s.title}>Price</h4>
+                    <h4 className={s.title}>Precio</h4>
                     <input className={s.input} onChange={e => handleChange(e)} type="text" value={input.price} name="price"/>
                 </div>
                 
-                <button className={s.button} type="submit" >Upload</button>
+                <button className={s.button} type="submit" >Publicar</button>
             </form>
         </div>
     );
