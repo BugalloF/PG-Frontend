@@ -88,7 +88,7 @@ export default function DetailPage() {
 
   return(
       <div className={s.container_detailPage}>
-        <Detail image={detail.img} description={detail.content} user={userTest} amountComm={comentariosTest.length} />
+        <Detail image={detail.img} description={detail.content} user={userTest} amountComm={comentariosTest.length} profile ={detail.profile}/>
 
         <div className={s.container_comments}>
           {comentariosTest.map(e=>(

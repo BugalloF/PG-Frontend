@@ -16,7 +16,7 @@ export function Detail(props) {
       	<img src={props.image} alt="IMAGEN" className={s.img}/>
       	<div className={s.container_rigth}>
 
-	      	<ImageProfile image={image} bigSize={true} name={'elDemi'} />
+	      	<ImageProfile image={props.profile.img} bigSize={true} name={props.profile.name} />
 
 	      	<p>{props.description}</p>     		
       	</div>

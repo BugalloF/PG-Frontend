@@ -24,7 +24,9 @@ export function NavBar(){
             <div className={s.right}>
             <div className={s.container_searchbar}><SearchBar/></div>
             <div className={s.container_image}>
-            <ImageProfile image={image} bigSize={false}/>
+            <NavLink to={'/login'}>
+              <ImageProfile image={image} bigSize={false}/>
+            </NavLink>
             </div>
             </div>
            

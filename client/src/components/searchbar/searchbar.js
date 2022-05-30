@@ -28,7 +28,7 @@ export function SearchBar() {
             setArtWork(e.target.value);
           }}
           className={s.search}
-          placeholder="Search"
+          placeholder="Buscar"
         />
         <button className={s.i}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
