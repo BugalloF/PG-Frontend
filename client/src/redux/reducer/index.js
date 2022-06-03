@@ -3,7 +3,7 @@ const initialState = {
   search:[],
   length: 0,
   page: 0,
-  categries:[],
+  categories:[],
   detail: {},
   profile: {},
   search: '',
@@ -61,7 +61,40 @@ function rootReducer(state = initialState, action) {
         ...state,
         page:0
       }
-    default:
+      case 'PriceOrder':
+        return{
+          ...state,
+          posts: action.payload.Artworks,
+          length: action.payload.counter,  
+        }  
+      case 'AntOrder':
+        return{
+          ...state,
+          posts: action.payload.Artoworks,
+          length: action.payload.counter,          
+        }  
+      case 'LikesOrder':
+        return{
+          ...state,
+          posts: action.payload.Artworks,
+          length: action.payload.counter, 
+        }  
+      // case 'CountryFilter':
+      //   return{
+      //     ...state,
+      //     posts: action.payload.Artworks,
+      //     length: action.payload.counter, 
+      //   } 
+
+      // case 'CategoryFilter':
+      //   return{
+      //     ...state,
+      //     posts: action.payload,
+      //     length: action.payload.counter, 
+      //   }  
+
+
+      default:
       return state;
   }
 }

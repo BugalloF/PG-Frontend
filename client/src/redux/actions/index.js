@@ -9,7 +9,7 @@ export const GetAllPosts = (page=0, name = '') =>{
   if(name !== '')  name = '&' + name.slice(1)
 
     return async function (dispatch) {
-      const allposts = await axios.get(`https://artpage-api.herokuapp.com/art?from=${page}${name}`);
+      const allposts = await axios.get(`https://artpage.herokuapp.com/art?from=${page}${name}`);
       dispatch({
       type: "GetPosts", 
       payload: allposts.data,
@@ -19,7 +19,7 @@ export const GetAllPosts = (page=0, name = '') =>{
 
 export const GetProfileByID = (id) => {
    return async function (dispatch){
-     const profile = await axios.get(`https://artpage-api.herokuapp.com/profile/${id}`)
+     const profile = await axios.get(`https://artpage.herokuapp.com/profile/${id}`)
      dispatch({
        type: 'GetProfile',
        payload: profile
@@ -42,7 +42,7 @@ export const resetPage = () => {
 
 export const GetAllCategories = () =>{
   return async function (dispatch) {
-    const allcategories = await axios.get("https://artpage-api.herokuapp.com/categories");
+    const allcategories = await axios.get("https://artpage.herokuapp.com/categories");
     dispatch({type: "GetCategories", payload: allcategories.data})
   }
 }
@@ -50,7 +50,7 @@ export const GetAllCategories = () =>{
 export const GetDetail = (id) =>{
   console.log('holaaa')
   return async function (dispatch) {
-    const detailPost = await axios.get(`https://artpage-api.herokuapp.com/art/${id}`);
+    const detailPost = await axios.get(`https://artpage.herokuapp.com/art/${id}`);
     dispatch({type: "GetDetail", payload: detailPost.data[0]})
   }
 }
@@ -77,6 +77,61 @@ export const Post = (input) =>{
       "imgCompress": res,
       "price": input.price,
     }
-    const MakePost = await axios.post("https://artpage-api.herokuapp.com/art", data);
+    const MakePost = await axios.post("https://artpage.herokuapp.com/art", data);
+  }
+}
+
+
+
+
+
+export const priceOrder = (order) =>{
+  return async function (dispatch) {
+    let filterPrices = await axios.get("https://artpage.herokuapp.com/filter/price?price="+order);
+    dispatch({
+      type: "PriceOrder", 
+      payload: filterPrices.data
+    })
+  }
+}
+
+export const antOrder = (order) =>{
+  return async function (dispatch) {
+    let filterAnt = await axios.get("https://artpage.herokuapp.com/filter/antiquity?antiquity="+order);
+    dispatch({
+      type: "AntOrder", 
+      payload: filterAnt.data
+    })
+  }
+}
+
+export const likesOrder = (order) =>{
+  return async function (dispatch) {
+    let filterLikes = await axios.get("https://artpage.herokuapp.com/filter/likes?likes="+order);
+    dispatch({
+      type: "LikesOrder", 
+      payload: filterLikes.data
+    })
+  }
+}
+
+
+export const countryFilter = (order) =>{
+  return async function (dispatch) {
+    let filterCountry = await axios.get("https://artpage.herokuapp.com/filter/country?country="+order);
+    dispatch({
+      type: "CountryFilter", 
+      payload: filterCountry.data
+    })
+  }
+}
+
+export const categoryFilter = (order) =>{
+  return async function (dispatch) {
+    let filterCategory = await axios.get("https://artpage.herokuapp.com/filter/category?category="+order);
+    dispatch({
+      type: "CategoryFilter", 
+      payload: filterCategory.data
+    })
   }
 }

@@ -3,20 +3,23 @@ import React from "react";
 import s from "./card.module.css";
 import { ImageProfile } from "../imageprofile/imageprofile";
 
-const Card = ({postId, img, userId, userName, userImg}) => {
+const Card = ({postId, img, userId, userName, userImg, country, price, title}) => {
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
   
   return userId ? (
     <div className={s.Card}>
-      <Link to ={`/post/${postId}`}>
+      <Link to ={`/post/${postId}`} className={s.Link}>
         <img src={img} alt="imagen" className={s.Image} />
       </Link>
-      
-      <Link to={`/profile/${userId}`}>
+
         <div className={s.UserName}>
-          <ImageProfile image={userImg} name={userName}/>
+      <Link to={`/profile/${userId}`} className={s.Link}>
+          <ImageProfile image={userImg} name={userName} country={country}/>
+      </Link>        
+          <span className={s.Price}>${price}</span>        
         </div>
-      </Link>
+
+      <span className={s.Title}>{title}</span>      
     </div>
   ) : null;
 };
