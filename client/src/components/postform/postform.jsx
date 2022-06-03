@@ -30,7 +30,7 @@ function PostForm()
     {
         setInput({...input, [e.target.name] : e.target.value});
         // setErrors(validate({...input, [e.target.name] : e.target.value}));
-        console.log(input);
+       
     };
     
     function handleChangeFile(e)
@@ -53,16 +53,16 @@ function PostForm()
         e.preventDefault();
         dispatch(Post(input));
         setInput({
-            id: "8a29061c-493a-4f7d-9db6-c5605bedbe45",
+            id: "35386085-699e-4990-bda4-d4cd4ca9e269",
             title: "",
             content: "",
             price: "",
             img: "",
-            category: "",
+            category: "arte",
             input: [],
         });
-        swal("The artwork was successfully uploaded!");
-        navigate("/");
+        // swal("The artwork was successfully uploaded!");
+        // navigate("/");
     };
     
     

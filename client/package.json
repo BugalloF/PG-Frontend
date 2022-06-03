@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.2.2",
     "axios": "^0.26.1",
     "compress.js": "^1.2.2",
+    "firebase": "^9.8.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-infinite-scroll-component": "^6.1.0",
