@@ -202,3 +202,54 @@ export const sendEmail = (values) =>{
     await axios.post('https://artpage.herokuapp.com/emails/send-email',values);
   }
 }
+
+// LOGIN ----------------------------------------------------------------------
+export function register(values)
+{
+    return async function(dispatch)
+    {
+        const data = (await axios.post(`${URL}/register`, values)).data;
+        return dispatch({type: "REGISTER", payload: data});
+    };
+};
+
+export function login(values)
+{
+    return async function(dispatch)
+    {
+        const data = (await axios.post(`${URL}/login`, values)).data;
+        return dispatch({type: "LOGIN", payload: data});
+    };
+};
+
+export function profile(userData)
+{
+    return async function(dispatch)
+    {
+        if(userData !== null)
+        {
+            const userDataJson = JSON.parse(userData);
+            const token = userDataJson.token;
+            const config =
+            {
+                headers:
+                {
+                    authorization: `Bearer ${token}`,
+                },
+            };
+            const data = (await axios(`${URL}/profile`, config)).data;
+            return dispatch({type: "PROFILE", payload: data});
+        };
+    };
+};
+
+export function getUsers()
+{
+    return async function(dispatch)
+    {
+        const data = (await axios(`${URL}/profile`)).data;
+        return dispatch({type: "GET_USERS", payload: data});
+    };
+};
+
+// LOGIN ----------------------------------------------------------------------

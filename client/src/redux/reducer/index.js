@@ -9,6 +9,7 @@ const initialState = {
   profile: {},
   search: '',
   compressedPost: '',
+  users: [],
 };
 function rootReducer(state = initialState, action) {
   console.log(action)
@@ -118,7 +119,19 @@ function rootReducer(state = initialState, action) {
           ...state,
           posts: action.payload.Artworks,
           length: action.payload.counter, 
-        }  
+        }
+
+        case "REGISTER":
+            return {...state};
+        
+        case "LOGIN":
+            return {...state, profile: action.payload};
+        
+        case "PROFILE":
+            return {...state, profile: action.payload};
+        
+        case "GET_USERS":
+            return {...state, users: action.payload};
 
       default:
         return state;

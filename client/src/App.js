@@ -3,10 +3,12 @@ import { NavBar } from './components/navbar/navbar';
 import  PostPage  from './containers/detailPage/detailPage';
 import  FeedPage  from './containers/feedpage/FeedPage';
 import PostForm from './components/postform/postform.jsx';
-import  LoginPage  from './containers/loginpage/LoginPage';
+// import  LoginPage  from './containers/loginpage/LoginPage';
 import { BrowserRouter } from "react-router-dom";
 import ProfilePage from './containers/profilePage/profilePage';
 import DetailPage from './containers/detailPage/detailPage';
+import Login from "./components/Login/Login.jsx";
+import Register from "./components/Register/Register.jsx";
 import "react-loader-spinner";
 
 
@@ -20,7 +22,9 @@ function App() {
         <Route exact path={'/profile/:profileId'} element={[<NavBar/>,<ProfilePage/>]}/>
         <Route exact path={'/create'} element={[<NavBar/>,<PostForm/>]}/>
         <Route exact path={'/post/:idPost'} element={[<NavBar/>,<DetailPage/>]}/>
-        <Route exact path={'/login'} element={<LoginPage/>}/>
+        {/* <Route exact path={'/login'} element={<LoginPage/>}/> */}
+        <Route exact path={'/login'} element={<Login/>}/>
+        <Route exact path={'/register'} element={<Register/>}/>
       </Routes>
     </div>
     </BrowserRouter>
