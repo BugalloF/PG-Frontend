@@ -5,9 +5,7 @@ const Compress = require('compress.js').default;
 const compress = new Compress()
 
 
-
 const URL = 'https://artpage.herokuapp.com'
-
 
 
 export const GetAllPosts = (page=0, name = '') =>{
@@ -195,5 +193,12 @@ export const categoryFilter = (order) =>{
       type: "CategoryFilter", 
       payload: filterCategory.data
     })
+  }
+}
+
+export const sendEmail = (values) =>{
+  console.log(values)
+  return async function () {
+    await axios.post('https://artpage.herokuapp.com/emails/send-email',values);
   }
 }
