@@ -86,12 +86,12 @@ function rootReducer(state = initialState, action) {
       //     length: action.payload.counter, 
       //   } 
 
-      // case 'CategoryFilter':
-      //   return{
-      //     ...state,
-      //     posts: action.payload,
-      //     length: action.payload.counter, 
-      //   }  
+      case 'CategoryFilter':
+        return{
+          ...state,
+          posts: action.payload.Artworks,
+          length: action.payload.counter, 
+        }  
 
 
       default:
