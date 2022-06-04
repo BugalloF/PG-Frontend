@@ -86,12 +86,24 @@ export const Post = (input) =>{
     resize: true, // defaults to true, set false if you do not want to resize the image width and height
     rotate: false, // See the rotation section below
     })
+    const postFull = await compress.compress(input.img, {
+      size: 20, // the max size in MB, defaults to 2MB
+      quality: 1, // the quality of the image, max is 1,
+      maxWidth: 1280, // the max width of the output image, defaults to 1920px
+      maxHeight: 1280, // the max height of the output image, defaults to 1920px
+      resize: false, // defaults to true, set false if you do not want to resize the image width and height
+      rotate: false, // See the rotation section below
+    })
+
     const output = post[0]
-    // const res = output.prefix + output.data
-    // const img1 = results[0]
     const base64str = output.data
     const imgExt = output.ext
     const fileCompress = Compress.convertBase64ToFile(base64str, imgExt)
+    
+    const outputF = postFull[0]
+    const base64strF = outputF.data
+    const imgExtF = outputF.ext
+    const fileFull = Compress.convertBase64ToFile(base64strF, imgExtF)
     
 
     const imageRefCompress = ref(storage, `images/compress/${input.input[0].name}`);
@@ -99,13 +111,15 @@ export const Post = (input) =>{
     const urlCompress = await getDownloadURL(uploadImageCompress.ref)
 
     const imageRefOriginal = ref(storage, `images/original/${input.input[0].name}`);
-    const uploadImageOriginal = await uploadBytes(imageRefOriginal,input.img)
+    const uploadImageOriginal = await uploadBytes(imageRefOriginal,fileFull)
     const urlOriginal = await getDownloadURL(uploadImageOriginal.ref)
 
 
+    console.log(input.id);
+    console.log(input);
 
     const data = {
-      "id": '8e48b2ee-34be-4057-90c9-c9d5236817e3',
+      "id": input.id,
       "title": input.title,
       "content": input.content,
       "category": input.category,

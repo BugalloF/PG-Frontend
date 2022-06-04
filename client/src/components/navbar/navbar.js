@@ -7,13 +7,13 @@ import { NavLink } from 'react-router-dom';
 
 
 
-const image = "https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png"
+// const image = "https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png"
 
 export function NavBar(){
   const loggedUser = window.localStorage.getItem("userData");
   const userDataJson = JSON.parse(loggedUser);
   const id = userDataJson ? userDataJson.id : "";
-  console.log(id);
+  const img = userDataJson ? userDataJson.img : "";
   
     return (
 
@@ -34,7 +34,7 @@ export function NavBar(){
             <div className={s.container_image}>
               {
                 id ? <NavLink to={`/profile/${id}`}>
-                <ImageProfile image={image} bigSize={false}/>
+                <ImageProfile image={img} bigSize={false}/>
               </NavLink>
               :
               <div>

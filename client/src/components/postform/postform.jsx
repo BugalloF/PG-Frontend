@@ -13,8 +13,11 @@ function PostForm()
     const dispatch = useDispatch();
     const categories = useSelector(state => state.categories);
     const status = useSelector(state => state.status);
+    const loggedUser = window.localStorage.getItem("userData");
+    const userDataJson = JSON.parse(loggedUser);
+    const id = userDataJson ? userDataJson.id : "";
     const [input, setInput] = useState({
-        id: "06e8e9f9-75bc-4b20-b351-c4a5261cafdd",
+        id: id,
         title: "",
         content: "",
         price: "",
@@ -56,7 +59,7 @@ function PostForm()
         reader.onload = function(event)
         {
             console.log(e.target.files);
-            setInput({...input, img: event.target.result, input: [...e.target.files]});
+            setInput({...input, img: [...e.target.files], input: [...e.target.files]});
         };
 
     

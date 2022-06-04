@@ -83,6 +83,7 @@ function Login()
                         id: payload.foundUser[0].id,
                         userName: payload.foundUser[0].userName,
                         token: payload.token,
+                        img: payload.foundUser[0].img,
                     };
                     
                     window.localStorage.setItem("userData", JSON.stringify(userData));
