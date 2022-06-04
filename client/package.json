@@ -13,6 +13,7 @@
     "axios": "^0.26.1",
     "compress.js": "^1.2.2",
     "firebase": "^9.8.2",
+    "jimp": "^0.16.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-infinite-scroll-component": "^6.1.0",
@@ -24,8 +25,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "sweetalert": "^2.1.2",
-    "web-vitals": "^0.2.4",
-    "jimp": "^0.16.1"   
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
