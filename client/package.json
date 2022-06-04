@@ -24,7 +24,8 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "sweetalert": "^2.1.2",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "jimp": "^0.16.1"   
   },
   "scripts": {
     "start": "react-scripts start",

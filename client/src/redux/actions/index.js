@@ -43,9 +43,8 @@ export const GetProfileDetail = (id) => {
 //       payload: profile
 //     })
 //   }
-//}
 
-
+}
 
 export const setPage = () => {
   return {
@@ -177,6 +176,7 @@ export const CleanProfile = () => {
 export const CleanPosts = () => {
   return {
     type: 'CleanPosts'
+  }}
 
 export const countryFilter = (order) =>{
   return async function (dispatch) {

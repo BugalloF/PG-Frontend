@@ -5,8 +5,8 @@ import { ImageProfile } from "../imageprofile/imageprofile";
 
 const Card = ({postId, img, userId, userName, userImg, country, price, title}) => {
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
-  
-  return userId ? (
+  console.log("IMAGEN", img)
+  return (
     <div className={s.Card}>
       <Link to ={`/post/${postId}`} className={s.Link}>
         <img src={img} alt="imagen" className={s.Image} />
@@ -21,6 +21,6 @@ const Card = ({postId, img, userId, userName, userImg, country, price, title}) =
 
       <span className={s.Title}>{title}</span>      
     </div>
-  ) : null;
+  );
 };
 export default Card;
