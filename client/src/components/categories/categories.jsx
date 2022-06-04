@@ -9,13 +9,14 @@ const Categories = (title) => {
   const dispatch = useDispatch();
 
 
-    // function catFilter(e){
-    //   e.preventDefault();
-    //   dispatch(categoryFilter(e))
-    // }
+    function catFilter(e){
+      e.preventDefault();
+      console.log(e.target.value)
+      dispatch(categoryFilter(e.target.value))
+    }
 	
     return (
-            <button className={s.container} /*value={title.title} onClick={() =>catFilter(title.title)}*/>{title.title}</button>
+            <button className={s.container} value={title.title} onClick={(e) =>catFilter(e)}>{title.title}</button>
     );
 };
 export default Categories;
