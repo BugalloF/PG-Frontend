@@ -2,12 +2,19 @@ import React from "react";
 import Card from "../../components/cards/card";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./feedpage.module.css";
-import {GetAllPosts, GetAllCategories,  setPage } from "../../redux/actions";
+import {GetAllPosts, GetAllCategories,  setPage, CleanPosts } from "../../redux/actions";
 import Categories from '../../components/categories/categories'
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { resetPage } from '../../redux/actions';
+
+
+
+
+
+
 
 const PrincipalPage = () => {
   const dispatch = useDispatch();
@@ -19,9 +26,17 @@ const PrincipalPage = () => {
   const name = useLocation()
 
 
-  console.log(allPosts)
- 
 
+ 
+useEffect(() => {
+  
+  return () => {
+    setHasMore(true)
+    dispatch(resetPage())
+    dispatch(CleanPosts())
+    
+  };
+}, []);
 
 
   useEffect(() =>{
@@ -31,23 +46,15 @@ const PrincipalPage = () => {
    if(page !== 0){
     if( page ===   Math.floor(length/12)) setHasMore(false)
     }
-    return () => {
-      setHasMore(true)
-      
-    }
+  
   
   },[page,name.search])
 
   return (
-    <InfiniteScroll
-    dataLength={allPosts ? allPosts.length : 1}
+    (<InfiniteScroll
+    dataLength={allPosts.length}
     hasMore={hasMore}
     next={() => dispatch(setPage())}
-    loader={<h4>Cargando...</h4>}
-    endMessage={
-    <p style={{ textAlign: 'center' }}>
-      <b>Wow! Parece que llegaste al fin!</b>
-    </p>}
     >
       <div className={s.FeedPage}>
         <div className={s.CategoryZone}>
@@ -67,10 +74,10 @@ const PrincipalPage = () => {
               userName={card.profile.userName}
             />
             
-          ))): null}
+          ))):null}
         </div>
       </div>
-    </InfiniteScroll>
+    </InfiniteScroll>)
   );
 };
 

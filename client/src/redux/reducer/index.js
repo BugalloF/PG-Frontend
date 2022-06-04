@@ -78,6 +78,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         detail: {}
       }
+      case 'CleanProfile': 
+      return {
+        ...state,
+        profile: {}
+      }
+      case 'CleanPosts': 
+      return {
+        ...state,
+        posts: []
+      }
     default:
       return state;
   }

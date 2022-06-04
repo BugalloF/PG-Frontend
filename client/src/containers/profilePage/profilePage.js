@@ -5,7 +5,7 @@ import s from './profilePage.module.css';
 import { ImageProfile } from "../../components/imageprofile/imageprofile";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { GetProfileDetail } from "../../redux/actions";
+import { CleanProfile, GetProfileDetail } from "../../redux/actions";
 import { useEffect } from "react";
 
 
@@ -41,6 +41,9 @@ export default function ProfilePage() {
 
   useEffect(() => {
    dispatch(GetProfileDetail(profileId))
+   return () =>{
+     dispatch(CleanProfile())
+   }
   }, []);
 
 

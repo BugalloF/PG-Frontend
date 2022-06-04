@@ -1,8 +1,6 @@
 import axios from "axios";
-import { Detail } from "../../components/detail/detail";
 import {ref, uploadBytes ,getDownloadURL} from 'firebase/storage'
 import storage from  "../../firebase/firebase.js"
-import { async } from "@firebase/util";
 const Compress = require('compress.js').default;
 const compress = new Compress()
 
@@ -95,7 +93,7 @@ export const Post = (input) =>{
 
 
     const data = {
-      "id": 'b663eb9c-a7ed-4bc0-a0ce-64a7b4ee6b18',
+      "id": '8e48b2ee-34be-4057-90c9-c9d5236817e3',
       "title": input.title,
       "content": input.content,
       "category": input.category,
@@ -125,5 +123,18 @@ export const CleanStatus = () =>{
 export const CleanDetail = () =>{
   return{
     type:'CleanDetail'
+  }
+}
+
+
+export const CleanProfile = () => {
+  return {
+    type: 'CleanProfile'
+  }
+}
+
+export const CleanPosts = () => {
+  return {
+    type: 'CleanPosts'
   }
 }

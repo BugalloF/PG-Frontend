@@ -7,6 +7,8 @@ import  LoginPage  from './containers/loginpage/LoginPage';
 import { BrowserRouter } from "react-router-dom";
 import ProfilePage from './containers/profilePage/profilePage';
 import DetailPage from './containers/detailPage/detailPage';
+import "react-loader-spinner";
+
 
 
 function App() {
