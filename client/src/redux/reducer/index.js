@@ -1,6 +1,7 @@
 const initialState = {
   posts: [],
   search:[],
+  status: null ,
   length: 0,
   page: 0,
   categories:[],
@@ -14,20 +15,21 @@ function rootReducer(state = initialState, action) {
   switch (action.type) {
     case "GetPosts": 
         if(state.page === 0){
+          console.log('holis')
           return {
             ...state,
-            posts: action.payload.artWorks,
-            length: action.payload.counter,
+            posts: action.artWorks,
+            length: action.counter,
 
           };
         }else {
           return {
             ...state,
-            posts: [...state.posts,...action.payload.artWorks],
-            length: action.payload.counter,
+            posts: [...state.posts,...action.artWorks],
+            length: action.counter,
           };
         }
-    case 'GetProfile':
+    case 'GetProfileDetail':
       return {
         ...state,
         profile: action.payload
@@ -61,6 +63,31 @@ function rootReducer(state = initialState, action) {
         ...state,
         page:0
       }
+      case 'Post': 
+      return {
+        ...state,
+        status: action.payload
+      }
+      case 'CleanStatus': 
+      return {
+        ...state,
+        status: null
+      }
+      case 'CleanDetail': 
+      return {
+        ...state,
+        detail: {}
+      }
+      case 'CleanProfile': 
+      return {
+        ...state,
+        profile: {}
+      }
+      case 'CleanPosts': 
+      return {
+        ...state,
+        posts: []
+      }
       case 'PriceOrder':
         return{
           ...state,
@@ -93,9 +120,8 @@ function rootReducer(state = initialState, action) {
           length: action.payload.counter, 
         }  
 
-
       default:
-      return state;
+        return state;
   }
 }
 export default rootReducer;

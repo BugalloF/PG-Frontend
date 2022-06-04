@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../../components/cards/card";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./feedpage.module.css";
-import {GetAllPosts, GetAllCategories,  setPage, priceOrder, antOrder,likesOrder } from "../../redux/actions";
+import {GetAllPosts, GetAllCategories,  setPage, priceOrder, CleanPosts, antOrder,likesOrder ,resetPage } from "../../redux/actions";
 import Categories from '../../components/categories/categories'
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
@@ -17,8 +17,17 @@ const PrincipalPage = () => {
   const [hasMore, setHasMore] = useState(true)
   const page = useSelector((state) => state.page)
   const name = useLocation()
- 
 
+ 
+useEffect(() => {
+  
+  return () => {
+    setHasMore(true)
+    dispatch(resetPage())
+    dispatch(CleanPosts())
+    
+  };
+}, []);
 
 
   useEffect(() =>{
@@ -28,10 +37,7 @@ const PrincipalPage = () => {
    if(page !== 0){
     if( page ===   Math.floor(length/12)) setHasMore(false)
     }
-    return () => {
-      setHasMore(true)
-      
-    }
+  
   
   },[dispatch,page,name.search])
 
@@ -80,8 +86,6 @@ const PrincipalPage = () => {
       </select> 
 
 
-
-
       <InfiniteScroll
       dataLength={allPosts.length}
       hasMore={hasMore}
@@ -92,8 +96,6 @@ const PrincipalPage = () => {
         <b>Wow! Parece que llegaste al fin!</b>
       </p>}
       >
-
-
 
         <div className={s.FeedPage}>
           <div className={s.CategoryZone}>
@@ -125,11 +127,6 @@ const PrincipalPage = () => {
       </InfiniteScroll>
 
     </div>
-
-
-
-
-
   );
 };
 

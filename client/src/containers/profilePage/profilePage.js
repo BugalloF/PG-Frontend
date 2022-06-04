@@ -3,6 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faLinkedinIn, faDeviantart } from '@fortawesome/free-brands-svg-icons';
 import s from './profilePage.module.css';
 import { ImageProfile } from "../../components/imageprofile/imageprofile";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { CleanProfile, GetProfileDetail } from "../../redux/actions";
+import { useEffect } from "react";
+
 
 
 
@@ -30,6 +35,19 @@ const image ="https://rochester.kidsoutandabout.com/sites/default/files/digitala
 
 export default function ProfilePage() {
 
+  const {profileId} = useParams()
+  const dispatch = useDispatch()
+  const profile = useSelector((state) => state.profile)
+
+  useEffect(() => {
+   dispatch(GetProfileDetail(profileId))
+   return () =>{
+     dispatch(CleanProfile())
+   }
+  }, []);
+
+
+  console.log(profile)
 
   return(
     <div>
@@ -37,7 +55,7 @@ export default function ProfilePage() {
         
         <div className={s.top}>
           <div className={s.profile}>
-            <ImageProfile image ={image} />
+            <ImageProfile image ={profile.img} name={profile.userName} />
           </div>
           <div className={s.follows}>
             <p>seguidores</p>
@@ -60,8 +78,8 @@ export default function ProfilePage() {
 
       <div className={s.container_image}>
       {
-        imagenes?.map(e=>(
-          <img src={e} alt="imagenes" className={s.img}/>
+        profile.artworks?.map(e=>(
+          <img src={e.imgCompress} alt="imagenes" className={s.img}/>
         ))
       }        
       </div>
