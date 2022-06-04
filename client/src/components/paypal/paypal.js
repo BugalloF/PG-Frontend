@@ -41,11 +41,11 @@ export default function Paypal({price,title,idPost}) {
         },
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
-          // console.log(order)
+          console.log(order)
           swal('Pago exitoso, a continuación recibirás un correo con tu obra.')
           if(order.status === 'COMPLETED'){
-            let payer = order.payer.name;
-            let surname = order.payer.surname;
+            let payer = order.payer.name.given_name;
+            let surname = order.payer.name.surname;
             let time = order.create_time;
             dispatch(sendEmail({payer,surname,time,idPost})) //FALTA ACCEDER A LA INFO EN ORDER Y MANDARLA AL BACK
           }
