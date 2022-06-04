@@ -5,28 +5,47 @@
     height: 450px;
     min-width: 150px;
     max-width: 800px;
-
     object-fit: cover;
     overflow: hidden;   
 }
 .Image{
     height: 100%;
+    text-align: left;
+    padding: 10px;
 }
+
 .UserName{
-    padding-left: 10px;
-    gap: 10px;
-    z-index: 10;
-    color: white;
-    /* display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: row; */
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.301);
-    font-size: 12px;
-    
+    padding: 8px 0;
 }
-/* .UserName h1{
-    font-weight: 500;
-} */
+
+.Card .Price{
+    background-color: hsl(110deg 9% 86%);
+    font-size: 30px;
+    font-weight: 600;
+    color:#fff;
+    padding: 5px 15px;
+}
+
+.Card .Title{
+    font-size: 28px;
+    color:hsl(0, 0.9%, 58%);
+
+}
+
+
+.Card .Image{
+    min-width: 300px;
+    max-width: 300px;
+    max-height: 400px;
+    min-height: 400px;
+    object-fit: cover;
+
+}
+
+.Link{
+    text-decoration: none;
+}
