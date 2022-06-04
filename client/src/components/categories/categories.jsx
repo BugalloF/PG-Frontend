@@ -1,7 +1,7 @@
 import React from "react";
 import s from './categories.module.css'
 import { useDispatch, useSelector } from "react-redux";
-import {categoryFilter } from "../../redux/actions";
+import {categoryFilter, CleanPosts, IsCategory, resetPage } from "../../redux/actions";
 import { useState, useEffect} from "react";
 
 
@@ -11,8 +11,11 @@ const Categories = (title) => {
 
     function catFilter(e){
       e.preventDefault();
-      console.log(e.target.value)
+      dispatch(resetPage())
+      dispatch(CleanPosts())
+      dispatch(IsCategory(true))
       dispatch(categoryFilter(e.target.value))
+      console.log(e.target.value)
     }
 	
     return (

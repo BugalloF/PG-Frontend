@@ -193,7 +193,17 @@ export const categoryFilter = (order) =>{
     let filterCategory = await axios.get("https://artpage.herokuapp.com/filter/category?category="+order);
     dispatch({
       type: "CategoryFilter", 
-      payload: filterCategory.data
+      artWorks: filterCategory.data.Artworks,
+      counter: filterCategory.data.counter,
     })
+  }
+}
+
+
+export const IsCategory = (boolean) => {
+  return {
+    type: 'IsCategory',
+    payload: boolean
+  
   }
 }

@@ -3,7 +3,7 @@ import React from "react";
 import s from "./card.module.css";
 import { ImageProfile } from "../imageprofile/imageprofile";
 
-const Card = ({postId, img, userId, userName, userImg, country, price, title}) => {
+const Card = ({postId, img, userName, userImg, country, price, title}) => {
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
   console.log("IMAGEN", img)
   return (
@@ -22,7 +22,7 @@ const Card = ({postId, img, userId, userName, userImg, country, price, title}) =
           </div>
           <div className={s.Right}>
           <span className={s.Price}>${price}</span>     
-            <h5>titulo</h5>
+            <h5>{title}</h5>
           </div>
           
         </div>

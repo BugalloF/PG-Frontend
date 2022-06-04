@@ -22,11 +22,12 @@ const PrincipalPage = () => {
   const dispatch = useDispatch();
   const allPosts = useSelector((state) => state.posts);
   const allCategories = useSelector((state) => state.categories);
+  const iscategory = useSelector((state) => state.iscategory);
   const length = useSelector((state) => state.length);
   const [hasMore, setHasMore] = useState(true);
   const page = useSelector((state) => state.page);
   const name = useLocation();
-
+  console.log(iscategory)
   useEffect(() => {
     return () => {
       setHasMore(true);
@@ -36,11 +37,13 @@ const PrincipalPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
+   if(!iscategory){
     dispatch(GetAllPosts(page, name.search));
     dispatch(GetAllCategories());
     if (page !== 0) {
       if (page === Math.floor(length / 12)) setHasMore(false);
     }
+   }
   }, [dispatch, page, name.search, length]);
 
   function orderByPrice(e) {

@@ -1,6 +1,7 @@
 const initialState = {
   posts: [],
   search:[],
+  iscategory: false,
   status: null ,
   length: 0,
   page: 0,
@@ -116,9 +117,14 @@ function rootReducer(state = initialState, action) {
       case 'CategoryFilter':
         return{
           ...state,
-          posts: action.payload.Artworks,
-          length: action.payload.counter, 
+          posts: action.artWorks,
+          length: action.counter, 
         }  
+        case 'IsCategory':
+          return{
+            ...state,
+            iscategory: action.payload
+          }  
 
       default:
         return state;
