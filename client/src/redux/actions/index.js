@@ -95,7 +95,7 @@ export const Post = (input) =>{
 
 
     const data = {
-      "id": 'a276f5ff-9182-4ca5-8ae2-eae5354683b6',
+      "id": 'b663eb9c-a7ed-4bc0-a0ce-64a7b4ee6b18',
       "title": input.title,
       "content": input.content,
       "category": input.category,
