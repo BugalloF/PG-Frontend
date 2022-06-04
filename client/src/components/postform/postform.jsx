@@ -58,7 +58,7 @@ function PostForm()
         
         reader.onload = function(event)
         {
-            console.log(e.target.files);
+            // console.log(e.target.files);
             setInput({...input, img: [...e.target.files], input: [...e.target.files]});
         };
 

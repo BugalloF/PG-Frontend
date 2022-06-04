@@ -115,8 +115,7 @@ export const Post = (input) =>{
     const urlOriginal = await getDownloadURL(uploadImageOriginal.ref)
 
 
-    console.log(input.id);
-    console.log(input);
+    // console.log(input.id);
 
     const data = {
       "id": input.id,
@@ -211,7 +210,7 @@ export const categoryFilter = (order) =>{
 }
 
 export const sendEmail = (values) =>{
-  console.log(values)
+  // console.log(values)
   return async function () {
     await axios.post('https://artpage.herokuapp.com/emails/send-email',values);
   }
