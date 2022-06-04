@@ -113,10 +113,10 @@ const PrincipalPage = () => {
             {allPosts?.map((card) => (
               <Card
                 postId={card.id}
-                img={card.img}
+                img={card.imgCompress}
                 userImg={card.profile?.img}
                 userId={card.profileId}
-                userName={card.profile?.name}
+                userName={card.profile?.userName}
                 country={card.profile?.country}
                 price={card.price}
                 title={card.title}

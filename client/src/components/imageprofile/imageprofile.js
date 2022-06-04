@@ -3,7 +3,7 @@ import s from '../imageprofile/imageprofile.module.css'
 
 
 
-export function ImageProfile({image,bigSize,name,country}) {
+export function ImageProfile({image,bigSize}) {
 
 
   var [size, setSize] = useState(s.big_image)
@@ -21,10 +21,6 @@ export function ImageProfile({image,bigSize,name,country}) {
         <div className={s.container}>
             
             <img className={size} src={image}/>
-            <div className={s.text}>
-              {name ? <h1>{name}</h1> : null}
-              <span>{country}</span>
-            </div>
             
         </div>
     )
