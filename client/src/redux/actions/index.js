@@ -8,7 +8,7 @@ const compress = new Compress()
 
 
 
-const URL = 'https://pruebafirebase.herokuapp.com'
+const URL = 'https://artpage.herokuapp.com'
 
 
 
