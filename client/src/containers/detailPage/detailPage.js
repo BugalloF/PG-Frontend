@@ -94,7 +94,7 @@ export default function DetailPage() {
 
   return(
      detail.id?( <div className={s.container_detailPage}>
-        <Detail image={detail.imgCompress} description={detail.content} user={userTest} amountComm={comentariosTest.length} profile={detail.profile}/>
+        <Detail image={detail.imgCompress} description={detail.content} user={userTest} amountComm={comentariosTest.length} profile={detail.profile} price={detail.price} title={detail.title} idPost={idPost}/>
 
         <div className={s.container_comments}>
           {comentariosTest.map(e=>(
