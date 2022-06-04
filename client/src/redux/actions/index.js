@@ -2,6 +2,7 @@ import axios from "axios";
 import { Detail } from "../../components/detail/detail";
 import {ref, uploadBytes ,getDownloadURL} from 'firebase/storage'
 import storage from  "../../firebase/firebase.js"
+import { async } from "@firebase/util";
 const Compress = require('compress.js').default;
 const compress = new Compress()
 
@@ -11,9 +12,6 @@ const URL = 'https://pruebafirebase.herokuapp.com'
 
 
 
-//npm install compress.js --save
-
-
 export const GetAllPosts = (page=0, name = '') =>{
   if(name !== '')  name = '&' + name.slice(1)
 
@@ -21,20 +19,24 @@ export const GetAllPosts = (page=0, name = '') =>{
       const allposts = await axios.get(`${URL}/art?from=${page}${name}`);
       dispatch({
       type: "GetPosts", 
-      payload: allposts.data,
+      artWorks: allposts.data.artWorks,
+      length: allposts.data.counter,
     })
     }
 }
 
-export const GetProfileByID = (id) => {
-   return async function (dispatch){
-     const profile = await axios.get(`${URL}/profile/${id}`)
-     dispatch({
-       type: 'GetProfile',
-       payload: profile
-     })
-   }
+export const GetProfileDetail = (id) => {
+  return async function (dispatch) {
+    const profileDetail = await axios.get(`${URL}/profile/${id}`)
+    dispatch({
+      type: 'GetProfileDetail',
+      payload: profileDetail.data
+
+    })
+  }
 }
+
+
 
 export const setPage = () => {
   return {
@@ -51,13 +53,13 @@ export const resetPage = () => {
 
 export const GetAllCategories = () =>{
   return async function (dispatch) {
-    dispatch({type: "GetCategories", payload: allcategories.data})
     const allcategories = await axios.get(`${URL}/categories`);
+    dispatch({type: "GetCategories", payload: allcategories.data})
   }
 }
 
 export const GetDetail = (id) =>{
-  console.log('holaaa')
+
   return async function (dispatch) {
     const detailPost = await axios.get(`${URL}/art/${id}`);
     dispatch({type: "GetDetail", payload: detailPost.data[0]})
@@ -65,8 +67,7 @@ export const GetDetail = (id) =>{
 }
 
 export const Post = (input) =>{
- console.log(input.img)
-  return async function () {
+  return async function (dispatch) {
     const post = await compress.compress(input.input, {
     size: 4, // the max size in MB, defaults to 2MB
     quality: .25, // the quality of the image, max is 1,
@@ -97,13 +98,32 @@ export const Post = (input) =>{
       "id": 'a276f5ff-9182-4ca5-8ae2-eae5354683b6',
       "title": input.title,
       "content": input.content,
-      "category": 'arte',
+      "category": input.category,
       "original": urlOriginal,
       "compress": urlCompress,
       "price": input.price,
     }
-    console.log(MakePost)
+   
     const MakePost = await axios.post(`${URL}/art`, data);
 
+    dispatch({
+      type:'Post',
+      payload:MakePost.status
+    })
+    
+
+  }
+}
+
+
+export const CleanStatus = () =>{
+  return{
+    type:'CleanStatus'
+  }
+}
+
+export const CleanDetail = () =>{
+  return{
+    type:'CleanDetail'
   }
 }

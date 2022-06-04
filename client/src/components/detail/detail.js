@@ -5,19 +5,17 @@ import s from './detail.module.css';
 
 import { ImageProfile } from "../imageprofile/imageprofile";
 
-const image = "https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png"
 
 
 export function Detail(props) {
-  console.log('props',props)
-  console.log('profile',props.profile)
+ 
   return(
   	<div className={s.container}>
       <div className={s.container_detail}>
       	<img src={props.image} alt="IMAGEN" className={s.img}/>
       	<div className={s.container_rigth}>
 
-	      	<ImageProfile image={props.profile.img} bigSize={true} name={props.profile.name} />
+	      	<ImageProfile image={props.profile.img} bigSize={true} name={props.profile.userName} />
 
 	      	<p>{props.description}</p>     		
       	</div>

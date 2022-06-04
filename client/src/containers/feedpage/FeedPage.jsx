@@ -17,6 +17,9 @@ const PrincipalPage = () => {
   const [hasMore, setHasMore] = useState(true)
   const page = useSelector((state) => state.page)
   const name = useLocation()
+
+
+  console.log(allPosts)
  
 
 
@@ -37,7 +40,7 @@ const PrincipalPage = () => {
 
   return (
     <InfiniteScroll
-    dataLength={allPosts.length}
+    dataLength={allPosts ? allPosts.length : 1}
     hasMore={hasMore}
     next={() => dispatch(setPage())}
     loader={<h4>Cargando...</h4>}
@@ -54,15 +57,17 @@ const PrincipalPage = () => {
         </div>
 
         <div className={s.Cards}>
-          {allPosts.map((card) => (
+          {allPosts ? (allPosts.map((card) => (
+            
             <Card
               postId={card.id}
-              img={card.img}
+              img={card.imgCompress}
               userImg={card.profile.img}
-              userId={card.profileId}
-              userName={card.profile.name}
+              userId={card.profile.id}
+              userName={card.profile.userName}
             />
-          ))}
+            
+          ))): null}
         </div>
       </div>
     </InfiniteScroll>

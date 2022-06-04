@@ -6,7 +6,7 @@ import s from './detailPage.module.css';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { faStoreAlt } from "@fortawesome/free-solid-svg-icons";
-import { GetDetail } from "../../redux/actions";
+import { CleanDetail, GetDetail } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 
 // --------------------------------------------------------
@@ -82,12 +82,19 @@ export default function DetailPage() {
   const {idPost} = useParams()
   useEffect(() => {
     dispatch(GetDetail(idPost))
+
+    return () => {
+      dispatch(CleanDetail())
+    };
+    
   },[]);
+
+ 
 
 
   return(
      detail.id?( <div className={s.container_detailPage}>
-        <Detail image={detail.img} description={detail.content} user={userTest} amountComm={comentariosTest.length} profile={detail.profile}/>
+        <Detail image={detail.imgCompress} description={detail.content} user={userTest} amountComm={comentariosTest.length} profile={detail.profile}/>
 
         <div className={s.container_comments}>
           {comentariosTest.map(e=>(
