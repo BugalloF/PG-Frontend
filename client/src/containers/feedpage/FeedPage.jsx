@@ -139,8 +139,8 @@ const PrincipalPage = () => {
         <option selected disabled>
           ORDENAR POR PRECIO
         </option>
-        <option value="ASC">Mayor a menor</option>
-        <option value="DESC">Menor a mayor</option>
+        <option value="DESC">Mayor a menor</option>
+        <option value="ASC">Menor a mayor</option>
       </select>
 
 
@@ -148,8 +148,8 @@ const PrincipalPage = () => {
         <option selected disabled>
           ORDENAR POR ANTIGUEDAD
         </option>
-        <option value="ASC" >Más recientes</option>
-        <option value="DESC">Más antiguos</option>
+        <option value="DESC" >Más recientes</option>
+        <option value="ASC">Más antiguos</option>
       </select>
 
       <select onChange={(e) => orderByLikes(e)}>
