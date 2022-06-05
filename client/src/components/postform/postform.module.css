@@ -1,32 +1,45 @@
 .container{
-    margin: 100px auto auto auto;
+    margin: 80px auto auto auto;
     width: 80%;
     height: 80vh; 
+
 }
 
 .form{
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     margin: auto;
-    border: 1px solid  rgb(189, 188, 188);  
+    /*border: 1px solid  rgb(189, 188, 188);  */
 }
 
 .container_img{
-    width: 65%;
-    height: 100%;
+    width: 650px;
+    height: 650px;
     display: flex;
     flex-direction: column;
     /* 
     flex-direction: column-reverse; */
     /* flex-wrap: nowrap;
     justify-content: space-around; */
-    
+    background-color: hsl(0deg 0% 86%);
+    align-items: center;
+    justify-content: center;
+    margin:0 70px;
+}
+
+.container_img p{
+    font-size: 30px;
+    color:hsl(0deg 0% 22%);
+    font-weight: 600;
 }
 
 .container_img input{
-    width: 60%;
+    /*width: 60%;*/
+    font-size: 15px;
 }
+
 
 .container_info{
     width: 35%;
@@ -40,23 +53,39 @@
 
 .title{
     text-align: center;
-    margin: 15px;
+    margin:10px 25px 10px 0;
+    font-size: 1em;
+
+    font-weight: bold;
+
 }
 
 .input{
-    width: 35%;
-   
+    width: 100%;
+    font-size: 18px;
+    padding: 8px 12px;
+    margin-bottom: 60px;
 }
 
 .input_content{
     height: 150px;
-    width: 70%;
+    width: 100%;
     resize: none;
+    font-size: 16px;
+    font-family: 'Helvetica';
 }
 
 .button{
-    width: 70px;
+    /*width: 70px;*/
     margin: auto;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 8px 25px;
+    text-transform: uppercase;
+    background-color: hsl(146deg 88% 55%);
+    border: none;
+    color: #fff;
+    border-radius: 11px;
 }
 
 .input_img{
@@ -65,5 +94,30 @@
     margin: auto;
     background-color: grey;
     
+}
+
+.icon_upload{
+    width: 150px;
+}
+
+
+.select{
+    font-size: 15px;
+    font-family: 'Helvetica';
+    border: 1px solid rgb(143, 143, 143);
+    background-color: white;
+    padding: 8px 25px;
+    margin-bottom: 50px;
+}
+
+
+.container_complete{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.input_price{
+    width: 35%;
 }
 

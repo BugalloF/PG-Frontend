@@ -6,7 +6,7 @@ import swal from "sweetalert";
 // Files
 import {CleanStatus, GetAllCategories, Post} from "../../redux/actions";
 import s from "../postform/postform.module.css";
-
+import iconoUp from './iconupload.png'
 
 function PostForm()
 {
@@ -86,8 +86,11 @@ function PostForm()
     return(
         <div className={s.container}>
             <form className={s.form} onSubmit={e => handleSubmit(e)}>
+            <div className={s.container_complete}>
                 <div className={s.container_img}>
                     <h4>Obra</h4>
+                    <img className={s.icon_upload} src={iconoUp} alt="subir" />
+                    <p>Subir una imagen</p>
                     <input onChange={e => handleChangeFile(e)} type="file" accept=".jpg, .jpeg, .png" /*value={input.img}*/ name="img"/>
                 </div>
                 
@@ -113,8 +116,10 @@ function PostForm()
                     </div>
                     
                     <h4 className={s.title}>Precio</h4>
-                    <input className={s.input} onChange={e => handleChange(e)} type="text" value={input.price} name="price"/>
-                </div>
+                    <input className={`${s.input} ${s.input_price}`} onChange={e => handleChange(e)} type="text" value={input.price} name="price"/>
+                </div>                
+            </div>
+
                 
                 <button className={s.button} type="submit" >Publicar</button>
             </form>
