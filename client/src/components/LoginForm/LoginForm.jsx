@@ -1,15 +1,15 @@
 // Dependencies
 import React, {useState, useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import swal from "sweetalert";
 import {AiOutlineEyeInvisible, AiOutlineEye} from "react-icons/ai";
 // Files
 import {getUsers, login} from "../../redux/actions/index";
-import styles from "./Login.module.css";
+import s from "./LoginForm.module.css";
 
 
-function Login()
+function LoginForm()
 {
     const dispatch = useDispatch();
     const users = useSelector(state => state.users);
@@ -45,7 +45,6 @@ function Login()
     {
         setInput({...input, [e.target.name] : e.target.value});
         setErrors(validate({...input,[e.target.name] : e.target.value}));
-        // console.log(input);
     };
     
     function handleShowPassword(e)
@@ -109,34 +108,33 @@ function Login()
     };
     
     return(
-        <div className={styles.Container}>
-            <form onSubmit={handleSubmit} className={styles.Form}>
-                <div>
-                    <input className={styles.Input} onChange={handleChange} type="text" placeholder="Username or email" name="user"/>
-                    {
-                        errors.user && errors.user
-                    }
-                </div>
-                <div className={styles.Input}>
-                    <input className={styles.Input} onChange={handleChange} type={password ? "text" : "password"} placeholder="Password" name="password"/>
-                    {
-                        errors.password && errors.password
-                    }
-                    <button className={styles.ShowPassword} onClick={handleShowPassword} type="button">
+        <div className={s.container_login_form}>
+            <h5>BIENVENIDO, POR FAVOR INICIA SESIÓN</h5>
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Nombre de usuario o correo electrónico" name="user" onChange={handleChange} />
+                {
+                    errors.user && errors.user
+                }
+                <input type={password ? "text" : "password"} placeholder="Contraseña" name="password" onChange={handleChange}  />
+                {
+                    errors.password && errors.password
+                }
+                
+                <button className={s.ShowPassword} onClick={handleShowPassword} type="button">
                         {
                             password ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>
                         }
-                    </button>
-                </div>
-                <button className={styles.SubmitButton} type="submit">Login</button>
+                </button>
                 
-                <p>
-                    Don't have an account? <Link to="/register">Sign Up</Link>
-                </p>
+                <div className={s.options}>
+                  <Link to="/register" className={s.noAccount}>No tengo una cuenta</Link>
+                </div>
+                
+                <button type="submit" className={s.login}>Iniciar sesión</button>
             </form>
         </div>
     );
 };
 
 
-export default Login;
+export default LoginForm;

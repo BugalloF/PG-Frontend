@@ -1,12 +1,18 @@
-import React, { useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { sendEmail } from "../../redux/actions";
+// Dependencies
+import React, {useRef, useEffect} from "react";
+import {useDispatch} from "react-redux";
+// import {Navigate, useNavigate} from "react-router-dom";
 import swal from "sweetalert";
+// Files
+import {sendEmail} from "../../redux/actions";
+
 
 export default function Paypal({price,title,idPost}) {
   const dispatch = useDispatch()
   const paypal = useRef();
-
+  const loggedUser = window.localStorage.getItem("userData");
+  // const navigate = useNavigate();
+  
   useEffect(() => {
     window.paypal
       .Buttons({
@@ -51,16 +57,25 @@ export default function Paypal({price,title,idPost}) {
           }
         },
         onError: (err) => {
-            window.alert('Ocurrió un error!')
+            swal('Ocurrió un error!')
             // console.log(err);
         },
       })
       .render(paypal.current);
   }, []);
-
-  return (
-    <div>
-      <div ref={paypal}></div>
-    </div>
-  );
+  
+  if(loggedUser)
+  {
+    return(
+      <div>
+        <div ref={paypal}></div>
+      </div>
+    );
+  }
+  else
+  {
+    return(
+      <h4>Para poder comprar, es necesario estar registrado.</h4>
+    );
+  };
 }
