@@ -11,14 +11,24 @@ const URL = 'https://artpage.herokuapp.com'
 export const GetAllPosts = (page=0, name = '') =>{
   if(name !== '')  name = '&' + name.slice(1)
 
+
     return async function (dispatch) {
       const allposts = await axios.get(`${URL}/art?from=${page}${name}`);
-     // const allposts = await axios.get(`https://artpage.herokuapp.com/art?from=${page}${name}`);
+
+     if (!name.length) {
       dispatch({
       type: "GetPosts", 
       artWorks: allposts.data.artWorks,
       length: allposts.data.counter,
-    })
+      })
+     }else{
+      dispatch({
+      type: "GetPostsWithSearch", 
+      artWorks: allposts.data.artWorks,
+      length: allposts.data.counter,
+      })       
+     }
+
     }
 }
 
@@ -148,9 +158,19 @@ export const CleanDetail = () =>{
   }
 }
 
-export const priceOrder = (order) =>{
+
+
+
+
+
+
+export const priceOrder = (order, page = 0) =>{
   return async function (dispatch) {
-    let filterPrices = await axios.get("https://artpage.herokuapp.com/filter/price?price="+order);
+    let filterPrices = await axios.get(`${URL}/filter/price?price=${order}&from=${page}`);
+
+
+      
+
     dispatch({
       type: "PriceOrder", 
       payload: filterPrices.data
@@ -158,9 +178,14 @@ export const priceOrder = (order) =>{
   }
 }
 
-export const antOrder = (order) =>{
+export const antOrder = (order, page = 0) =>{
   return async function (dispatch) {
-    let filterAnt = await axios.get("https://artpage.herokuapp.com/filter/antiquity?antiquity="+order);
+    let filterAnt = await axios.get(`${URL}/filter/antiquity?antiquity=${order}&from=${page}`);
+
+
+      
+      
+
     dispatch({
       type: "AntOrder", 
       payload: filterAnt.data
@@ -168,9 +193,12 @@ export const antOrder = (order) =>{
   }
 }
 
-export const likesOrder = (order) =>{
+export const likesOrder = (order, page = 0) =>{
   return async function (dispatch) {
-    let filterLikes = await axios.get("https://artpage.herokuapp.com/filter/likes?likes="+order);
+    let filterLikes = await axios.get(`${URL}/filter/likes?likes=${order}&from=${page}`);
+
+
+      
     dispatch({
       type: "LikesOrder", 
       payload: filterLikes.data
@@ -189,9 +217,14 @@ export const CleanPosts = () => {
     type: 'CleanPosts'
   }}
 
-export const countryFilter = (order) =>{
+export const CountryFilter = (order, page = 0) =>{
   return async function (dispatch) {
-    let filterCountry = await axios.get("https://artpage.herokuapp.com/filter/country?country="+order);
+    let filterCountry = await axios.get(`${URL}/filter/country?country=${order}&from=${page}`);
+
+
+         
+
+
     dispatch({
       type: "CountryFilter", 
       payload: filterCountry.data
@@ -199,15 +232,62 @@ export const countryFilter = (order) =>{
   }
 }
 
-export const categoryFilter = (order) =>{
+export const categoryFilter = (order, page = 0) =>{
   return async function (dispatch) {
-    let filterCategory = await axios.get("https://artpage.herokuapp.com/filter/category?category="+order);
+    let filterCategory = await axios.get(`${URL}/filter/category?category=${order}&from=${page}`);
+
+
+           
+
     dispatch({
       type: "CategoryFilter", 
       payload: filterCategory.data
     })
   }
 }
+
+export const Filter = () => {
+  return {
+    type: 'Filter'
+  }
+}
+
+export const FilterNo = () => {
+  return {
+    type: 'FilterNo'
+  }
+}
+export const Countries = () =>{
+  return async function (dispatch) {
+    let country = await axios.get(`${URL}/profile`);
+
+
+      
+
+    dispatch({
+      type: "Countries", 
+      payload: country.data
+    })
+  }
+}
+
+
+export const NotFound = () => {
+  return {
+    type: 'NotFound'
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 export const sendEmail = (values) =>{
   // console.log(values)
