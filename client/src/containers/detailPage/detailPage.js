@@ -96,14 +96,6 @@ export default function DetailPage() {
      detail.id?( <div className={s.container_detailPage}>
         <Detail image={detail.imgCompress} description={detail.content} user={userTest} amountComm={comentariosTest.length} profile={detail.profile} price={detail.price} title={detail.title} idPost={idPost}/>
 
-        <div className={s.container_comments}>
-          {comentariosTest.map(e=>(
-            <Comment name={e.nombre} photo={e.fotoPerfil} comment={e.comentario}/>
-          ))
-          }
-        </div>
-
-
         <div className={s.container_recommendation}>
           <h2>publicaciones recomendadas</h2>
             <div className={s.cardsRec}>

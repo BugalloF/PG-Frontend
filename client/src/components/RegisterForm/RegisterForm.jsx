@@ -1,15 +1,15 @@
 // Dependencies
 import React, {useState, useEffect} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, Link} from "react-router-dom";
 import swal from "sweetalert";
 import {AiOutlineEyeInvisible, AiOutlineEye} from "react-icons/ai";
 // Files
 import {getUsers, register} from "../../redux/actions/index";
-import styles from "./Register.module.css";
+import s from "./RegisterForm.module.css";
 
 
-function Register()
+function RegisterForm()
 {
     const dispatch = useDispatch();
     const users = useSelector(state => state.users);
@@ -51,11 +51,11 @@ function Register()
         }
         else if(foundUsername.length)
         {
-            errors.userName = <p className={styles.Alert}>This username isn't available. Please try another.</p>;
+            errors.userName = <p className={s.Alert}>Este nombre de usuario no está disponible. Por favor, intente con otro.</p>;
         }
         else if(foundEmail.length)
         {
-            errors.email = <p className={styles.Alert}>This email is already in use available. Please try another.</p>;
+            errors.email = <p className={s.Alert}>Este correo electrónico ya está en uso disponible. Por favor, intente con otro.</p>;
         }
         else if(!input.password)
         {
@@ -69,7 +69,6 @@ function Register()
     {
         setInput({...input, [e.target.name] : e.target.value});
         setErrors(validate({...input, [e.target.name] : e.target.value}));
-        // console.log(input);
     };
     
     function handleShowPassword(e)
@@ -83,7 +82,7 @@ function Register()
         if(Object.keys(validate(input)).length > 0)
         {
             e.preventDefault();
-            swal("All fields are required.");
+            swal("Por favor, complete todos los campos.");
         }
         else
         {
@@ -96,61 +95,51 @@ function Register()
                 email: "",
                 password: "",
             });
-            swal("The user was successfully created!");
+            swal("El usuario fue creado con éxito!");
             navigate("/login");
         };
     };
     
-    
     return(
-        <div className={styles.Container}>
-            <form onSubmit={e => handleSubmit(e)} className={styles.Form} >
-                <div>
-                    <input className={styles.Input} onChange={e => handleChange(e)} type="text" placeholder="Name" name="name"/>
-                    {
-                        errors.name && errors.name
-                    }
-                </div>
-                    
-                <div>
-                    <input className={styles.Input} onChange={e => handleChange(e)} type="text" placeholder="Last name" name="lastName"/>
-                    {
-                        errors.lastName && errors.lastName
-                    }
-                </div>
-                    
-                <div>
-                    <input className={styles.Input} onChange={e => handleChange(e)} type="text" placeholder="Username" name="userName"/>
-                    {
-                        errors.userName && errors.userName
-                    }
-                </div>
-                <div>
-                    <input className={styles.Input} onChange={e => handleChange(e)} type="email" placeholder="Email" name="email"/>
-                    {
-                        errors.email && errors.email
-                    }
-                </div>
-                <div>
-                    <input className={styles.Input} onChange={e => handleChange(e)} type={password ? "text" : "password"} placeholder="Password" name="password"/>
-                    {
-                        errors.password && errors.password
-                    }
-                    <button className={styles.ShowPassword} onClick={handleShowPassword} type="button">
-                        {
-                            password ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>
-                        }
-                    </button>
-                </div>
-                <button className={styles.SubmitButton} type="submit">Register</button>
+        <div className={s.container_login_form}>
+            <h3>Registrarte es rápido y fácil.</h3>
+            <form onSubmit={handleSubmit}>
+                <input onChange={e => handleChange(e)} type="text" placeholder="Nombre" name="name"/>
+                {
+                    errors.name && errors.name
+                }
+                <input onChange={e => handleChange(e)} type="text" placeholder="Apellido" name="lastName"/>
+                {
+                    errors.lastName && errors.lastName
+                }
+                <input onChange={e => handleChange(e)} type="text" placeholder="Nombre de usuario" name="userName"/>
+                {
+                    errors.userName && errors.userName
+                }
+                <input onChange={e => handleChange(e)} type="email" placeholder="Correo electrónico" name="email"/>
+                {
+                    errors.email && errors.email
+                }
+                <input onChange={e => handleChange(e)} type={password ? "text" : "password"} placeholder="Contraseña" name="password"/>
+                {
+                    errors.password && errors.password
+                }
                 
-                <p>
-                    Already have an account? <Link to="/login">Sign In</Link>
-                </p>
+                <button className={s.ShowPassword} onClick={handleShowPassword} type="button">
+                    {
+                        password ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>
+                    }
+                </button>
+                
+                <div className={s.options}>
+                  <Link to="/login" className={s.noAccount}>Ya tengo una cuenta</Link>
+                </div>
+                
+                <button type="submit" className={s.login}>Registrarte</button>
             </form>
         </div>
     );
 };
 
 
-export default Register;
+export default RegisterForm;
