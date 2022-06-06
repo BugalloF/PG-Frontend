@@ -2,17 +2,16 @@
     margin: 10px;
     display: inline-block;
     position: relative;
-    height: 500px;
+    height: 450px;
     min-width: 150px;
-    max-width: 800px;
-    object-fit: cover;
+    max-width: 1280px;
+    object-fit: contain;
     overflow: hidden;   
 }
+
 .Image{
-    height: 100%;
+    height: 350px;
     text-align: left;
-
-
 }
 
 .UserName{
@@ -38,19 +37,6 @@
 
 }
 
-
-.Card .Image{
-    min-width: 300px;
-    max-width: 300px;
-    max-height: 400px;
-    min-height: 400px;
-    object-fit: cover;
-
-}
-
-.Link{
-    text-decoration: none;
-}
 .Left{
     display: flex;
     flex-direction: row;

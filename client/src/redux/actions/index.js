@@ -32,24 +32,24 @@ export const GetAllPosts = (page = 0, name = "") => {
   };
 };
 
-export const GetProfileDetail = (id) => {
-  return async function (dispatch) {
-    const profileDetail = await axios.get(`${URL}/profile/${id}`);
-    dispatch({
-      type: "GetProfileDetail",
-      payload: profileDetail.data.found,
-    });
-  };
+// export const GetProfileDetail = (id) => {
+//   return async function (dispatch) {
+//     const profileDetail = await axios.get(`${URL}/profile/${id}`);
+//     dispatch({
+//       type: "GetProfileDetail",
+//       payload: profileDetail.data.found,
+//     });
+//   };
   
-  //export const GetProfileByID = (id) => {
-  //  return async function (dispatch){
-  //     const profile = await axios.get(`https://artpage.herokuapp.com/profile/${id}`)
-  //     dispatch({
-  //       type: 'GetProfile',
-  //       payload: profile
-  //     })
-  //   }
-};
+//   //export const GetProfileByID = (id) => {
+//   //  return async function (dispatch){
+//   //     const profile = await axios.get(`https://artpage.herokuapp.com/profile/${id}`)
+//   //     dispatch({
+//   //       type: 'GetProfile',
+//   //       payload: profile
+//   //     })
+//   //   }
+// };
 
 export const setPage = () => {
   return {

@@ -8,29 +8,27 @@ import {faFacebook, faLinkedinIn, faDeviantart} from '@fortawesome/free-brands-s
 // Files
 import s from './profilePage.module.css';
 import {ImageProfile} from "../../components/imageprofile/imageprofile";
-import {CleanProfile, GetProfileDetail, profile} from "../../redux/actions/index";
+import {CleanProfile, profile} from "../../redux/actions/index";
 import Card from "../../components/cards/card";
 
 function ProfilePage()
 {
   const dispatch = useDispatch();
-  const  user  = useSelector(state => state.profile);
+  const user = useSelector(state => state.profile);
   const loggedUser = window.localStorage.getItem("userData");
   const userDataJson = JSON.parse(loggedUser);
   const id = userDataJson ? userDataJson.id : "";
-  
+  const userArtworks = user.found && user.found.artworks;
   const {profileId} = useParams()
-  
   const navigate = useNavigate();
   
   useEffect(() => {
-      dispatch(GetProfileDetail(profileId));
+      dispatch(profile(loggedUser, profileId));
       return () =>{
         dispatch(CleanProfile())
       };
   }, []);
-
-console.log('holis',user)
+  
   function handleLogout(e)
   {
       e.preventDefault();
@@ -45,11 +43,12 @@ console.log('holis',user)
         <div className={s.container_info_profile}>
           <div className={s.top}>
             <div className={s.profile}>
-              <ImageProfile image ={user.img} name={user.userName} />
+              <ImageProfile image={user.found && user.found.img} name={user.found} />
+              <h2>{user.found && user.found.userName}</h2>
             </div>
             <div className={s.follows}>
-              <p>Seguidores</p>
-              <p>Seguidos</p>
+              <p>Seguidores: {user.cantSeguidores}</p>
+              <p>Seguidos: {user.cantSeguidos}</p>
             </div>
           </div>
           
@@ -66,27 +65,23 @@ console.log('holis',user)
         </div>
         
         <div className={s.container_image}>
-        {user.artworks?.map((card) => (
-              <Card
-                key = {card.id}
-                img={card.imgCompress}
-                userImg={user.img}
-                postId ={card.id}
-             
-                price={card.price}
-                title={card.title}
-              />
-            ))
+          {
+            userArtworks?.map((card) => (
+                <Card
+                  key = {card.id}
+                  img={card.imgCompress}
+                  userImg={user.found.img}
+                  postId ={card.id}
+                  price={card.price}
+                  title={card.title}
+                />
+              ))
           }
-           
-        
         </div>
-
-        { userDataJson.id === profileId ?
-      <button onClick={handleLogout}>Logout</button>: null
+        {
+          userDataJson.id === id ?
+          <button onClick={handleLogout}>Logout</button>: null
         }
-        
-       
       </div>
     );
   }
