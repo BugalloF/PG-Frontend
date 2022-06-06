@@ -13,7 +13,7 @@ import {
   resetPage,
   Filter,
   Countries,
-  CountryFilter
+  CountryFilter,
 } from "../../redux/actions";
 import Categories from "../../components/categories/categories";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -51,6 +51,11 @@ const PrincipalPage = () => {
     };
   }, [dispatch]);
   
+  useEffect(() => {
+    return () => {
+      dispatch(CleanPosts());
+    };
+  }, [filterState]);  
 
 
   useEffect(() => {
@@ -97,6 +102,7 @@ const PrincipalPage = () => {
 
   let orderByPrice=(e) =>{
     e.preventDefault();
+    dispatch(resetPage())
     dispatch(Filter())
     setFilterName('price')
     setOrder(e.target.value)
@@ -108,6 +114,7 @@ const PrincipalPage = () => {
 
   function orderByAnt(e) {
     e.preventDefault();
+    dispatch(resetPage())
     dispatch(Filter())
     setFilterName('antiguedad')
     setOrder(e.target.value)
@@ -117,6 +124,7 @@ const PrincipalPage = () => {
 
   function orderByLikes(e) {
     e.preventDefault();
+    dispatch(resetPage())
     dispatch(Filter())
     setFilterName('likes')
     setOrder(e.target.value)  
@@ -126,6 +134,7 @@ const PrincipalPage = () => {
 
   function orderByCountry(e) {
     e.preventDefault();
+    dispatch(resetPage())
     dispatch(Filter())
     setFilterName('country')
     setOrder(e.target.value)  
@@ -133,7 +142,7 @@ const PrincipalPage = () => {
     
   }
 
-  console.log(allPosts)
+
 
   return (
     <div>
@@ -202,7 +211,7 @@ const PrincipalPage = () => {
                 postId={card.id}
                 img={card.imgCompress}
                 userImg={card.profile?.img}
-                userId={card.profile.id}
+                userId={card.profile?.id}
                 userName={card.profile?.userName}
                 country={card.profile?.country}
                 price={card.price}

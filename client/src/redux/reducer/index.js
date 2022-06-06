@@ -34,6 +34,7 @@ function rootReducer(state = initialState, action) {
           posts: [...state.posts, ...action.artWorks],
           length: action.counter,
           filter: false,
+          loader:false
         };
       };
     
@@ -52,6 +53,7 @@ function rootReducer(state = initialState, action) {
           posts: [...state.posts, ...action.artWorks],
           length: action.counter,
           filter: false,
+          loader:false
         };
       };
     
@@ -77,6 +79,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload,
+        filter:false
       };
     
     case "setPage":
@@ -119,15 +122,28 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         posts: [],
+        loader:true
       };
     
     case "PriceOrder":
-      return {
-        ...state,
-        posts: action.payload.Artworks,
-        length: action.payload.counter,
-        filter: true,
-      };
+      if (state.page === 0) {
+        return {
+          ...state,
+          posts: action.payload.Artworks,
+          length: action.payload.counter,
+          filter: true,
+          loader:false
+        };
+      } else {
+          return {
+            ...state,
+            posts: [...state.posts, ...action.payload.Artworks],
+            length: action.payload.counter,
+            filter: true,
+            loader:false
+          };              
+      }
+
     
     case "Filter":
       return {
@@ -142,36 +158,82 @@ function rootReducer(state = initialState, action) {
       };
     
     case "AntOrder":
-      return {
-        ...state,
-        posts: action.payload.Artoworks,
-        length: action.payload.counter,
-        filter: true,
-      };
+      if (state.page === 0) {
+        return {
+          ...state,
+          posts: action.payload.Artoworks,
+          length: action.payload.counter,
+          filter: true,
+          loader:false
+        };
+      } else {
+        return {
+          ...state,
+          posts: [...state.posts, ...action.payload.Artoworks],
+          length: action.payload.counter,
+          filter: true,
+          loader:false
+        };        
+      }
+
     
     case "LikesOrder":
-      return {
-        ...state,
-        posts: action.payload.Artworks,
-        length: action.payload.counter,
-        filter: true,
+
+      if (state.page === 0) {
+        return {
+          ...state,
+          posts: action.payload.Artworks,
+          length: action.payload.counter,
+          filter: true,
+          loader:false
+        };
+      } else {
+        return {
+          ...state,
+          posts: [...state.posts, ...action.payload.Artworks],
+          length: action.payload.counter,
+          filter: true,
+          loader:false
+        };
       };
-    
+
     case "CountryFilter":
-      return {
-        ...state,
-        posts: action.payload,
-        length: action.payload.counter,
-        filter: true,
-      };
+      if (state.page === 0) {
+        return {
+          ...state,
+          posts: action.payload,
+          length: action.payload.counter,
+          filter: true,
+          loader:false
+        };
+      } else {
+        return{
+          ...state,
+          posts: [...state.posts, ...action.payload],
+          length: action.payload.counter,
+          filter: true,
+          loader:false            
+        }
+      }
     
     case "CategoryFilter":
-      return {
-        ...state,
-        posts: action.payload.Artworks,
-        length: action.payload.counter,
-        filter: true,
-      };
+      if (state.page === 0) {
+        return{
+          ...state,
+          posts: action.payload.Artworks,
+          length: action.payload.counter,
+          filter: true,
+          loader:false
+        }
+      } else {
+        return{
+          ...state,
+          posts: [...state.posts, ...action.payload.Artworks],
+          length: action.payload.counter,
+          filter: true,
+          loader:false 
+        }
+      }
     
     case "Countries":
       let allCountries = [];
