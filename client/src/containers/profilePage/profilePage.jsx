@@ -9,7 +9,7 @@ import {faFacebook, faLinkedinIn, faDeviantart} from '@fortawesome/free-brands-s
 import s from './profilePage.module.css';
 import {ImageProfile} from "../../components/imageprofile/imageprofile";
 import {CleanProfile, GetProfileDetail, profile} from "../../redux/actions/index";
-
+import Card from "../../components/cards/card";
 
 function ProfilePage()
 {
@@ -30,8 +30,7 @@ function ProfilePage()
       };
   }, []);
 
-  console.log(user.artworks)
-  
+console.log('holis',user)
   function handleLogout(e)
   {
       e.preventDefault();
@@ -66,18 +65,28 @@ function ProfilePage()
           </div>
         </div>
         
-       
-        {
-          user.artworks?.map(e => {
-            
-            <img  src={e.img} />
-          })
-          
-         
-        }
-       
+        <div className={s.container_image}>
+        {user.artworks?.map((card) => (
+              <Card
+                key = {card.id}
+                img={card.imgCompress}
+                userImg={user.img}
+                postId ={card.id}
+             
+                price={card.price}
+                title={card.title}
+              />
+            ))
+          }
+           
         
-        <button onClick={handleLogout}>Logout</button>
+        </div>
+
+        { userDataJson.id === profileId ?
+      <button onClick={handleLogout}>Logout</button>: null
+        }
+        
+       
       </div>
     );
   }

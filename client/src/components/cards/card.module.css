@@ -11,6 +11,8 @@
 .Image{
     height: 100%;
     text-align: left;
+
+
 }
 
 .UserName{
@@ -22,7 +24,7 @@
 }
 
 .Card .Price{
-    background-color: hsl(110deg 9% 86%);
+    background-color: rgb(132, 132, 132);
     font-size: 15px;
     height: 20px;
     font-weight: 600;

@@ -133,6 +133,8 @@ const PrincipalPage = () => {
     
   }
 
+  console.log(allPosts)
+
   return (
     <div>
       <select onChange={(e) => orderByPrice(e)}>
@@ -200,7 +202,7 @@ const PrincipalPage = () => {
                 postId={card.id}
                 img={card.imgCompress}
                 userImg={card.profile?.img}
-                userId={card.profileId}
+                userId={card.profile.id}
                 userName={card.profile?.userName}
                 country={card.profile?.country}
                 price={card.price}

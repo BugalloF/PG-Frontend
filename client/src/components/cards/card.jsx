@@ -13,7 +13,7 @@ const Card = ({postId, img, userId, userName, userImg, country, price, title}) =
 
         <div className={s.UserName}>
           <div className={s.Left}>
-          <ImageProfile image={userImg}/>   
+          <Link to={`/profile/${userId}`}><ImageProfile image={userImg}/>  </Link>
           <ol>
             <li>{userName}</li>
             <li>{country}</li>
@@ -21,7 +21,7 @@ const Card = ({postId, img, userId, userName, userImg, country, price, title}) =
           </div>
           <div className={s.Right}>
           <span className={s.Price}>${price}</span>     
-            <h5>titulo</h5>
+            <h5>{title}</h5>
           </div>
           
         </div>
