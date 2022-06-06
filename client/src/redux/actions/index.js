@@ -37,7 +37,7 @@ export const GetProfileDetail = (id) => {
     const profileDetail = await axios.get(`${URL}/profile/${id}`);
     dispatch({
       type: "GetProfileDetail",
-      payload: profileDetail.data,
+      payload: profileDetail.data.found,
     });
   };
   

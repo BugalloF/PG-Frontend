@@ -2,32 +2,35 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 // import {useParams} from "react-router-dom";
-import {Navigate, useNavigate} from "react-router-dom";
+import {Navigate, useNavigate, useParams} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFacebook, faLinkedinIn, faDeviantart} from '@fortawesome/free-brands-svg-icons';
 // Files
 import s from './profilePage.module.css';
 import {ImageProfile} from "../../components/imageprofile/imageprofile";
-import {CleanProfile, profile} from "../../redux/actions/index";
+import {CleanProfile, GetProfileDetail, profile} from "../../redux/actions/index";
 
 
 function ProfilePage()
 {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.profile);
+  const  user  = useSelector(state => state.profile);
   const loggedUser = window.localStorage.getItem("userData");
   const userDataJson = JSON.parse(loggedUser);
   const id = userDataJson ? userDataJson.id : "";
-  const userArtworks = user.found && user.found.artworks;
-  console.log(userArtworks);
+  
+  const {profileId} = useParams()
+  
   const navigate = useNavigate();
   
   useEffect(() => {
-      dispatch(profile(loggedUser, id));
+      dispatch(GetProfileDetail(profileId));
       return () =>{
         dispatch(CleanProfile())
       };
-  }, [dispatch, loggedUser]);
+  }, []);
+
+  console.log(user.artworks)
   
   function handleLogout(e)
   {
@@ -43,7 +46,7 @@ function ProfilePage()
         <div className={s.container_info_profile}>
           <div className={s.top}>
             <div className={s.profile}>
-              <ImageProfile image ={profile.img} name={profile.userName} />
+              <ImageProfile image ={user.img} name={user.userName} />
             </div>
             <div className={s.follows}>
               <p>Seguidores</p>
@@ -63,15 +66,16 @@ function ProfilePage()
           </div>
         </div>
         
-        <div className={s.container_image}>
+       
         {
-          userArtworks !== undefined ? userArtworks.map(e => {
-            <img key={e.id} src={e.imgCompress} alt="imagenes" className={s.img}/>
+          user.artworks?.map(e => {
+            
+            <img  src={e.img} />
           })
-          :
-          <h3>Cargando...</h3>
+          
+         
         }
-        </div>
+       
         
         <button onClick={handleLogout}>Logout</button>
       </div>
