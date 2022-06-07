@@ -60,7 +60,7 @@ export const GetDetail = (userData=null, id) => {
       const data = (await axios(`${URL}/art/${id}?apiKey=${REACT_APP_API_KEY}`)).data;
       return dispatch({type: "GetDetail", payload: data});
     }
-    else
+    else 
     {
       if (userData !== null)
       {
