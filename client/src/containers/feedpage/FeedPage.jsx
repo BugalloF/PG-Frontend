@@ -12,8 +12,6 @@ import {
   likesOrder,
   resetPage,
   Filter,
-  Countries,
-  CountryFilter,
 } from "../../redux/actions";
 import Categories from "../../components/categories/categories";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -32,8 +30,6 @@ const PrincipalPage = () => {
   const page = useSelector((state) => state.page);
   const name = useLocation();
   
-  const countries = useSelector((state) => state.countries);
-
   const filterState = useSelector((state) => state.filter);
   // const [filterStateLocal, setFilterStateLocal] = useState(false);
 
@@ -61,7 +57,6 @@ const PrincipalPage = () => {
   useEffect(() => {
  
 
-    dispatch(Countries());
     // console.log(filterStateLocal)
     // console.log('filtro global'+ filterState)
 
@@ -77,10 +72,6 @@ const PrincipalPage = () => {
       if (filterName == 'likes') {
         dispatch(likesOrder(order, page)); 
       }
-      if (filterName == 'country') {
-        dispatch(CountryFilter(order, page)); 
-      }
-    
     }
 
     if (!filterState) {
@@ -132,17 +123,6 @@ const PrincipalPage = () => {
     
   }
 
-  function orderByCountry(e) {
-    e.preventDefault();
-    dispatch(resetPage())
-    dispatch(Filter())
-    setFilterName('country')
-    setOrder(e.target.value)  
-    setRefresh('countries')
-    
-  }
-
-
 
   return (
     <div>
@@ -171,18 +151,6 @@ const PrincipalPage = () => {
         <option value="DESC">Peores valorados</option>
       </select>
 
-      <select onChange={(e) => orderByCountry(e)}>
-        <option selected disabled>
-          ORDENAR POR PAIS
-        </option>
-
-        {countries?.map(e=>{
-          return (
-            <option value={e}>{e}</option>
-          )
-        })}
-
-      </select>
 
       <InfiniteScroll
         dataLength={allPosts.length}

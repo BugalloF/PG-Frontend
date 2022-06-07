@@ -1,7 +1,6 @@
 // Dependencies
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-// import {useParams} from "react-router-dom";
 import {Navigate, useNavigate, useParams} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFacebook, faLinkedinIn, faDeviantart} from '@fortawesome/free-brands-svg-icons';
@@ -11,6 +10,7 @@ import {ImageProfile} from "../../components/imageprofile/imageprofile";
 import {CleanProfile, profile} from "../../redux/actions/index";
 import Card from "../../components/cards/card";
 
+
 function ProfilePage()
 {
   const dispatch = useDispatch();
@@ -19,21 +19,21 @@ function ProfilePage()
   const userDataJson = JSON.parse(loggedUser);
   const id = userDataJson ? userDataJson.id : "";
   const userArtworks = user.found && user.found.artworks;
-  const {profileId} = useParams()
+  const {profileId} = useParams();
   const navigate = useNavigate();
   
   useEffect(() => {
-      dispatch(profile(loggedUser, profileId));
-      return () =>{
-        dispatch(CleanProfile())
-      };
+    dispatch(profile(loggedUser, profileId));
+    return () => {
+      dispatch(CleanProfile());
+    };
   }, []);
   
   function handleLogout(e)
   {
-      e.preventDefault();
-      window.localStorage.clear();
-      navigate("/");
+    e.preventDefault();
+    window.localStorage.clear();
+    navigate("/");
   };
   
   if(user && loggedUser)
@@ -80,14 +80,16 @@ function ProfilePage()
         </div>
         {
           userDataJson.id === id ?
-          <button onClick={handleLogout}>Logout</button>: null
+          <button onClick={handleLogout}>Logout</button> 
+          :
+          null
         }
       </div>
     );
   }
   else
   {
-      return(<Navigate to="/login"/>);
+    return(<Navigate to="/login"/>);
   };
 };
 

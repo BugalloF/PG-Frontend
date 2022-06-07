@@ -79,33 +79,33 @@ export default function DetailPage() {
 
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.detail)
-  const {idPost} = useParams()
+  const {idPost} = useParams();
+  const idPosteo = detail.artWork ? detail.artWork[0].id : undefined;
+  const loggedUser = window.localStorage.getItem("userData");
+  
   useEffect(() => {
-    dispatch(GetDetail(idPost))
+    dispatch(GetDetail(loggedUser, idPost))
 
     return () => {
       dispatch(CleanDetail())
     };
     
   },[]);
-
- 
-
-
+  
   return(
-     detail.id?( <div className={s.container_detailPage}>
-        <Detail image={detail.imgCompress} description={detail.content} user={detail.profile.userName} amountComm={comentariosTest.length} profile={detail.profile} price={detail.price} title={detail.title} idPost={idPost}/>
+    idPosteo?( <div className={s.container_detailPage}>
+       <Detail image={detail.artWork[0].imgCompress} description={detail.artWork[0].content} user={detail.artWork[0].profile.userName} amountComm={comentariosTest.length} profile={detail.artWork[0].profile} price={detail.artWork[0].price} title={detail.artWork[0].title} idPost={idPost} likes ={detail.likesCounter}/>
 
-        <div className={s.container_recommendation}>
-          <h2>publicaciones recomendadas</h2>
-            <div className={s.cardsRec}>
-                {
-                  cards?.map((card) => <Card post ={card}/>)
-                }
-            </div>
+       <div className={s.container_recommendation}>
+         <h2>publicaciones recomendadas</h2>
+           <div className={s.cardsRec}>
+               {
+                 cards?.map((card) => <Card post ={card}/>)
+               }
+           </div>
+               
+       </div>
 
-        </div>
-
-      </div>):(<div><h1>cargando...</h1></div>)
-  )
-}
+     </div>):(<div><h1>cargando...</h1></div>)
+ );
+};
