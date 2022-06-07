@@ -82,7 +82,7 @@ export default function DetailPage() {
   const {idPost} = useParams();
   const idPosteo = detail.artWork ? detail.artWork[0].id : undefined;
   const loggedUser = window.localStorage.getItem("userData");
-  
+  // console.log('LOGGEDDDDDDDD',typeof(loggedUser))
   useEffect(() => {
     dispatch(GetDetail(loggedUser, idPost))
 

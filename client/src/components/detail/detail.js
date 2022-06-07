@@ -14,7 +14,8 @@ export function Detail(props) {
   const dispatch = useDispatch();
   const loggedUser = window.localStorage.getItem("userData");
   const userDataJson = JSON.parse(loggedUser);
-  console.log('aaaaaaaa',props)
+  console.log('aaaaaaaa',typeof(userDataJson))
+
   
   async function handlerOnClick (e){
     e.preventDefault()
