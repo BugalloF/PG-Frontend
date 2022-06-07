@@ -1,20 +1,20 @@
 // Dependencies
 import axios from "axios";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {ref, uploadBytes, getDownloadURL} from "firebase/storage";
 // Files
 import storage from "../../firebase/firebase.js";
 const Compress = require("compress.js").default;
-
+const {REACT_APP_URL, REACT_APP_API_KEY} = process.env;
+const URL = REACT_APP_URL;
 
 const compress = new Compress();
-const URL = "https://artpage.herokuapp.com";
 
 
 export const GetAllPosts = (page = 0, name = "") => {
   if (name !== "") name = "&" + name.slice(1);
   
   return async function (dispatch) {
-    const allposts = await axios.get(`${URL}/art?from=${page}${name}`);
+    const allposts = await axios.get(`${URL}/art?from=${page}${name}&apiKey=${REACT_APP_API_KEY}`);
     
     if (!name.length) {
       dispatch({
@@ -32,25 +32,6 @@ export const GetAllPosts = (page = 0, name = "") => {
   };
 };
 
-// export const GetProfileDetail = (id) => {
-//   return async function (dispatch) {
-//     const profileDetail = await axios.get(`${URL}/profile/${id}`);
-//     dispatch({
-//       type: "GetProfileDetail",
-//       payload: profileDetail.data.found,
-//     });
-//   };
-  
-//   //export const GetProfileByID = (id) => {
-//   //  return async function (dispatch){
-//   //     const profile = await axios.get(`https://artpage.herokuapp.com/profile/${id}`)
-//   //     dispatch({
-//   //       type: 'GetProfile',
-//   //       payload: profile
-//   //     })
-//   //   }
-// };
-
 export const setPage = () => {
   return {
     type: "setPage",
@@ -65,17 +46,37 @@ export const resetPage = () => {
 
 export const GetAllCategories = () => {
   return async function (dispatch) {
-    const allcategories = await axios.get(`${URL}/categories`);
+    const allcategories = await axios.get(`${URL}/categories?apiKey=${REACT_APP_API_KEY}`);
     
     dispatch({ type: "GetCategories", payload: allcategories.data });
   };
 };
 
-export const GetDetail = (id) => {
-  return async function (dispatch) {
-    const detailPost = await axios.get(`${URL}/art/${id}`);
-    
-    dispatch({ type: "GetDetail", payload: detailPost.data[0] });
+export const GetDetail = (userData, id) => {
+  return async function (dispatch)
+  {
+    if(userData === undefined)
+    {
+      const data = (await axios(`${URL}/art/${id}?apiKey=${REACT_APP_API_KEY}`)).data;
+      return dispatch({type: "GetDetail", payload: data});
+    }
+    else
+    {
+      if (userData !== null)
+      {
+        const userDataJson = JSON.parse(userData);
+        const token = userDataJson.token;
+        const config =
+        {
+          headers:
+          {
+            authorization: `Bearer ${token}`,
+          },
+        };
+        const data = (await axios(`${URL}/art/${id}?apiKey=${REACT_APP_API_KEY}`, config)).data;
+        return dispatch({type: "GetDetail", payload: data});
+      };
+    };
   };
 };
 
@@ -207,19 +208,6 @@ export const CleanPosts = () => {
   };
 };
 
-export const CountryFilter = (order, page = 0) => {
-  return async function (dispatch) {
-    let filterCountry = await axios.get(
-      `${URL}/filter/country?country=${order}&from=${page}`
-    );
-    
-    dispatch({
-      type: "CountryFilter",
-      payload: filterCountry.data,
-    });
-  };
-};
-
 export const categoryFilter = (order, page = 0) => {
   return async function (dispatch) {
     let filterCategory = await axios.get(
@@ -242,17 +230,6 @@ export const Filter = () => {
 export const FilterNo = () => {
   return {
     type: "FilterNo",
-  };
-};
-
-export const Countries = () => {
-  return async function (dispatch) {
-    let country = await axios.get(`${URL}/profile`);
-    
-    dispatch({
-      type: "Countries",
-      payload: country.data,
-    });
   };
 };
 
@@ -302,7 +279,7 @@ export function profile(userData, id)
           authorization: `Bearer ${token}`,
         },
       };
-      const data = (await axios(`${URL}/profile/${id}`, config)).data;
+      const data = (await axios(`${URL}/profile/${id}?apiKey=${REACT_APP_API_KEY}`, config)).data;
       return dispatch({type: "PROFILE", payload: data});
     };
   };
@@ -312,7 +289,7 @@ export function getUsers()
 {
   return async function (dispatch)
   {
-    const data = (await axios(`${URL}/profile`)).data;
+    const data = (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`)).data;
     return dispatch({type: "GET_USERS", payload: data});
   };
 };

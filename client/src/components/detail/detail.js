@@ -34,7 +34,7 @@ export function Detail(props) {
             <FontAwesomeIcon icon={faHeart} className={s.icon} /> Agregar a favorito
           </button>
           <span>
-            <FontAwesomeIcon icon={faHeart} className={s.icon} /> 120
+            <FontAwesomeIcon icon={faHeart} className={s.icon} /> {props.likes}
           </span>
         </div>
       </div>
