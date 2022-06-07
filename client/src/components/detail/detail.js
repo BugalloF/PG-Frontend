@@ -6,9 +6,20 @@ import {faUser, faCartShopping, faHeart} from "@fortawesome/free-solid-svg-icons
 import {ImageProfile} from "../imageprofile/imageprofile";
 import Paypal from "../paypal/paypal";
 import s from "./detail.module.css";
-
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { addLike } from "../../redux/actions";
 
 export function Detail(props) {
+  const dispatch = useDispatch();
+  const loggedUser = window.localStorage.getItem("userData");
+  const userDataJson = JSON.parse(loggedUser);
+  console.log('aaaaaaaa',props)
+  
+  async function handlerOnClick (e){
+    e.preventDefault()
+    dispatch(addLike(props.isLogged,props.idPost))
+  }
   return(
     <div className={s.container}>
       <div className={s.container_detail}>
@@ -30,12 +41,21 @@ export function Detail(props) {
             title={props.title}
           />
           {/* <button className={s.btn_purchase}><FontAwesomeIcon icon={faCartShopping} className={s.icon}/> COMPRAR</button> */}
-          <button className={s.btn_fav}>
+          {/* <button className={s.btn_fav}>
             <FontAwesomeIcon icon={faHeart} className={s.icon} /> Agregar a favorito
-          </button>
-          <span>
-            <FontAwesomeIcon icon={faHeart} className={s.icon} /> {props.likes}
+          </button> */}
+          { userDataJson!== null && props.isLiked===false ? 
+          <button onClick={handlerOnClick}>
+            <span>
+            <FontAwesomeIcon icon={faHeart} className={s.icon}  /> {props.likes}
           </span>
+
+          </button>
+          :
+          <div>
+
+          </div>
+          }
         </div>
       </div>
     </div>

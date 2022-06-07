@@ -294,4 +294,24 @@ export function getUsers()
   };
 };
 
+export function addLike(userData,idPost){
+  return async function (dispatch){
+    if (userData !== null)
+    {
+      const userDataJson = JSON.parse(userData);
+      const token = userDataJson.token;
+      const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+          idPost
+        },
+        
+      };
+      await axios.post(`${URL}/art/likes?apiKey=${REACT_APP_API_KEY}`,config);
+      return dispatch({type: "ADD_LIKE"});
+    };
+  }
+}
 // LOGIN ----------------------------------------------------------------------
