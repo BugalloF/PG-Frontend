@@ -55,7 +55,6 @@ export const GetAllCategories = () => {
 export const GetDetail = (userData=null, id) => {
   return async function (dispatch)
   {
-    console.log('aaaaaaaaaaaaaaaaa',userData)
     if(userData === null)
     {
       const data = (await axios(`${URL}/art/${id}?apiKey=${REACT_APP_API_KEY}`)).data;
