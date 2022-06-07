@@ -208,6 +208,14 @@ export const CleanPosts = () => {
   };
 };
 
+export const PageNumber = () => {
+  return {
+    type: "PageNumber",
+  };
+};
+
+
+
 export const categoryFilter = (order, page = 0) => {
   return async function (dispatch) {
     let filterCategory = await axios.get(
