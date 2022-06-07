@@ -11,8 +11,9 @@ const initialState = {
   search: '',
   compressedPost: '',
   filter: false,
-  countries:[],
-  loader:true
+  loader:true,
+  hasMore:true,
+  pageNumber:[]
 };
 
 
@@ -24,15 +25,16 @@ function rootReducer(state = initialState, action) {
         return {
           ...state,
           posts: action.artWorks,
-          length: action.counter,
+          length: action.length,
           filter: false,
           loader: false,
+          hasMore:true
         };
       } else {
         return {
           ...state,
           posts: [...state.posts, ...action.artWorks],
-          length: action.counter,
+          length: action.length,
           filter: false,
           loader:false
         };
@@ -46,6 +48,7 @@ function rootReducer(state = initialState, action) {
           length: action.counter,
           filter: false,
           loader: false,
+          hasMore:true
         };
       } else {
         return {
@@ -81,12 +84,31 @@ function rootReducer(state = initialState, action) {
         detail: action.payload,
         filter:false
       };
-    
+      
+    case "PageNumber":
+      const pageNumbers = []
+      for (let i = 1; i<= Math.ceil(state.length/12); i++){
+          pageNumbers.push(i)
+      }    
+        return {
+          ...state,
+          pageNumber: pageNumbers
+        };    
+
     case "setPage":
+    if (state.page === Math.floor(state.length / 12)) {
       return {
         ...state,
         page: ++state.page,
+        hasMore:false
       };
+    } else {
+      return {
+        ...state,
+        page: ++state.page,
+        hasMore:true
+      };      
+    }
     
     case "resetPage":
       return {
@@ -132,7 +154,8 @@ function rootReducer(state = initialState, action) {
           posts: action.payload.Artworks,
           length: action.payload.counter,
           filter: true,
-          loader:false
+          loader:false,
+          hasMore:true
         };
       } else {
           return {
@@ -144,6 +167,7 @@ function rootReducer(state = initialState, action) {
           };              
       }
 
+    
     
     case "Filter":
       return {
@@ -157,6 +181,7 @@ function rootReducer(state = initialState, action) {
         filter: false,
       };
     
+    
     case "AntOrder":
       if (state.page === 0) {
         return {
@@ -164,7 +189,8 @@ function rootReducer(state = initialState, action) {
           posts: action.payload.Artoworks,
           length: action.payload.counter,
           filter: true,
-          loader:false
+          loader:false,
+          hasMore:true
         };
       } else {
         return {
@@ -185,7 +211,8 @@ function rootReducer(state = initialState, action) {
           posts: action.payload.Artworks,
           length: action.payload.counter,
           filter: true,
-          loader:false
+          loader:false,
+          hasMore:true
         };
       } else {
         return {
@@ -196,25 +223,6 @@ function rootReducer(state = initialState, action) {
           loader:false
         };
       };
-
-    case "CountryFilter":
-      if (state.page === 0) {
-        return {
-          ...state,
-          posts: action.payload,
-          length: action.payload.counter,
-          filter: true,
-          loader:false
-        };
-      } else {
-        return{
-          ...state,
-          posts: [...state.posts, ...action.payload],
-          length: action.payload.counter,
-          filter: true,
-          loader:false            
-        }
-      }
     
     case "CategoryFilter":
       if (state.page === 0) {
@@ -223,7 +231,8 @@ function rootReducer(state = initialState, action) {
           posts: action.payload.Artworks,
           length: action.payload.counter,
           filter: true,
-          loader:false
+          loader:false,
+          hasMore:true
         }
       } else {
         return{
@@ -235,18 +244,7 @@ function rootReducer(state = initialState, action) {
         }
       }
     
-    case "Countries":
-      let allCountries = [];
-      let country = action.payload.map((e) => {
-        if (!allCountries.includes(e.country)) {
-          allCountries.push(e.country);
-        };
-      });
-      return {
-        ...state,
-        countries: allCountries,
-      };
-    
+   
     case "REGISTER":
       return {...state};
     
