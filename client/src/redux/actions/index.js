@@ -4,7 +4,10 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // Files
 import storage from "../../firebase/firebase.js";
 const Compress = require("compress.js").default;
-const { REACT_APP_URL, REACT_APP_API_KEY } = process.env;
+
+const watermark = require("watermarkjs")
+const {REACT_APP_URL, REACT_APP_API_KEY} = process.env;
+
 const URL = REACT_APP_URL;
 
 const compress = new Compress();
@@ -103,6 +106,11 @@ export const Post = (input) => {
     const imgExt = output.ext;
     const fileCompress = Compress.convertBase64ToFile(base64str, imgExt);
 
+    const watermarked = await watermark([fileCompress])
+    .blob(watermark.text.center('DigitalizArte', '48px serif', '#fff', 0.6));
+
+
+
     const outputF = postFull[0];
     const base64strF = outputF.data;
     const imgExtF = outputF.ext;
@@ -114,7 +122,7 @@ export const Post = (input) => {
     );
     const uploadImageCompress = await uploadBytes(
       imageRefCompress,
-      fileCompress
+      watermarked
     );
     const urlCompress = await getDownloadURL(uploadImageCompress.ref);
 
