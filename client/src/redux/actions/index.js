@@ -287,7 +287,7 @@ export function getUsers() {
 
 export function addLike(userData, idPost) {
   return async function (dispatch) {
-    console.log("USERDATA", typeof userData);
+    console.log("USERDATAtypeof", typeof userData);
     if (userData !== null) {
       const userDataJson = JSON.parse(userData);
       const token = userDataJson.token;

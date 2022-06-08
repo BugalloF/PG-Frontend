@@ -21,6 +21,9 @@ export function Detail(props) {
     e.preventDefault()
     dispatch(addLike(props.isLogged,props.idPost))
   }
+  console.log('PROPSSSSSS',props.isLogged)
+  console.log('Userdatajson',userDataJson)
+
   return(
     <div className={s.container}>
       <div className={s.container_detail}>
