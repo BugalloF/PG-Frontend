@@ -53,7 +53,7 @@ export default function Paypal({price,title,idPost}) {
             let payer = order.payer.name.given_name;
             let surname = order.payer.name.surname;
             let time = order.create_time;
-            dispatch(sendEmail({payer,surname,time,idPost})) //FALTA ACCEDER A LA INFO EN ORDER Y MANDARLA AL BACK
+            dispatch(sendEmail(loggedUser, {payer,surname,time,idPost})) //FALTA ACCEDER A LA INFO EN ORDER Y MANDARLA AL BACK
           }
         },
         onError: (err) => {
