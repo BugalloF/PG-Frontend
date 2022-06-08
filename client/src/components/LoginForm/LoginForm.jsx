@@ -81,6 +81,7 @@ function LoginForm()
                     {
                         id: payload.foundUser[0].id,
                         userName: payload.foundUser[0].userName,
+                        email: payload.foundUser[0].email,
                         token: payload.token,
                         img: payload.foundUser[0].img,
                         is_Admin: payload.foundUser[0].is_Admin,
