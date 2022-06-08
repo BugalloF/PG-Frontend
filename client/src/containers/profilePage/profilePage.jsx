@@ -79,7 +79,7 @@ function ProfilePage()
           }
         </div>
         {
-          userDataJson.id === id ?
+          profileId === id ? 
           <button onClick={handleLogout}>Logout</button> 
           :
           null
