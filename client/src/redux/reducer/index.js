@@ -256,10 +256,13 @@ function rootReducer(state = initialState, action) {
     
     case "GET_USERS":
       return {...state, users: action.payload};
+    
     case "ADD_LIKE":
-      return {...state}
-    case '"DELETE_LIKE':
-      return {...state}
+      return {...state, detail: action.payload};
+    
+    case 'DELETE_LIKE':
+      return {...state, detail: action.payload};
+    
     default:
       return {...state};
   };

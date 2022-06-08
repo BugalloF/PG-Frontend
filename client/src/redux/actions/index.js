@@ -321,73 +321,51 @@ export function getUsers()
   };
 };
 
-export function addLike(userData = null, idPost) {
-  return async function (dispatch) {
-    // console.log("USERDATAtypeof", typeof userData);
-    if (userData !== null) {
+export function addLike(userData = null, idPost)
+{
+  return async function (dispatch)
+  {
+    if (userData !== null)
+    {
       const userDataJson = JSON.parse(userData);
-      // console.log('userdataAction',userDataJson)
       const token = userDataJson.token;
-      // console.log(token)
-      const config = {
-        headers: {
+      const config =
+      {
+        headers:
+        {
           authorization: `Bearer ${token}`,
-        }
+        },
       };
-      await axios.post(
-        `${URL}/art/likes/${idPost}?apiKey=${REACT_APP_API_KEY}`,
-        config
-      );
-      return await dispatch({ type: "ADD_LIKE" });
-    }
+      
+      await axios.post(`${URL}/art/likes/${idPost}?apiKey=${REACT_APP_API_KEY}`, config);
+      
+      const data = (await axios(`${URL}/art/${idPost}?apiKey=${REACT_APP_API_KEY}`, config)).data;
+      
+      return await dispatch({type: "ADD_LIKE", payload: data});
+    };
   };
-}
+};
 
-export function deleteLike(userData = null, idPost) {
-  return async function (dispatch) {
-    // console.log("USERDATAtypeof", typeof userData);
-    if (userData !== null) {
+export function deleteLike(userData = null, idPost)
+{
+  return async function (dispatch)
+  {
+    if (userData !== null)
+    {
       const idUser = JSON.parse(userData).id;
-      // console.log('aaaaaaaaaaaaaaaaa',idUser)
-      // console.log('userdataAction',userDataJson)
-      // const token = userDataJson.token;
-      // // console.log(token)
-      // const id = {
-      //   idUser:idUser
-      // };
-      await axios.delete(
-        `${URL}/art/likes/${idPost}?idUser=${idUser}`,{
-          data:{
-            idUser
-          }
-        }
-        
-      );
-      return await dispatch({ type: "DELETE_LIKE" });
-    }
+      const config =
+      {
+        data:
+        {
+          idUser,
+        },
+      };
+      
+      await axios.delete(`${URL}/art/likes/${idPost}?idUser=${idUser}`, config);
+      
+      const data = (await axios(`${URL}/art/${idPost}?apiKey=${REACT_APP_API_KEY}`, config)).data;
+      
+      return await dispatch({type: "DELETE_LIKE", payload: data});
+    };
   };
-}
-// LOGIN ----------------------------------------------------------------------
-// export const GetDetail2= (userData = null, id) => {
-//   return async function (dispatch) {
-//     if (userData === null) {
-//       const data = (await axios(`${URL}/art/${id}?apiKey=${REACT_APP_API_KEY}`))
-//         .data;
-//       return dispatch({ type: "GetDetail", payload: data });
-//     } else {
-//       if (userData !== null) {
-//         const userDataJson = JSON.parse(userData);
-//         const token = userDataJson.token;
-//         const config = {
-//           headers: {
-//             authorization: `Bearer ${token}`,
-//           },
-//         };
-//         const data = (
-//           await axios(`${URL}/art/${id}?apiKey=${REACT_APP_API_KEY}`, config)
-//         ).data;
-//         return dispatch({ type: "GetDetail", payload: data });
-//       }
-//     }
-//   };
-// };
+};
