@@ -285,11 +285,12 @@ export function getUsers() {
   };
 }
 
-export function addLike(userData, idPost) {
+export function addLike(userData = null, idPost) {
   return async function (dispatch) {
-    console.log("USERDATAtypeof", typeof userData);
+    // console.log("USERDATAtypeof", typeof userData);
     if (userData !== null) {
       const userDataJson = JSON.parse(userData);
+      // console.log('userdataAction',userDataJson)
       const token = userDataJson.token;
       // console.log(token)
       const config = {
@@ -301,30 +302,56 @@ export function addLike(userData, idPost) {
         `${URL}/art/likes/${idPost}?apiKey=${REACT_APP_API_KEY}`,
         config
       );
-      return dispatch({ type: "ADD_LIKE" });
+      return await dispatch({ type: "ADD_LIKE" });
+    }
+  };
+}
+
+export function deleteLike(userData = null, idPost) {
+  return async function (dispatch) {
+    // console.log("USERDATAtypeof", typeof userData);
+    if (userData !== null) {
+      const idUser = JSON.parse(userData).id;
+      // console.log('aaaaaaaaaaaaaaaaa',idUser)
+      // console.log('userdataAction',userDataJson)
+      // const token = userDataJson.token;
+      // // console.log(token)
+      // const id = {
+      //   idUser:idUser
+      // };
+      await axios.delete(
+        `${URL}/art/likes/${idPost}?idUser=${idUser}`,{
+          data:{
+            idUser
+          }
+        }
+        
+      );
+      return await dispatch({ type: "DELETE_LIKE" });
     }
   };
 }
 // LOGIN ----------------------------------------------------------------------
-// if(userData === null)
-//     {
-//       const data = (await axios(`${URL}/art/${id}?apiKey=${REACT_APP_API_KEY}`)).data;
-//       return dispatch({type: "GetDetail", payload: data});
-//     }
-//     else
-//     {
-//       if (userData !== null)
-//       {
+// export const GetDetail2= (userData = null, id) => {
+//   return async function (dispatch) {
+//     if (userData === null) {
+//       const data = (await axios(`${URL}/art/${id}?apiKey=${REACT_APP_API_KEY}`))
+//         .data;
+//       return dispatch({ type: "GetDetail", payload: data });
+//     } else {
+//       if (userData !== null) {
 //         const userDataJson = JSON.parse(userData);
 //         const token = userDataJson.token;
-//         const config =
-//         {
-//           headers:
-//           {
+//         const config = {
+//           headers: {
 //             authorization: `Bearer ${token}`,
 //           },
 //         };
-//         const data = (await axios(`${URL}/art/${id}?apiKey=${REACT_APP_API_KEY}`, config)).data;
-//         return dispatch({type: "GetDetail", payload: data});
-//       };
-//     };
+//         const data = (
+//           await axios(`${URL}/art/${id}?apiKey=${REACT_APP_API_KEY}`, config)
+//         ).data;
+//         return dispatch({ type: "GetDetail", payload: data });
+//       }
+//     }
+//   };
+// };
