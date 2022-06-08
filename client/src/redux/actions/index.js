@@ -246,52 +246,73 @@ export const NotFound = () => {
   };
 };
 
-export const sendEmail = (values) => {
-  return async function () {
-    await axios.post("https://artpage.herokuapp.com/emails/send-email", values);
+export function sendEmail(userData, values)
+{
+  return async function ()
+  {
+    if (userData !== null)
+    {
+      const userDataJson = JSON.parse(userData);
+      const token = userDataJson.token;
+      const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      await axios.post(`https://artpage.herokuapp.com/emails/send-email`, values, config);
+    };
   };
 };
 
 // LOGIN ----------------------------------------------------------------------
-export function register(values) {
-  return async function (dispatch) {
+export function register(values)
+{
+  return async function (dispatch)
+  {
     const data = (await axios.post(`${URL}/register`, values)).data;
     return dispatch({ type: "REGISTER", payload: data });
   };
-}
+};
 
-export function login(values) {
-  return async function (dispatch) {
+export function login(values)
+{
+  return async function (dispatch)
+  {
     const data = (await axios.post(`${URL}/login`, values)).data;
     return dispatch({ type: "LOGIN", payload: data });
   };
-}
+};
 
-export function profile(userData, id) {
-  return async function (dispatch) {
+export function profile(userData, id)
+{
+  return async function (dispatch)
+  {
     if (userData !== null) {
       const userDataJson = JSON.parse(userData);
       const token = userDataJson.token;
-      const config = {
-        headers: {
+      const config =
+      {
+        headers:
+        {
           authorization: `Bearer ${token}`,
         },
       };
-      const data = (
-        await axios(`${URL}/profile/${id}?apiKey=${REACT_APP_API_KEY}`, config)
-      ).data;
+      const data = (await axios(`${URL}/profile/${id}?apiKey=${REACT_APP_API_KEY}`, config)).data;
       return dispatch({ type: "PROFILE", payload: data });
-    }
+    };
   };
-}
+};
 
-export function getUsers() {
-  return async function (dispatch) {
-    const data = (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`))
-      .data;
+export function getUsers()
+{
+  return async function (dispatch)
+  {
+    const data = (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`)).data;
     return dispatch({ type: "GET_USERS", payload: data });
   };
-}
+};
 
 export function addLike(userData = null, idPost) {
   return async function (dispatch) {
