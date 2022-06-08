@@ -79,7 +79,7 @@ function ProfilePage()
           }
         </div>
         {
-          profileId === id ?
+          profileId === id ? 
           <button onClick={handleLogout}>Logout</button> 
           :
           null
