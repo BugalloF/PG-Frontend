@@ -90,7 +90,7 @@ export default function DetailPage() {
       dispatch(CleanDetail())
     };
     
-  },[]);
+  },[dispatch]);
   
   return(
     idPosteo?( <div className={s.container_detailPage}>

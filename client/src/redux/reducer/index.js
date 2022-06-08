@@ -258,7 +258,10 @@ function rootReducer(state = initialState, action) {
     
     case "GET_USERS":
       return {...state, users: action.payload};
-    
+    case "ADD_LIKE":
+      return {...state}
+    case '"DELETE_LIKE':
+      return {...state}
     default:
       return {...state};
   };
