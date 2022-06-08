@@ -83,6 +83,7 @@ function LoginForm()
                         userName: payload.foundUser[0].userName,
                         token: payload.token,
                         img: payload.foundUser[0].img,
+                        is_Admin: payload.foundUser[0].is_Admin,
                     };
                     
                     window.localStorage.setItem("userData", JSON.stringify(userData));
