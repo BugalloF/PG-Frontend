@@ -446,3 +446,27 @@ export function deleteFollower(userData,idSeguido2)
     return await dispatch({type: "DELETE_FOLLOWER", payload: data});
   }
 }
+export function getFollowedPost(page = 0,userData){
+  return async function (dispatch) {
+
+    const userDataJson = JSON.parse(userData);
+
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+    const followedPost = (await axios.get(`${URL}/followedfeed?from=${page}&apiKey=${REACT_APP_API_KEY}`,config));
+    
+      dispatch({
+        type: "GET_FOLLOWED_POST",
+        artWorks: followedPost.data.arr,
+        length: followedPost.data.counter,
+      });
+    
+  };
+}

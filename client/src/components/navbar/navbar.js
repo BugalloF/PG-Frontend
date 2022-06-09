@@ -20,7 +20,12 @@ function NavBar()
         <ul className={s.container_links}>
           <NavLink  to={'/'}><li>Inicio</li></NavLink>
           {
-            id ? <NavLink to={'/create'}><li>Publicar</li></NavLink>
+            id ? <div>
+              
+              <NavLink to={'/create'}><li>Publicar</li></NavLink>
+             <NavLink to={'/feed'}><li>Mi feed</li></NavLink>
+              </div>
+
             :
             null
           }
