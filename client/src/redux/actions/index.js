@@ -12,6 +12,7 @@ const URL = REACT_APP_URL;
 
 const compress = new Compress();
 
+//GETS----------------------------------------------------------------------------------------
 export const GetAllPosts = (page = 0, name = "") => {
   if (name !== "") name = "&" + name.slice(1);
 
@@ -33,18 +34,6 @@ export const GetAllPosts = (page = 0, name = "") => {
         length: allposts.data.counter,
       });
     }
-  };
-};
-
-export const setPage = () => {
-  return {
-    type: "setPage",
-  };
-};
-
-export const resetPage = () => {
-  return {
-    type: "resetPage",
   };
 };
 
@@ -82,6 +71,30 @@ export const GetDetail = (userData = null, id) => {
   };
 };
 
+//GETS----------------------------------------------------------------------------------------
+
+//PAGINADO------------------------------------------------------------------------------------
+export const setPage = () => {
+  return {
+    type: "setPage",
+  };
+};
+
+export const resetPage = () => {
+  return {
+    type: "resetPage",
+  };
+};
+
+export const PageNumber = () => {
+  return {
+    type: "PageNumber",
+  };
+};
+
+//PAGINADO------------------------------------------------------------------------------------
+
+//POST ARTWORK-------------------------------------------------------------------------------
 export const Post = (input) => {
   return async function (dispatch) {
     const post = await compress.compress(input.input, {
@@ -108,8 +121,6 @@ export const Post = (input) => {
 
     const watermarked = await watermark([fileCompress])
     .blob(watermark.text.center('DigitalizArte', '48px serif', '#fff', 0.6));
-
-
 
     const outputF = postFull[0];
     const base64strF = outputF.data;
@@ -151,7 +162,9 @@ export const Post = (input) => {
     });
   };
 };
+//POST ARTWORK-------------------------------------------------------------------------------
 
+//CLEANING STATES------------------------------------------------------------------------------
 export const CleanStatus = () => {
   return {
     type: "CleanStatus",
@@ -164,6 +177,22 @@ export const CleanDetail = () => {
   };
 };
 
+export const CleanProfile = () => {
+  return {
+    type: "CleanProfile",
+  };
+};
+
+export const CleanPosts = () => {
+  return {
+    type: "CleanPosts",
+  };
+};
+
+//CLEANING STATES------------------------------------------------------------------------------
+
+
+//FILTERS--------------------------------------------------------------------------------------
 export const priceOrder = (order, page = 0) => {
   return async function (dispatch) {
     let filterPrices = await axios.get(
@@ -203,25 +232,6 @@ export const likesOrder = (order, page = 0) => {
   };
 };
 
-export const CleanProfile = () => {
-  return {
-    type: "CleanProfile",
-  };
-};
-
-export const CleanPosts = () => {
-  return {
-    type: "CleanPosts",
-  };
-};
-
-export const PageNumber = () => {
-  return {
-    type: "PageNumber",
-  };
-};
-
-
 export const categoryFilter = (order, page = 0) => {
   return async function (dispatch) {
     let filterCategory = await axios.get(
@@ -247,31 +257,8 @@ export const FilterNo = () => {
   };
 };
 
-export const NotFound = () => {
-  return {
-    type: "NotFound",
-  };
-};
+//FILTERS--------------------------------------------------------------------------------------
 
-export function sendEmail(userData, values)
-{
-  return async function ()
-  {
-    if (userData !== null)
-    {
-      const userDataJson = JSON.parse(userData);
-      const token = userDataJson.token;
-      const config =
-      {
-        headers:
-        {
-          authorization: `Bearer ${token}`,
-        },
-      };
-      await axios.post(`https://artpage.herokuapp.com/emails/send-email`, values, config);
-    };
-  };
-};
 
 // LOGIN ----------------------------------------------------------------------
 export function register(values)
@@ -321,6 +308,9 @@ export function getUsers()
   };
 };
 
+// LOGIN ----------------------------------------------------------------------
+
+//LIKES AND FOLLOWERS---------------------------------------------------------------------------
 export function addLike(userData = null, idPost)
 {
   return async function (dispatch)
@@ -446,6 +436,74 @@ export function deleteFollower(userData,idSeguido2)
     return await dispatch({type: "DELETE_FOLLOWER", payload: data});
   }
 }
+
+//LIKES AND FOLLOWERS---------------------------------------------------------------------------
+
+//VARIOS--------------------------------------------------------------------------------------
+
+export const NotFound = () => {
+  return {
+    type: "NotFound",
+  };
+};
+
+export function sendEmail(userData, values)
+{
+  return async function ()
+  {
+    if (userData !== null)
+    {
+      const userDataJson = JSON.parse(userData);
+      const token = userDataJson.token;
+      const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      await axios.post(`https://artpage.herokuapp.com/emails/send-email`, values, config);
+    };
+  };
+};
+//VARIOS--------------------------------------------------------------------------------------
+
+//EDIT AND DELETEN ARTWORK---------------------------------------------------------------------------
+export function EditArtwork(input)
+{
+  return async function (dispatch)
+  {
+    const data = {
+      title: input.title,
+      content: input.content,
+      category: input.category,
+      price: input.price,
+    };
+  
+    const editPost = await axios.put(`${URL}/art/${input.id}?apiKey=${REACT_APP_API_KEY}`,data)
+  
+    dispatch({
+      type: "EDIT_ARTWORK",
+      payload: editPost.status,
+    });
+  };
+};
+
+export function DeleteArtwork(idPost)
+{
+  return async function (dispatch)
+  {
+    const deleted = await axios.delete(`${URL}/art/${idPost}?apiKey=${REACT_APP_API_KEY}`)
+  
+    dispatch({
+      type: "DELETE_ARTWORK",
+      payload: deleted.status,
+    });
+  };
+};
+
+//EDIT AND DELETEN ARTWORK---------------------------------------------------------------------------
+    
 export function getFollowedPost(page = 0,userData){
   return async function (dispatch) {
 
@@ -476,3 +534,4 @@ export function cleanFollowedPosts(){
     type: "CLEAN_FOLLOWED_POSTS",
   };
 }
+
