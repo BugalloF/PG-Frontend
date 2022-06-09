@@ -353,6 +353,7 @@ export function deleteLike(userData = null, idPost)
     if (userData !== null)
     {
       const idUser = JSON.parse(userData).id;
+
       const config =
       {
         data:
@@ -369,3 +370,67 @@ export function deleteLike(userData = null, idPost)
     };
   };
 };
+
+export function addFollower(userData,idSeguido2)
+{
+  return async function (dispatch)
+  {
+    const idSeguido = idSeguido2
+    
+    const idSeguidor = JSON.parse(userData).id
+
+    const userDataJson = JSON.parse(userData);
+
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+    await axios.post(`${URL}/profile/follow/${idSeguido}?apiKey=${REACT_APP_API_KEY}`,
+    {idSeguidor})
+    
+    let data =  (await axios.get(`${URL}/profile/${idSeguido}?apiKey=${REACT_APP_API_KEY}`,config)).data
+console.log('dataaaaaaaaaaaa',data)
+    return await dispatch({type: "ADD_FOLLOWER", payload: data});
+  }
+}
+
+export function deleteFollower(userData,idSeguido2)
+{
+  return async function (dispatch)
+  {
+    const idSeguido = idSeguido2
+    
+    const idSeguidor = JSON.parse(userData).id
+
+    const userDataJson = JSON.parse(userData);
+
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      
+      const config2 =
+      {
+        data:
+        {
+          idSeguidor,
+        },
+      };
+    await axios.delete(`${URL}/profile/${idSeguido}?apiKey=${REACT_APP_API_KEY}`,
+    config2)
+    
+    let data =  (await axios.get(`${URL}/profile/${idSeguido}?apiKey=${REACT_APP_API_KEY}`,config)).data
+// console.log('dataaaaaaaaaaaa',data)
+    return await dispatch({type: "DELETE_FOLLOWER", payload: data});
+  }
+}

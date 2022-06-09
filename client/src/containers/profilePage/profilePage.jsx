@@ -7,7 +7,7 @@ import {faFacebook, faLinkedinIn, faDeviantart} from '@fortawesome/free-brands-s
 // Files
 import s from './profilePage.module.css';
 import {ImageProfile} from "../../components/imageprofile/imageprofile";
-import {CleanProfile, profile} from "../../redux/actions/index";
+import {addFollower, CleanProfile, deleteFollower, profile} from "../../redux/actions/index";
 import Card from "../../components/cards/card";
 
 
@@ -35,6 +35,17 @@ function ProfilePage()
     window.localStorage.clear();
     navigate("/");
   };
+  function handlerOnFollow(e)
+  {
+    e.preventDefault()
+    dispatch(addFollower(loggedUser,profileId))
+  }
+
+  function handlerOnUnfollow(e)
+  {
+    e.preventDefault()
+    dispatch(deleteFollower(loggedUser,profileId))
+  }
   
   if(user && loggedUser)
   {
@@ -49,6 +60,27 @@ function ProfilePage()
             <div className={s.follows}>
               <p>Seguidores: {user.cantSeguidores}</p>
               <p>Seguidos: {user.cantSeguidos}</p>
+              { 
+                id !== profileId ? user.isFollowing === false ? 
+                <button onClick={handlerOnFollow}>
+                  <span>
+                    Seguir
+                  </span>
+                </button>
+                :
+                <div>
+                  <button onClick={handlerOnUnfollow}>
+                  <span>
+                    {/* poner un hover con un dejar de seguir */}
+                    Siguiendo
+                  </span>
+                </button>
+                </div>
+                :
+                <button>
+                  EDITAR PERFIL
+                </button>
+              }
             </div>
           </div>
           
