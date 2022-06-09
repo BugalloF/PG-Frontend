@@ -5,7 +5,7 @@ import s from "../searchbar/searchbar.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { resetPage,CleanPosts, FilterNo } from "../../redux/actions";
+import { resetPage,CleanPosts } from "../../redux/actions";
 
 export function SearchBar() {
   const [artWork, setArtWork] = useState();
@@ -17,7 +17,6 @@ export function SearchBar() {
       className={s.container}
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch(FilterNo());
         dispatch(CleanPosts())
         dispatch(resetPage());
         navigate(`?name=${artWork}`);
