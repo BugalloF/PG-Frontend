@@ -30,7 +30,7 @@ function Update()
     const navigate = useNavigate();
     
     useEffect(() =>{
-        dispatch(GetAllCategories()),
+        dispatch(GetAllCategories())
         dispatch(GetDetail(loggedUser, idPost))
     }, []);
 

@@ -14,7 +14,7 @@ import RegisterForm from "./components/RegisterForm/RegisterForm.jsx";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.jsx";
 import ResetPassword from "./components/ResetPassword/ResetPassword.jsx";
 import MyFeed from "./containers/feedPersonal/feedPersonal";
-
+import Update from "./components/formUpdate/Update";
 
 
 function App() {
