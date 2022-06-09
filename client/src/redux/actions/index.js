@@ -470,3 +470,9 @@ export function getFollowedPost(page = 0,userData){
     
   };
 }
+
+export function cleanFollowedPosts(){
+  return {
+    type: "CLEAN_FOLLOWED_POSTS",
+  };
+}
