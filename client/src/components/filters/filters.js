@@ -20,17 +20,16 @@ const Filters = () => {
     by: "",
     type: ""
   })
-  const [category, setCategoty] = useState(null)
+  const category = useSelector((state) => state.category)
 
-  console.log(order)
 
   useEffect(() => {
-    dispatch(GetAllCategories());
-    console.log(category)
+    
+    
       if(category){
         dispatch(GetCategotyPosts(page,category,order.by,order.type));
       }else {
-        dispatch(GetAllPosts(page, name.search, order.by, order.type));
+        dispatch(GetAllPosts(page,name.search, order.by, order.type));
       }
       
   
@@ -46,7 +45,7 @@ const Filters = () => {
 
         <div >
           {allCategories?.map((cat) => (
-            <button className={s.CategoryZone} value={cat.title} onClick={(e) => setCategoty(e.target.value)} >{cat.title}</button>
+            <button className={s.CategoryZone} value={cat.title} onClick={(e) => dispatch(SetCategoty(e.target.value))} >{cat.title}</button>
           ))}            
         </div>
  

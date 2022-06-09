@@ -65,6 +65,14 @@ export const GetCategotyPosts = (page = 0,category , by = "", type = "",) => {
 };
 
 
+export const SetCategoty = (value) =>{
+  return{
+    type: 'SetCategory',
+    payload: value
+  }
+};
+
+
 
 export const setPage = () => {
   return {

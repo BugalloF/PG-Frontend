@@ -4,6 +4,7 @@ const initialState = {
   status: null ,
   length: 0,
   page: 0,
+  category: null,
   categories:[],
   detail: {},
   profile: {},
@@ -57,6 +58,12 @@ function rootReducer(state = initialState, action) {
             loader:false
           };
         };
+
+        case "SetCategory":
+          return {
+            ...state,
+            category: action.payload,
+          };
       
     
     case "GetProfileDetail":
