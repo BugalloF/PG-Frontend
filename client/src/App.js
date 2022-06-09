@@ -11,6 +11,7 @@ import ProfilePage from './containers/profilePage/profilePage';
 import DetailPage from './containers/detailPage/detailPage';
 import LoginPage from "./containers/loginpage/LoginPage.jsx";
 import RegisterForm from "./components/RegisterForm/RegisterForm.jsx";
+import Update from "./components/formUpdate/Update";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route exact path={'/'} element={[<NavBar/>,<FeedPage/>]}/>
         <Route exact path={'/profile/:profileId'} element={[<NavBar/>,<ProfilePage/>]}/>
         <Route exact path={'/create'} element={[<NavBar/>,<PostForm/>]}/>
+        <Route exact path={'/edit/:idPost'} element={[<NavBar/>,<Update/>]}/>
         <Route exact path={'/post/:idPost'} element={[<NavBar/>,<DetailPage/>]}/>
         <Route exact path={'/login'} element={<LoginPage/>}/>
         <Route exact path={'/register'} element={<RegisterForm/>}/>
