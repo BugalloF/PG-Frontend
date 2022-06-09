@@ -260,7 +260,8 @@ export const FilterNo = () => {
 //FILTERS--------------------------------------------------------------------------------------
 
 
-// LOGIN ----------------------------------------------------------------------
+// LOGIN / REGISTER / RESET PASSWORD //
+
 export function register(values)
 {
   return async function (dispatch)
@@ -308,9 +309,38 @@ export function getUsers()
   };
 };
 
-// LOGIN ----------------------------------------------------------------------
+export function forgotPassword(user)
+{
+  return async function(dispatch)
+  {
+    const data = (await axios.post(`${URL}/forgot`, user)).data;
+    return dispatch({type: "FORGOT_PASSWORD", payload: data});
+  };
+};
 
-//LIKES AND FOLLOWERS---------------------------------------------------------------------------
+export function resetPassword(id, resetToken, input)
+{
+  return async function(dispatch)
+  {
+    if(resetToken !== null)
+    {
+      const resetTokenJson = JSON.parse(resetToken);
+      const token = resetTokenJson.token;
+      const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const data = (await axios.put(`${URL}/reset/${id}`, input, config)).data;
+      return dispatch({type: "RESET_PASSWORD", payload: data});
+    };
+  };
+};
+
+// ----------------------------------------------------------------------------------------------
+
 export function addLike(userData = null, idPost)
 {
   return async function (dispatch)
