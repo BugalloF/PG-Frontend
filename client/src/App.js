@@ -11,6 +11,7 @@ import ProfilePage from './containers/profilePage/profilePage';
 import DetailPage from './containers/detailPage/detailPage';
 import LoginPage from "./containers/loginpage/LoginPage.jsx";
 import RegisterForm from "./components/RegisterForm/RegisterForm.jsx";
+import MyFeed from "./containers/feedPersonal/feedPersonal";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route exact path={'/post/:idPost'} element={[<NavBar/>,<DetailPage/>]}/>
         <Route exact path={'/login'} element={<LoginPage/>}/>
         <Route exact path={'/register'} element={<RegisterForm/>}/>
+        <Route exact path={'/feed'} element={<MyFeed/>}/>
       </Routes>
     </div>
     </BrowserRouter>
