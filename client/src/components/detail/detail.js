@@ -16,6 +16,7 @@ export function Detail(props) {
   const status = useSelector(state => state.status);
   const loggedUser = window.localStorage.getItem("userData");
   const userDataJson = JSON.parse(loggedUser);
+  const id = userDataJson ? userDataJson.id : "";
 
   function handlerOnClick (e){
     e.preventDefault()
@@ -78,7 +79,7 @@ export function Detail(props) {
           }
           <div>
             {
-              props.profileId === userDataJson.id ? <div> <NavLink to={`/edit/${props.idPost}`}><button>Editar</button></NavLink> <button onClick={handleDelete}>Eliminar</button> </div>: null
+              props.profileId === id ? <div> <NavLink to={`/edit/${props.idPost}`}><button>Editar</button></NavLink> <button onClick={handleDelete}>Eliminar</button> </div>: null
             }
           </div>
         </div>
