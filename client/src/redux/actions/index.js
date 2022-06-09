@@ -352,6 +352,11 @@ export function deleteLike(userData = null, idPost)
   {
     if (userData !== null)
     {
+
+      const userDataJson = JSON.parse(userData);
+
+      const token = userDataJson.token;
+
       const idUser = JSON.parse(userData).id;
 
       const config =
@@ -361,11 +366,18 @@ export function deleteLike(userData = null, idPost)
           idUser,
         },
       };
+      const config2 =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
       
       await axios.delete(`${URL}/art/likes/${idPost}?idUser=${idUser}`, config);
       
-      const data = (await axios(`${URL}/art/${idPost}?apiKey=${REACT_APP_API_KEY}`, config)).data;
-      
+      const data = (await axios(`${URL}/art/${idPost}?apiKey=${REACT_APP_API_KEY}`, config2)).data;
+      console.log('soy dataaa',data)
       return await dispatch({type: "DELETE_LIKE", payload: data});
     };
   };
@@ -394,7 +406,7 @@ export function addFollower(userData,idSeguido2)
     {idSeguidor})
     
     let data =  (await axios.get(`${URL}/profile/${idSeguido}?apiKey=${REACT_APP_API_KEY}`,config)).data
-console.log('dataaaaaaaaaaaa',data)
+
     return await dispatch({type: "ADD_FOLLOWER", payload: data});
   }
 }
@@ -430,7 +442,7 @@ export function deleteFollower(userData,idSeguido2)
     config2)
     
     let data =  (await axios.get(`${URL}/profile/${idSeguido}?apiKey=${REACT_APP_API_KEY}`,config)).data
-// console.log('dataaaaaaaaaaaa',data)
+
     return await dispatch({type: "DELETE_FOLLOWER", payload: data});
   }
 }

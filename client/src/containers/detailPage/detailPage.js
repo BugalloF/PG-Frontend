@@ -82,16 +82,16 @@ export default function DetailPage() {
   const {idPost} = useParams();
   const idPosteo = detail.artWork ? detail.artWork[0].id : undefined;
   const loggedUser = window.localStorage.getItem("userData");
-  // console.log('LOGGEDDDDDDDD',typeof(loggedUser))
+
   useEffect(() => {
+
     dispatch(GetDetail(loggedUser, idPost))
 
     return () => {
       dispatch(CleanDetail())
     };
-    
   },[dispatch]);
-  
+
   return(
     idPosteo?( <div className={s.container_detailPage}>
        <Detail image={detail.artWork[0].imgCompress} description={detail.artWork[0].content} user={detail.artWork[0].profile.userName} amountComm={comentariosTest.length} profile={detail.artWork[0].profile} price={detail.artWork[0].price} title={detail.artWork[0].title} idPost={idPost} likes ={detail.likesCounter} isLiked={detail.isLiked} isLogged={loggedUser}/>
