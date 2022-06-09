@@ -290,6 +290,11 @@ function rootReducer(state = initialState, action) {
           loader:false
         };
       };
+     case "CLEAN_FOLLOWED_POSTS":
+      return {...state,
+        followedPosts: [],
+        loader:true
+      }
     default:
       return {...state};
   };

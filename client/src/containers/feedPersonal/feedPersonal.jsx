@@ -7,6 +7,7 @@ import {
   CleanPosts,
   resetPage,
   getFollowedPost,
+  cleanFollowedPosts,
 } from "../../redux/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect } from "react";
@@ -28,7 +29,7 @@ const MyFeed = () => {
       dispatch(getFollowedPost(page,loggedUser))
     return () => {
       dispatch(resetPage());
-      dispatch(CleanPosts());
+      dispatch(cleanFollowedPosts());
     };
   }, [dispatch]);
   
