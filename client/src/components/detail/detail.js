@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUser, faCartShopping, faHeart} from "@fortawesome/free-solid-svg-icons";
 // Files
 import {ImageProfile} from "../imageprofile/imageprofile";
-import Paypal from "../paypal/paypal";
+import Paypal from "../paypal/paypall";
 import s from "./detail.module.css";
 
 

@@ -1,0 +1,120 @@
+[1mdiff --git a/client/src/components/detail/detail.js b/client/src/components/detail/detail.js[m
+[1mindex 2405ff3..ba11f0e 100644[m
+[1m--- a/client/src/components/detail/detail.js[m
+[1m+++ b/client/src/components/detail/detail.js[m
+[36m@@ -1,14 +1,14 @@[m
+ // Dependencies[m
+ import React from "react";[m
+ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";[m
+[31m-import {faUser, faCartShopping, faHeart} from "@fortawesome/free-solid-svg-icons";[m
+[32m+[m[32mimport {faUser, faCartShopping, faHeart , } from "@fortawesome/free-solid-svg-icons";[m
+ // Files[m
+ import {ImageProfile} from "../imageprofile/imageprofile";[m
+ import Paypal from "../paypal/paypal";[m
+ import s from "./detail.module.css";[m
+ import { useDispatch } from "react-redux";[m
+ import axios from "axios";[m
+[31m-import { addLike } from "../../redux/actions";[m
+[32m+[m[32mimport { addLike,deleteLike } from "../../redux/actions";[m
+ [m
+ export function Detail(props) {[m
+   const dispatch = useDispatch();[m
+[36m@@ -16,11 +16,16 @@[m [mexport function Detail(props) {[m
+   const userDataJson = JSON.parse(loggedUser);[m
+   console.log('aaaaaaaa',typeof(userDataJson))[m
+ [m
+[31m-  [m
+   async function handlerOnClick (e){[m
+     e.preventDefault()[m
+[31m-    dispatch(addLike(props.isLogged,props.idPost))[m
+[32m+[m[32m    dispatch(addLike(loggedUser,props.idPost))[m
+   }[m
+[32m+[m
+[32m+[m[32m  async function handlerOnDelete (e){[m
+[32m+[m[32m    e.preventDefault()[m
+[32m+[m[32m    dispatch(deleteLike(loggedUser,props.idPost))[m
+[32m+[m[32m  }[m
+[32m+[m
+   return([m
+     <div className={s.container}>[m
+       <div className={s.container_detail}>[m
+[36m@@ -45,17 +50,22 @@[m [mexport function Detail(props) {[m
+           {/* <button className={s.btn_fav}>[m
+             <FontAwesomeIcon icon={faHeart} className={s.icon} /> Agregar a favorito[m
+           </button> */}[m
+[31m-          { userDataJson!== null && props.isLiked===false ? [m
+[31m-          <button onClick={handlerOnClick}>[m
+[31m-            <span>[m
+[31m-            <FontAwesomeIcon icon={faHeart} className={s.icon}  /> {props.likes}[m
+[31m-          </span>[m
+[31m-[m
+[31m-          </button>[m
+[31m-          :[m
+[31m-          <div>[m
+[31m-[m
+[31m-          </div>[m
+[32m+[m[32m          { userDataJson!== null ?  props.isLiked===false[m[41m [m
+[32m+[m[32m            ?[m[41m [m
+[32m+[m[32m            <button onClick={handlerOnClick}>[m
+[32m+[m[32m              <span>[m
+[32m+[m[32m              <FontAwesomeIcon icon={faHeart} className={s.icon}  /> {props.likes}[m
+[32m+[m[32m              </span>[m
+[32m+[m[32m            </button>[m
+[32m+[m[32m            :[m[41m [m
+[32m+[m[32m            <button onClick={handlerOnDelete}>[m
+[32m+[m[32m              <span>[m
+[32m+[m[32m              <FontAwesomeIcon icon="fa-thin fa-heart" className={s.icon} /> {props.likes}[m
+[32m+[m[32m              {/* <FontAwesomeIcon icon="falheart" className={s.icon}  /> {props.likes} */}[m
+[32m+[m[32m              </span>[m
+[32m+[m[32m            </button>[m
+[32m+[m[32m            :[m
+[32m+[m[32m            <p>REGISTRATEE</p>[m
+           }[m
+         </div>[m
+       </div>[m
+[1mdiff --git a/client/src/redux/actions/index.js b/client/src/redux/actions/index.js[m
+[1mindex 46ed07c..1e6909a 100644[m
+[1m--- a/client/src/redux/actions/index.js[m
+[1m+++ b/client/src/redux/actions/index.js[m
+[36m@@ -287,11 +287,9 @@[m [mexport function getUsers() {[m
+ [m
+ export function addLike(userData, idPost) {[m
+   return async function (dispatch) {[m
+[31m-    console.log("USERDATA", typeof userData);[m
+     if (userData !== null) {[m
+       const userDataJson = JSON.parse(userData);[m
+       const token = userDataJson.token;[m
+[31m-      // console.log(token)[m
+       const config = {[m
+         headers: {[m
+           authorization: `Bearer ${token}`,[m
+[36m@@ -305,6 +303,29 @@[m [mexport function addLike(userData, idPost) {[m
+     }[m
+   };[m
+ }[m
+[32m+[m
+[32m+[m[32mexport function deleteLike(userData, idPost) {[m
+[32m+[m[32m  return async function (dispatch) {[m
+[32m+[m[32m    console.log('SOY LA ACTION!!')[m
+[32m+[m[32m    console.log("USERDATA", typeof userData);[m
+[32m+[m[32m    if (userData !== null) {[m
+[32m+[m[32m      const userDataJson = JSON.parse(userData);[m
+[32m+[m[32m      const token = userDataJson.token;[m
+[32m+[m[32m      console.log('SOY EL TOKEN',token)[m
+[32m+[m[32m      const config = {[m
+[32m+[m[32m        headers: {[m
+[32m+[m[32m          authorization: `Bearer ${token}`,[m
+[32m+[m[32m        }[m
+[32m+[m[32m      };[m
+[32m+[m[32m      console.log('SOY ID POSSTT!',idPost)[m
+[32m+[m[32m      await axios.delete([m
+[32m+[m[32m        `${URL}/art/likes/${idPost}?apiKey=${REACT_APP_API_KEY}`,[m
+[32m+[m[32m        config[m
+[32m+[m[32m      );[m
+[32m+[m[32m      return dispatch({ type: "DELETE_LIKE" });[m
+[32m+[m[32m    }[m
+[32m+[m[32m  };[m
+[32m+[m[32m}[m
+ // LOGIN ----------------------------------------------------------------------[m
+ // if(userData === null)[m
+ //     {[m
