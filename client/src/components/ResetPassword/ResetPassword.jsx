@@ -77,7 +77,7 @@ function ResetPassword()
     return(
         <div className={s.Container}>
             <form onSubmit={handleSubmit} className={s.Form}>
-                <h2>Reset your password</h2>
+                <h2>Restablezca su contraseña</h2>
                 
                 <input onChange={handleChange} type={password ? "text" : "password"} placeholder="Contraseña" name="password"/>
                 {
@@ -94,7 +94,7 @@ function ResetPassword()
                 {
                     errors.repeatPassword && errors.repeatPassword
                 }
-                <button className={s.SubmitButton} type="submit">Reset</button>
+                <button className={s.SubmitButton} type="submit">Restablecer</button>
             </form>
         </div>
     );

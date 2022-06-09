@@ -61,7 +61,7 @@ function LoginForm()
         if(Object.keys(validate(input)).length > 0)
         {
             e.preventDefault();
-            swal("All fields are required.");
+            swal("Por favor, complete todos los campos correctamente.");
         }
         else
         {
@@ -72,7 +72,7 @@ function LoginForm()
                 
                 if(data === undefined || data === null)
                 {
-                    swal("Incorrect user or password.");
+                    swal("Usuario o contraseña incorrectos.");
                 }
                 else
                 {
@@ -104,7 +104,7 @@ function LoginForm()
             else
             {
                 e.preventDefault();
-                swal("Incorrect user or password.");
+                swal("Usuario o contraseña incorrectos.");
             };
         };
     };

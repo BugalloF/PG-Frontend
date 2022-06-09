@@ -3,6 +3,7 @@ import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faHeart , faHeartCrack} from "@fortawesome/free-solid-svg-icons";
 import {NavLink,useNavigate} from 'react-router-dom';
+import swal from "sweetalert";
 // Files
 import {ImageProfile} from "../imageprofile/imageprofile";
 import Paypal from "../paypal/paypal";
@@ -86,6 +87,6 @@ export function Detail(props) {
   );
   }
   else{
-    render(<p>cargando...</p>)
+    return(<p>cargando...</p>)
   }
 };
