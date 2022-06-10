@@ -6,7 +6,7 @@ import {NavLink,useNavigate} from 'react-router-dom';
 import swal from "sweetalert";
 // Files
 import {ImageProfile} from "../imageprofile/imageprofile";
-import Paypal from "../paypal/paypall";
+import Paypal from "../paypal/paypal";
 import s from "./detail.module.css";
 import { useDispatch,useSelector } from "react-redux";
 import { addLike, CleanStatus, DeleteArtwork, deleteLike } from "../../redux/actions";
