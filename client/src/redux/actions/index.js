@@ -210,6 +210,12 @@ export const CleanPosts = () => {
   };
 };
 
+export const CleanReco = () => {
+  return {
+    type: "CleanReco"
+  }
+};
+
 //CLEANING STATES------------------------------------------------------------------------------
 
 
