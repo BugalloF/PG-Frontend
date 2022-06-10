@@ -13,6 +13,7 @@ const URL = REACT_APP_URL;
 const compress = new Compress();
 
 //GETS----------------------------------------------------------------------------------------
+
 export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
 
   if (name !== "") name = "&" + name.slice(1);
@@ -21,7 +22,6 @@ export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
     by = "&by=" + by ;
     type = "&type=" + type;
   }
- console.log(`${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
   return async function (dispatch) {
     const allposts = await axios.get(
       `${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
@@ -35,7 +35,6 @@ export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
     
   };
 };
-
 
 
 export const GetAllCategories = () => {
@@ -194,25 +193,21 @@ export const CleanPosts = () => {
 
 
 //FILTERS--------------------------------------------------------------------------------------
-export const GetCategotyPosts = (page = 0,category , by = "", type = "",) => {
-  var name = "";
-if (name !== "") name = "&" + name.slice(1);
 
+export const GetCategotyPosts = (page = 0,category , by = "", type = "",) => {
+  
+var name = "";
+if (name !== "") name = "&" + name.slice(1);
 if (by !== "" && type !== ""){
 by = "&by=" + by ;
 type = "&type=" + type;
 }
-
 if(category) category = "&category=" + category
-
-console.log(`${URL}/filter/category?from=${page}${category}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
 
 return async function (dispatch) {
 const allposts = await axios.get(
   `${URL}/filter/category?from=${page}${category}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
 );
-
-
 
   dispatch({
     type: "GetCategoryPosts",
@@ -230,6 +225,11 @@ export const SetCategoty = (value) =>{
   }
 };
 //FILTERS--------------------------------------------------------------------------------------
+
+
+// LOGIN / REGISTER / RESET PASSWORD //
+
+
 
 
 // LOGIN / REGISTER / RESET PASSWORD //

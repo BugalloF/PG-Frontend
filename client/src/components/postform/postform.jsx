@@ -33,7 +33,7 @@ function PostForm()
 
        if(status === 201){
 
-        swal("The artwork was successfully uploaded!");
+        swal("La obra fue publicada correctamente!");
         navigate("/");
 
        }

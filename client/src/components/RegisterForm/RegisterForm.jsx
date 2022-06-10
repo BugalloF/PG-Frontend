@@ -20,6 +20,7 @@ function RegisterForm()
         userName: "",
         email: "",
         password: "",
+        repeatPassword: "",
     });
     // Show or hide password
     const [password, setPassword] = useState(false);
@@ -60,6 +61,10 @@ function RegisterForm()
         else if(!input.password)
         {
             errors.password = <font color="red">*</font>;
+        }
+        else if(input.password !== input.repeatPassword)
+        {
+            errors.repeatPassword = <p className={s.Alert}>Las contraseñas no coinciden.</p>;
         };
         
         return errors;
@@ -82,7 +87,7 @@ function RegisterForm()
         if(Object.keys(validate(input)).length > 0)
         {
             e.preventDefault();
-            swal("Por favor, complete todos los campos.");
+            swal("Por favor, complete todos los campos correctamente.");
         }
         else
         {
@@ -130,6 +135,11 @@ function RegisterForm()
                         password ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>
                     }
                 </button>
+                
+                <input onChange={e => handleChange(e)} type="password" placeholder="Repita su contraseña" name="repeatPassword"/>
+                {
+                    errors.repeatPassword && errors.repeatPassword
+                }
                 
                 <div className={s.options}>
                   <Link to="/login" className={s.noAccount}>Ya tengo una cuenta</Link>
