@@ -1,5 +1,6 @@
 const initialState = {
   posts: [],
+  followedPosts:[],
   search:[],
   status: null ,
   length: 0,
@@ -17,7 +18,7 @@ const initialState = {
 
 
 function rootReducer(state = initialState, action) {
-  console.log(action);
+  
   switch (action.type) {
     case "GetPosts":
       if (state.page === 0) {
@@ -111,7 +112,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         status: action.payload,
       };
-    
+
+    case "EDIT_ARTWORK":
+      return {
+        ...state,
+          status: action.payload,
+      };
+    case "DELETE_ARTWORK":
+      return {
+        ...state,
+          status: action.payload,
+      };
+      
     case "CleanStatus":
       return {
         ...state,
@@ -162,6 +174,30 @@ function rootReducer(state = initialState, action) {
     case "DELETE_FOLLOWER":
           return {...state, profile: action.payload};
     
+    case "GET_FOLLOWED_POST":
+      if (state.page === 0) {
+        return {
+          ...state,
+          followedPosts: action.artWorks,
+          length: action.length,
+          filter: false,
+          loader: false,
+          hasMore:true
+        };
+      } else {
+        return {
+          ...state,
+          followedPosts: [...state.followedPosts, ...action.artWorks],
+          length: action.length,
+          filter: false,
+          loader:false
+        };
+      };
+     case "CLEAN_FOLLOWED_POSTS":
+      return {...state,
+        followedPosts: [],
+        loader:true
+      }
     default:
       return {...state};
   };

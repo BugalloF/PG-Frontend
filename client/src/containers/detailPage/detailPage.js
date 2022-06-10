@@ -5,7 +5,6 @@ import Card from "../../components/cards/card";
 import s from './detailPage.module.css';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { faStoreAlt } from "@fortawesome/free-solid-svg-icons";
 import { CleanDetail, GetDetail } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 
@@ -82,7 +81,7 @@ export default function DetailPage() {
   const {idPost} = useParams();
   const idPosteo = detail.artWork ? detail.artWork[0].id : undefined;
   const loggedUser = window.localStorage.getItem("userData");
-
+  
   useEffect(() => {
 
     dispatch(GetDetail(loggedUser, idPost))
@@ -94,7 +93,7 @@ export default function DetailPage() {
 
   return(
     idPosteo?( <div className={s.container_detailPage}>
-       <Detail image={detail.artWork[0].imgCompress} description={detail.artWork[0].content} user={detail.artWork[0].profile.userName} amountComm={comentariosTest.length} profile={detail.artWork[0].profile} price={detail.artWork[0].price} title={detail.artWork[0].title} idPost={idPost} likes ={detail.likesCounter} isLiked={detail.isLiked} isLogged={loggedUser}/>
+       <Detail image={detail.artWork[0].imgCompress} description={detail.artWork[0].content} user={detail.artWork[0].profile.userName} amountComm={comentariosTest.length} profile={detail.artWork[0].profile} price={detail.artWork[0].price} title={detail.artWork[0].title} idPost={idPost} likes ={detail.likesCounter} isLiked={detail.isLiked} isLogged={loggedUser} profileId={detail.artWork[0].profileId}/>
 
        <div className={s.container_recommendation}>
          <h2>publicaciones recomendadas</h2>
