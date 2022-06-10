@@ -61,7 +61,7 @@ function LoginForm()
         if(Object.keys(validate(input)).length > 0)
         {
             e.preventDefault();
-            swal("All fields are required.");
+            swal("Por favor, complete todos los campos correctamente.");
         }
         else
         {
@@ -72,7 +72,7 @@ function LoginForm()
                 
                 if(data === undefined || data === null)
                 {
-                    swal("Incorrect user or password.");
+                    swal("Usuario o contraseña incorrectos.");
                 }
                 else
                 {
@@ -104,7 +104,7 @@ function LoginForm()
             else
             {
                 e.preventDefault();
-                swal("Incorrect user or password.");
+                swal("Usuario o contraseña incorrectos.");
             };
         };
     };
@@ -130,6 +130,7 @@ function LoginForm()
                 
                 <div className={s.options}>
                   <Link to="/register" className={s.noAccount}>No tengo una cuenta</Link>
+                  <Link to="/forgot" className={s.noAccount}>Olvidaste tu contraseña?</Link>
                 </div>
                 
                 <button type="submit" className={s.login}>Iniciar sesión</button>
