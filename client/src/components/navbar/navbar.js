@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom';
 import {SearchBar} from '../searchbar/searchbar';
 import {ImageProfile} from '../imageprofile/imageprofile';
 import s from '../navbar/navbar.module.css'
-import { GetAllPosts, resetPage, SetCategoty } from '../../redux/actions';
+import { CleanPosts, GetAllPosts, resetPage, SetCategoty } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 
 
@@ -24,6 +24,7 @@ function NavBar()
         <ul className={s.container_links}>
           <NavLink onClick={() => {
             dispatch(resetPage())
+            dispatch(CleanPosts)
             dispatch(SetCategoty(null))
             dispatch(GetAllPosts())
             window.scrollTo(0,0)
