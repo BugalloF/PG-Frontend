@@ -37,6 +37,27 @@ export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
 };
 
 
+export const GetRecoPosts = (page = 0,category ,) => {
+  
+ 
+ const  by = "&by=createdAt"
+ const type = "&type=DESC"
+
+  category = "&category=" + category
+  console.log(`${URL}/filter/category?from=${page}${category}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
+  return async function (dispatch) {
+  const allposts = await axios.get(
+    `${URL}/filter/category?from=${page}${category}${by}${type}&apiKey=${REACT_APP_API_KEY}`
+  );
+  
+    dispatch({
+      type: "GetRecoPosts",
+      artWorks: allposts.data.Artworks
+    });
+  
+  };
+  };
+
 export const GetAllCategories = () => {
   return async function (dispatch) {
     const allcategories = await axios.get(

@@ -2,6 +2,7 @@ const initialState = {
   posts: [],
   followedPosts:[],
   search:[],
+  recommended: [],
   status: null ,
   length: 0,
   page: 0,
@@ -18,7 +19,7 @@ const initialState = {
 
 
 function rootReducer(state = initialState, action) {
-  
+  console.log(action)
   switch (action.type) {
     case "GetPosts":
       if (state.page === 0) {
@@ -55,13 +56,18 @@ function rootReducer(state = initialState, action) {
           };
         };
 
-        case "SetCategory":
+    case "SetCategory":
           return {
             ...state,
             category: action.payload,
           };
+
+    case "GetRecoPosts":
+            return {
+              ...state,
+              recommended: action.artWorks,
+            };
       
-    
     case "GetProfileDetail":
       return {
         ...state,
