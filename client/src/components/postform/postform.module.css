@@ -15,6 +15,8 @@
 }
 
 .container_img{
+    overflow: hidden;
+    position: relative;
     width: 650px;
     height: 650px;
     display: flex;
@@ -36,6 +38,10 @@
 }
 
 .container_img input{
+    z-index: 10;
+    background-color: aliceblue;
+    border-radius: 5px;
+    padding: 2px;
     /*width: 60%;*/
     font-size: 15px;
 }
@@ -47,17 +53,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start
-
-
 }
 
 .title{
     text-align: center;
     margin:10px 25px 10px 0;
     font-size: 1em;
-
     font-weight: bold;
-
 }
 
 .input{
@@ -93,7 +95,6 @@
     height: 80%;
     margin: auto;
     background-color: grey;
-    
 }
 
 .icon_upload{
@@ -121,3 +122,9 @@
     width: 35%;
 }
 
+.uploaded{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+}
