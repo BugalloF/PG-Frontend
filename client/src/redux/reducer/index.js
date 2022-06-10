@@ -11,7 +11,6 @@ const initialState = {
   users: [],
   search: '',
   compressedPost: '',
-  filter: false,
   loader:true,
   hasMore:true,
 };
@@ -26,7 +25,6 @@ function rootReducer(state = initialState, action) {
           ...state,
           posts: action.artWorks,
           length: action.length,
-          filter: false,
           loader: false,
           hasMore:true
         };
@@ -35,7 +33,6 @@ function rootReducer(state = initialState, action) {
           ...state,
           posts: [...state.posts, ...action.artWorks],
           length: action.length,
-          filter: false,
           loader:false
         };
       };
@@ -45,7 +42,6 @@ function rootReducer(state = initialState, action) {
             ...state,
             posts: action.artWorks,
             length: action.length,
-            filter: false,
             loader: false,
             hasMore:true
           };
@@ -54,7 +50,6 @@ function rootReducer(state = initialState, action) {
             ...state,
             posts: [...state.posts, ...action.artWorks],
             length: action.length,
-            filter: false,
             loader:false
           };
         };
@@ -95,7 +90,6 @@ function rootReducer(state = initialState, action) {
     if (state.page === Math.floor(state.length / 12)) {
       return {
         ...state,
-        page: ++state.page,
         hasMore:false
       };
     } else {

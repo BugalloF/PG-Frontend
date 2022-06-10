@@ -20,7 +20,7 @@ export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
     by = "&by=" + by ;
     type = "&type=" + type;
   }
-
+ console.log(`${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
   return async function (dispatch) {
     const allposts = await axios.get(
       `${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
@@ -81,6 +81,7 @@ export const setPage = () => {
 };
 
 export const resetPage = () => {
+  console.log('asd')
   return {
     type: "resetPage",
   };

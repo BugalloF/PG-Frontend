@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   GetAllPosts,
   GetAllCategories,
+  SetCategoty,
   GetCategotyPosts,
   resetPage,
+  CleanPosts,
 } from "../../redux/actions";
 import { useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
@@ -22,18 +24,24 @@ const Filters = () => {
   })
   const category = useSelector((state) => state.category)
 
+  useEffect(()=>{
+    dispatch(GetAllCategories())
+    return () =>{
+      dispatch(CleanPosts())
+      dispatch(SetCategoty(null))
+    }
+
+  },[])
+
 
   useEffect(() => {
-    
-    
+
       if(category){
         dispatch(GetCategotyPosts(page,category,order.by,order.type));
       }else {
         dispatch(GetAllPosts(page,name.search, order.by, order.type));
       }
-      
-  
-      
+       
   }, [page,name.search,order,category]);
 
 
@@ -45,14 +53,21 @@ const Filters = () => {
 
         <div >
           {allCategories?.map((cat) => (
-            <button className={s.CategoryZone} value={cat.title} onClick={(e) => dispatch(SetCategoty(e.target.value))} >{cat.title}</button>
+            <button className={s.CategoryZone} value={cat.title} onClick={(e) => {
+            dispatch(resetPage())  
+            dispatch(SetCategoty(e.target.value))
+                
+                  
+            }} >{cat.title}</button>
           ))}            
         </div>
  
         <div className={s.OrderZone}>
           
           <select
-          onChange={(e) => setOrder({by:'price',type:e.target.value})} 
+          onChange={(e) => {
+            dispatch(resetPage()) 
+            setOrder({by:'price',type:e.target.value})}} 
           className={s.OrderSelect}>
             <option selected disabled >
               ORDENAR POR PRECIO
@@ -63,7 +78,10 @@ const Filters = () => {
 
 
           <select
-          onChange={(e) => setOrder({by:'createdAt',type:e.target.value})}  
+          onChange={(e) =>{ 
+            dispatch(resetPage()) 
+            setOrder({by:'createdAt',type:e.target.value})
+          }}  
           className={s.OrderSelect} >
             <option selected disabled>
               ORDENAR POR ANTIGUEDAD
@@ -73,7 +91,9 @@ const Filters = () => {
           </select>
 
           <select
-           onChange={(e) => setOrder({by:'likes',type:e.target.value})} 
+           onChange={(e) => {
+            dispatch(resetPage()) 
+            setOrder({by:'likes',type:e.target.value})}} 
            className={s.OrderSelect}>
             <option selected disabled>
               ORDENAR POR LIKES
