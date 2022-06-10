@@ -13,28 +13,27 @@ import NotFound from "../../components/notFound/NotFound"
 import Filters from "../../components/filters/filters"
 
 
+
+
 const PrincipalPage = () => {
   const dispatch = useDispatch();
   const allPosts = useSelector((state) => state.posts);
   const hasMore = useSelector((state) => state.hasMore);
-  const filterState = useSelector((state) => state.filter);
   const loader = useSelector((state) => state.loader);
 
   useEffect(() => {
-    return () => {
       dispatch(resetPage());
-      dispatch(CleanPosts());
-    };
-  }, [dispatch]);
+      
+      return () => {
+        dispatch(CleanPosts());
+      };
+    
+  }, []);
   
-  useEffect(() => {
-    return () => {
-      dispatch(CleanPosts());
-    };
-  }, [filterState]);  
 
   return (
-    <div>
+    <div  className={s.container}>
+      <div className={s.imgContainer}></div>
       <Filters />
 
       <InfiniteScroll
@@ -50,9 +49,8 @@ const PrincipalPage = () => {
       >
         <div className={s.FeedPage}>
 
-      {loader?
-        <div><h2>Cargando...</h2></div>
-        :allPosts.length?
+      {
+        allPosts.length?
           <div className={s.Cards}>
             
             {allPosts.map((card) => (

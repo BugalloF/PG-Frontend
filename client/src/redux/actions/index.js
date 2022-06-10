@@ -13,29 +13,29 @@ const URL = REACT_APP_URL;
 const compress = new Compress();
 
 //GETS----------------------------------------------------------------------------------------
-export const GetAllPosts = (page = 0, name = "") => {
+
+export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
+
   if (name !== "") name = "&" + name.slice(1);
 
+  if (by !== "" && type !== ""){
+    by = "&by=" + by ;
+    type = "&type=" + type;
+  }
   return async function (dispatch) {
     const allposts = await axios.get(
-      `${URL}/art?from=${page}${name}&apiKey=${REACT_APP_API_KEY}`
+      `${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
     );
 
-    if (!name.length) {
       dispatch({
         type: "GetPosts",
         artWorks: allposts.data.artWorks,
         length: allposts.data.counter,
       });
-    } else {
-      dispatch({
-        type: "GetPostsWithSearch",
-        artWorks: allposts.data.artWorks,
-        length: allposts.data.counter,
-      });
-    }
+    
   };
 };
+
 
 export const GetAllCategories = () => {
   return async function (dispatch) {
@@ -193,71 +193,43 @@ export const CleanPosts = () => {
 
 
 //FILTERS--------------------------------------------------------------------------------------
-export const priceOrder = (order, page = 0) => {
-  return async function (dispatch) {
-    let filterPrices = await axios.get(
-      `${URL}/filter/price?price=${order}&from=${page}`
-    );
 
-    dispatch({
-      type: "PriceOrder",
-      payload: filterPrices.data,
-    });
-  };
+export const GetCategotyPosts = (page = 0,category , by = "", type = "",) => {
+  
+var name = "";
+if (name !== "") name = "&" + name.slice(1);
+if (by !== "" && type !== ""){
+by = "&by=" + by ;
+type = "&type=" + type;
+}
+if(category) category = "&category=" + category
+
+return async function (dispatch) {
+const allposts = await axios.get(
+  `${URL}/filter/category?from=${page}${category}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
+);
+
+  dispatch({
+    type: "GetCategoryPosts",
+    artWorks: allposts.data.Artworks,
+    length: allposts.data.counter,
+  });
+
+};
 };
 
-export const antOrder = (order, page = 0) => {
-  return async function (dispatch) {
-    let filterAnt = await axios.get(
-      `${URL}/filter/antiquity?antiquity=${order}&from=${page}`
-    );
-
-    dispatch({
-      type: "AntOrder",
-      payload: filterAnt.data,
-    });
-  };
+export const SetCategoty = (value) =>{
+  return{
+    type: 'SetCategory',
+    payload: value
+  }
 };
-
-export const likesOrder = (order, page = 0) => {
-  return async function (dispatch) {
-    let filterLikes = await axios.get(
-      `${URL}/filter/likes?likes=${order}&from=${page}`
-    );
-
-    dispatch({
-      type: "LikesOrder",
-      payload: filterLikes.data,
-    });
-  };
-};
-
-export const categoryFilter = (order, page = 0) => {
-  return async function (dispatch) {
-    let filterCategory = await axios.get(
-      `${URL}/filter/category?category=${order}&from=${page}`
-    );
-
-    dispatch({
-      type: "CategoryFilter",
-      payload: filterCategory.data,
-    });
-  };
-};
-
-export const Filter = () => {
-  return {
-    type: "Filter",
-  };
-};
-
-export const FilterNo = () => {
-  return {
-    type: "FilterNo",
-  };
-};
-
 //FILTERS--------------------------------------------------------------------------------------
+
+
+// LOGIN / REGISTER / RESET PASSWORD //
+
+
 
 
 // LOGIN / REGISTER / RESET PASSWORD //

@@ -5,6 +5,9 @@ import {NavLink} from 'react-router-dom';
 import {SearchBar} from '../searchbar/searchbar';
 import {ImageProfile} from '../imageprofile/imageprofile';
 import s from '../navbar/navbar.module.css'
+import { GetAllPosts, resetPage, SetCategoty } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
+
 
 
 function NavBar()
@@ -13,12 +16,18 @@ function NavBar()
   const userDataJson = JSON.parse(loggedUser);
   const id = userDataJson ? userDataJson.id : "";
   const img = userDataJson ? userDataJson.img : "";
+  const dispatch = useDispatch()
   
   return (
     <div className={s.container}>
       <div className={s.left}>
         <ul className={s.container_links}>
-          <NavLink  to={'/'}><li>Inicio</li></NavLink>
+          <NavLink onClick={() => {
+            dispatch(resetPage())
+            dispatch(SetCategoty(null))
+            dispatch(GetAllPosts())
+            window.scrollTo(0,0)
+            }} to={'/'}><li>Inicio</li></NavLink>
           {
             id ? <div>
               

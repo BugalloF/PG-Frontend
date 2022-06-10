@@ -5,16 +5,15 @@ const initialState = {
   status: null ,
   length: 0,
   page: 0,
+  category: null,
   categories:[],
   detail: {},
   profile: {},
   users: [],
   search: '',
   compressedPost: '',
-  filter: false,
   loader:true,
   hasMore:true,
-  pageNumber:[]
 };
 
 
@@ -27,7 +26,6 @@ function rootReducer(state = initialState, action) {
           ...state,
           posts: action.artWorks,
           length: action.length,
-          filter: false,
           loader: false,
           hasMore:true
         };
@@ -36,30 +34,33 @@ function rootReducer(state = initialState, action) {
           ...state,
           posts: [...state.posts, ...action.artWorks],
           length: action.length,
-          filter: false,
           loader:false
         };
       };
-    
-    case "GetPostsWithSearch":
-      if (state.page === 0) {
-        return {
-          ...state,
-          posts: action.artWorks,
-          length: action.counter,
-          filter: false,
-          loader: false,
-          hasMore:true
+      case "GetCategoryPosts":
+        if (state.page === 0) {
+          return {
+            ...state,
+            posts: action.artWorks,
+            length: action.length,
+            loader: false,
+            hasMore:true
+          };
+        } else {
+          return {
+            ...state,
+            posts: [...state.posts, ...action.artWorks],
+            length: action.length,
+            loader:false
+          };
         };
-      } else {
-        return {
-          ...state,
-          posts: [...state.posts, ...action.artWorks],
-          length: action.counter,
-          filter: false,
-          loader:false
-        };
-      };
+
+        case "SetCategory":
+          return {
+            ...state,
+            category: action.payload,
+          };
+      
     
     case "GetProfileDetail":
       return {
@@ -85,22 +86,11 @@ function rootReducer(state = initialState, action) {
         detail: action.payload,
         filter:false
       };
-    
-    case "PageNumber":
-      const pageNumbers = []
-      for (let i = 1; i<= Math.ceil(state.length/12); i++){
-          pageNumbers.push(i)
-      }    
-        return {
-          ...state,
-          pageNumber: pageNumbers
-        };    
-
+  
     case "setPage":
     if (state.page === Math.floor(state.length / 12)) {
       return {
         ...state,
-        page: ++state.page,
         hasMore:false
       };
     } else {
@@ -158,105 +148,7 @@ function rootReducer(state = initialState, action) {
         posts: [],
         loader:true
       };
-    
-    case "PriceOrder":
-      if (state.page === 0) {
-        return {
-          ...state,
-          posts: action.payload.Artworks,
-          length: action.payload.counter,
-          filter: true,
-          loader:false,
-          hasMore:true
-        };
-      } else {
-          return {
-            ...state,
-            posts: [...state.posts, ...action.payload.Artworks],
-            length: action.payload.counter,
-            filter: true,
-            loader:false
-          };              
-      }
-
-    
-    
-    case "Filter":
-      return {
-        ...state,
-        filter: true,
-      };
-    
-    case "FilterNo":
-      return {
-        ...state,
-        filter: false,
-      };
-    
-    case "AntOrder":
-      if (state.page === 0) {
-        return {
-          ...state,
-          posts: action.payload.Artoworks,
-          length: action.payload.counter,
-          filter: true,
-          loader:false,
-          hasMore:true
-        };
-      } else {
-        return {
-          ...state,
-          posts: [...state.posts, ...action.payload.Artoworks],
-          length: action.payload.counter,
-          filter: true,
-          loader:false
-        };        
-      }
-
-    
-    case "LikesOrder":
-
-      if (state.page === 0) {
-        return {
-          ...state,
-          posts: action.payload.Artworks,
-          length: action.payload.counter,
-          filter: true,
-          loader:false,
-          hasMore:true
-        };
-      } else {
-        return {
-          ...state,
-          posts: [...state.posts, ...action.payload.Artworks],
-          length: action.payload.counter,
-          filter: true,
-          loader:false
-        };
-      };
-    
-    case "CategoryFilter":
-      if (state.page === 0) {
-        return{
-          ...state,
-          posts: action.payload.Artworks,
-          length: action.payload.counter,
-          filter: true,
-          loader:false,
-          hasMore:true
-        }
-      } else {
-        return{
-          ...state,
-          posts: [...state.posts, ...action.payload.Artworks],
-          length: action.payload.counter,
-          filter: true,
-          loader:false 
-        }
-      }
-    
-   
-    
+        
     case "REGISTER":
       return {...state};
     

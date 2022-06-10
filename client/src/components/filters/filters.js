@@ -1,18 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  categoryFilter, 
   GetAllPosts,
   GetAllCategories,
-  setPage,
-  priceOrder,
-  CleanPosts,
-  antOrder,
-  likesOrder,
+  SetCategoty,
+  GetCategotyPosts,
   resetPage,
-  Filter,
-  PageNumber,
-  FilterNo  
+  CleanPosts,
 } from "../../redux/actions";
 import { useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
@@ -21,110 +15,60 @@ import s from "./filters.module.css";
 
 const Filters = () => {
   const dispatch = useDispatch();
-  const allPosts = useSelector((state) => state.posts);
   const allCategories = useSelector((state) => state.categories);
-  const length = useSelector((state) => state.length);
   const page = useSelector((state) => state.page);
   const name = useLocation();
+  const [order,setOrder] = useState({
+    by: "",
+    type: ""
+  })
+  const category = useSelector((state) => state.category)
 
-  const pageNumber = useSelector((state) => state.pageNumber);
-  const hasMore = useSelector((state) => state.hasMore);
+  useEffect(()=>{
+    dispatch(GetAllCategories())
+    return () =>{
+      dispatch(CleanPosts())
+      dispatch(SetCategoty(null))
+    }
 
-
-  const filterState = useSelector((state) => state.filter);
-  const [filterName, setFilterName] = useState('');
-
-  const [order, setOrder] = useState('');
-  const [refresh, setRefresh] = useState('');
-  const foundOrNot = useSelector((state) => state.loader);
+  },[])
 
 
   useEffect(() => {
- 
-    if(filterState){
-      dispatch(PageNumber())
 
-      if (filterName == 'price') {
-        dispatch(priceOrder(order, page));
+      if(category){
+        dispatch(GetCategotyPosts(page,category,order.by,order.type));
+      }else {
+        dispatch(GetAllPosts(page,name.search, order.by, order.type));
       }
-
-      if (filterName == 'antiguedad') {
-        dispatch(antOrder(order, page)); 
-      }
-      if (filterName == 'likes') {
-        dispatch(likesOrder(order, page)); 
-      }
-      if (filterName == 'category') {
-        dispatch(categoryFilter(order, page)); 
-      }    
-    }
-
-    if (!filterState) {
-      dispatch(PageNumber())
-      dispatch(GetAllPosts(page, name.search));
-    }
-
-    
-      dispatch(GetAllCategories());
-      
-
-  }, [dispatch, page, name.search, length, order, refresh, foundOrNot,filterState]);
+       
+  }, [page,name.search,order,category]);
 
 
 
 
-  let orderByPrice=(e) =>{
-    e.preventDefault();
-    dispatch(resetPage())
-    dispatch(Filter())
-    setFilterName('price')
-    setOrder(e.target.value)
-    setRefresh('pricee')
-  }
-
-
-
-  function orderByAnt(e) {
-    e.preventDefault();
-    dispatch(resetPage())
-    dispatch(Filter())
-    setFilterName('antiguedad')
-    setOrder(e.target.value)
-    setRefresh('ant') 
-  }
-
-  function orderByLikes(e) {
-    e.preventDefault();
-    dispatch(resetPage())
-    dispatch(Filter())
-    setFilterName('likes')
-    setOrder(e.target.value)  
-    setRefresh('like')
-  }
-
-
-  function catFilter(e){
-    e.preventDefault();
-    dispatch(resetPage())
-    dispatch(Filter())
-    setFilterName('category')
-    setOrder(e.target.value)  
-    setRefresh('categoryy')
-  }
-  
 
     return (
       <div className={s.Container_filter}>
 
         <div >
           {allCategories?.map((cat) => (
-            <button className={s.CategoryZone} value={cat.title} onClick={(e) =>catFilter(e)}>{cat.title}</button>
+            <button className={s.CategoryZone} value={cat.title} onClick={(e) => {
+            dispatch(resetPage())  
+            dispatch(SetCategoty(e.target.value))
+                
+                  
+            }} >{cat.title}</button>
           ))}            
         </div>
  
         <div className={s.OrderZone}>
           
-          <select className={s.OrderSelect} onChange={(e) => orderByPrice(e)}>
+          <select
+          onChange={(e) => {
+            dispatch(resetPage()) 
+            setOrder({by:'price',type:e.target.value})}} 
+          className={s.OrderSelect}>
             <option selected disabled >
               ORDENAR POR PRECIO
             </option>
@@ -133,7 +77,12 @@ const Filters = () => {
           </select>
 
 
-          <select className={s.OrderSelect} onChange={(e) => orderByAnt(e)}>
+          <select
+          onChange={(e) =>{ 
+            dispatch(resetPage()) 
+            setOrder({by:'createdAt',type:e.target.value})
+          }}  
+          className={s.OrderSelect} >
             <option selected disabled>
               ORDENAR POR ANTIGUEDAD
             </option>
@@ -141,7 +90,11 @@ const Filters = () => {
             <option value="ASC">Más antiguos</option>
           </select>
 
-          <select className={s.OrderSelect} onChange={(e) => orderByLikes(e)}>
+          <select
+           onChange={(e) => {
+            dispatch(resetPage()) 
+            setOrder({by:'likes',type:e.target.value})}} 
+           className={s.OrderSelect}>
             <option selected disabled>
               ORDENAR POR LIKES
             </option>
