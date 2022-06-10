@@ -54,7 +54,8 @@ const Filters = () => {
         <div >
           {allCategories?.map((cat) => (
             <button className={s.CategoryZone} value={cat.title} onClick={(e) => {
-            dispatch(resetPage())  
+            dispatch(resetPage())
+            dispatch(CleanPosts())  
             dispatch(SetCategoty(e.target.value))
                 
                   
@@ -66,6 +67,7 @@ const Filters = () => {
           
           <select
           onChange={(e) => {
+            dispatch(CleanPosts())
             dispatch(resetPage()) 
             setOrder({by:'price',type:e.target.value})}} 
           className={s.OrderSelect}>
@@ -79,6 +81,7 @@ const Filters = () => {
 
           <select
           onChange={(e) =>{ 
+            dispatch(CleanPosts())
             dispatch(resetPage()) 
             setOrder({by:'createdAt',type:e.target.value})
           }}  
@@ -92,6 +95,7 @@ const Filters = () => {
 
           <select
            onChange={(e) => {
+            dispatch(CleanPosts())
             dispatch(resetPage()) 
             setOrder({by:'likes',type:e.target.value})}} 
            className={s.OrderSelect}>

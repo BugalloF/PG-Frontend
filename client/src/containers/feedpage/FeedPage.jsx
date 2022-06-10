@@ -17,6 +17,7 @@ import Filters from "../../components/filters/filters"
 
 const PrincipalPage = () => {
   const dispatch = useDispatch();
+  const length = useSelector((state) => state.length)
   const allPosts = useSelector((state) => state.posts);
   const hasMore = useSelector((state) => state.hasMore);
   const loader = useSelector((state) => state.loader);
@@ -50,7 +51,7 @@ const PrincipalPage = () => {
         <div className={s.FeedPage}>
 
       {
-        allPosts.length?
+        length !== 0 ?
           <div className={s.Cards}>
             
             {allPosts.map((card) => (
