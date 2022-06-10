@@ -12,9 +12,6 @@ import { useEffect } from "react";
 import NotFound from "../../components/notFound/NotFound"
 import Filters from "../../components/filters/filters"
 
-
-
-
 const PrincipalPage = () => {
   const dispatch = useDispatch();
   const length = useSelector((state) => state.length)
