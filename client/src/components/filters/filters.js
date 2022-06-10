@@ -54,9 +54,12 @@ const Filters = () => {
         <div >
           {allCategories?.map((cat) => (
             <button className={s.CategoryZone} value={cat.title} onClick={(e) => {
+          if(category !== e.target.value){
             dispatch(resetPage())
             dispatch(CleanPosts())  
             dispatch(SetCategoty(e.target.value))
+          }
+           
                 
                   
             }} >{cat.title}</button>
@@ -102,8 +105,8 @@ const Filters = () => {
             <option selected disabled>
               ORDENAR POR LIKES
             </option>
-            <option value="ASC">Mejores valorados</option>
-            <option value="DESC">Peores valorados</option>
+            <option value="DESC">Mejores valorados</option>
+            <option value="ASC">Peores valorados</option>
           </select>          
         </div>
 
