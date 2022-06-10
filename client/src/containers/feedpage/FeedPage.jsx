@@ -13,6 +13,8 @@ import NotFound from "../../components/notFound/NotFound"
 import Filters from "../../components/filters/filters"
 
 
+
+
 const PrincipalPage = () => {
   const dispatch = useDispatch();
   const allPosts = useSelector((state) => state.posts);
@@ -30,7 +32,8 @@ const PrincipalPage = () => {
   
 
   return (
-    <div>
+    <div  className={s.container}>
+      <div className={s.imgContainer}></div>
       <Filters />
 
       <InfiniteScroll

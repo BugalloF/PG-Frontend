@@ -12,6 +12,7 @@ const URL = REACT_APP_URL;
 
 const compress = new Compress();
 
+//GETS----------------------------------------------------------------------------------------
 export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
 
   if (name !== "") name = "&" + name.slice(1);
@@ -35,57 +36,7 @@ export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
   };
 };
 
-export const GetCategotyPosts = (page = 0,category , by = "", type = "",) => {
-      var name = "";
-  if (name !== "") name = "&" + name.slice(1);
 
-  if (by !== "" && type !== ""){
-    by = "&by=" + by ;
-    type = "&type=" + type;
-  }
-
-  if(category) category = "&category=" + category
-
-  console.log(`${URL}/filter/category?from=${page}${category}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
-
-  return async function (dispatch) {
-    const allposts = await axios.get(
-      `${URL}/filter/category?from=${page}${category}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
-    );
-
-
-
-      dispatch({
-        type: "GetCategoryPosts",
-        artWorks: allposts.data.Artworks,
-        length: allposts.data.counter,
-      });
-    
-  };
-};
-
-
-export const SetCategoty = (value) =>{
-  return{
-    type: 'SetCategory',
-    payload: value
-  }
-};
-
-
-
-export const setPage = () => {
-  return {
-    type: "setPage",
-  };
-};
-
-export const resetPage = () => {
-  console.log('asd')
-  return {
-    type: "resetPage",
-  };
-};
 
 export const GetAllCategories = () => {
   return async function (dispatch) {
@@ -121,6 +72,30 @@ export const GetDetail = (userData = null, id) => {
   };
 };
 
+//GETS----------------------------------------------------------------------------------------
+
+//PAGINADO------------------------------------------------------------------------------------
+export const setPage = () => {
+  return {
+    type: "setPage",
+  };
+};
+
+export const resetPage = () => {
+  return {
+    type: "resetPage",
+  };
+};
+
+export const PageNumber = () => {
+  return {
+    type: "PageNumber",
+  };
+};
+
+//PAGINADO------------------------------------------------------------------------------------
+
+//POST ARTWORK-------------------------------------------------------------------------------
 export const Post = (input) => {
   return async function (dispatch) {
     const post = await compress.compress(input.input, {
@@ -147,8 +122,6 @@ export const Post = (input) => {
 
     const watermarked = await watermark([fileCompress])
     .blob(watermark.text.center('DigitalizArte', '48px serif', '#fff', 0.6));
-
-
 
     const outputF = postFull[0];
     const base64strF = outputF.data;
@@ -190,7 +163,9 @@ export const Post = (input) => {
     });
   };
 };
+//POST ARTWORK-------------------------------------------------------------------------------
 
+//CLEANING STATES------------------------------------------------------------------------------
 export const CleanStatus = () => {
   return {
     type: "CleanStatus",
@@ -202,7 +177,6 @@ export const CleanDetail = () => {
     type: "CleanDetail",
   };
 };
-
 
 export const CleanProfile = () => {
   return {
@@ -216,29 +190,50 @@ export const CleanPosts = () => {
   };
 };
 
+//CLEANING STATES------------------------------------------------------------------------------
 
 
-export function sendEmail(userData, values)
-{
-  return async function ()
-  {
-    if (userData !== null)
-    {
-      const userDataJson = JSON.parse(userData);
-      const token = userDataJson.token;
-      const config =
-      {
-        headers:
-        {
-          authorization: `Bearer ${token}`,
-        },
-      };
-      await axios.post(`https://artpage.herokuapp.com/emails/send-email`, values, config);
-    };
-  };
+//FILTERS--------------------------------------------------------------------------------------
+export const GetCategotyPosts = (page = 0,category , by = "", type = "",) => {
+  var name = "";
+if (name !== "") name = "&" + name.slice(1);
+
+if (by !== "" && type !== ""){
+by = "&by=" + by ;
+type = "&type=" + type;
+}
+
+if(category) category = "&category=" + category
+
+console.log(`${URL}/filter/category?from=${page}${category}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
+
+return async function (dispatch) {
+const allposts = await axios.get(
+  `${URL}/filter/category?from=${page}${category}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
+);
+
+
+
+  dispatch({
+    type: "GetCategoryPosts",
+    artWorks: allposts.data.Artworks,
+    length: allposts.data.counter,
+  });
+
+};
 };
 
-// LOGIN ----------------------------------------------------------------------
+export const SetCategoty = (value) =>{
+  return{
+    type: 'SetCategory',
+    payload: value
+  }
+};
+//FILTERS--------------------------------------------------------------------------------------
+
+
+// LOGIN / REGISTER / RESET PASSWORD //
+
 export function register(values)
 {
   return async function (dispatch)
@@ -285,6 +280,38 @@ export function getUsers()
     return dispatch({ type: "GET_USERS", payload: data });
   };
 };
+
+export function forgotPassword(user)
+{
+  return async function(dispatch)
+  {
+    const data = (await axios.post(`${URL}/forgot`, user)).data;
+    return dispatch({type: "FORGOT_PASSWORD", payload: data});
+  };
+};
+
+export function resetPassword(id, resetToken, input)
+{
+  return async function(dispatch)
+  {
+    if(resetToken !== null)
+    {
+      const resetTokenJson = JSON.parse(resetToken);
+      const token = resetTokenJson.token;
+      const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const data = (await axios.put(`${URL}/reset/${id}`, input, config)).data;
+      return dispatch({type: "RESET_PASSWORD", payload: data});
+    };
+  };
+};
+
+// ----------------------------------------------------------------------------------------------
 
 export function addLike(userData = null, idPost)
 {
@@ -411,3 +438,102 @@ export function deleteFollower(userData,idSeguido2)
     return await dispatch({type: "DELETE_FOLLOWER", payload: data});
   }
 }
+
+//LIKES AND FOLLOWERS---------------------------------------------------------------------------
+
+//VARIOS--------------------------------------------------------------------------------------
+
+export const NotFound = () => {
+  return {
+    type: "NotFound",
+  };
+};
+
+export function sendEmail(userData, values)
+{
+  return async function ()
+  {
+    if (userData !== null)
+    {
+      const userDataJson = JSON.parse(userData);
+      const token = userDataJson.token;
+      const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      await axios.post(`https://artpage.herokuapp.com/emails/send-email`, values, config);
+    };
+  };
+};
+//VARIOS--------------------------------------------------------------------------------------
+
+//EDIT AND DELETEN ARTWORK---------------------------------------------------------------------------
+export function EditArtwork(input)
+{
+  return async function (dispatch)
+  {
+    const data = {
+      title: input.title,
+      content: input.content,
+      category: input.category,
+      price: input.price,
+    };
+  
+    const editPost = await axios.put(`${URL}/art/${input.id}?apiKey=${REACT_APP_API_KEY}`,data)
+  
+    dispatch({
+      type: "EDIT_ARTWORK",
+      payload: editPost.status,
+    });
+  };
+};
+
+export function DeleteArtwork(idPost)
+{
+  return async function (dispatch)
+  {
+    const deleted = await axios.delete(`${URL}/art/${idPost}?apiKey=${REACT_APP_API_KEY}`)
+  
+    dispatch({
+      type: "DELETE_ARTWORK",
+      payload: deleted.status,
+    });
+  };
+};
+
+//EDIT AND DELETEN ARTWORK---------------------------------------------------------------------------
+    
+export function getFollowedPost(page = 0,userData){
+  return async function (dispatch) {
+
+    const userDataJson = JSON.parse(userData);
+
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+    const followedPost = (await axios.get(`${URL}/followedfeed?from=${page}&apiKey=${REACT_APP_API_KEY}`,config));
+    
+      dispatch({
+        type: "GET_FOLLOWED_POST",
+        artWorks: followedPost.data.arr,
+        length: followedPost.data.counter,
+      });
+    
+  };
+}
+
+export function cleanFollowedPosts(){
+  return {
+    type: "CLEAN_FOLLOWED_POSTS",
+  };
+}
+
