@@ -1,0 +1,22 @@
+.container_notFound{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 100px auto;
+}
+
+.container_notFound h2{
+	font-size: 40px;
+	margin-top: 30px;
+	letter-spacing: 0.05em;
+	padding-right: 40px;
+	text-transform: uppercase;
+	color: #424242;
+}
+
+
+.imgg{
+	width: 100%;
+	max-width: 550px;
+}

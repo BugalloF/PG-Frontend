@@ -1,24 +1,40 @@
 import React from "react";
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import s from '../searchbar/searchbar.module.css'
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import s from "../searchbar/searchbar.module.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { resetPage,CleanPosts } from "../../redux/actions";
 
+export function SearchBar() {
+  const [artWork, setArtWork] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-export function SearchBar(){
-    return(
-        <div className={s.container}>
-            <form>
-               
-                <div className={s.searchwrapper}>
-                  <input 
-                     
-                     className={s.search} 
-                     placeholder="Search"
-                   />
-                 <FontAwesomeIcon className={s.i} icon={faMagnifyingGlass} />
-               </div>
-
-            </form>
-        </div>
-    )
+  return (
+    <form
+      className={s.container}
+      onSubmit={(e) => {
+        e.preventDefault();
+        dispatch(CleanPosts())
+        dispatch(resetPage());
+        navigate(`?name=${artWork}`);
+      }}
+    >
+      <div className={s.searchwrapper}>
+        <input
+          value={artWork}
+          onChange={(e) => {
+            setArtWork(e.target.value);
+          }}
+          className={s.search}
+          placeholder="Buscar"
+        />
+        <button className={s.i}>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
+      </div>
+    </form>
+  );
 }

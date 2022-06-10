@@ -1,0 +1,95 @@
+.container_login_form {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  padding: 10px 40px;
+  color: hsl(10deg 2% 39%);
+  height: 420px;
+  width: 550px;
+  background-color: hsl(0deg 0% 100% / 78%);
+}
+
+.container_login_form h5 {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.container_login_form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container_login_form input {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.forgot,
+.noAccount {
+  color: hsl(258deg 72% 57%);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.container_login_form .login {
+  padding: 10px;
+  margin: 30px auto 25px auto;
+  border-radius: 25px;
+  min-width: 150px;
+  background-color: hsl(258deg 79% 65%);
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.container_login_form p {
+  font-weight: 600;
+  font-size: 17px;
+  margin: 2px 0;
+}
+
+.icons {
+  max-width: 110px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icons .facebook {
+  min-width: 45px;
+  min-height: 45px;
+  color: #0165e1;
+  background: white;
+  box-shadow: inset 0 0 0px 2px #0165e1;;
+  border-radius: 50%;
+}
+
+.ShowPassword
+{
+  display: flex;
+  position: absolute;
+  top: 183px;
+  left: 550px;
+  height: auto;
+  width: auto;
+  cursor: pointer;
+  background: white;
+  border: none;
+  border-radius: 5px;
+}
