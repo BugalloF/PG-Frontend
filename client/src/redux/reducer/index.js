@@ -67,6 +67,12 @@ function rootReducer(state = initialState, action) {
               ...state,
               recommended: action.artWorks,
             };
+
+    case "CleanReco": 
+            return {
+              ...state,
+              recommended: []
+            }
       
     case "GetProfileDetail":
       return {
