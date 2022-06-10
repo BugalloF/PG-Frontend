@@ -87,24 +87,35 @@ const ButtonWrapper = ({ currency, showSpinner ,idPost}) => {
 }
 
 export default function Paypal(idPost,price,title) {
-	return (
-		<div>
-            <PayPalScriptProvider
-                options={{
-                    "client-id": process.env.REACT_APP_CLIENT_ID_PAYPAL,
-                    components: "buttons",
-                    currency: "USD"
-                }}
-            >
-				<ButtonWrapper
-                    style={style}
-                    currency={currency}
-                    showSpinner={false}
-                    idPost={idPost}
-                    price={price}
-                    title={title}
-                />
-			</PayPalScriptProvider>
-		</div>
-	);
+    const paypal = useRef();
+    const loggedUser = window.localStorage.getItem("userData");
+    if(loggedUser)
+    {
+        return (
+            <div>
+                <PayPalScriptProvider
+                    options={{
+                        "client-id": process.env.REACT_APP_CLIENT_ID_PAYPAL,
+                        components: "buttons",
+                        currency: "USD"
+                    }}
+                >
+                    <ButtonWrapper
+                        style={style}
+                        currency={currency}
+                        showSpinner={false}
+                        idPost={idPost}
+                        price={price}
+                        title={title}
+                    />
+                </PayPalScriptProvider>
+            </div>
+        );
+    }
+    else
+    {
+      return(
+        <h4>Para poder comprar, es necesario estar registrado.</h4>
+      );
+    };
 }
