@@ -13,6 +13,7 @@ import LoginPage from "./containers/loginpage/LoginPage.jsx";
 import RegisterForm from "./components/RegisterForm/RegisterForm.jsx";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.jsx";
 import ResetPassword from "./components/ResetPassword/ResetPassword.jsx";
+import LandingPage from "./containers/landingPage/landingPage.jsx";
 import MyFeed from "./containers/feedPersonal/feedPersonal";
 import Update from "./components/formUpdate/Update";
 
@@ -23,7 +24,7 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <Routes>
-        <Route exact path={'/'} element={[<NavBar/>,<FeedPage/>]}/>
+        <Route exact path={'/'} element={[<NavBar/>,<LandingPage/>]}/>
         <Route exact path={'/profile/:profileId'} element={[<NavBar/>,<ProfilePage/>]}/>
         <Route exact path={'/create'} element={[<NavBar/>,<PostForm/>]}/>
         <Route exact path={'/edit/:idPost'} element={[<NavBar/>,<Update/>]}/>
@@ -32,7 +33,8 @@ function App() {
         <Route exact path={'/register'} element={<RegisterForm/>}/>
         <Route exact path={"/forgot"} element={<ForgotPassword/>} />
         <Route exact path={"/reset/:id"} element={<ResetPassword/>} />
-        <Route exact path={'/feed'} element={<MyFeed/>}/>
+        <Route exact path={'/feed'} element={[<NavBar/>, <FeedPage/>]}/>
+        <Route exact path={'/myfeed'} element={[<NavBar/>, <MyFeed/>]}/>
       </Routes>
     </div>
     </BrowserRouter>

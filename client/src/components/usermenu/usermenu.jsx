@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import s from "./usermenu.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faUser , faUsers, faBagShopping} from "@fortawesome/free-solid-svg-icons";
+import { faUser , faUsers, faBagShopping, faPlus} from "@fortawesome/free-solid-svg-icons";
 
 const Usermenu = ({userID}) => {
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
@@ -12,6 +12,11 @@ const Usermenu = ({userID}) => {
         <Link to={`/profile/${userID}`} style={{textDecoration: 'none'}}>
           <li>
             <FontAwesomeIcon icon={faUser} className={s.icon}  /> Mi perfil
+          </li>
+        </Link>
+        <Link to={`/create`} style={{textDecoration: 'none'}}>
+          <li>
+            <FontAwesomeIcon icon={faPlus} className={s.icon}  /> Publicar
           </li>
         </Link>
         <Link to={`/profile/${userID}/compras`} style={{textDecoration: 'none'}}>
