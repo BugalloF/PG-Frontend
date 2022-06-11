@@ -56,7 +56,10 @@ export function Detail(props) {
       </div>
       <div className={s.buttons}>
         <div className={s.buttons_rigth}>
-          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} />
+          <div className={s.Paypal}>
+            pagar con paypal
+          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title}/>
+          </div>
           { 
             userDataJson!== null ? props.isLiked === false ? 
               <button onClick={handlerOnClick}>

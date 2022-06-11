@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import s from "../feedpage/feedpage.module.css";
 import {
   setPage,
-  CleanPosts,
   resetPage,
   getFollowedPost,
   cleanFollowedPosts,
@@ -20,7 +19,6 @@ const MyFeed = () => {
   const dispatch = useDispatch();
   const followPost = useSelector((state) => state.followedPosts);
   const hasMore = useSelector((state) => state.hasMore);
-//   const filterState = useSelector((state) => state.filter);
   const loader = useSelector((state) => state.loader);
   const page = useSelector((state) => state.page);
 
@@ -32,12 +30,6 @@ const MyFeed = () => {
       dispatch(cleanFollowedPosts());
     };
   }, [dispatch]);
-  
-//   useEffect(() => {
-//     return () => {
-//       dispatch(CleanPosts());
-//     };
-//   }, [filterState]);  
 
   return (
     <div>
