@@ -34,6 +34,7 @@ function App() {
         <Route exact path={"/forgot"} element={<ForgotPassword/>} />
         <Route exact path={"/reset/:id"} element={<ResetPassword/>} />
         <Route exact path={'/feed'} element={[<NavBar/>, <FeedPage/>]}/>
+        <Route exact path={'/myfeed'} element={[<NavBar/>, <MyFeed/>]}/>
       </Routes>
     </div>
     </BrowserRouter>

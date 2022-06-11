@@ -1,5 +1,6 @@
 // Dependencies
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 // Files
 import { SearchBar } from "../searchbar/searchbar";
@@ -15,7 +16,8 @@ import { useDispatch } from "react-redux";
 import Usermenu from "../usermenu/usermenu";
 
 
-function NavBar(hassearch) {
+function NavBar() {
+  const urls = ['http://localhost:3000/feed', 'http://localhost:3000/myfeed', 'http://localhost:3000/']
   const [Menu, setMenu] = useState(true);
   const loggedUser = window.localStorage.getItem("userData");
   const userDataJson = JSON.parse(loggedUser);
@@ -45,7 +47,7 @@ function NavBar(hassearch) {
                 window.scrollTo(0, 0);
               }}>Inicio</a>
             {id ? (
-              <a href="/mifeed" className={s.Buttons}>
+              <a href="/myfeed" className={s.Buttons}>
                 Mi feed
               </a>
             ) : null}
@@ -67,10 +69,12 @@ function NavBar(hassearch) {
         </div>
         <div></div>
       </div>
-      <div className={s.LowBar}>
-        <img src={require(`../../img/logotipo.png`)} alt="DigitalizArte"></img>
-        <SearchBar />
-      </div>
+      {
+        urls.includes(window.location.href)?(<div className={s.LowBar}>
+          <img src={require(`../../img/logotipo.png`)} alt="DigitalizArte"></img>
+          <SearchBar />
+        </div>):(null)
+      }  
     </div>
   );
 }
