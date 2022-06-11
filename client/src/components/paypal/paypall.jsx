@@ -7,7 +7,6 @@ import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@pa
 import {sendEmail} from "../../redux/actions";
 
 // This values are the props in the UI
-const currency = "USD";
 const style= {
     layout: 'horizontal',
     heignt: 40,
@@ -20,39 +19,31 @@ const style= {
 }
 
 // Custom component to wrap the PayPalButtons and handle currency changes
-const ButtonWrapper = ({ currency, showSpinner ,idPost}) => {
-    console.log('IDPOSTTT',idPost)
+const ButtonWrapper = ({ showSpinner ,idPost,title,price}) => {
     // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
     // This is the main reason to wrap the PayPalButtons in a new component
-    const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+    // const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+    const dispatch = useDispatch();
+    const loggedUser = window.localStorage.getItem("userData");
     
-    // useEffect(() => {
-    //     dispatch({
-    //         type: "resetOptions",
-    //         value: {
-    //             ...options,
-    //             currency: currency,
-    //         },
-    //     });
-    // }, []);
-
     return (<>
             <PayPalButtons
                 style={style}
                 disabled={false}
-                forceReRender={[]}
+                // forceReRender={[]}
+                showSpinner={showSpinner}
                 fundingSource={undefined}
                 createOrder={(data, actions) => {
                     return actions.order.create({
                         intent: "CAPTURE",
                         purchase_units: [
                             {
-                              description: idPost.title,
+                              description: title,
                               amount: {
                                 currency_code: "USD",
-                                value: idPost.price,
+                                value: price,
                               },
-                              description: idPost.title,
+                              description: title,
                             },
                           ],
                         application_context: {
@@ -68,13 +59,13 @@ const ButtonWrapper = ({ currency, showSpinner ,idPost}) => {
                 }}
                 onApprove={async (data, actions) => {
                     const order = await actions.order.capture();
-                    // console.log(order)
                     swal('Pago exitoso, a continuación recibirás un correo con tu obra.')
                     if(order.status === 'COMPLETED'){
                       let payer = order.payer.name.given_name;
                       let surname = order.payer.name.surname;
                       let time = order.create_time;
-                      dispatch(sendEmail({payer,surname,time,idPost}))
+                      console.log(payer,surname,time,idPost)
+                      dispatch(sendEmail(loggedUser,{payer,surname,time,idPost}))
                     }
                 }}
                 onError={(err) => {
@@ -86,8 +77,7 @@ const ButtonWrapper = ({ currency, showSpinner ,idPost}) => {
     );
 }
 
-export default function Paypal(idPost,price,title) {
-    const paypal = useRef();
+export default function Paypal({idPost,price,title}) {
     const loggedUser = window.localStorage.getItem("userData");
     if(loggedUser)
     {
@@ -102,8 +92,7 @@ export default function Paypal(idPost,price,title) {
                 >
                     <ButtonWrapper
                         style={style}
-                        currency={currency}
-                        showSpinner={false}
+                        showSpinner={true}
                         idPost={idPost}
                         price={price}
                         title={title}

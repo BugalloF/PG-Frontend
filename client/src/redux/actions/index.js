@@ -489,7 +489,7 @@ export function sendEmail(userData, values)
         headers:
         {
           authorization: `Bearer ${token}`,
-        },
+        }
       };
       await axios.post(`https://artpage.herokuapp.com/emails/send-email`, values, config);
     };
