@@ -170,6 +170,9 @@ function rootReducer(state = initialState, action) {
     case "PROFILE":
       return {...state, profile: action.payload};
     
+    case "EDIT_PROFILE":
+      return {...state, profile:{...state.profile, found:action.payload.data}};    
+
     case "GET_USERS":
       return {...state, users: action.payload};
     

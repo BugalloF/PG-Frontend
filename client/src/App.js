@@ -16,6 +16,7 @@ import ResetPassword from "./components/ResetPassword/ResetPassword.jsx";
 import LandingPage from "./containers/landingPage/landingPage.jsx";
 import MyFeed from "./containers/feedPersonal/feedPersonal";
 import Update from "./components/formUpdate/Update";
+import FormEditProfile from "./components/FormEditProfile/FormEditProfile";
 
 
 
@@ -26,6 +27,7 @@ function App() {
       <Routes>
         <Route exact path={'/'} element={[<NavBar/>,<LandingPage/>]}/>
         <Route exact path={'/profile/:profileId'} element={[<NavBar/>,<ProfilePage/>]}/>
+        <Route exact path={'/profile/editProfile/:profileId'} element={[<NavBar/>,<FormEditProfile/>]}/>                
         <Route exact path={'/create'} element={[<NavBar/>,<PostForm/>]}/>
         <Route exact path={'/edit/:idPost'} element={[<NavBar/>,<Update/>]}/>
         <Route exact path={'/post/:idPost'} element={[<NavBar/>,<DetailPage/>]}/>

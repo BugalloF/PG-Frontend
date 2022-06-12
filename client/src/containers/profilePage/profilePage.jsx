@@ -1,7 +1,7 @@
 // Dependencies
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Navigate, useNavigate, useParams} from "react-router-dom";
+import {Navigate, useNavigate, useParams, Link} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFacebook, faLinkedinIn, faDeviantart} from '@fortawesome/free-brands-svg-icons';
 // Files
@@ -77,9 +77,11 @@ function ProfilePage()
                 </button>
                 </div>
                 :
-                <button>
-                  EDITAR PERFIL
-                </button>
+                <Link to={`/profile/editProfile/${profileId}`}>                
+                  <button>
+                    EDITAR PERFIL
+                  </button>
+                </Link>                
               }
             </div>
           </div>
