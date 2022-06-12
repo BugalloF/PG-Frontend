@@ -31,11 +31,11 @@ function LoginForm()
         
         if(!input.user)
         {
-            errors.user = <font color="red">*</font>;
+            errors.user = <p></p>;
         }
         else if(!input.password)
         {
-            errors.password = <font color="red">*</font>;
+            errors.password = <p></p>;
         };
         
         return errors;
@@ -113,11 +113,11 @@ function LoginForm()
         <div className={s.container_login_form}>
             <h5>BIENVENIDO, POR FAVOR INICIA SESIÓN</h5>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Nombre de usuario o correo electrónico" name="user" onChange={handleChange} />
+                <input className={errors.user ? s.Alert : s.Inputs} type="text" placeholder="Nombre de usuario o correo electrónico" name="user" onChange={handleChange} />
                 {
                     errors.user && errors.user
                 }
-                <input type={password ? "text" : "password"} placeholder="Contraseña" name="password" onChange={handleChange}  />
+                <input className={errors.password ? s.Alert : s.Inputs} type={password ? "text" : "password"} placeholder="Contraseña" name="password" onChange={handleChange}  />
                 {
                     errors.password && errors.password
                 }

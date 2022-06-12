@@ -1,23 +1,23 @@
 // Dependencies
 import React, {useEffect} from "react";
 // Files
-import LoginForm from "../../components/LoginForm/LoginForm";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import LoginCarousel from "../../components/loginpage/loginCarousel";
-import s from './loginpage.module.css';
+import s from './RegisterPage.module.css';
 
 
-function LoginPage()
+function RegisterPage()
 {
     //objeto de prueba para carta
     useEffect(() => {}, []);
     
     return (
         <div className={s.LoginPage}>
-            <LoginForm/>
+            <RegisterForm/>
             <LoginCarousel/>
         </div>
     );
 };
 
 
-export default LoginPage;
+export default RegisterPage;
