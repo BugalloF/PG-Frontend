@@ -210,6 +210,14 @@ function rootReducer(state = initialState, action) {
         followedPosts: [],
         loader:true
       }
+      case "DeleteUser":
+        return {...state,
+          status:action.payload 
+        }
+        case "AddCategory":
+          return {...state,
+            status:action.payload 
+          }
     default:
       return {...state};
   };

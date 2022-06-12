@@ -1,0 +1,31 @@
+.imgArt{
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+}
+
+.list{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+   
+    
+
+}
+
+.list li{
+  
+    margin: 10px;
+    width: 200px;
+    list-style: none;
+    text-align: center;
+    
+    
+}
+
+.profile{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
