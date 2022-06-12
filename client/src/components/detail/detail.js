@@ -51,7 +51,9 @@ export function Detail(props) {
 		        <ImageProfile image={props.profile.img} bigSize={true}/>
               <p>{props.user}</p>
 		      </div>
+          <p>{props.title}</p>
           <p>{props.description}</p>
+          <p>$ {props.price}</p>
         </div>
       </div>
       <div className={s.buttons}>
