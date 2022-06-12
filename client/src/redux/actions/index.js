@@ -333,6 +333,36 @@ export function resetPassword(id, resetToken, input)
   };
 };
 
+export function EditProfile(input)
+{
+  return async function (dispatch)
+  {
+    const data = {
+      name: input.name,
+      lastName: input.lastName,
+      userName: input.userName,
+      email: input.email,
+      password: input.password,
+      day_of_birth: input.day_of_birth,
+      gender: input.gender,
+      img: input.img,
+      phone: input.phone,
+      description: input.description,
+      country: input.country,
+      facebook: input.facebook,
+      instagram: input.instagram,
+      linkedIn: input.linkedIn,
+    };
+  
+    const editProfile = await axios.put(`${URL}/profile/${input.id}?apiKey=${REACT_APP_API_KEY}`,data)
+  
+    dispatch({
+      type: "EDIT_PROFILE",
+      payload: editProfile,
+    });
+  };
+};
+
 // ----------------------------------------------------------------------------------------------
 
 export function addLike(userData = null, idPost)
