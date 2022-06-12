@@ -1,4 +1,5 @@
 // Dependencies
+import { async } from "@firebase/util";
 import axios from "axios";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // Files
@@ -589,3 +590,30 @@ export function cleanFollowedPosts(){
   };
 }
 
+
+// --------------- DELETE USER -------------- //
+
+export const DeleteUser = (userId) => {
+  return async function(dispatch){
+    const user = await axios.delete(`${URL}/profile/delete/${userId}?apiKey=${REACT_APP_API_KEY}`)
+    
+    dispatch({
+      type: "DeleteUser",
+      payload: user.status
+    })
+  }
+
+}
+
+// ------------- ADD CATEGORY ------------- //
+
+export const AddCategory = (value) => {
+  return async function(dispatch){
+    const category = await axios.post(`${URL}/categories`, {category:value})
+
+    dispatch({
+      type: 'AddCategory',
+      payload: category.status
+    })
+  }
+}
