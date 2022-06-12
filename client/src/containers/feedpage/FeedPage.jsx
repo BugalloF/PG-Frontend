@@ -32,7 +32,7 @@ const PrincipalPage = () => {
   return (
     <div  className={s.container}>
       <div className={s.imgContainer}></div>
-      <Filters />
+      <Filters hasorder={false}/>
 
       <InfiniteScroll
         dataLength={allPosts.length}
