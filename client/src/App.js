@@ -35,7 +35,6 @@ function App() {
         <Route exact path={'/register'} element={<RegisterPage/>}/>
         <Route exact path={"/forgot"} element={<ForgotPage/>} />
         <Route exact path={"/reset/:id"} element={<ResetPage/>} />
-        <Route exact path={'/feed'} element={<MyFeed/>}/>
         <Route exact path={'/feed'} element={[<NavBar/>, <FeedPage/>]}/>
         <Route exact path={'/myfeed'} element={[<NavBar/>, <MyFeed/>]}/>
       </Routes>
