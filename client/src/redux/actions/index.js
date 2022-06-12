@@ -256,11 +256,6 @@ export const SetCategoty = (value) =>{
 
 // LOGIN / REGISTER / RESET PASSWORD //
 
-
-
-
-// LOGIN / REGISTER / RESET PASSWORD //
-
 export function register(values)
 {
   return async function (dispatch)
