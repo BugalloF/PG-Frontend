@@ -1,0 +1,32 @@
+.container_edit{
+	text-align: center;
+}
+
+.form{
+	display: flex;
+	justify-content: center;
+	gap:100px;
+	margin: 20px 0 50px 0;
+}
+
+.title{
+	margin:50px 0 20px 0;
+}
+.left{
+	max-width: 300px;
+}
+
+.rigth{
+	max-width: 500px;
+}
+
+.input{
+	margin: 10px 0;
+	min-height: 42px;
+}
+
+.input_desc{
+	min-height: 174px;
+	margin: 10px 0;
+}
+

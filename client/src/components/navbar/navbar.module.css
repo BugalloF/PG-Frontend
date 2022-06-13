@@ -97,3 +97,12 @@
     padding-left: 100px;
  
 }
+
+.Logo_skeleton{
+    min-height: 70px;
+    margin-left: 120px;
+}
+.profile_skeleton{
+    min-width: 38px;
+    min-height: 38px;
+}

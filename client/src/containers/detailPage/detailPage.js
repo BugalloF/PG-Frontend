@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CleanDetail, CleanReco, GetDetail, GetRecoPosts } from "../../redux/actions";
 import { useParams } from "react-router-dom";
-
+import DetailSkeleton from "../../components/loaderSkeleton/Detail/DetailSkeleton"
 // --------------------------------------------------------
 // -----------------------DATOS DE PRUEBA-------------
 // --------------------------------------------------------
@@ -65,6 +65,6 @@ export default function DetailPage() {
                
        </div>
 
-     </div>):(<div><h1>cargando...</h1></div>)
+     </div>):(<DetailSkeleton/>)
  );
 };
