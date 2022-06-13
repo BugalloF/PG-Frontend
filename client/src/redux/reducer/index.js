@@ -170,6 +170,9 @@ function rootReducer(state = initialState, action) {
     case "PROFILE":
       return {...state, profile: action.payload};
     
+    case "EDIT_PROFILE":
+      return {...state, profile:{...state.profile, found:action.payload.data}};    
+
     case "GET_USERS":
       return {...state, users: action.payload};
     
@@ -214,12 +217,21 @@ function rootReducer(state = initialState, action) {
         return {...state,
           status:action.payload 
         }
+
         
     case "AdmCategory":
       return{
         ...state,
         status:action.payload
       }
+
+        case "BAN_USER":
+            return {...state, users: action.payload};
+        case "UNBAN_USER":
+              return {...state, users: action.payload};
+        case "GET_BANNED_USERS":
+              return {...state, users: action.payload};  
+
     default:
       return {...state};
   };

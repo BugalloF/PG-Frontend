@@ -1,6 +1,5 @@
 import React from "react";
 import {Detail} from "../../components/detail/detail";
-import Comment from "../../components/comment/comment";
 import Card from "../../components/cards/card";
 import s from './detailPage.module.css';
 import { useEffect } from "react";

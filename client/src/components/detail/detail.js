@@ -6,7 +6,7 @@ import {NavLink,useNavigate} from 'react-router-dom';
 import swal from "sweetalert";
 // Files
 import {ImageProfile} from "../imageprofile/imageprofile";
-import Paypal from "../paypal/paypal";
+import Paypal from "../paypal/paypall";
 import s from "./detail.module.css";
 import { useDispatch,useSelector } from "react-redux";
 import { addLike, CleanStatus, DeleteArtwork, deleteLike } from "../../redux/actions";
@@ -56,7 +56,10 @@ export function Detail(props) {
       </div>
       <div className={s.buttons}>
         <div className={s.buttons_rigth}>
-          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} />
+          <div className={s.Paypal}>
+            pagar con paypal
+          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title}/>
+          </div>
           { 
             userDataJson!== null ? props.isLiked === false ? 
               <button onClick={handlerOnClick}>

@@ -24,7 +24,7 @@ function ForgotPassword()
         
         if(!input.user)
         {
-            errors.user = <font color="red">*</font>;
+            errors.user = <p></p>;
         };
         
         return errors;
@@ -74,11 +74,11 @@ function ForgotPassword()
     };
     
     return(
-        <div className={s.Container}>
-            <form onSubmit={handleSubmit} className={s.Form}>
+        <div className={s.container_login_form}>
+            <form onSubmit={handleSubmit}>
                 <h2>Recupere su cuenta</h2>
                 
-                <input className={s.Input} onChange={handleChange} type="text" placeholder="Nombre de usuario o correo electrónico" name="user"/>
+                <input className={errors.user ? s.Alert : s.Inputs} onChange={handleChange} type="text" placeholder="Nombre de usuario o correo electrónico" name="user"/>
                 {
                     errors.user && errors.user
                 }

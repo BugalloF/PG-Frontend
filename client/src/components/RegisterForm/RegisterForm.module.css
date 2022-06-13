@@ -9,9 +9,10 @@
   text-align: center;
   padding: 10px 40px;
   color: hsl(10deg 2% 39%);
-  height: 420px;
+  height: 650px;
   width: 550px;
   background-color: hsl(0deg 0% 100% / 78%);
+  border-radius: 15px;
 }
 
 .container_login_form h5 {
@@ -24,10 +25,12 @@
   flex-direction: column;
 }
 
-.container_login_form input {
+.Inputs {
   padding: 10px;
   margin: 10px 0;
   font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid rgb(88, 88, 88);
 }
 
 .options {
@@ -84,7 +87,7 @@
 {
   display: flex;
   position: absolute;
-  top: 335px;
+  top: 390px;
   left: 550px;
   height: auto;
   width: auto;
@@ -93,3 +96,31 @@
   border: none;
   border-radius: 5px;
 }
+
+.ShowResetPassword
+{
+  display: flex;
+  position: absolute;
+  top: 450px;
+  left: 550px;
+  height: auto;
+  width: auto;
+  cursor: pointer;
+  background: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.Alert
+{
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid red;
+}
+
+/* .AlertText
+{
+  
+} */

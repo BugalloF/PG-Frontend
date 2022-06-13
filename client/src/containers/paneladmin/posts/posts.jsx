@@ -1,19 +1,20 @@
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardAdm from "../../../components/admin/cardsart/cardadm.jsx"
-import { CleanPosts, CleanStatus, GetAllPosts, getUsers } from "../../../redux/actions";
+import Filters from "../../../components/filters/filters.js";
+import { CleanPosts, CleanStatus, setPage} from "../../../redux/actions";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 
 
 const Posts = () => {
     const allPosts = useSelector((state) => state.posts);
     const status = useSelector((state) => state.status)
+    const length = useSelector((state) => state.length)
+    const hasMore = useSelector((state) => state.hasMore);
     const dispatch = useDispatch();
-    const [page,setPage] = useState(0);
-    const [order,setOrder] = useState({
-        by: "",
-        type: ""
-      });
+    const page = useSelector((state) => state.page)
+
     useEffect(() =>{
         return () => {
             dispatch(CleanPosts())     
@@ -22,39 +23,47 @@ const Posts = () => {
 
 
     useEffect(() => {
-        dispatch(GetAllPosts(page,undefined, order.by, order.type));
         dispatch(CleanStatus())
-    }, [page,status]);
+    }, [status]);
 
 
 
     return (
         <div>
+            <Filters hasorder={false}/>
     
-             <button 
-             onClick={() => {
-                setPage((prevPage) => page - 1)
-                
-                }}>→</button>
-             <button 
-             onClick={() =>{ 
-                setPage((prevPage) => page + 1)
-                
-                }}>←</button>
 
-            {allPosts?.map(card => (
+
+<InfiniteScroll
+        dataLength={allPosts.length}
+        hasMore={hasMore}
+        next={() => dispatch(setPage())}
+        loader={<h4>Cargando...</h4>}
+        endMessage={
+          <p style={{ textAlign: "center" }}>
+            <b>Wow! Parece que llegaste al fin!</b>
+          </p>
+        }
+      >
+       
+
+        {allPosts?.map(card => (
             
-                <CardAdm
-                postId={card.id}
-                img={card.imgCompress}
-                userImg={card.profile?.img}
-                userId={card.profile?.id}
-                userName={card.profile?.userName}
-                price={card.price}
-                title={card.title}
-                 
-                />
-            ))}
+            <CardAdm
+            postId={card.id}
+            img={card.imgCompress}
+            userImg={card.profile?.img}
+            userId={card.profile?.id}
+            userName={card.profile?.userName}
+            price={card.price}
+            title={card.title}
+            category={card.categories[0].title}
+            likes={card.likes}
+             
+            />
+        ))}
+        
+      </InfiniteScroll>
 
             
         </div>

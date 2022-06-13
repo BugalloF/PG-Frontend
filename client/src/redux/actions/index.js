@@ -114,6 +114,7 @@ export const PageNumber = () => {
   };
 };
 
+
 //PAGINADO------------------------------------------------------------------------------------
 
 //POST ARTWORK-------------------------------------------------------------------------------
@@ -257,11 +258,6 @@ export const SetCategoty = (value) =>{
 
 // LOGIN / REGISTER / RESET PASSWORD //
 
-
-
-
-// LOGIN / REGISTER / RESET PASSWORD //
-
 export function register(values)
 {
   return async function (dispatch)
@@ -338,6 +334,37 @@ export function resetPassword(id, resetToken, input)
     };
   };
 };
+
+export function EditProfile(input)
+{
+  return async function (dispatch)
+  {
+    const data = {
+      name: input.name,
+      lastName: input.lastName,
+      userName: input.userName,
+      email: input.email,
+      password: input.password,
+      day_of_birth: input.day_of_birth,
+      gender: input.gender,
+      img: input.img,
+      phone: input.phone,
+      description: input.description,
+      country: input.country,
+      facebook: input.facebook,
+      instagram: input.instagram,
+      linkedIn: input.linkedIn,
+    };
+  
+    const editProfile = await axios.put(`${URL}/profile/${input.id}?apiKey=${REACT_APP_API_KEY}`,data)
+  
+    dispatch({
+      type: "EDIT_PROFILE",
+      payload: editProfile,
+    });
+  };
+};
+
 
 // ----------------------------------------------------------------------------------------------
 
@@ -490,7 +517,7 @@ export function sendEmail(userData, values)
         headers:
         {
           authorization: `Bearer ${token}`,
-        },
+        }
       };
       await axios.post(`https://artpage.herokuapp.com/emails/send-email`, values, config);
     };
@@ -565,6 +592,7 @@ export function cleanFollowedPosts(){
   };
 }
 
+// ----------------------------  ADMIN ----------------------------
 
 // --------------- DELETE USER -------------- //
 
@@ -612,5 +640,82 @@ export const UpdateCategory = (categoryId,value) => {
       type: 'AdmCategory',
       payload: category.status
     })
+  }
+}
+// ------- sumar dias ban -------------
+var fecha= new Date()
+function sumarDias(fecha){
+  let  bantime= fecha.setDate(fecha.getDate() + 4 );
+  return bantime;
+}
+
+// -------------- BAN / NO BAN USER
+
+export const banUser = (userId,userData) =>{
+  
+  return async function (dispatch){
+    
+    const userDataJson = JSON.parse(userData);
+    
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const user =  (await axios(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,config)).data.found
+      
+      // console.log('userrrrrrDATA',userData)
+    // console.log('userrrrrr',user)
+    if(user.is_banned === false){
+      const ban = {
+        is_banned: true,
+        banned_time: sumarDias(fecha)
+
+      };
+     await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,ban)
+      // console.log(sumarDias(fecha))
+     const data = (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data;
+     return dispatch({ type: "BAN_USER", payload: data });
+    
+    }else{
+      const unBan = {
+        is_banned: false,
+        banned_time: null
+      };
+     await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,unBan)
+     const data = (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data;
+     return dispatch({ type: "UNBAN_USER", payload: data });
+    }
+
+  }
+}
+
+export const getBannedUsers = (userData) =>{
+  
+  return async function (dispatch){
+    
+    const userDataJson = JSON.parse(userData);
+    
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const users =  (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data
+
+      const data = users.filter(el=> el.is_banned)
+
+      // console.log('filtrados',data)
+      
+      return dispatch({type:"GET_BANNED_USERS",payload:data})
+      
   }
 }
