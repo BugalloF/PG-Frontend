@@ -68,13 +68,17 @@ function LoginForm()
             if((foundUsername.length || foundEmail.length))
             {
                 e.preventDefault();
-                const data = await dispatch(login(input)).catch(error => console.log(error));
+                const data = await dispatch(login(input));
                 
                 if(data === undefined || data === null)
                 {
                     swal("Usuario o contraseña incorrectos.");
                 }
+                
+                if(data.payload.is_banned)  return swal(`Tu usuario está baneado hasta el día ${data.payload.banned_time} `) 
+                
                 else
+                
                 {
                     const payload = data.payload;
                     const userData =
@@ -85,6 +89,7 @@ function LoginForm()
                         token: payload.token,
                         img: payload.foundUser[0].img,
                         is_Admin: payload.foundUser[0].is_Admin,
+                        is_banned:payload.foundUser[0].is_banned
                     };
                     
                     window.localStorage.setItem("userData", JSON.stringify(userData));

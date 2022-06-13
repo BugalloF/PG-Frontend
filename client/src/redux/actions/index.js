@@ -272,6 +272,8 @@ export function login(values)
   return async function (dispatch)
   {
     const data = (await axios.post(`${URL}/login`, values)).data;
+    const data2=  (await axios.post(`${URL}/login`, values))
+    // console.log('aaaaaaaaaaaaaaaaaaaaaaaaa')
     return dispatch({ type: "LOGIN", payload: data });
   };
 };
@@ -304,7 +306,11 @@ export function getUsers()
     return dispatch({ type: "GET_USERS", payload: data });
   };
 };
-
+export function clearUsers(){
+  return async function(dispatch){
+    return {type:'CLEAR_USERS'}
+  }
+}
 export function forgotPassword(user)
 {
   return async function(dispatch)
@@ -643,10 +649,10 @@ export const UpdateCategory = (categoryId,value) => {
   }
 }
 // ------- sumar dias ban -------------
-var fecha= new Date()
-function sumarDias(fecha){
-  let  bantime= fecha.setDate(fecha.getDate() + 4 );
-  return bantime;
+function sumarDias(){
+  let fechita= new Date()
+  fechita = fechita.setDate(fechita.getDate()+ 4 );
+  return fechita;
 }
 
 // -------------- BAN / NO BAN USER
@@ -673,7 +679,7 @@ export const banUser = (userId,userData) =>{
     if(user.is_banned === false){
       const ban = {
         is_banned: true,
-        banned_time: sumarDias(fecha)
+        banned_time: sumarDias()
 
       };
      await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,ban)
@@ -694,6 +700,30 @@ export const banUser = (userId,userData) =>{
   }
 }
 
+export const unBanUser= (userId,userData)=>{
+  return async function (dispatch){
+    
+    const userDataJson = JSON.parse(userData);
+    
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const unBan = {
+        is_banned: false,
+        banned_time: null
+      };
+     await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,unBan)
+     const data = (await axios(`${URL}/profile/bannedusers?apiKey=${REACT_APP_API_KEY}`,config)).data;
+     return dispatch({ type: "UNBAN_USER", payload: data });
+  }
+}
+
 export const getBannedUsers = (userData) =>{
   
   return async function (dispatch){
@@ -709,9 +739,8 @@ export const getBannedUsers = (userData) =>{
           authorization: `Bearer ${token}`,
         },
       };
-      const users =  (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data
+      const data =  (await axios(`${URL}/profile/bannedusers?apiKey=${REACT_APP_API_KEY}`,config)).data
 
-      const data = users.filter(el=> el.is_banned)
 
       // console.log('filtrados',data)
       
@@ -734,4 +763,26 @@ export const GetAdmProfiles = (from = "",name = "") => {
       counter: profiles.data.counter
     })
   }
+}
+
+export const TransactionsPost = (values)=>{
+  return async function(dispatch){
+ 
+    await axios.post(`${URL}/transactions`,values)
+
+  dispatch({
+    type:'POST_TRANSACTIONS'
+  })
+  }
+}
+
+export const GetTransactions = ()=>{
+  return async function(dispatch){
+let data= await (axios.get(`${URL}/transactions`))
+console.log(data)
+  dispatch({
+    type:'GET_TRANSACTIONS',
+    payload:data.data
+  })
+}
 }

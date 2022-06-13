@@ -1,14 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { banUser, DeleteUser } from "../../../redux/actions";
+import { banUser, DeleteUser, unBanUser } from "../../../redux/actions";
 import { ImageProfile } from "../../imageprofile/imageprofile";
 import s from "../cardprofile/cardprofile.module.css"
 const loggedUser = window.localStorage.getItem("userData");
 let ahora = new Date().toISOString().slice(0, 10)
 
 
-const CardProfile = ({userId, userName, userImg, firstName, lastName, email, ban,banTime}) => {
+const CardBanned = ({userId, userName, userImg, firstName, lastName, email, ban,banTime}) => {
     // console.log('ahoraaaa',ahora)
     const dispatch = useDispatch()
     // console.log('holaaaa',banTime)
@@ -26,12 +26,19 @@ const CardProfile = ({userId, userName, userImg, firstName, lastName, email, ban
                 { ban === false ?<li><button 
                 onClick={() => {
                     dispatch(banUser(userId,loggedUser))
-                }} >Banear</button></li>:
+                }} >Banear</button></li>: banTime >= ahora ?
                 <li><button 
                 onClick={() => {
-                    dispatch(banUser(userId,loggedUser))
+                    dispatch(unBanUser(userId,loggedUser))
                 }} >Quitar ban</button></li>
-                }
+                :
+                <div>
+                    <li><button 
+                onClick={() => {
+                    dispatch(unBanUser(userId,loggedUser))
+                }} >Quitar ban</button></li>
+                    <li>HOY</li>
+                    </div>}
                 <li>{banTime}</li>
             </ul>
         </div>
@@ -40,4 +47,4 @@ const CardProfile = ({userId, userName, userImg, firstName, lastName, email, ban
 }
 
 
-export default CardProfile
+export default CardBanned

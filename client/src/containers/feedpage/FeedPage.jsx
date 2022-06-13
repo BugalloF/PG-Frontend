@@ -6,12 +6,13 @@ import {
   setPage,
   CleanPosts,
   resetPage,
+  getUsers,
+  clearUsers,
 } from "../../redux/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect } from "react";
 import NotFound from "../../components/notFound/NotFound"
 import Filters from "../../components/filters/filters"
-
 const PrincipalPage = () => {
   const dispatch = useDispatch();
   const length = useSelector((state) => state.length)
@@ -21,15 +22,17 @@ const PrincipalPage = () => {
 
   useEffect(() => {
       dispatch(resetPage());
-      
+     
       return () => {
         dispatch(CleanPosts());
+      
       };
     
   }, []);
+  // console.log(userDataJson)
   
-
   return (
+    
     <div  className={s.container}>
       <div className={s.imgContainer}></div>
       <Filters hasorder={false}/>

@@ -46,7 +46,7 @@ export default function DetailPage() {
 
   return(
     idPosteo?( <div className={s.container_detailPage}>
-       <Detail image={detail.artWork[0].imgCompress} description={detail.artWork[0].content} user={detail.artWork[0].profile.userName}  profile={detail.artWork[0].profile} price={detail.artWork[0].price} title={detail.artWork[0].title} idPost={idPost} likes ={detail.likesCounter} isLiked={detail.isLiked} isLogged={loggedUser} profileId={detail.artWork[0].profileId}/>
+       <Detail image={detail.artWork[0].imgCompress} description={detail.artWork[0].content} user={detail.artWork[0].profile.userName}  profile={detail.artWork[0].profile} price={detail.artWork[0].price} title={detail.artWork[0].title} idPost={idPost} likes ={detail.likesCounter} isLiked={detail.isLiked} isLogged={loggedUser} profileId={detail.artWork[0].profileId} emailSeller={detail.artWork[0].profile.email}/>
          
        <div className={s.container_recommendation}>
          <h2>publicaciones recomendadas</h2>

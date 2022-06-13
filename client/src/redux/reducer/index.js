@@ -12,6 +12,7 @@ const initialState = {
   profile: {},
   users: [],
   search: '',
+  transactions:[],
   compressedPost: '',
   loader:true,
   hasMore:true,
@@ -238,7 +239,12 @@ function rootReducer(state = initialState, action) {
               return {...state, users: action.payload};
         case "GET_BANNED_USERS":
               return {...state, users: action.payload};  
-
+      case "CLEAR_USERS":
+        return {...state,users:[]}
+      case 'POST_TRANSACTIONS':
+        return {...state}
+      case 'GET_TRANSACTIONS':
+        return {...state, transactions:action.payload}
     default:
       return {...state};
   };

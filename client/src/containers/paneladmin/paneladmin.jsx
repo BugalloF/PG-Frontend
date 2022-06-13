@@ -48,7 +48,10 @@ const PanelAdm = () => {
                 <p>Categorias totales: {count.Categorias}</p>
                 <NavLink to={'categories'}>Ver mas</NavLink>
             </div>
-            
+            <div>
+                <h3>Transacciones</h3>
+                <NavLink to={'transactions'}>Ver mas</NavLink>
+            </div>
             
         </div>
     )
