@@ -7,6 +7,7 @@ import swal from "sweetalert";
 import {profile, EditProfile, getUsers} from "../../redux/actions/index";
 import s from "./FormEditProfile.module.css";
 import {ImageProfile} from "../imageprofile/imageprofile"
+import EditProfileSkeleton from '../loaderSkeleton/EditProfile/EditProfileSkeleton'
 
 const FormEditProfile = () => {
     const dispatch = useDispatch();
@@ -312,7 +313,7 @@ const FormEditProfile = () => {
 			</form>
 		</div>
             :
-            <p>cargando...</p>
+            <EditProfileSkeleton/>
 	
 
   )

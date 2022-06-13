@@ -11,6 +11,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect } from "react";
 import NotFound from "../../components/notFound/NotFound"
 import Filters from "../../components/filters/filters"
+import CardsSkeleton from "../../components/loaderSkeleton/cards/CardsSkeleton"
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const PrincipalPage = () => {
   const dispatch = useDispatch();
@@ -38,7 +40,7 @@ const PrincipalPage = () => {
         dataLength={allPosts.length}
         hasMore={hasMore}
         next={() => dispatch(setPage())}
-        loader={!loader?<h4>Cargando...</h4>:null}
+        loader={allPosts.length !== length?<CardsSkeleton oneLine={true}/>:null}
         endMessage={
           <p style={{ textAlign: "center" }}>
             <b>Wow! Parece que llegaste al fin!</b>
@@ -47,7 +49,8 @@ const PrincipalPage = () => {
       >
         <div className={s.FeedPage}>
 
-      {
+      {loader?
+        <CardsSkeleton oneLine={false}/> :
         length !== 0 ?
           <div className={s.Cards}>
             

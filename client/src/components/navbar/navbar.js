@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import Skeleton from 'react-loading-skeleton'
 // Files
 import { SearchBar } from "../searchbar/searchbar";
 import { ImageProfile } from "../imageprofile/imageprofile";
@@ -12,11 +13,12 @@ import {
   resetPage,
   SetCategoty,
 } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Usermenu from "../usermenu/usermenu";
 
-
 function NavBar() {
+  const allCategories = useSelector((state) => state.categories);
+  const loader = useSelector((state) => state.loader);
   const urls = ['http://localhost:3000/feed', 'http://localhost:3000/myfeed', 'http://localhost:3000/']
   const [Menu, setMenu] = useState(true);
   const loggedUser = window.localStorage.getItem("userData");
@@ -57,7 +59,7 @@ function NavBar() {
           <div className={s.container_image}>
             {id ? (
               <a onClick={handleMenu}>
-                <ImageProfile image={img} bigSize={false} />
+                {allCategories.length || !loader?<ImageProfile image={img} bigSize={false} />:<Skeleton className={s.profile_skeleton} circle width={38} heigth={38}/>}
               </a>
             ) : (
               <div>
@@ -71,7 +73,7 @@ function NavBar() {
       </div>
       {
         urls.includes(window.location.href)?(<div className={s.LowBar}>
-          <img src={require(`../../img/Logo222.png`)} alt="DigitalizArte"></img>
+          {allCategories.length || !loader?<img src={require(`../../img/Logo222.png`)} alt="DigitalizArte"></img>:<Skeleton className={s.Logo_skeleton} baseColor = "#d0a9d0" width={280} heigth={200}/>}
           <SearchBar />
         </div>):(null)
       }  
