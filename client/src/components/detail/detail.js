@@ -84,7 +84,15 @@ export function Detail(props) {
           }
           <div>
             {
-              props.profileId === id ? <div> <NavLink to={`/edit/${props.idPost}`}><button>Editar</button></NavLink> <button onClick={handleDelete}>Eliminar</button> </div>: null
+              props.profileId === id ?
+              <div className={s.EditButton}>
+                <NavLink to={`/edit/${props.idPost}`} style={{textDecoration: "none"}}>
+                  <button>Editar</button>
+                </NavLink>
+                <button onClick={handleDelete}>Eliminar</button>
+              </div>
+              :
+              null
             }
           </div>
         </div>

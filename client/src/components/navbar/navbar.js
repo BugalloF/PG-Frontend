@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Skeleton from 'react-loading-skeleton'
+import {FiLogIn} from "react-icons/fi"
 // Files
 import { SearchBar } from "../searchbar/searchbar";
 import { ImageProfile } from "../imageprofile/imageprofile";
@@ -38,8 +39,8 @@ function NavBar() {
         {Menu === false ? <Usermenu userID={id}></Usermenu> : null}
         <div className={s.left}>
           <ul className={s.container_links}>
-            <a
-              href="/feed"
+            <NavLink to="/feed"
+              // href="/feed"
               className={s.Buttons}
               onClick={() => {
                 dispatch(resetPage());
@@ -47,7 +48,7 @@ function NavBar() {
                 dispatch(SetCategoty(null));
                 dispatch(GetAllPosts());
                 window.scrollTo(0, 0);
-              }}>Inicio</a>
+              }}>Inicio</NavLink>
             {id ? (
               <a href="/myfeed" className={s.Buttons}>
                 Mi feed
@@ -63,7 +64,7 @@ function NavBar() {
               </a>
             ) : (
               <div>
-                <NavLink to="/login">Iniciar sesión</NavLink>
+                <NavLink to="/login">Login</NavLink>
                 <NavLink to="/register">Registarse</NavLink>
               </div>
             )}
