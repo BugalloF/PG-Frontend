@@ -17,7 +17,7 @@
 .list li{
   
     margin: 10px;
-    width: 200px;
+    width: 100px;
     list-style: none;
     text-align: center;
     
@@ -26,6 +26,9 @@
 
 .profile{
     display: flex;
-    justify-content: space-around;
     align-items: center;
+}
+
+.profile p{
+    margin-left: 15px;
 }

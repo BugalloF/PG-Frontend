@@ -114,6 +114,7 @@ export const PageNumber = () => {
   };
 };
 
+
 //PAGINADO------------------------------------------------------------------------------------
 
 //POST ARTWORK-------------------------------------------------------------------------------
@@ -614,7 +615,29 @@ export const AddCategory = (value) => {
     const category = await axios.post(`${URL}/categories`, {category:value})
 
     dispatch({
-      type: 'AddCategory',
+      type: 'AdmCategory',
+      payload: category.status
+    })
+  }
+}
+
+export const DeleteCategory = (categoryId) => {
+  return async function(dispatch){
+    const category = await axios.delete(`${URL}/categories/${categoryId}`)
+
+    dispatch({
+      type: 'AdmCategory',
+      payload: category.status
+    })
+  }
+}
+
+export const UpdateCategory = (categoryId,value) => {
+  return async function(dispatch){
+    const category = await axios.put(`${URL}/categories/${categoryId}`, {title:value})
+
+    dispatch({
+      type: 'AdmCategory',
       payload: category.status
     })
   }
@@ -694,5 +717,21 @@ export const getBannedUsers = (userData) =>{
       
       return dispatch({type:"GET_BANNED_USERS",payload:data})
       
+  }
+}
+
+
+export const GetAdmProfiles = (from = "",name = "") => {
+  if(from !== "") from = `?from=${from}`
+  if (name !== "") name = "&" + name.slice(1); 
+  return async function(dispatch){
+
+    const profiles = await axios.get(`${URL}/profile/profiles${from}${name}`)
+
+    dispatch({
+      type:'GetAdmProfiles',
+      profiles: profiles.data.profiles,
+      counter: profiles.data.counter
+    })
   }
 }

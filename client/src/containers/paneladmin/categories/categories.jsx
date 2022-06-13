@@ -1,7 +1,8 @@
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardCategory from "../../../components/admin/cardcategory/cardcategory";
-import { GetAllCategories } from "../../../redux/actions";
+import FormCategory from "../../../components/admin/formcategory/formcategory";
+import { CleanStatus, GetAllCategories } from "../../../redux/actions";
 
 
 
@@ -14,15 +15,21 @@ const Categories = () => {
 
     useEffect(()=>{
         dispatch(GetAllCategories())
-    },[])
+        dispatch(CleanStatus())
+    },[status])
 
-    console.log(categories)
+
+
+   
     return(
         <div>
+            <FormCategory/>
 
             {categories?.map(card => (
                 <CardCategory
+                key = {card.id}
                 category = {card.title}
+                categoryId = {card.id}
                 />
             ))}
 
