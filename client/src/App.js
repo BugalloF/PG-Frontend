@@ -27,7 +27,7 @@ function App() {
       <Routes>
         <Route exact path={'/'} element={[<NavBar/>,<LandingPage/>]}/>
         <Route exact path={'/profile/:profileId'} element={[<NavBar/>,<ProfilePage/>]}/>
-        <Route exact path={'/profile/editProfile/:profileId'} element={[<NavBar/>,<FormEditProfile/>]}/>                
+        <Route exact path={'/profile/editProfile/:profileId'} element={[<NavBar/>,<FormEditProfile/>]}/>
         <Route exact path={'/create'} element={[<NavBar/>,<PostForm/>]}/>
         <Route exact path={'/edit/:idPost'} element={[<NavBar/>,<Update/>]}/>
         <Route exact path={'/post/:idPost'} element={[<NavBar/>,<DetailPage/>]}/>
@@ -35,7 +35,6 @@ function App() {
         <Route exact path={'/register'} element={<RegisterPage/>}/>
         <Route exact path={"/forgot"} element={<ForgotPage/>} />
         <Route exact path={"/reset/:id"} element={<ResetPage/>} />
-        <Route exact path={'/feed'} element={<MyFeed/>}/>
         <Route exact path={'/feed'} element={[<NavBar/>, <FeedPage/>]}/>
         <Route exact path={'/myfeed'} element={[<NavBar/>, <MyFeed/>]}/>
       </Routes>

@@ -71,7 +71,9 @@ function NavBar() {
       </div>
       {
         urls.includes(window.location.href)?(<div className={s.LowBar}>
-          <img src={require(`../../img/Logo222.png`)} alt="DigitalizArte"></img>
+          <NavLink to="/">
+            <img src={require(`../../img/Logo222.png`)} alt="DigitalizArte"></img>
+          </NavLink>
           <SearchBar />
         </div>):(null)
       }  
