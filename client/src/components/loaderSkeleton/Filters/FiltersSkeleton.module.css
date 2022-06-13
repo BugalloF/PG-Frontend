@@ -1,0 +1,25 @@
+.Categories_skeleton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 100vw;
+    gap: 7px;
+}
+
+.item_category{
+	height: 40px;
+	margin: 0 10px;
+	border-radius: 0;
+}
+
+.Filters_skeleton{
+	display: flex;
+	flex-direction: row;
+}
+
+.item_filter{
+	height: 28px;
+	margin: 30px 10px;
+	border-radius: 0;
+}

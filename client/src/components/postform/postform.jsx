@@ -3,6 +3,7 @@ import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import swal from "sweetalert";
+import {ThreeDots} from  'react-loader-spinner'
 // Files
 import {CleanStatus, GetAllCategories, Post} from "../../redux/actions";
 import s from "../postform/postform.module.css";
@@ -26,6 +27,7 @@ function PostForm()
         input: [],
         imguploaded: null,
     });
+    const [loadPost, setLoadPost] = useState(false)
     
     const navigate = useNavigate();
     
@@ -33,7 +35,15 @@ function PostForm()
     useEffect(() => {
 
        if(status === 201){
-
+        setInput({
+            id: "",
+            title: "",
+            content: "",
+            price: "",
+            img: "",
+            category: "",
+            input: [],
+        });
         swal("La obra fue publicada correctamente!");
         navigate("/");
 
@@ -68,15 +78,8 @@ function PostForm()
     {
         e.preventDefault();
         dispatch(Post(input));
-        setInput({
-            id: "",
-            title: "",
-            content: "",
-            price: "",
-            img: "",
-            category: "",
-            input: [],
-        });
+        setLoadPost(true)
+
     };
     
     
@@ -91,19 +94,19 @@ function PostForm()
                        input.imguploaded !== null?( <img className={s.uploaded} src={input.imguploaded} />):(console.log('no existe img'))
                     }
                     <p>Subir una imagen</p>
-                    <input onChange={e => handleChangeFile(e)} type="file" accept=".jpg, .jpeg, .png" /*value={input.img}*/ name="img"/>
+                    <input onChange={e => handleChangeFile(e)} type="file" accept=".jpg, .jpeg, .png" /*value={input.img}*/ name="img" disabled={loadPost}/>
                 </div>
                 
                 <div className={s.container_info}>
                     <h4 className={s.title}>Titulo</h4>
-                    <input className={s.input} onChange={e => handleChange(e)} type="text" value={input.title} maxLength={20} name="title"/>
+                    <input className={s.input} onChange={e => handleChange(e)} type="text" value={input.title} maxLength={20} name="title" disabled={loadPost}/>
                     
                     <h4 className={s.title}>Contenido</h4>
-                    <textarea className={`${s.input} ${s.input_content}`} onChange={e => handleChange(e)} cols="30" rows="10" type="text" value={input.content} maxLength={140} name="content"/>
+                    <textarea className={`${s.input} ${s.input_content}`} onChange={e => handleChange(e)} cols="30" rows="10" type="text" value={input.content} maxLength={140} name="content" disabled={loadPost}/>
                     
                     <div className={s.conteiner_input}>
                         <label className={s.title}>Categoria</label>
-                        <select className={s.select} onChange={e => handleChange(e)} name="category">
+                        <select className={s.select} onChange={e => handleChange(e)} name="category" disabled={loadPost}>
                             <option hidden>Selecciona una categoria</option>
                             {
                                 categories ? categories.map(e => (
@@ -116,12 +119,14 @@ function PostForm()
                     </div>
                     
                     <h4 className={s.title}>Precio</h4>
-                    <input className={`${s.input} ${s.input_price}`} onChange={e => handleChange(e)} type="text" value={input.price} name="price"/>
+                    <input className={`${s.input} ${s.input_price}`} onChange={e => handleChange(e)} type="text" value={input.price} name="price" disabled={loadPost}/>
                 </div>                
             </div>
 
-                
-                <button className={s.button} type="submit" >Publicar</button>
+                {loadPost?
+                    <button className={s.btnLoad} disabled><ThreeDots className={s.loadDots} color="#FFF" height={20} /></button>
+                    :<button className={s.button} type="submit" >Publicar</button>
+                }
             </form>
         </div>
     );
