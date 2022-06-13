@@ -17,7 +17,7 @@ const Card = ({postId, img, userId, userName, userImg, country, price, title}) =
             <ImageProfile image={userImg} />{" "}
           </Link>
           <ol>
-            <li>{userName}</li>
+            <li className={s.Name}>{userName}</li>
             <li>{country}</li>
           </ol>
         </div>

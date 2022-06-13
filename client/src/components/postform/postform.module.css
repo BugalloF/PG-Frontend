@@ -90,6 +90,17 @@
     border-radius: 11px;
 }
 
+.btnLoad{
+    min-width: 154.317px;
+    min-height: 40px;
+    margin: auto;
+    background-color: hsl(146deg 88% 55%);
+    border: none;
+    border-radius: 11px;
+    padding-left: 37px;
+    cursor: default;
+}
+
 .input_img{
     width: 80%;
     height: 80%;

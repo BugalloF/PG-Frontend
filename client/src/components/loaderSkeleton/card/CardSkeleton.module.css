@@ -1,0 +1,53 @@
+.container_card{
+    margin: 10px;
+    display: inline-block;
+    position: relative; 
+    height: 450px;
+    min-width: 150px;
+    max-width: 700px;   
+    background-color: rgb(219, 224, 223);
+}
+
+.container_card .user{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.user_left{
+    display: flex;
+    flex-direction: row;    
+}
+
+.left_list{
+    margin: 0px 8px;
+
+}
+
+
+.user_right{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;  
+}
+
+.price{
+    padding: 2px 4px;
+    margin-bottom: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -97,7 +97,8 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload,
-        filter:false
+        filter:false,
+        loader: false
       };
   
     case "setPage":
@@ -169,7 +170,7 @@ function rootReducer(state = initialState, action) {
       return {...state, profile: action.payload};
     
     case "PROFILE":
-      return {...state, profile: action.payload};
+      return {...state, profile: action.payload, loader: false};
     
     case "EDIT_PROFILE":
       return {...state, profile:{...state.profile, found:action.payload.data}};    
