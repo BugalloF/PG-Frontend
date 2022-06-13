@@ -4,6 +4,7 @@ import CardAdm from "../../../components/admin/cardsart/cardadm.jsx"
 import Filters from "../../../components/filters/filters.js";
 import { CleanPosts, CleanStatus, setPage} from "../../../redux/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { SearchBar } from "../../../components/searchbar/searchbar.js";
 
 
 
@@ -31,6 +32,7 @@ const Posts = () => {
     return (
         <div>
             <Filters hasorder={false}/>
+            <SearchBar/>
     
 
 

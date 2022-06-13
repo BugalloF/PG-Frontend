@@ -719,3 +719,19 @@ export const getBannedUsers = (userData) =>{
       
   }
 }
+
+
+export const GetAdmProfiles = (from = "",name = "") => {
+  if(from !== "") from = `?from=${from}`
+  if (name !== "") name = "&" + name.slice(1); 
+  return async function(dispatch){
+
+    const profiles = await axios.get(`${URL}/profile/profiles${from}${name}`)
+
+    dispatch({
+      type:'GetAdmProfiles',
+      profiles: profiles.data.profiles,
+      counter: profiles.data.counter
+    })
+  }
+}

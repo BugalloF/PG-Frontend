@@ -4,7 +4,7 @@ const initialState = {
   search:[],
   recommended: [],
   status: null ,
-  length: 0,
+  length: null,
   page: 0,
   category: null,
   categories:[],
@@ -225,6 +225,13 @@ function rootReducer(state = initialState, action) {
         status:action.payload
       }
 
+    case "GetAdmProfiles":
+      return{
+        ...state,
+        users: action.profiles,
+        length: action.counter,
+        hasMore: true
+      }
         case "BAN_USER":
             return {...state, users: action.payload};
         case "UNBAN_USER":
