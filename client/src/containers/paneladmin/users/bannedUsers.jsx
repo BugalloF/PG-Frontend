@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CardProfile from "../../../components/admin/cardprofile/cardprofile.jsx";
+import CardBanned from "../../../components/admin/cardbanned/cardbanned.jsx";
 import {  CleanStatus, getBannedUsers } from "../../../redux/actions";
 
 
@@ -16,17 +16,11 @@ const BannedUsers = () => {
       });
 const loggedUser = window.localStorage.getItem("userData");
 
-    useEffect(() =>{
-        return () => {
-            // dispatch(CleanPosts())     
-        };
-    },[])
-    
     useEffect(() => {
         dispatch(getBannedUsers(loggedUser))
         dispatch(CleanStatus())
-    }, [page,status,allUsers]);
-console.log(allUsers)
+    }, [page,status]);
+// console.log(allUsers)
 // const fechita = new Date(allUsers[0].banned_time)
 allUsers ? allUsers.sort((a, b) => new Date(a.banned_time) - new Date(b.banned_time)) : console.log('no')
 // console.log('aaaaaaaa',orde);
@@ -50,7 +44,7 @@ allUsers ? allUsers.sort((a, b) => new Date(a.banned_time) - new Date(b.banned_t
                 }}>←</button>
     
             {allUsers?.map(card => (
-                <CardProfile
+                <CardBanned
                 userId={card.id}
                 userName={card.userName}
                 userImg={card.img}
@@ -58,7 +52,8 @@ allUsers ? allUsers.sort((a, b) => new Date(a.banned_time) - new Date(b.banned_t
                 lastName={card.lastName}
                 email={card.email}   
                 ban={card.is_banned}             
-                banTime={card.banned_time}             
+                banTime={card.banned_time} 
+                key={card.id}            
                 />
             )) }
             
