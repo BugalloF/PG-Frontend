@@ -1,11 +1,11 @@
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardProfile from "../../../components/admin/cardprofile/cardprofile.jsx";
-import {  CleanStatus, getUsers } from "../../../redux/actions";
+import {  CleanStatus, getBannedUsers } from "../../../redux/actions";
 
 
 
-const Users = () => {
+const BannedUsers = () => {
     const allUsers = useSelector((state) => state.users);
     const status = useSelector((state) => state.status)
     const dispatch = useDispatch();
@@ -14,19 +14,25 @@ const Users = () => {
         by: "",
         type: ""
       });
+const loggedUser = window.localStorage.getItem("userData");
+
     useEffect(() =>{
         return () => {
             // dispatch(CleanPosts())     
         };
     },[])
-
-
+    
     useEffect(() => {
-        dispatch(getUsers())
+        dispatch(getBannedUsers(loggedUser))
         dispatch(CleanStatus())
-    }, [page,status]);
-
-    console.log(allUsers)
+    }, [page,status,allUsers]);
+console.log(allUsers)
+// const fechita = new Date(allUsers[0].banned_time)
+allUsers ? allUsers.sort((a, b) => new Date(a.banned_time) - new Date(b.banned_time)) : console.log('no')
+// console.log('aaaaaaaa',orde);
+// console.log('aaaaaaaabbbb',fechita);
+    // console.log(orde,'aaaaaaaa');
+    // console.log(allUsers)
 
 
     return (
@@ -61,4 +67,4 @@ const Users = () => {
 }
 
 
-export default Users
+export default BannedUsers

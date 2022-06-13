@@ -364,6 +364,7 @@ export function EditProfile(input)
   };
 };
 
+
 // ----------------------------------------------------------------------------------------------
 
 export function addLike(userData = null, idPost)
@@ -590,6 +591,7 @@ export function cleanFollowedPosts(){
   };
 }
 
+// ----------------------------  ADMIN ----------------------------
 
 // --------------- DELETE USER -------------- //
 
@@ -615,5 +617,82 @@ export const AddCategory = (value) => {
       type: 'AddCategory',
       payload: category.status
     })
+  }
+}
+// ------- sumar dias ban -------------
+var fecha= new Date()
+function sumarDias(fecha){
+  let  bantime= fecha.setDate(fecha.getDate() + 4 );
+  return bantime;
+}
+
+// -------------- BAN / NO BAN USER
+
+export const banUser = (userId,userData) =>{
+  
+  return async function (dispatch){
+    
+    const userDataJson = JSON.parse(userData);
+    
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const user =  (await axios(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,config)).data.found
+      
+      // console.log('userrrrrrDATA',userData)
+    // console.log('userrrrrr',user)
+    if(user.is_banned === false){
+      const ban = {
+        is_banned: true,
+        banned_time: sumarDias(fecha)
+
+      };
+     await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,ban)
+      // console.log(sumarDias(fecha))
+     const data = (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data;
+     return dispatch({ type: "BAN_USER", payload: data });
+    
+    }else{
+      const unBan = {
+        is_banned: false,
+        banned_time: null
+      };
+     await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,unBan)
+     const data = (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data;
+     return dispatch({ type: "UNBAN_USER", payload: data });
+    }
+
+  }
+}
+
+export const getBannedUsers = (userData) =>{
+  
+  return async function (dispatch){
+    
+    const userDataJson = JSON.parse(userData);
+    
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const users =  (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data
+
+      const data = users.filter(el=> el.is_banned)
+
+      // console.log('filtrados',data)
+      
+      return dispatch({type:"GET_BANNED_USERS",payload:data})
+      
   }
 }

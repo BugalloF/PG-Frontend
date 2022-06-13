@@ -21,6 +21,7 @@ import FormEditProfile from "./components/FormEditProfile/FormEditProfile";
 import PanelAdm from "./containers/paneladmin/paneladmin";
 import Posts from "./containers/paneladmin/posts/posts";
 import Users from "./containers/paneladmin/users/users";
+import BannedUsers from "./containers/paneladmin/users/bannedUsers";
 import Categories from "./containers/paneladmin/categories/categories";
 
 
@@ -31,6 +32,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path={'/'} element={[<NavBar/>,<LandingPage/>]}/>
+        <Route exact path={'/paneladm/bannedusers'} element={[<NavBar/>,<BannedUsers/>]}/>
         <Route exact path={'/paneladm/categories'} element={[<NavBar/>,<Categories/>]}/>
         <Route exact path={'/paneladm/users'} element={[<NavBar/>,<Users/>]}/>
         <Route exact path={'/paneladm/posts'} element={[<NavBar/>,<Posts/>]}/>
@@ -45,7 +47,6 @@ function App() {
         <Route exact path={'/register'} element={<RegisterPage/>}/>
         <Route exact path={"/forgot"} element={<ForgotPage/>} />
         <Route exact path={"/reset/:id"} element={<ResetPage/>} />
-        <Route exact path={'/feed'} element={<MyFeed/>}/>
         <Route exact path={'/feed'} element={[<NavBar/>, <FeedPage/>]}/>
         <Route exact path={'/myfeed'} element={[<NavBar/>, <MyFeed/>]}/>
       </Routes>
