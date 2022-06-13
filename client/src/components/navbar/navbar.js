@@ -73,7 +73,11 @@ function NavBar() {
       </div>
       {
         urls.includes(window.location.href)?(<div className={s.LowBar}>
-          {allCategories.length || !loader?<img src={require(`../../img/Logo222.png`)} alt="DigitalizArte"></img>:<Skeleton className={s.Logo_skeleton} baseColor = "#d0a9d0" width={280} heigth={200}/>}
+
+          <NavLink to="/">
+            {allCategories.length || !loader?<img src={require(`../../img/Logo222.png`)} alt="DigitalizArte"></img>:<Skeleton className={s.Logo_skeleton} baseColor = "#d0a9d0" width={280} heigth={200}/>}
+          </NavLink>
+
           <SearchBar />
         </div>):(null)
       }  
