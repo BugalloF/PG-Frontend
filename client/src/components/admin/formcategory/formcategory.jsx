@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import { useDispatch } from "react-redux";
 import { AddCategory } from "../../../redux/actions";
 
@@ -9,13 +9,14 @@ const FormCategory = () => {
     return(
         <div>
             <form
-            onSubmit={
-                dispatch(AddCategory(input))
-            }
+            onSubmit={(e) =>{
+            e.preventDefault()
+            dispatch(AddCategory(input))
+            }}
             >
                 <h4>Categoria</h4>
                 <input value={input} onChange={(e) => setInput(e.target.value)} type="text" />
-                <button type="submit">Agregar Categiria</button>
+                <button type="submit">Agregar Categoria</button>
             </form>
 
         </div>

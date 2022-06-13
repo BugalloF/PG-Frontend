@@ -214,10 +214,12 @@ function rootReducer(state = initialState, action) {
         return {...state,
           status:action.payload 
         }
-        case "AddCategory":
-          return {...state,
-            status:action.payload 
-          }
+        
+    case "AdmCategory":
+      return{
+        ...state,
+        status:action.payload
+      }
     default:
       return {...state};
   };

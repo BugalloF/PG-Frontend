@@ -587,7 +587,29 @@ export const AddCategory = (value) => {
     const category = await axios.post(`${URL}/categories`, {category:value})
 
     dispatch({
-      type: 'AddCategory',
+      type: 'AdmCategory',
+      payload: category.status
+    })
+  }
+}
+
+export const DeleteCategory = (categoryId) => {
+  return async function(dispatch){
+    const category = await axios.delete(`${URL}/categories/${categoryId}`)
+
+    dispatch({
+      type: 'AdmCategory',
+      payload: category.status
+    })
+  }
+}
+
+export const UpdateCategory = (categoryId,value) => {
+  return async function(dispatch){
+    const category = await axios.put(`${URL}/categories/${categoryId}`, {title:value})
+
+    dispatch({
+      type: 'AdmCategory',
       payload: category.status
     })
   }
