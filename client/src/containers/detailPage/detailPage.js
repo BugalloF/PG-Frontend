@@ -25,11 +25,7 @@ export default function DetailPage() {
   const category  = detail.artWork ? detail.artWork[0].categories[0].title : null
   
   useEffect(() => {
-
     dispatch(GetDetail(loggedUser, idPost))
-   
-    
-
     return () => {
       dispatch(CleanDetail())
       dispatch(CleanReco())

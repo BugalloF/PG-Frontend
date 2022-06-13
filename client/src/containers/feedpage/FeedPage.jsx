@@ -30,8 +30,7 @@ const PrincipalPage = () => {
   
 
   return (
-    <div  className={s.container}>
-      <div className={s.imgContainer}></div>
+    <div className={s.container}>
       <Filters hasorder={false}/>
 
       <InfiniteScroll
