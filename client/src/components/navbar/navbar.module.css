@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Charm:wght@700&display=swap");
+
 .General{
     position: sticky;
     top: 0;
@@ -7,9 +9,11 @@
     gap: 0;
     margin: 0;
     padding: 0;
+    background-color: #e6c7e0;  
+  
 }
 .container {
-    background-color: white;
+    background-color: rgb(46, 38, 48);
     width: 100%;
     height: 100%;
     height: 50px;
@@ -32,10 +36,12 @@
 
 .Buttons{
   text-decoration: none;
-  margin-right: 30px;
+  margin-right: 0px;
   font-size: 20px;
-  color: black;
-  padding: 13px 25px;
+  color: white;
+  padding: 4px 25px;
+  font-family: "Charm";
+
 }
 
 .Buttons:hover{
@@ -74,19 +80,29 @@
 
 .LowBar{
     position: relative;
-    padding: 0px 45px;
+    padding: 0px 0px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100vw;
     height: 90px;
-    background-color: rgb(255, 255, 255);
+    background-color: transparent;
+    box-shadow: 0px 3px 10px rgb(141, 92, 141);
+
 }
 .LowBar img{
-    margin-bottom: 10px;
-    object-fit: cover;
-    object-position: 0px -85px;
-    height: 60px;
-    width: 250px;
+  height: 80px;
+    filter: saturate(180%);
+    padding-left: 100px;
+ 
+}
+
+.Logo_skeleton{
+    min-height: 70px;
+    margin-left: 120px;
+}
+.profile_skeleton{
+    min-width: 38px;
+    min-height: 38px;
 }

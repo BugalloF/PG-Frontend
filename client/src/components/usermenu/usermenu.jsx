@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import s from "./usermenu.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faUser , faUsers, faBagShopping, faPlus} from "@fortawesome/free-solid-svg-icons";
+import { faUser , faUsers, faBagShopping, faPlus, faRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 
 const Usermenu = ({userID}) => {
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
@@ -29,6 +29,9 @@ const Usermenu = ({userID}) => {
             <FontAwesomeIcon icon={faUsers} className={s.icon}  /> Sobre nosotros
           </li>
         </Link>
+          <li>
+            <FontAwesomeIcon icon={faRightFromBracket} className={s.icon}  /> Desconectarse
+          </li>
      </ul>
     </div>
   );

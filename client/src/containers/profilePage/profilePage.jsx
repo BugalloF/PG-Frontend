@@ -1,7 +1,7 @@
 // Dependencies
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Navigate, useNavigate, useParams} from "react-router-dom";
+import {Navigate, useNavigate, useParams, Link} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFacebook, faLinkedinIn, faDeviantart} from '@fortawesome/free-brands-svg-icons';
 // Files
@@ -9,7 +9,7 @@ import s from './profilePage.module.css';
 import {ImageProfile} from "../../components/imageprofile/imageprofile";
 import {addFollower, CleanProfile, deleteFollower, profile} from "../../redux/actions/index";
 import Card from "../../components/cards/card";
-
+import ProfileSkeleton from "../../components/loaderSkeleton/Profile/ProfileSkeleton"
 
 function ProfilePage()
 {
@@ -21,7 +21,8 @@ function ProfilePage()
   const userArtworks = user.found && user.found.artworks;
   const {profileId} = useParams();
   const navigate = useNavigate();
-  
+  const load = useSelector(state => state.loader);
+
   useEffect(() => {
     dispatch(profile(loggedUser, profileId));
     return () => {
@@ -50,6 +51,8 @@ function ProfilePage()
   if(user && loggedUser)
   {
     return(
+      <>
+      {!load?      
       <div>
         <div className={s.container_info_profile}>
           <div className={s.top}>
@@ -77,9 +80,11 @@ function ProfilePage()
                 </button>
                 </div>
                 :
-                <button>
-                  EDITAR PERFIL
-                </button>
+                <Link to={`/profile/editProfile/${profileId}`}>                
+                  <button>
+                    EDITAR PERFIL
+                  </button>
+                </Link>                
               }
             </div>
           </div>
@@ -116,7 +121,8 @@ function ProfilePage()
           :
           null
         }
-      </div>
+      </div>: <ProfileSkeleton/>}
+      </>
     );
   }
   else

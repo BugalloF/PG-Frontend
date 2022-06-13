@@ -1,0 +1,44 @@
+.profile_container{
+	border-bottom: 1.4px solid rgb(189, 188, 188);
+	padding: 20px 40px 25px 40px;
+	margin-top: 40px;
+}
+
+.profile{
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+.profile_top{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.follows{
+	display: flex;
+	align-items: center;
+}
+
+.follows_text{
+	gap:50px;
+	margin: 0 25px;
+	display: flex;
+}
+
+.profile_bottom{
+	display: flex;
+	max-width: 225px;
+	justify-content: space-between;
+}
+
+.description{
+	margin: 25px 0;
+}
+
+.posts{
+	display: flex;
+	justify-content: center;
+	margin: 50px;
+}

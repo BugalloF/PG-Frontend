@@ -11,6 +11,7 @@ import {
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect } from "react";
 import NotFound from "../../components/notFound/NotFound"
+import CardsSkeleton from "../../components/loaderSkeleton/cards/CardsSkeleton"
 
 
 const MyFeed = () => {
@@ -38,7 +39,7 @@ const MyFeed = () => {
         dataLength={followPost.length}
         hasMore={hasMore}
         next={() => dispatch(setPage())}
-        loader={!loader?<h4>Cargando...</h4>:null}
+        loader={!hasMore?<CardsSkeleton oneLine={true}/>:null}
         endMessage={
           <p style={{ textAlign: "center" }}>
             <b>Wow! Parece que llegaste al fin!</b>
@@ -48,7 +49,7 @@ const MyFeed = () => {
         <div className={s.FeedPage}>
 
       {loader?
-        <div><h2>Cargando...</h2></div>
+        <CardsSkeleton oneLine={false}/>
         :followPost.length?
           <div className={s.Cards}>
             
