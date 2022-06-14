@@ -24,7 +24,7 @@ import Usermenu from "../usermenu/usermenu";
 function NavBar() {
   const allCategories = useSelector((state) => state.categories);
   const loader = useSelector((state) => state.loader);
-  const urls = ['http://localhost:3000/feed', 'http://localhost:3000/myfeed', 'http://localhost:3000/']
+  const urls = ['https://pg-frontend-eight.vercel.app/feed','http://localhost:3000/feed']
   const [Menu, setMenu] = useState(true);
   const loggedUser = window.localStorage.getItem("userData");
   const userDataJson = JSON.parse(loggedUser);
@@ -76,17 +76,21 @@ function NavBar() {
         </div>
         <div></div>
       </div>
-      {
-        urls.includes(window.location.href)?(<div className={s.LowBar}>
+        <div className={s.LowBar}>
           <NavLink to="/">
-            {allCategories.length || !loader?<img src={require(`../../img/Logo222.png`)} alt="DigitalizArte"></img>:<Skeleton className={s.Logo_skeleton} baseColor = "#d0a9d0" width={280} heigth={200}/>}
+            {allCategories.length || !loader?<img src={'https://drive.google.com/file/d/10ELPHKc82-zD0oOFhllYI47KfvNDNFXv/view?usp=sharing'} alt="DigitalizArte"></img>:<Skeleton className={s.Logo_skeleton} baseColor = "#d0a9d0" width={280} heigth={200}/>}
           </NavLink>
-          <div className={s.Filtros}>
-          <Filters hasorder={false}/>
-          </div>
-          <SearchBar />
-        </div>):(null)
-      }  
+          {urls.includes(window.location.href)?(
+            <div className={s.Filtros}>
+              <Filters hasorder={false}/>
+            </div>
+          ):null}
+          {
+            urls.includes(window.location.href)?(
+              <SearchBar />
+            ):null        
+          }
+        </div>  
     </div>
   );
 }

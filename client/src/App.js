@@ -39,7 +39,6 @@ function App() {
         <Route exact path={'/paneladm/users'} element={[<NavBar/>,<Users/>]}/>
         <Route exact path={'/paneladm/posts'} element={[<NavBar/>,<Posts/>]}/>
         <Route exact path={'/paneladm'} element={[<NavBar/>,<PanelAdm/>]}/>
-        <Route exact path={'/'} element={[<NavBar/>,<FeedPage/>]}/>
         <Route exact path={'/profile/:profileId'} element={[<NavBar/>,<ProfilePage/>]}/>
         <Route exact path={'/profile/editProfile/:profileId'} element={[<NavBar/>,<FormEditProfile/>]}/>
         <Route exact path={'/profile/changePassword/:profileId'} element={[<NavBar/>,<ChangePasswordPage/>]}/>
