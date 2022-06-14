@@ -10,7 +10,7 @@ import {
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect } from "react";
 import NotFound from "../../components/notFound/NotFound"
-import Filters from "../../components/filters/filters"
+
 import CardsSkeleton from "../../components/loaderSkeleton/cards/CardsSkeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -33,7 +33,7 @@ const PrincipalPage = () => {
 
   return (
     <div className={s.container}>
-      <Filters hasorder={false}/>
+      {/* <Filters hasorder={false}/> */}
 
       <InfiniteScroll
         dataLength={allPosts.length}
