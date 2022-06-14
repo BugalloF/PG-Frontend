@@ -71,27 +71,27 @@ function PostForm()
         // }
         else if(!input.title)
         {
-            errors.title = <p></p>;
+            errors.title = <font></font>;
         }
         else if(input.title.length > 20)
         {
-            errors.title = <p></p>;
+            errors.title = <font></font>;
         }
         else if(!input.content)
         {
-            errors.content = <p></p>;
+            errors.content = <font></font>;
         }
         else if(input.content.length > 140)
         {
-            errors.content = <p></p>;
+            errors.content = <font></font>;
         }
         else if(!input.category)
         {
-            errors.category = <p></p>;
+            errors.category = <font></font>;
         }
         else if(!input.price)
         {
-            errors.price = <p></p>;
+            errors.price = <font></font>;
         }
         
         return errors;

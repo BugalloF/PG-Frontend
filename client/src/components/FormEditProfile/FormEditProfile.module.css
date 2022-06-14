@@ -23,13 +23,20 @@
 	align-items: center;
 }
 
+.Inputs {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid rgb(88, 88, 88);
+}
 
-.edit_profile_form input, .edit_profile_form textarea{
+/* .edit_profile_form input, .edit_profile_form textarea{
   padding: 10px;
   margin: 10px 0;
   font-size: 15px;
 
-}
+} */
 .edit_profile_form textarea{
     height: 150px;
     resize: none;
@@ -89,3 +96,11 @@
 	color: red;
 }
 
+.Alert
+{
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid red;
+}

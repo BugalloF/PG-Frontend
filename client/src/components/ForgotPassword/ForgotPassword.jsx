@@ -24,7 +24,7 @@ function ForgotPassword()
         
         if(!input.user)
         {
-            errors.user = <p></p>;
+            errors.user = <font></font>;
         };
         
         return errors;

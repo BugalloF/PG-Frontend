@@ -31,11 +31,11 @@ function LoginForm()
         
         if(!input.user)
         {
-            errors.user = <p></p>;
+            errors.user = <font></font>;
         }
         else if(!input.password)
         {
-            errors.password = <p></p>;
+            errors.password = <font></font>;
         };
         
         return errors;
