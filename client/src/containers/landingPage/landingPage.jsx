@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import s from './landingPage.module.css';
-import Filters from "../../components/filters/filters";
+
 
 const LandingPage = () => {
     React.useEffect(() => {
@@ -16,9 +16,7 @@ const LandingPage = () => {
             <h1>COMIENZA A EXPLORAR AHORA</h1>
             <Link to='/feed' style={{textDecoration: 'none'}}>Explorar</Link>
             </div>
-            <div className={s.Filters}>
-              <Filters></Filters>
-            </div>
+          
         </div>
     );
 };
