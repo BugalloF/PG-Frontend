@@ -30,6 +30,7 @@ const FormEditProfile = () => {
       day_of_birth:"",
       gender:"",
       img:"",
+      img64:"",
       phone:"",
       description:"",
       country:"",
@@ -187,14 +188,13 @@ const FormEditProfile = () => {
     {
         const reader = new FileReader();
         const file = e.target.files[0];
-
         reader.readAsDataURL(file);
-        
-        reader.onload = function(event)
+        reader.onloadend = function(event)
         {
-            setPhoto(reader.result)
-            setInput({...input, img: reader.result});          
+          setPhoto(reader.result)
+          setInput({...input, img: file,img64:reader.result});          
         };
+        // console.log(file)
 
     };
 
