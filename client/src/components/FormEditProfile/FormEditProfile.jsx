@@ -7,6 +7,7 @@ import swal from "sweetalert";
 import {profile, EditProfile, getUsers} from "../../redux/actions/index";
 import s from "./FormEditProfile.module.css";
 import {ImageProfile} from "../imageprofile/imageprofile"
+import EditProfileSkeleton from '../loaderSkeleton/EditProfile/EditProfileSkeleton'
 
 const FormEditProfile = () => {
     const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const FormEditProfile = () => {
       day_of_birth:"",
       gender:"",
       img:"",
+      img64:"",
       phone:"",
       description:"",
       country:"",
@@ -186,14 +188,13 @@ const FormEditProfile = () => {
     {
         const reader = new FileReader();
         const file = e.target.files[0];
-
         reader.readAsDataURL(file);
-        
-        reader.onload = function(event)
+        reader.onloadend = function(event)
         {
-            setPhoto(reader.result)
-            setInput({...input, img: reader.result});          
+          setPhoto(reader.result)
+          setInput({...input, img: file,img64:reader.result});          
         };
+        // console.log(file)
 
     };
 
@@ -312,7 +313,7 @@ const FormEditProfile = () => {
 			</form>
 		</div>
             :
-            <p>cargando...</p>
+            <EditProfileSkeleton/>
 	
 
   )

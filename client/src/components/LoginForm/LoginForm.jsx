@@ -97,7 +97,7 @@ function LoginForm()
                     
                     setUser(userData);
                     // ------------------------------------------------------
-                    swal("Loged.");
+                    swal("Sesión iniciada.");
                     navigate("/");
                 };
             }
@@ -130,6 +130,7 @@ function LoginForm()
                 
                 <div className={s.options}>
                   <Link to="/register" className={s.noAccount}>No tengo una cuenta</Link>
+                  <Link to="/" className={s.noAccount}>Entrar como invitado</Link>
                   <Link to="/forgot" className={s.noAccount}>Olvidaste tu contraseña?</Link>
                 </div>
                 

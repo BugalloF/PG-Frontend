@@ -7,11 +7,16 @@ import {
   GetCategotyPosts,
   resetPage,
   CleanPosts,
+
   CleanStatus,
+
+  profile,
+
 } from "../../redux/actions";
 import { useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import s from "./filters.module.css";
+import FiltersSkeleton from "../loaderSkeleton/Filters/FiltersSkeleton"
 
 
 const Filters = ({hasorder}) => {
@@ -19,6 +24,9 @@ const Filters = ({hasorder}) => {
   const allCategories = useSelector((state) => state.categories);
   const page = useSelector((state) => state.page);
   const name = useLocation();
+  const loggedUser = window.localStorage.getItem("userData");
+  const userDataJson = JSON.parse(loggedUser);
+
   const [order,setOrder] = useState({
     by: "",
     type: ""
@@ -40,8 +48,10 @@ const Filters = ({hasorder}) => {
 
       if(category){
         dispatch(GetCategotyPosts(page,category,order.by,order.type));
+        dispatch(profile(loggedUser,userDataJson.id))
       }else {
         dispatch(GetAllPosts(page,name.search, order.by, order.type));
+        dispatch(profile(loggedUser,userDataJson.id))
       }
 
       dispatch(CleanStatus())
@@ -54,6 +64,8 @@ const Filters = ({hasorder}) => {
 
 
     return (
+      <>
+      {allCategories.length?
       <div className={s.Container_filter}>
 
         <div className={s.FilterZone}>
@@ -113,7 +125,8 @@ const Filters = ({hasorder}) => {
  }
 
       </div>
-      
+      :<FiltersSkeleton/>}
+      </>      
     );
 };
 export default Filters;
