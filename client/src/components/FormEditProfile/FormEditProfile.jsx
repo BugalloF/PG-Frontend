@@ -82,7 +82,7 @@ const FormEditProfile = () => {
         return regularExp.test(input);
       }
       else if (type==='linkedIn') {
-        regularExp = new RegExp(/(^https?:\/\/((www|\w\w)\.)?linkedin.com\/((in\/[^/]+\/?)|(pub\/[^/]+\/((\w|\d)+\/?){3}))$)/i);
+        regularExp = new RegExp(/((?:(?:http|https):\/\/)?linkedin.com\/((in\/[^/]+\/?)|(pub\/[^/]+\/((\w|\d)+\/?){3}))$)/i);
         return regularExp.test(input);
       }
       else if (type==='email') {

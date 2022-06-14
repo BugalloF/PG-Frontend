@@ -6,13 +6,10 @@ import { faUser , faUsers, faBagShopping, faPlus, faRightFromBracket} from "@for
 
 const Usermenu = ({userID}) => {
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
-  const navigate = useNavigate()
-  function handleOnClick(e){
-    e.preventDefault();
-    window.localStorage.clear();
-    navigate("/login");
+  function handleLogout(){
+    window.localStorage.clear()
+    window.location.reload()
   }
-
   return (
     <div className={s.UserMenu}>
      <ul className={s.Lista}>
@@ -36,11 +33,9 @@ const Usermenu = ({userID}) => {
             <FontAwesomeIcon icon={faUsers} className={s.icon}  /> Sobre nosotros
           </li>
         </Link>
-        <Link to={`/login`} onClick={handleOnClick} style={{textDecoration: 'none'}}>
-          <li>
-              <FontAwesomeIcon icon={faRightFromBracket} className={s.icon}  /> Desconectarse
+          <li onClick={handleLogout}>
+            <FontAwesomeIcon icon={faRightFromBracket} className={s.icon}  /> Desconectarse
           </li>
-        </Link>
      </ul>
     </div>
   );

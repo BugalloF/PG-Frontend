@@ -104,10 +104,11 @@
 }
 
 .LowBar img{
+    position: absolute;
   height: 75px;
-    filter: saturate(180%);
-    padding-left: 30px;
-    padding-top: 30px;
+  filter: saturate(180%);
+  padding-left: 30px;
+  top: 6px;
 }
 
 .Logo_skeleton{
