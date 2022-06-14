@@ -807,3 +807,14 @@ export const CleanTransactions = () => {
    type: "CleanTransactions",
   }
  }
+
+ export const TransactionsPost = (values)=>{
+  return async function(dispatch){
+ 
+    await axios.post(`${URL}/transactions`,values)
+
+  dispatch({
+    type:'POST_TRANSACTIONS'
+  })
+  }
+}
