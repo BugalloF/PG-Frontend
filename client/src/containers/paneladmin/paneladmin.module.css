@@ -1,0 +1,44 @@
+.containerCount{
+    height: 200px;
+    width: 300px;
+    background-color: rgb(185, 143, 224);
+    text-align: center;
+    color: #fff;
+}
+
+.containerCount h3{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.containerCount p{
+    font-size: 20px;
+    font-weight: 300; 
+}
+
+.link{
+    text-decoration: none;
+
+    display: inline-block;
+    padding: 8px 0 0 0;
+    height: 30px;
+    width: 100px;
+ 
+    transition: 0.7s all;
+}
+
+.link:hover{
+
+    color: rgb(125, 124, 124);
+
+}
+.container{
+    display: flex;
+   
+    justify-content: space-around;
+    align-content: center;
+    flex-wrap: wrap;
+
+    gap: 50px;
+    margin-top: 150px;
+}

@@ -1,0 +1,17 @@
+.input{
+    height:16px;
+    border: 1.3px solid  rgb(189, 188, 188);
+    margin-right: 10px;
+
+}
+
+.input:focus{
+
+    outline: none;
+}
+
+.button{
+    background-color: rgb(213, 180, 243);
+    font-size: 15px;
+    border: none;
+}

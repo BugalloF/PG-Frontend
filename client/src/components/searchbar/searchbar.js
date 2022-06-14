@@ -17,8 +17,8 @@ export function SearchBar() {
       className={s.container}
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch(CleanPosts())
         dispatch(resetPage());
+        dispatch(CleanPosts())
         navigate(`?name=${artWork}`);
       }}
     >
