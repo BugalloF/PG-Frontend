@@ -10,7 +10,7 @@
     max-width: 1280px;
     object-fit: contain;
     overflow: hidden;   
-    background-color: rgb(219, 224, 223);
+    background-image: linear-gradient(to top, #a8ede93a 0%, #fed6e354 10%);
     
 }
 .Card:hover {

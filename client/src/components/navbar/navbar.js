@@ -3,7 +3,11 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Skeleton from 'react-loading-skeleton'
+
+import Filters from "../../components/filters/filters"
+
 import {FiLogIn} from "react-icons/fi"
+
 // Files
 import { SearchBar } from "../searchbar/searchbar";
 import { ImageProfile } from "../imageprofile/imageprofile";
@@ -74,11 +78,12 @@ function NavBar() {
       </div>
       {
         urls.includes(window.location.href)?(<div className={s.LowBar}>
-
           <NavLink to="/">
             {allCategories.length || !loader?<img src={require(`../../img/Logo222.png`)} alt="DigitalizArte"></img>:<Skeleton className={s.Logo_skeleton} baseColor = "#d0a9d0" width={280} heigth={200}/>}
           </NavLink>
-
+          <div className={s.Filtros}>
+          <Filters hasorder={false}/>
+          </div>
           <SearchBar />
         </div>):(null)
       }  

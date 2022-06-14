@@ -2,21 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
 
 .LandingPage{
-    position: absolute;
+   
     height: 100vh;
+    margin: auto;
     top: 0;
     background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
 }
 .LandingImg{
     position: relative;
-    width: 80vw;
+    width: 70vw;
     background-color: aqua;
     margin: auto;
-    top: 140px;
+    top: 55px;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 75vh;
+    height: 70vh;
     object-fit: cover;
 }
 .LandingImg img{

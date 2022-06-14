@@ -14,18 +14,21 @@ const PanelAdm = () => {
     const [count,setCount] = useState({
         Publicaciones: null,
         Usuarios: null,
-        Categorias: null
+        Categorias: null,
+        Transacciones: null
     })
     useEffect(async()=>{
        const  countCategories = await axios.get(`${URL}/categories/count`)
        const  countUsers = await axios.get(`${URL}/profile/count`)
        const countPosts = await axios.get(`${URL}/art/count`)
-       const result = await Promise.all([countPosts,countUsers,countCategories])
+       const countTrans = await axios.get(`${URL}/transactions/count`)
+       const result = await Promise.all([countPosts,countUsers,countCategories,countTrans])
        
          setCount({
             Publicaciones:result[0].data,
             Usuarios:result[1].data,
-            Categorias:result[2].data
+            Categorias:result[2].data,
+            Transacciones: result[3].data
         })
     
 
@@ -51,6 +54,11 @@ const PanelAdm = () => {
                     <h3>Categorias</h3>
                     <p>Categorias totales: {count.Categorias}</p>
                     <NavLink className={s.link} to={'categories'}>Ver mas</NavLink>
+                </div>
+                <div className={s.containerCount}>
+                    <h3>Transacciones</h3>
+                    <p>Transacciones totales: {count.Transacciones}</p>
+                    <NavLink className={s.link} to={'transactions'}>Ver mas</NavLink>
                 </div>
                 
                 

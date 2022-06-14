@@ -2,7 +2,7 @@ import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardAdm from "../../../components/admin/cardsart/cardadm.jsx"
 import Filters from "../../../components/filters/filters.js";
-import { CleanPosts, CleanStatus, setPage} from "../../../redux/actions";
+import { CleanPosts, CleanStatus, resetPage, setPage} from "../../../redux/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SearchBar } from "../../../components/searchbar/searchbar.js";
 import s from "../posts/posts.module.css"
@@ -23,14 +23,12 @@ const Posts = () => {
 
     useEffect(() =>{
         return () => {
-            dispatch(CleanPosts())     
+            dispatch(CleanPosts())
+            dispatch(resetPage())     
         };
     },[])
 
 
-    useEffect(() => {
-        dispatch(CleanStatus())
-    }, [status]);
 
 
     if(userDataJson.is_Admin){
@@ -63,12 +61,7 @@ const Posts = () => {
         dataLength={allPosts.length}
         hasMore={hasMore}
         next={() => dispatch(setPage())}
-        loader={<h4>Cargando...</h4>}
-        endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Wow! Parece que llegaste al fin!</b>
-          </p>
-        }
+        
       >
        
 

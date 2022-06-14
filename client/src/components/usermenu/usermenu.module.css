@@ -23,3 +23,6 @@
     list-style: none;
     text-decoration: none;
 }
+.Lista :nth-child(5):hover{
+    cursor: pointer;
+}

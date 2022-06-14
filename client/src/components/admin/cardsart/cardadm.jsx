@@ -3,7 +3,7 @@ import { ImageProfile } from "../../imageprofile/imageprofile";
 import s from "../cardsart/cardadm.module.css"
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { DeleteArtwork } from "../../../redux/actions";
+import { CleanPosts, DeleteArtwork, resetPage } from "../../../redux/actions";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -23,7 +23,10 @@ const  CardAdm = ({userName, userImg, img, price, title, userId,category,likes, 
                 <li><div
                 className={s.button}
                 onClick={() => {
+                    dispatch(resetPage())
+                    dispatch(CleanPosts())
                     dispatch(DeleteArtwork(postId))
+
                 }}><FontAwesomeIcon icon={faCircleXmark}/></div></li>
                 
             </ul>

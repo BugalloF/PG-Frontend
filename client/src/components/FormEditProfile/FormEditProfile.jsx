@@ -9,6 +9,7 @@ import {ImageProfile} from "../imageprofile/imageprofile";
 import EditProfileSkeleton from "../loaderSkeleton/EditProfile/EditProfileSkeleton";
 import s from "./FormEditProfile.module.css";
 
+
 function FormEditProfile()
 {
   const dispatch = useDispatch();
@@ -79,7 +80,7 @@ function FormEditProfile()
     const phoneRegExp = /^[0-9]*$/i;
     const facebookRegExp = /(?:https?:\/\/)?(?:www\.)?(?:facebook|fb|m\.facebook)\.(?:com|me)\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-\.]+)(?:\/)?/i;
     const instagramRegExp = /(?:(?:http|https):\/\/)?(?:www\.)?(?:instagram\.com|instagr\.am)\/([A-Za-z0-9-_\.]+)(\/)?(\?hl=es-la)?/i;
-    const linkedInRegExp = /(^https?:\/\/((www|\w\w)\.)?linkedin.com\/((in\/[^/]+\/?)|(pub\/[^/]+\/((\w|\d)+\/?){3}))$)/i;
+    const linkedInRegExp = /((?:(?:http|https):\/\/)?linkedin.com\/((in\/[^/]+\/?)|(pub\/[^/]+\/((\w|\d)+\/?){3}))$)/i;
     // RegExp
     const verifyEmail = emailRegExp.test(input.email);
     const verifyPhone = phoneRegExp.test(input.phone);
@@ -170,11 +171,10 @@ function FormEditProfile()
     const file = e.target.files[0];
     
     reader.readAsDataURL(file);
-    
-    reader.onload = function (event)
+    reader.onloadend = function(event)
     {
       setPhoto(reader.result);
-      setInput({ ...input, img: reader.result});
+      setInput({...input, img: file,img64:reader.result});
     };
   };
   

@@ -9,11 +9,11 @@
     gap: 0;
     margin: 0;
     padding: 0;
-    background-color: #e6c7e0;  
+    background-color:   #fed6e3ce;
   
 }
 .container {
-    background-color: rgb(46, 38, 48);
+    background-color: #322d33d0;
     width: 100%;
     height: 100%;
     height: 50px;
@@ -41,6 +41,7 @@
   color: white;
   padding: 4px 25px;
   font-family: "Charm";
+  cursor: pointer;
 
 }
 
@@ -86,16 +87,28 @@
     align-items: center;
     justify-content: space-between;
     width: 100vw;
-    height: 90px;
+    height: 55px;
     background-color: transparent;
-    box-shadow: 0px 3px 10px rgb(141, 92, 141);
+    box-shadow: 0px 1px 10px  #e7c0ccce;;
 
 }
+
+.Filtros{
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 50vw;
+    
+}
+
 .LowBar img{
-  height: 80px;
-    filter: saturate(180%);
-    padding-left: 100px;
- 
+    position: absolute;
+  height: 75px;
+  filter: saturate(180%);
+  padding-left: 30px;
+  top: 6px;
 }
 
 .Logo_skeleton{

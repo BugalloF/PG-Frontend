@@ -46,7 +46,7 @@ function PostForm()
                 input: [],
         });
         swal("La obra fue publicada correctamente!");
-        navigate("/");
+        navigate(`/profile/${id}`);
         };
        dispatch(CleanStatus());
     }, [status]);
@@ -159,7 +159,7 @@ function PostForm()
                         errors.title && errors.title
                     }
                     <h4 className={s.title}>Contenido</h4>
-                    <textarea className={errors.content ? s.Alert : s.Inputs} placeholder="Máx. 140 carácteres" onChange={handleChange} cols="30" rows="10" type="text" value={input.content} maxLength={140} name="content" disabled={loadPost}/>
+                    <textarea className={errors.content ? s.Alert : s.Inputs} placeholder="Máx. 400 carácteres" onChange={handleChange} cols="30" rows="10" type="text" value={input.content} maxLength={400} name="content" disabled={loadPost}/>
                     {
                         errors.content && errors.content
                     }

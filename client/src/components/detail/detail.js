@@ -6,10 +6,10 @@ import {NavLink,useNavigate} from 'react-router-dom';
 import swal from "sweetalert";
 // Files
 import {ImageProfile} from "../imageprofile/imageprofile";
-import Paypal from "../paypal/paypall";
+import Paypal from "../paypal/paypal";
 import s from "./detail.module.css";
 import { useDispatch,useSelector } from "react-redux";
-import { addLike, CleanStatus, DeleteArtwork, deleteLike } from "../../redux/actions";
+import { addLike, CleanDetail, CleanProfile, CleanStatus, DeleteArtwork, deleteLike } from "../../redux/actions";
 
 export function Detail(props) {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ export function Detail(props) {
     }).then(function(isConfirm) {
       if (isConfirm) {
         dispatch(DeleteArtwork(props.idPost))
-        navigate("/");
+        navigate("/feed");
         swal({
           text: 'Publicación eliminada correctamente!',
           icon: 'success'
@@ -56,6 +56,7 @@ export function Detail(props) {
   React.useEffect(() => {
     dispatch(CleanStatus())
   }, [status]);
+
   
   if(props !== undefined){
   return(
@@ -63,20 +64,24 @@ export function Detail(props) {
       <div className={s.container_detail}>
         <img src={props.image} alt="IMAGEN" className={s.img} />
         <div className={s.container_rigth}>
+        <h1>{props.title}</h1>
           <div className={s.ProfileZone}>
 		        <ImageProfile image={props.profile.img} bigSize={true}/>
               <p>{props.user}</p>
 		      </div>
-          <p>{props.title}</p>
+          <div className={s.PriceZone}>
+          <h1>$ {props.price}</h1>
+          </div>
+         
           <p>{props.description}</p>
-          <p>$ {props.price}</p>
+          
         </div>
       </div>
       <div className={s.buttons}>
         <div className={s.buttons_rigth}>
           <div className={s.Paypal}>
             pagar con paypal
-          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title}/>
+          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} idSeller={props.profileId} userSeller={props.user} userPayer={props.userName} email={props.emailSeller} />
           </div>
           { 
             userDataJson!== null ? props.isLiked === false ? 
