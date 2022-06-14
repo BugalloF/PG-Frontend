@@ -17,7 +17,7 @@ import LandingPage from "./containers/landingPage/landingPage.jsx";
 import MyFeed from "./containers/feedPersonal/feedPersonal";
 import Update from "./components/formUpdate/Update";
 import FormEditProfile from "./components/FormEditProfile/FormEditProfile";
-
+import ChangePasswordPage from "./containers/ChangePasswordPage/ChangePasswordPage.jsx";
 import PanelAdm from "./containers/paneladmin/paneladmin";
 import Posts from "./containers/paneladmin/posts/posts";
 import Users from "./containers/paneladmin/users/users";
@@ -42,6 +42,7 @@ function App() {
         <Route exact path={'/'} element={[<NavBar/>,<FeedPage/>]}/>
         <Route exact path={'/profile/:profileId'} element={[<NavBar/>,<ProfilePage/>]}/>
         <Route exact path={'/profile/editProfile/:profileId'} element={[<NavBar/>,<FormEditProfile/>]}/>
+        <Route exact path={'/profile/changePassword/:profileId'} element={[<NavBar/>,<ChangePasswordPage/>]}/>
         <Route exact path={'/create'} element={[<NavBar/>,<PostForm/>]}/>
         <Route exact path={'/edit/:idPost'} element={[<NavBar/>,<Update/>]}/>
         <Route exact path={'/post/:idPost'} element={[<NavBar/>,<DetailPage/>]}/>

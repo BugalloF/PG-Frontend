@@ -31,7 +31,7 @@ function ResetPassword()
         
         if(!input.password)
         {
-            errors.password = <p></p>;
+            errors.password = <font></font>;
         }
         else if(input.password.length < 8)
         {
@@ -89,7 +89,7 @@ function ResetPassword()
             <form onSubmit={handleSubmit}>
                 <h2>Restablezca su contraseña</h2>
                 
-                <input onChange={e => handleChange(e)} className={errors.password ? s.Alert : s.Inputs} type={password ? "text" : "password"} placeholder="Contraseña" name="password"/>
+                <input onChange={handleChange} className={errors.password ? s.Alert : s.Inputs} type={password ? "text" : "password"} placeholder="Contraseña" name="password"/>
                 {
                     errors.password && errors.password
                 }
@@ -100,7 +100,7 @@ function ResetPassword()
                     }
                 </button>
                 
-                <input onChange={e => handleChange(e)} className={errors.repeatPassword ? s.Alert : s.Inputs} type={repeatPassword ? "text" : "password"} placeholder="Repita su contraseña" name="repeatPassword"/>
+                <input onChange={handleChange} className={errors.repeatPassword ? s.Alert : s.Inputs} type={repeatPassword ? "text" : "password"} placeholder="Repita su contraseña" name="repeatPassword"/>
                 {
                     errors.repeatPassword && errors.repeatPassword
                 }

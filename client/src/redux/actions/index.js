@@ -340,6 +340,15 @@ export function resetPassword(id, resetToken, input)
   };
 };
 
+export function changePassword(id, {oldPassword, password})
+{
+  return async function(dispatch)
+  {
+    const data = (await axios.put(`${URL}/changepassword/${id}`, {oldPassword, password})).data;
+    return dispatch({type: "CHANGE_PASSWORD", payload: data});
+  };
+};
+
 export function EditProfile(input)
 {
   return async function (dispatch)

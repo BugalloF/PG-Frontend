@@ -39,19 +39,31 @@ function RegisterForm()
         
         if(!input.name)
         {
-            errors.name = <p></p>;
+            errors.name = <font></font>;
+        }
+        else if(input.name.length > 30)
+        {
+            errors.name = <font></font>;
         }
         else if(!input.lastName)
         {
-            errors.lastName = <p></p>;
+            errors.lastName = <font></font>;
+        }
+        else if(input.lastName.length > 30)
+        {
+            errors.lastName = <font></font>;
         }
         else if(!input.userName)
         {
-            errors.userName = <p></p>;
+            errors.userName = <font></font>;
+        }
+        else if(input.userName.length > 20)
+        {
+            errors.userName = <font></font>;
         }
         else if(!input.email)
         {
-            errors.email = <p></p>;
+            errors.email = <font></font>;
         }
         else if(foundUsername.length)
         {
@@ -67,7 +79,7 @@ function RegisterForm()
         }
         else if(!input.password)
         {
-            errors.password = <p></p>;
+            errors.password = <font></font>;
         }
         else if(input.password.length < 8)
         {
@@ -75,7 +87,7 @@ function RegisterForm()
         }
         else if(!input.repeatPassword)
         {
-            errors.password = <p></p>;
+            errors.password = <font></font>;
         }
         else if(input.password !== input.repeatPassword)
         {
@@ -131,23 +143,23 @@ function RegisterForm()
             <h1>Crear una cuenta</h1>
             <h3>Registrarte es rápido y fácil.</h3>
             <form onSubmit={handleSubmit}>
-                <input onChange={e => handleChange(e)} className={errors.name ? s.Alert : s.Inputs} type="text" placeholder="Nombre" name="name"/>
+                <input onChange={handleChange} className={errors.name ? s.Alert : s.Inputs} type="text" maxLength="30" placeholder="Nombre" name="name"/>
                 {
                     errors.name && errors.name
                 }
-                <input onChange={e => handleChange(e)} className={errors.lastName ? s.Alert : s.Inputs} type="text" placeholder="Apellido" name="lastName"/>
+                <input onChange={handleChange} className={errors.lastName ? s.Alert : s.Inputs} type="text" maxLength="30" placeholder="Apellido" name="lastName"/>
                 {
                     errors.lastName && errors.lastName
                 }
-                <input onChange={e => handleChange(e)} className={errors.userName ? s.Alert : s.Inputs} type="text" placeholder="Nombre de usuario" name="userName"/>
+                <input onChange={handleChange} className={errors.userName ? s.Alert : s.Inputs} type="text" maxLength="20" placeholder="Nombre de usuario" name="userName"/>
                 {
                     errors.userName && errors.userName
                 }
-                <input onChange={e => handleChange(e)} className={errors.email ? s.Alert : s.Inputs} placeholder="Correo electrónico" name="email"/>
+                <input onChange={handleChange} className={errors.email ? s.Alert : s.Inputs} placeholder="Correo electrónico" name="email"/>
                 {
                     errors.email && errors.email
                 }
-                <input onChange={e => handleChange(e)} className={errors.password ? s.Alert : s.Inputs} type={password ? "text" : "password"} placeholder="Contraseña" name="password"/>
+                <input onChange={handleChange} className={errors.password ? s.Alert : s.Inputs} type={password ? "text" : "password"} placeholder="Contraseña" name="password"/>
                 {
                     errors.password && errors.password
                 }
@@ -158,7 +170,7 @@ function RegisterForm()
                     }
                 </button>
                 
-                <input onChange={e => handleChange(e)} className={errors.repeatPassword ? s.Alert : s.Inputs} type={repeatPassword ? "text" : "password"} placeholder="Repita su contraseña" name="repeatPassword"/>
+                <input onChange={handleChange} className={errors.repeatPassword ? s.Alert : s.Inputs} type={repeatPassword ? "text" : "password"} placeholder="Repita su contraseña" name="repeatPassword"/>
                 {
                     errors.repeatPassword && errors.repeatPassword
                 }
