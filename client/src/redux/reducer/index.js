@@ -20,7 +20,7 @@ const initialState = {
 
 
 function rootReducer(state = initialState, action) {
-  console.log(action)
+  // console.log(action)
   switch (action.type) {
     case "GetPosts":
       if (state.page === 0) {

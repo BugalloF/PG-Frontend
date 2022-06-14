@@ -46,7 +46,7 @@ function PostForm()
                 input: [],
         });
         swal("La obra fue publicada correctamente!");
-        navigate("/");
+        navigate(`/profile/${id}`);
         };
        dispatch(CleanStatus());
     }, [status]);

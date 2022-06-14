@@ -17,6 +17,7 @@ export function SearchBar() {
       className={s.container}
       onSubmit={(e) => {
         e.preventDefault();
+        if(!artWork) return alert('Debes inlcuir un nombre')
         dispatch(resetPage());
         dispatch(CleanPosts()); 
         dispatch(CleanTransactions())

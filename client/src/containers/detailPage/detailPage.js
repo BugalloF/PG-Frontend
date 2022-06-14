@@ -45,7 +45,7 @@ export default function DetailPage() {
        <Detail  image={detail.artWork[0].imgCompress} description={detail.artWork[0].content} user={detail.artWork[0].profile.userName}  profile={detail.artWork[0].profile} price={detail.artWork[0].price} title={detail.artWork[0].title} idPost={idPost} likes ={detail.likesCounter} isLiked={detail.isLiked} isLogged={loggedUser} profileId={detail.artWork[0].profileId} emailSeller={detail.artWork[0].profile.email}/>
          
        <div className={s.container_recommendation}>
-         <h2>publicaciones recomendadas</h2>
+         { recommended.length>1 ? <h2>publicaciones recomendadas</h2> : null}
            <div className={s.cardsRec}>
                {
                 recommended?.map((card) => (

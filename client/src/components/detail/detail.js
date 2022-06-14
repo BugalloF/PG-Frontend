@@ -40,7 +40,7 @@ export function Detail(props) {
     }).then(function(isConfirm) {
       if (isConfirm) {
         dispatch(DeleteArtwork(props.idPost))
-        navigate("/");
+        navigate("/feed");
         swal({
           text: 'Publicación eliminada correctamente!',
           icon: 'success'
@@ -77,7 +77,7 @@ export function Detail(props) {
         <div className={s.buttons_rigth}>
           <div className={s.Paypal}>
             pagar con paypal
-          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} idSeller={props.profileId} userSeller={props.user} userPayer={userDataJson.userName} email={props.emailSeller} />
+          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} idSeller={props.profileId} userSeller={props.user} userPayer={props.userName} email={props.emailSeller} />
           </div>
           { 
             userDataJson!== null ? props.isLiked === false ? 

@@ -1,5 +1,5 @@
 // Dependencies
-import { async } from "@firebase/util";
+// import { async } from "@firebase/util";
 import axios from "axios";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // Files
