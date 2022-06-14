@@ -20,6 +20,7 @@ const PrincipalPage = () => {
   const allPosts = useSelector((state) => state.posts);
   const hasMore = useSelector((state) => state.hasMore);
   const loader = useSelector((state) => state.loader);
+  const notFound = useSelector((state) => state.notFound);
 
   useEffect(() => {
       dispatch(resetPage());
@@ -50,7 +51,7 @@ const PrincipalPage = () => {
 
       {loader?
         <CardsSkeleton oneLine={false}/> :
-        length !== 0 ?
+        notFound ?<NotFound/>:
           <div className={s.Cards}>
             
             {allPosts.map((card) => (
@@ -66,7 +67,7 @@ const PrincipalPage = () => {
               />
             ))
           }
-          </div>:<NotFound/>
+          </div>
         }
         </div>
       </InfiniteScroll>
