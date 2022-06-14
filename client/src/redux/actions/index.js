@@ -1,4 +1,5 @@
 // Dependencies
+import { async } from "@firebase/util";
 import axios from "axios";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // Files
@@ -22,6 +23,7 @@ export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
     by = "&by=" + by ;
     type = "&type=" + type;
   }
+  console.log(      `${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
   return async function (dispatch) {
     const allposts = await axios.get(
       `${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
@@ -112,6 +114,7 @@ export const PageNumber = () => {
     type: "PageNumber",
   };
 };
+
 
 //PAGINADO------------------------------------------------------------------------------------
 
@@ -363,6 +366,7 @@ export function EditProfile(input)
   };
 };
 
+
 // ----------------------------------------------------------------------------------------------
 
 export function addLike(userData = null, idPost)
@@ -589,3 +593,146 @@ export function cleanFollowedPosts(){
   };
 }
 
+// ----------------------------  ADMIN ----------------------------
+
+// --------------- DELETE USER -------------- //
+
+export const DeleteUser = (userId) => {
+  return async function(dispatch){
+    const user = await axios.delete(`${URL}/profile/delete/${userId}?apiKey=${REACT_APP_API_KEY}`)
+    
+    dispatch({
+      type: "DeleteUser",
+      payload: user.status
+    })
+  }
+
+}
+
+// ------------- ADD CATEGORY ------------- //
+
+export const AddCategory = (value) => {
+  return async function(dispatch){
+    const category = await axios.post(`${URL}/categories`, {category:value})
+
+    dispatch({
+      type: 'AdmCategory',
+      payload: category.status
+    })
+  }
+}
+
+export const DeleteCategory = (categoryId) => {
+  return async function(dispatch){
+    const category = await axios.delete(`${URL}/categories/${categoryId}`)
+
+    dispatch({
+      type: 'AdmCategory',
+      payload: category.status
+    })
+  }
+}
+
+export const UpdateCategory = (categoryId,value) => {
+  return async function(dispatch){
+    const category = await axios.put(`${URL}/categories/${categoryId}`, {title:value})
+
+    dispatch({
+      type: 'AdmCategory',
+      payload: category.status
+    })
+  }
+}
+// ------- sumar dias ban -------------
+var fecha= new Date()
+function sumarDias(fecha){
+  let  bantime= fecha.setDate(fecha.getDate() + 4 );
+  return bantime;
+}
+
+// -------------- BAN / NO BAN USER
+
+export const banUser = (userId,userData) =>{
+  
+  return async function (dispatch){
+    
+    const userDataJson = JSON.parse(userData);
+    
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const user =  (await axios(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,config)).data.found
+      
+      // console.log('userrrrrrDATA',userData)
+    // console.log('userrrrrr',user)
+    if(user.is_banned === false){
+      const ban = {
+        is_banned: true,
+        banned_time: sumarDias(fecha)
+
+      };
+     await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,ban)
+      // console.log(sumarDias(fecha))
+     const data = (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data;
+     return dispatch({ type: "BAN_USER", payload: data });
+    
+    }else{
+      const unBan = {
+        is_banned: false,
+        banned_time: null
+      };
+     await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,unBan)
+     const data = (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data;
+     return dispatch({ type: "UNBAN_USER", payload: data });
+    }
+
+  }
+}
+
+export const getBannedUsers = (userData) =>{
+  
+  return async function (dispatch){
+    
+    const userDataJson = JSON.parse(userData);
+    
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const users =  (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data
+
+      const data = users.filter(el=> el.is_banned)
+
+      // console.log('filtrados',data)
+      
+      return dispatch({type:"GET_BANNED_USERS",payload:data})
+      
+  }
+}
+
+
+export const GetAdmProfiles = (from = "",name = "") => {
+  if(from !== "") from = `?from=${from}`
+  if (name !== "") name = "&" + name.slice(1); 
+  return async function(dispatch){
+
+    const profiles = await axios.get(`${URL}/profile/profiles${from}${name}`)
+
+    dispatch({
+      type:'GetAdmProfiles',
+      profiles: profiles.data.profiles,
+      counter: profiles.data.counter
+    })
+  }
+}
