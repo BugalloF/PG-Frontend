@@ -7,7 +7,11 @@ import {
   GetCategotyPosts,
   resetPage,
   CleanPosts,
+
+  CleanStatus,
+
   profile,
+
 } from "../../redux/actions";
 import { useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
@@ -28,6 +32,7 @@ const Filters = ({hasorder}) => {
     type: ""
   })
   const category = useSelector((state) => state.category)
+  const status = useSelector((state) => state.status)
 
   useEffect(()=>{
     dispatch(GetAllCategories())
@@ -48,8 +53,11 @@ const Filters = ({hasorder}) => {
         dispatch(GetAllPosts(page,name.search, order.by, order.type));
         dispatch(profile(loggedUser,userDataJson.id))
       }
+
+      dispatch(CleanStatus())
+      
        
-  }, [page,name.search,order,category]);
+  }, [page,name.search,order,category,status]);
 
 
 

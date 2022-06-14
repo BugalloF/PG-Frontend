@@ -9,7 +9,7 @@ import {ImageProfile} from "../imageprofile/imageprofile";
 import Paypal from "../paypal/paypall";
 import s from "./detail.module.css";
 import { useDispatch,useSelector } from "react-redux";
-import { addLike, CleanStatus, DeleteArtwork, deleteLike } from "../../redux/actions";
+import { addLike, CleanDetail, CleanProfile, CleanStatus, DeleteArtwork, deleteLike } from "../../redux/actions";
 
 export function Detail(props) {
   const dispatch = useDispatch();
@@ -56,6 +56,7 @@ export function Detail(props) {
   React.useEffect(() => {
     dispatch(CleanStatus())
   }, [status]);
+
   
   if(props !== undefined){
   return(
