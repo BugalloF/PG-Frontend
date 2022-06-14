@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import s from "../searchbar/searchbar.module.css";
@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { resetPage,CleanPosts, CleanTransactions, CleanUsers } from "../../redux/actions";
 
 export function SearchBar() {
-  const [artWork, setArtWork] = useState();
+  const [artWork, setArtWork] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,10 +19,11 @@ export function SearchBar() {
         e.preventDefault();
         if(!artWork) return alert('Debes inlcuir un nombre')
         dispatch(resetPage());
-        dispatch(CleanPosts()); 
+        // dispatch(CleanPosts()); 
         dispatch(CleanTransactions())
         dispatch(CleanUsers())
         navigate(`?name=${artWork}`);
+        setArtWork('')
       }}
     >
       <div className={s.searchwrapper}>

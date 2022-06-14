@@ -22,7 +22,7 @@ const MyFeed = () => {
   const hasMore = useSelector((state) => state.hasMore);
   const loader = useSelector((state) => state.loader);
   const page = useSelector((state) => state.page);
-  console.log(loggedUser)
+  // console.log(loggedUser)
 
   useEffect(() => {
       dispatch(getFollowedPost(page,loggedUser))
