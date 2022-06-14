@@ -345,7 +345,7 @@ export function EditProfile(input)
   return async function (dispatch)
   { 
     // console.log('aaaaaaaaaaaaaaa',input)
-
+    if(input.img64){
     // const output = input.img;
     const base64str = input.img64;
     // console.log(base64str)
@@ -364,8 +364,10 @@ export function EditProfile(input)
       imageRefCompress,
       fileCompress
     );
-    const urlCompress = await getDownloadURL(uploadImageCompress.ref);
+    var profileUrlCompress = await getDownloadURL(uploadImageCompress.ref);
 
+    }
+    
     
     const data = {
       name: input.name,
@@ -375,7 +377,7 @@ export function EditProfile(input)
       password: input.password,
       day_of_birth: input.day_of_birth,
       gender: input.gender,
-      img: urlCompress,
+      img: profileUrlCompress || 'https://i.pinimg.com/564x/20/0d/72/200d72a18492cf3d7adac8a914ef3520.jpg',
       phone: input.phone,
       description: input.description,
       country: input.country,

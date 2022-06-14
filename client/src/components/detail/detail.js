@@ -64,13 +64,17 @@ export function Detail(props) {
       <div className={s.container_detail}>
         <img src={props.image} alt="IMAGEN" className={s.img} />
         <div className={s.container_rigth}>
+        <h1>{props.title}</h1>
           <div className={s.ProfileZone}>
 		        <ImageProfile image={props.profile.img} bigSize={true}/>
               <p>{props.user}</p>
 		      </div>
-          <p>{props.title}</p>
+          <div className={s.PriceZone}>
+          <h1>$ {props.price}</h1>
+          </div>
+         
           <p>{props.description}</p>
-          <p>$ {props.price}</p>
+          
         </div>
       </div>
       <div className={s.buttons}>
