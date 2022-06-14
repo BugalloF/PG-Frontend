@@ -16,6 +16,7 @@ const initialState = {
   compressedPost: '',
   loader:true,
   hasMore:true,
+  notFound:false
 };
 
 
@@ -29,14 +30,16 @@ function rootReducer(state = initialState, action) {
           posts: action.artWorks,
           length: action.length,
           loader: false,
-          hasMore:true
+          hasMore:true,
+          notFound:false
         };
       } else {
         return {
           ...state,
           posts: [...state.posts, ...action.artWorks],
           length: action.length,
-          loader:false
+          loader:false,
+          notFound:false
         };
       };
       case "GetCategoryPosts":
@@ -46,14 +49,16 @@ function rootReducer(state = initialState, action) {
             posts: action.artWorks,
             length: action.length,
             loader: false,
-            hasMore:true
+            hasMore:true,
+            notFound:false
           };
         } else {
           return {
             ...state,
             posts: [...state.posts, ...action.artWorks],
             length: action.length,
-            loader:false
+            loader:false,
+            notFound:false
           };
         };
 
@@ -98,7 +103,8 @@ function rootReducer(state = initialState, action) {
         ...state,
         detail: action.payload,
         filter:false,
-        loader: false
+        loader: false,
+        notFound:false
       };
   
     case "setPage":
@@ -209,15 +215,17 @@ function rootReducer(state = initialState, action) {
           length: action.length,
           filter: false,
           loader: false,
-          hasMore:true
+          hasMore:true,
+          notFound:false
         };
       } else {
         return {
           ...state,
           followedPosts: [...state.followedPosts, ...action.artWorks],
-          length: action.length,
+          length: state.length + action.length,
           filter: false,
-          loader:false
+          loader:false,
+          notFound:false
         };
       };
      case "CLEAN_FOLLOWED_POSTS":
@@ -283,6 +291,10 @@ function rootReducer(state = initialState, action) {
               return {...state, users: action.payload};
         case "GET_BANNED_USERS":
               return {...state, users: action.payload};  
+
+        case "Not_Found":
+          return {...state, notFound:true};  
+
 
     default:
       return {...state};

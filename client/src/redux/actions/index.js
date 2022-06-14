@@ -616,11 +616,18 @@ export function getFollowedPost(page = 0,userData){
       };
     const followedPost = (await axios.get(`${URL}/followedfeed?from=${page}&apiKey=${REACT_APP_API_KEY}`,config));
     
+    if (followedPost.data.arr.length !== 0) {
       dispatch({
         type: "GET_FOLLOWED_POST",
         artWorks: followedPost.data.arr,
         length: followedPost.data.counter,
-      });
+      });      
+    } else {
+        return {
+          type: "Not_Found",
+        };
+    }
+
     
   };
 }

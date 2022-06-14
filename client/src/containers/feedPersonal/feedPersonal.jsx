@@ -22,10 +22,14 @@ const MyFeed = () => {
   const hasMore = useSelector((state) => state.hasMore);
   const loader = useSelector((state) => state.loader);
   const page = useSelector((state) => state.page);
-  console.log(loggedUser)
+  const notFound = useSelector((state) => state.notFound);
+
 
   useEffect(() => {
       dispatch(getFollowedPost(page,loggedUser))
+  }, [page])
+
+  useEffect(() => {
     return () => {
       dispatch(resetPage());
       dispatch(cleanFollowedPosts());
@@ -39,7 +43,7 @@ const MyFeed = () => {
         dataLength={followPost.length}
         hasMore={hasMore}
         next={() => dispatch(setPage())}
-        loader={!hasMore?<CardsSkeleton oneLine={true}/>:null}
+        loader={hasMore || followPost.length>12?<CardsSkeleton oneLine={true}/>:null}
         endMessage={
           <p style={{ textAlign: "center" }}>
             <b>Wow! Parece que llegaste al fin!</b>
@@ -50,7 +54,7 @@ const MyFeed = () => {
 
       {loader?
         <CardsSkeleton oneLine={false}/>
-        :followPost.length?
+        :notFound?<NotFound/>:
           <div className={s.Cards}>
             
             {followPost.map((card) => (
@@ -66,7 +70,7 @@ const MyFeed = () => {
               />
             ))
           }
-          </div>:<NotFound/>
+          </div>
         }
         </div>
       </InfiniteScroll>
