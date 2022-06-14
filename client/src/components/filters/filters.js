@@ -42,16 +42,14 @@ const Filters = ({hasorder}) => {
     }
 
   },[])
-
+  console.log()
 
   useEffect(() => {
 
       if(category){
         dispatch(GetCategotyPosts(page,category,order.by,order.type));
-        dispatch(profile(loggedUser,userDataJson.id))
       }else {
         dispatch(GetAllPosts(page,name.search, order.by, order.type));
-        dispatch(profile(loggedUser,userDataJson.id))
       }
 
       dispatch(CleanStatus())
