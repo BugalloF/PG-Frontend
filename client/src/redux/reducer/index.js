@@ -1,6 +1,7 @@
 const initialState = {
   posts: [],
   followedPosts:[],
+  transactions: [],
   search:[],
   recommended: [],
   status: null ,
@@ -153,6 +154,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         profile: {},
       };
+    case "CleanTransactions":
+        return {
+          ...state,
+          transactions: [],
+        };
+      case "CleanUsers":
+        return {
+          ...state,
+          users:[],
+        };
     
     case "CleanPosts":
       return {
@@ -222,15 +233,48 @@ function rootReducer(state = initialState, action) {
     case "AdmCategory":
       return{
         ...state,
-        status:action.payload
+        status:action.payload,
+
+      }
+      case "AdmTransaction":
+        return{
+          ...state,
+          status:action.payload
+        }
+
+    case "GetTransactions":
+      if(state.page === 0){
+        return {
+          ...state,
+          transactions: action.transactions,
+          length: action.counter,
+          hasMore:true
+        }
+      }else{
+        return {
+          ...state,
+          transactions:  [...state.transactions, ...action.transactions],
+          length: action.counter,
+          hasMore:true
+        }
       }
 
     case "GetAdmProfiles":
-      return{
-        ...state,
-        users: action.profiles,
-        length: action.counter,
-        hasMore: true
+      if(state.page === 0){
+        return{
+          ...state,
+          users:action.profiles,
+          length: action.counter,
+          hasMore: true
+        }
+
+      }else{
+        return {
+          ...state,
+          users:[...state.users, ...action.profiles],
+          length: action.counter,
+          hasMore: true
+        }
       }
         case "BAN_USER":
             return {...state, users: action.payload};

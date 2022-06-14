@@ -23,6 +23,7 @@ import Posts from "./containers/paneladmin/posts/posts";
 import Users from "./containers/paneladmin/users/users";
 import BannedUsers from "./containers/paneladmin/users/bannedUsers";
 import Categories from "./containers/paneladmin/categories/categories";
+import Transactions from "./containers/paneladmin/transactions/transactions";
 
 
 
@@ -32,6 +33,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path={'/'} element={[<NavBar/>,<LandingPage/>]}/>
+        <Route exact path={'/paneladm/transactions'} element={[<NavBar/>,<Transactions/>]}/>
         <Route exact path={'/paneladm/bannedusers'} element={[<NavBar/>,<BannedUsers/>]}/>
         <Route exact path={'/paneladm/categories'} element={[<NavBar/>,<Categories/>]}/>
         <Route exact path={'/paneladm/users'} element={[<NavBar/>,<Users/>]}/>

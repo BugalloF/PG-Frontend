@@ -34,7 +34,7 @@ export default function DetailPage() {
       dispatch(CleanDetail())
       dispatch(CleanReco())
     };
-  },[dispatch]);
+  },[idPost]);
 
   useEffect(() =>{
    if(category !== null)  dispatch(GetRecoPosts(0,category))

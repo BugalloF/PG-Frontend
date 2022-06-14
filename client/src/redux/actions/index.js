@@ -736,3 +736,47 @@ export const GetAdmProfiles = (from = "",name = "") => {
     })
   }
 }
+
+export const GetTransactions = (from = 0, name = "") => {
+  if(from !== "") from = `?from=${from}`
+  if (name !== "") name = "&" + name.slice(1); 
+
+  return async function(dispatch){
+
+    const trans = await axios.get(`${URL}/transactions${from}${name}`)
+
+    dispatch({
+      type:'GetTransactions',
+      transactions: trans.data.result,
+      counter: trans.data.counter
+    })
+  }
+
+}
+
+export const PutTransactions = (id) => {
+
+
+  return async function(dispatch){
+
+    const trans = await axios.put(`${URL}/transactions/${id}`)
+
+    dispatch({
+      type:'AdmTransaction',
+      payload: trans.status
+    })
+  }
+
+}
+
+export const CleanUsers = () => {
+ return{
+  type: "CleanUsers",
+ }
+}
+
+export const CleanTransactions = () => {
+  return{
+   type: "CleanTransactions",
+  }
+ }

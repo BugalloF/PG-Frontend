@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { banUser, DeleteUser } from "../../../redux/actions";
+import { banUser, CleanUsers, DeleteUser, resetPage } from "../../../redux/actions";
 import { ImageProfile } from "../../imageprofile/imageprofile";
 import s from "../cardprofile/cardprofile.module.css"
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
@@ -23,6 +23,8 @@ const CardProfile = ({userId, userName, userImg, firstName, lastName, email, ban
                 <li><p>{email}</p></li>
                 <li><div className={s.button} 
                 onClick={() => {
+                    dispatch(resetPage())
+                    dispatch(CleanUsers())
                     dispatch(DeleteUser(userId))
                 }} ><FontAwesomeIcon icon={faCircleXmark}/></div></li>
                 
