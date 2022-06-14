@@ -31,11 +31,11 @@ function LoginForm()
         
         if(!input.user)
         {
-            errors.user = <font color="red">*</font>;
+            errors.user = <font></font>;
         }
         else if(!input.password)
         {
-            errors.password = <font color="red">*</font>;
+            errors.password = <font></font>;
         };
         
         return errors;
@@ -74,6 +74,8 @@ function LoginForm()
                 {
                     swal("Usuario o contraseña incorrectos.");
                 }
+                if(data.payload.is_banned)  return swal(`Tu usuario está baneado hasta el día ${data.payload.banned_time} `) 
+
                 else
                 {
                     const payload = data.payload;
@@ -84,7 +86,8 @@ function LoginForm()
                         email: payload.foundUser[0].email,
                         token: payload.token,
                         img: payload.foundUser[0].img,
-                        is_Admin: payload.foundUser[0].is_Admin,
+                         is_Admin: payload.foundUser[0].is_Admin,
+                        is_banned:payload.foundUser[0].is_banned
                     };
                     
                     window.localStorage.setItem("userData", JSON.stringify(userData));
@@ -97,7 +100,7 @@ function LoginForm()
                     
                     setUser(userData);
                     // ------------------------------------------------------
-                    swal("Loged.");
+                    swal("Sesión iniciada.");
                     navigate("/");
                 };
             }
@@ -113,11 +116,11 @@ function LoginForm()
         <div className={s.container_login_form}>
             <h5>BIENVENIDO, POR FAVOR INICIA SESIÓN</h5>
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Nombre de usuario o correo electrónico" name="user" onChange={handleChange} />
+                <input className={errors.user ? s.Alert : s.Inputs} type="text" placeholder="Nombre de usuario o correo electrónico" name="user" onChange={handleChange} />
                 {
                     errors.user && errors.user
                 }
-                <input type={password ? "text" : "password"} placeholder="Contraseña" name="password" onChange={handleChange}  />
+                <input className={errors.password ? s.Alert : s.Inputs} type={password ? "text" : "password"} placeholder="Contraseña" name="password" onChange={handleChange}  />
                 {
                     errors.password && errors.password
                 }
@@ -130,6 +133,7 @@ function LoginForm()
                 
                 <div className={s.options}>
                   <Link to="/register" className={s.noAccount}>No tengo una cuenta</Link>
+                  <Link to="/" className={s.noAccount}>Entrar como invitado</Link>
                   <Link to="/forgot" className={s.noAccount}>Olvidaste tu contraseña?</Link>
                 </div>
                 

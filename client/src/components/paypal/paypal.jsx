@@ -4,10 +4,10 @@ import {useDispatch} from "react-redux";
 // import {Navigate, useNavigate} from "react-router-dom";
 import swal from "sweetalert";
 // Files
-import {sendEmail} from "../../redux/actions";
+import {sendEmail, TransactionsPost} from "../../redux/actions";
 
 
-export default function Paypal({price,title,idPost}) {
+export default function Paypal({price,title,idPost,userSeller,userPayer,email}) {
   const dispatch = useDispatch()
   const paypal = useRef();
   const loggedUser = window.localStorage.getItem("userData");
@@ -53,7 +53,9 @@ export default function Paypal({price,title,idPost}) {
             let payer = order.payer.name.given_name;
             let surname = order.payer.name.surname;
             let time = order.create_time;
-            dispatch(sendEmail(loggedUser, {payer,surname,time,idPost})) //FALTA ACCEDER A LA INFO EN ORDER Y MANDARLA AL BACK
+            dispatch(sendEmail(loggedUser,{payer,surname,time,idPost,userSeller,userPayer,email}))
+            // dispatch(sendEmail(loggedUser, {payer,surname,time,idPost})) //FALTA ACCEDER A LA INFO EN ORDER Y MANDARLA AL BACK
+            dispatch(TransactionsPost({price,title,userSeller,userPayer,email}))
           }
         },
         onError: (err) => {

@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+// Dependencies
+import React, {useEffect} from "react";
+// Files
+import LoginForm from "../../components/LoginForm/LoginForm";
 import LoginCarousel from "../../components/loginpage/loginCarousel";
-import LoginForm from "../../components/LoginForm/LoginForm.jsx";
 import s from './loginpage.module.css';
 
 
-const LoginPage = () => {
+function LoginPage()
+{
     //objeto de prueba para carta
-    React.useEffect(() => {
-    }, []);
+    useEffect(() => {}, []);
     
     return (
         <div className={s.LoginPage}>
-            <LoginForm></LoginForm>
-            <LoginCarousel></LoginCarousel>
+            <LoginForm/>
+            <LoginCarousel/>
         </div>
     );
 };

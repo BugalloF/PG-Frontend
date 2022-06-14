@@ -1,0 +1,33 @@
+.list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:  rgb(246, 246, 246);
+
+  
+
+}
+
+.list li{
+  
+    margin: 10px;
+    width: 150px;
+    list-style: none;
+    text-align: center;
+    height: 50px;
+    color: black;
+
+
+  
+}
+
+.button{
+    border: none;
+    color: black;
+    font-size: 18px;
+    background-color:   rgb(213, 180, 243);
+    width: 150px;
+
+    margin-top: 14px;
+    cursor: pointer;
+}

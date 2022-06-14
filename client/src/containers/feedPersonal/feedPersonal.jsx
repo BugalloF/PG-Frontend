@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import s from "../feedpage/feedpage.module.css";
 import {
   setPage,
-  CleanPosts,
   resetPage,
   getFollowedPost,
   cleanFollowedPosts,
@@ -12,6 +11,7 @@ import {
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useEffect } from "react";
 import NotFound from "../../components/notFound/NotFound"
+import CardsSkeleton from "../../components/loaderSkeleton/cards/CardsSkeleton"
 
 
 const MyFeed = () => {
@@ -20,10 +20,9 @@ const MyFeed = () => {
   const dispatch = useDispatch();
   const followPost = useSelector((state) => state.followedPosts);
   const hasMore = useSelector((state) => state.hasMore);
-//   const filterState = useSelector((state) => state.filter);
   const loader = useSelector((state) => state.loader);
   const page = useSelector((state) => state.page);
-
+  console.log(loggedUser)
 
   useEffect(() => {
       dispatch(getFollowedPost(page,loggedUser))
@@ -32,12 +31,6 @@ const MyFeed = () => {
       dispatch(cleanFollowedPosts());
     };
   }, [dispatch]);
-  
-//   useEffect(() => {
-//     return () => {
-//       dispatch(CleanPosts());
-//     };
-//   }, [filterState]);  
 
   return (
     <div>
@@ -46,7 +39,7 @@ const MyFeed = () => {
         dataLength={followPost.length}
         hasMore={hasMore}
         next={() => dispatch(setPage())}
-        loader={!loader?<h4>Cargando...</h4>:null}
+        loader={!hasMore?<CardsSkeleton oneLine={true}/>:null}
         endMessage={
           <p style={{ textAlign: "center" }}>
             <b>Wow! Parece que llegaste al fin!</b>
@@ -56,7 +49,7 @@ const MyFeed = () => {
         <div className={s.FeedPage}>
 
       {loader?
-        <div><h2>Cargando...</h2></div>
+        <CardsSkeleton oneLine={false}/>
         :followPost.length?
           <div className={s.Cards}>
             

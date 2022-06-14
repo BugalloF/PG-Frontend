@@ -19,6 +19,7 @@ function ResetPassword()
     });
     // Show or hide password
     const [password, setPassword] = useState(false);
+    const [repeatPassword, setRepeatPassword] = useState(false);
     const {id} = useParams();
     const resetToken = window.localStorage.getItem("resetToken");
     const navigate = useNavigate();
@@ -30,11 +31,15 @@ function ResetPassword()
         
         if(!input.password)
         {
-            errors.password = <font color="red">*</font>;
+            errors.password = <font></font>;
+        }
+        else if(input.password.length < 8)
+        {
+            errors.password = <p className={s.AlertText}>La contraseña debe contener al menos 8 carácteres.</p>;
         }
         else if(input.password !== input.repeatPassword)
         {
-            errors.repeatPassword = <p className={s.Alert}>Las contraseñas no coinciden.</p>;
+            errors.repeatPassword = <p className={s.AlertText}>Las contraseñas no coinciden.</p>;
         };
         
         return errors;
@@ -53,6 +58,12 @@ function ResetPassword()
         setPassword(password => !password);
     };
     
+    function handleShowRepeatPassword(e)
+    {
+        e.preventDefault(e);
+        setRepeatPassword(repeatPassword => !repeatPassword);
+    };
+    
     async function handleSubmit(e)
     {
         if(Object.keys(validate(input)).length > 0)
@@ -63,8 +74,7 @@ function ResetPassword()
         else
         {
             e.preventDefault();
-            const data = await dispatch(resetPassword(id, resetToken, input)).catch(e => swal("El id ingresado no es válido y/o el token ha expirado. Vuelva a intentarlo."));
-            // console.log(data);
+            const data = await dispatch(resetPassword(id, resetToken, input)).catch(swal("El id ingresado no es válido y/o el token ha expirado. Vuelva a intentarlo.").then(navigate("/forgot")));
             
             if(data !== true)
             {
@@ -75,25 +85,31 @@ function ResetPassword()
     };
     
     return(
-        <div className={s.Container}>
-            <form onSubmit={handleSubmit} className={s.Form}>
+        <div className={s.container_login_form}>
+            <form onSubmit={handleSubmit}>
                 <h2>Restablezca su contraseña</h2>
                 
-                <input onChange={handleChange} type={password ? "text" : "password"} placeholder="Contraseña" name="password"/>
+                <input onChange={handleChange} className={errors.password ? s.Alert : s.Inputs} type={password ? "text" : "password"} placeholder="Contraseña" name="password"/>
                 {
                     errors.password && errors.password
                 }
                 
-                <button onClick={handleShowPassword} type="button">
+                <button className={s.ShowPassword} onClick={handleShowPassword} type="button">
                     {
                         password ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>
                     }
                 </button>
                 
-                <input onChange={e => handleChange(e)} type="password" placeholder="Repita su contraseña" name="repeatPassword"/>
+                <input onChange={handleChange} className={errors.repeatPassword ? s.Alert : s.Inputs} type={repeatPassword ? "text" : "password"} placeholder="Repita su contraseña" name="repeatPassword"/>
                 {
                     errors.repeatPassword && errors.repeatPassword
                 }
+                
+                <button className={s.ShowRepeatPassword} onClick={handleShowRepeatPassword} type="button">
+                    {
+                        repeatPassword ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>
+                    }
+                </button>
                 <button className={s.SubmitButton} type="submit">Restablecer</button>
             </form>
         </div>

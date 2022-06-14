@@ -1,13 +1,12 @@
 import React from "react";
 import {Detail} from "../../components/detail/detail";
-import Comment from "../../components/comment/comment";
 import Card from "../../components/cards/card";
 import s from './detailPage.module.css';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CleanDetail, CleanReco, GetDetail, GetRecoPosts } from "../../redux/actions";
 import { useParams } from "react-router-dom";
-
+import DetailSkeleton from "../../components/loaderSkeleton/Detail/DetailSkeleton"
 // --------------------------------------------------------
 // -----------------------DATOS DE PRUEBA-------------
 // --------------------------------------------------------
@@ -26,16 +25,12 @@ export default function DetailPage() {
   const category  = detail.artWork ? detail.artWork[0].categories[0].title : null
   
   useEffect(() => {
-
     dispatch(GetDetail(loggedUser, idPost))
-   
-    
-
     return () => {
       dispatch(CleanDetail())
       dispatch(CleanReco())
     };
-  },[dispatch]);
+  },[idPost]);
 
   useEffect(() =>{
    if(category !== null)  dispatch(GetRecoPosts(0,category))
@@ -47,10 +42,10 @@ export default function DetailPage() {
 
   return(
     idPosteo?( <div className={s.container_detailPage}>
-       <Detail image={detail.artWork[0].imgCompress} description={detail.artWork[0].content} user={detail.artWork[0].profile.userName}  profile={detail.artWork[0].profile} price={detail.artWork[0].price} title={detail.artWork[0].title} idPost={idPost} likes ={detail.likesCounter} isLiked={detail.isLiked} isLogged={loggedUser} profileId={detail.artWork[0].profileId}/>
+       <Detail  image={detail.artWork[0].imgCompress} description={detail.artWork[0].content} user={detail.artWork[0].profile.userName}  profile={detail.artWork[0].profile} price={detail.artWork[0].price} title={detail.artWork[0].title} idPost={idPost} likes ={detail.likesCounter} isLiked={detail.isLiked} isLogged={loggedUser} profileId={detail.artWork[0].profileId} emailSeller={detail.artWork[0].profile.email}/>
          
        <div className={s.container_recommendation}>
-         <h2>publicaciones recomendadas</h2>
+         { recommended.length>1 ? <h2>publicaciones recomendadas</h2> : null}
            <div className={s.cardsRec}>
                {
                 recommended?.map((card) => (
@@ -70,6 +65,6 @@ export default function DetailPage() {
                
        </div>
 
-     </div>):(<div><h1>cargando...</h1></div>)
+     </div>):(<DetailSkeleton/>)
  );
 };

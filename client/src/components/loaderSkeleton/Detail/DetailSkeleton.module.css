@@ -1,0 +1,45 @@
+.main_container{
+	max-width: 1340px;
+	margin: 80px auto;	
+
+}
+.detail_target{
+	border: 1.4px solid rgb(189, 188, 188);	
+	padding: 30px;	
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	align-items: flex-start;	
+}
+
+.info{
+	margin: 40px 0;
+}
+
+.buttons{
+	margin-top: 70px;
+	max-width: 500px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.rigth{
+	padding: 0 50px;
+	min-width: 500px;
+}
+
+.profileZone{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.recTitle{
+	margin: 35px 0 65px 0;
+}
+
+.recommendation{
+	text-align: center;
+}

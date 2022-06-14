@@ -5,7 +5,7 @@ import s from "../searchbar/searchbar.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { resetPage,CleanPosts } from "../../redux/actions";
+import { resetPage,CleanPosts, CleanTransactions, CleanUsers } from "../../redux/actions";
 
 export function SearchBar() {
   const [artWork, setArtWork] = useState();
@@ -17,8 +17,11 @@ export function SearchBar() {
       className={s.container}
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch(CleanPosts())
+        if(!artWork) return alert('Debes inlcuir un nombre')
         dispatch(resetPage());
+        dispatch(CleanPosts()); 
+        dispatch(CleanTransactions())
+        dispatch(CleanUsers())
         navigate(`?name=${artWork}`);
       }}
     >

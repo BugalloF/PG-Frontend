@@ -1,40 +1,82 @@
-.Container_filter{
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
+.FilterZone{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 50vw;
+    gap: 20px;
+    position: absolute;
+    top: -47px;
 }
 
-
-
-
-
-.CategoryZone{
-    background-color: #fff;
-    border: 1px solid #8f8f8f;
+.CategoryBTN{
+    position: relative;
+  display: block;
+    height: 45px;
+    padding: 5px 15px;
+    white-space: nowrap;
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    overflow: hidden;
+    border-radius: 5px;
+    border: none;
+    background-color: transparent;
     font-family: Helvetica;
-    font-size: 20px;
-    margin: 0 10px;
-    padding: 8px 25px;
+ 
 }
+.CategoryBTN:hover {
+    border-radius: 5px;
+    padding-right: 24px;
+    padding-left:8px;
+    background-color: rgba(132, 126, 138, 0.651)
+  }
+  .CategoryBTN:hover:after {
+    opacity: 1;
+    right: 10px;
+  }
+  .CategoryBTN:after {
+    content: "\00BB";
+    position: absolute;
+    opacity: 0;
+    font-size: 20px;
+    line-height: 40px;
+    top: 0;
+    right: -20px;
+    transition: 0.4s;
+  }
+
 
 .OrderZone{
 	margin: 30px 0;
+
 }
 
 .OrderSelect{
     background-color: #fff;
     border: 1px solid #8f8f8f;
     font-family: Helvetica;
-    font-size: 15px;
-    margin: 0 10px;
-    padding: 4px 15px;		
+    font-size: 12px;
+    margin: -10px 10px;
+
+    padding: 4px 25px;	
+    background-color: transparent;
+    border: 1px solid #AAA;
+    border-radius: 2px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;	
 }
 
-
-
-
-
-
-
+.OrderZone{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 

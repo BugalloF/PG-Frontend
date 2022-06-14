@@ -1,10 +1,11 @@
 .container{
-	border: 1.4px solid rgb(189, 188, 188);
+	position: relative;
 	padding: 30px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	align-items: flex-start;
+	height: 650px;
+	width: 1200px;
 }
 
 button {
@@ -14,37 +15,64 @@ button {
 .container_detail{
 	display: flex;
 	flex-direction: row;
-	
-
-
-
 }
 
 .container_detail .img{
-	width: 100%;
-	max-width: 600px;
+	background-color: #ebebeb;
+	object-fit: scale-down;
+	width: 700px;
+	height: 700px;
 }
 
 .container_rigth{
+	background-color: #d3cabd;
 	display: flex;
 	flex-direction: column;
-	padding: 0 50px;
-	
-	
+	align-items: flex-start;
+	width: 480px;
+	padding: 0 5px;	
 }
 
+.PriceZone{
+	transform: translate(310px);
+	color: white;
+	font-weight: 600;
+	clip-path: polygon(0% 0%, 100% 0%, 100% 100%,10% 100%);
+	background-color: rgb(70, 34, 34);
+	width: 120px;
+	height: 80px;
+	padding: 0px 30px;
+	align-items: center;
+	justify-content: left;
+}
+.PriceZone h1{
+	font-size: 45px;
+	vertical-align: baseline;
+    display: inline-block;
+    line-height: 20px;
+}
 
 .container_rigth p{
 	max-width: 500px;
 	font-size: 20px;
 }
+.container_rigth :nth-child(4){
+	color: rgb(65, 65, 65);
+	line-height: 26px;
+	word-wrap: break-word;
+	word-break: break-all;
+	height: 310px;
+}
 
 .buttons{
+	position: absolute;
+	bottom: 0;
+	right: 60px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	padding-top: 70px;
-	width: 100%;
+	width: 390px;
 }
 
 .btn_comment{
@@ -88,4 +116,20 @@ button {
 {
 	display: flex;
 	gap: 10px;
+}
+
+.Paypal :nth-child(1){
+	top: 0;
+	position: absolute;
+}
+.Paypal{
+	position: relative;
+	background-color: rgb(39, 216, 119);
+	height: 25px;
+	width: 150px;
+}
+
+.EditButton .a
+{
+	text-decoration: none;
 }

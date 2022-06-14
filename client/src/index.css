@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica', 'Arial', 'Monaco';
   
   -webkit-font-smoothing: antialiased;
@@ -7,10 +8,11 @@ body {
    
 
   
-
+ overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+

@@ -1,4 +1,5 @@
 // Dependencies
+// import { async } from "@firebase/util";
 import axios from "axios";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 // Files
@@ -22,6 +23,7 @@ export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
     by = "&by=" + by ;
     type = "&type=" + type;
   }
+  // console.log(      `${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
   return async function (dispatch) {
     const allposts = await axios.get(
       `${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
@@ -44,7 +46,7 @@ export const GetRecoPosts = (page = 0,category ,) => {
  const type = "&type=DESC"
 
   category = "&category=" + category
-  console.log(`${URL}/filter/category?from=${page}${category}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
+  // console.log(`${URL}/filter/category?from=${page}${category}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
   return async function (dispatch) {
   const allposts = await axios.get(
     `${URL}/filter/category?from=${page}${category}${by}${type}&apiKey=${REACT_APP_API_KEY}`
@@ -113,6 +115,7 @@ export const PageNumber = () => {
   };
 };
 
+
 //PAGINADO------------------------------------------------------------------------------------
 
 //POST ARTWORK-------------------------------------------------------------------------------
@@ -134,11 +137,15 @@ export const Post = (input) => {
       resize: false, // defaults to true, set false if you do not want to resize the image width and height
       rotate: false, // See the rotation section below
     });
-
     const output = post[0];
+    // console.log(output)
     const base64str = output.data;
+    // console.log('DEMIIII',base64str)
     const imgExt = output.ext;
+    // console.log('DEMIIII',imgExt)
+
     const fileCompress = Compress.convertBase64ToFile(base64str, imgExt);
+    // console.log('DEMIIII',fileCompress)
 
     const watermarked = await watermark([fileCompress])
     .blob(watermark.text.center('DigitalizArte', '48px serif', '#fff', 0.6));
@@ -256,11 +263,6 @@ export const SetCategoty = (value) =>{
 
 // LOGIN / REGISTER / RESET PASSWORD //
 
-
-
-
-// LOGIN / REGISTER / RESET PASSWORD //
-
 export function register(values)
 {
   return async function (dispatch)
@@ -338,6 +340,71 @@ export function resetPassword(id, resetToken, input)
   };
 };
 
+export function changePassword(id, {oldPassword, password})
+{
+  return async function(dispatch)
+  {
+    const data = (await axios.put(`${URL}/changepassword/${id}`, {oldPassword, password})).data;
+    return dispatch({type: "CHANGE_PASSWORD", payload: data});
+  };
+};
+
+export function EditProfile(input)
+{
+  return async function (dispatch)
+  { 
+    // console.log('aaaaaaaaaaaaaaa',input)
+    if(input.img64){
+    // const output = input.img;
+    const base64str = input.img64;
+    // console.log(base64str)
+    const b64= base64str.slice(23)
+    // console.log(b64)
+    const imgExt = input.img.type;
+    // console.log(imgExt)
+    const fileCompress = Compress.convertBase64ToFile(b64, imgExt);
+    // console.log(fileCompress)
+
+    const imageRefCompress = ref(
+      storage,
+      `images/profileImg/${input.img.name}`
+    );
+    const uploadImageCompress = await uploadBytes(
+      imageRefCompress,
+      fileCompress
+    );
+    var profileUrlCompress = await getDownloadURL(uploadImageCompress.ref);
+
+    }
+    
+    
+    const data = {
+      name: input.name,
+      lastName: input.lastName,
+      userName: input.userName,
+      email: input.email,
+      password: input.password,
+      day_of_birth: input.day_of_birth,
+      gender: input.gender,
+      img: profileUrlCompress || 'https://i.pinimg.com/564x/20/0d/72/200d72a18492cf3d7adac8a914ef3520.jpg',
+      phone: input.phone,
+      description: input.description,
+      country: input.country,
+      facebook: input.facebook,
+      instagram: input.instagram,
+      linkedIn: input.linkedIn,
+    };
+  
+    const editProfile = await axios.put(`${URL}/profile/${input.id}?apiKey=${REACT_APP_API_KEY}`,data)
+  
+    dispatch({
+      type: "EDIT_PROFILE",
+      payload: editProfile,
+    });
+  };
+};
+
+
 // ----------------------------------------------------------------------------------------------
 
 export function addLike(userData = null, idPost)
@@ -396,7 +463,7 @@ export function deleteLike(userData = null, idPost)
       await axios.delete(`${URL}/art/likes/${idPost}?idUser=${idUser}`, config);
       
       const data = (await axios(`${URL}/art/${idPost}?apiKey=${REACT_APP_API_KEY}`, config2)).data;
-      console.log('soy dataaa',data)
+      // console.log('soy dataaa',data)
       return await dispatch({type: "DELETE_LIKE", payload: data});
     };
   };
@@ -489,7 +556,7 @@ export function sendEmail(userData, values)
         headers:
         {
           authorization: `Bearer ${token}`,
-        },
+        }
       };
       await axios.post(`https://artpage.herokuapp.com/emails/send-email`, values, config);
     };
@@ -564,3 +631,201 @@ export function cleanFollowedPosts(){
   };
 }
 
+// ----------------------------  ADMIN ----------------------------
+
+// --------------- DELETE USER -------------- //
+
+export const DeleteUser = (userId) => {
+  return async function(dispatch){
+    const user = await axios.delete(`${URL}/profile/delete/${userId}?apiKey=${REACT_APP_API_KEY}`)
+    
+    dispatch({
+      type: "DeleteUser",
+      payload: user.status
+    })
+  }
+
+}
+
+// ------------- ADD CATEGORY ------------- //
+
+export const AddCategory = (value) => {
+  return async function(dispatch){
+    const category = await axios.post(`${URL}/categories`, {category:value})
+
+    dispatch({
+      type: 'AdmCategory',
+      payload: category.status
+    })
+  }
+}
+
+export const DeleteCategory = (categoryId) => {
+  return async function(dispatch){
+    const category = await axios.delete(`${URL}/categories/${categoryId}`)
+
+    dispatch({
+      type: 'AdmCategory',
+      payload: category.status
+    })
+  }
+}
+
+export const UpdateCategory = (categoryId,value) => {
+  return async function(dispatch){
+    const category = await axios.put(`${URL}/categories/${categoryId}`, {title:value})
+
+    dispatch({
+      type: 'AdmCategory',
+      payload: category.status
+    })
+  }
+}
+// ------- sumar dias ban -------------
+var fecha= new Date()
+function sumarDias(fecha){
+  let  bantime= fecha.setDate(fecha.getDate() + 4 );
+  return bantime;
+}
+
+// -------------- BAN / NO BAN USER
+
+export const banUser = (userId,userData) =>{
+  
+  return async function (dispatch){
+    
+    const userDataJson = JSON.parse(userData);
+    
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const user =  (await axios(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,config)).data.found
+      
+      // console.log('userrrrrrDATA',userData)
+    // console.log('userrrrrr',user)
+    if(user.is_banned === false){
+      const ban = {
+        is_banned: true,
+        banned_time: sumarDias(fecha)
+
+      };
+     await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,ban)
+      // console.log(sumarDias(fecha))
+     const data = (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data;
+     return dispatch({ type: "BAN_USER", payload: data });
+    
+    }else{
+      const unBan = {
+        is_banned: false,
+        banned_time: null
+      };
+     await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,unBan)
+     const data = (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data;
+     return dispatch({ type: "UNBAN_USER", payload: data });
+    }
+
+  }
+}
+
+export const getBannedUsers = (userData) =>{
+  
+  return async function (dispatch){
+    
+    const userDataJson = JSON.parse(userData);
+    
+    const token = userDataJson.token;
+    
+    const config =
+      {
+        headers:
+        {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      const users =  (await axios(`${URL}/profile?apiKey=${REACT_APP_API_KEY}`,config)).data
+
+      const data = users.filter(el=> el.is_banned)
+
+      // console.log('filtrados',data)
+      
+      return dispatch({type:"GET_BANNED_USERS",payload:data})
+      
+  }
+}
+
+
+export const GetAdmProfiles = (from = "",name = "") => {
+  if(from !== "") from = `?from=${from}`
+  if (name !== "") name = "&" + name.slice(1); 
+  return async function(dispatch){
+
+    const profiles = await axios.get(`${URL}/profile/profiles${from}${name}`)
+
+    dispatch({
+      type:'GetAdmProfiles',
+      profiles: profiles.data.profiles,
+      counter: profiles.data.counter
+    })
+  }
+}
+
+export const GetTransactions = (from = 0, name = "") => {
+  if(from !== "") from = `?from=${from}`
+  if (name !== "") name = "&" + name.slice(1); 
+
+  return async function(dispatch){
+
+    const trans = await axios.get(`${URL}/transactions${from}${name}`)
+
+    dispatch({
+      type:'GetTransactions',
+      transactions: trans.data.result,
+      counter: trans.data.counter
+    })
+  }
+
+}
+
+export const PutTransactions = (id) => {
+
+
+  return async function(dispatch){
+
+    const trans = await axios.put(`${URL}/transactions/${id}`)
+
+    dispatch({
+      type:'AdmTransaction',
+      payload: trans.status
+    })
+  }
+
+}
+
+export const CleanUsers = () => {
+ return{
+  type: "CleanUsers",
+ }
+}
+
+export const CleanTransactions = () => {
+  return{
+   type: "CleanTransactions",
+  }
+ }
+
+ export const TransactionsPost = (values)=>{
+  return async function(dispatch){
+ 
+    await axios.post(`${URL}/transactions`,values)
+
+  dispatch({
+    type:'POST_TRANSACTIONS'
+  })
+  }
+}

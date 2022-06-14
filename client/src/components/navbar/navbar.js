@@ -1,72 +1,94 @@
 // Dependencies
-import React, {useState} from 'react';
-import {NavLink} from 'react-router-dom';
-// Files
-import {SearchBar} from '../searchbar/searchbar';
-import {ImageProfile} from '../imageprofile/imageprofile';
-import s from '../navbar/navbar.module.css'
-import { CleanPosts, GetAllPosts, resetPage, SetCategoty } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
-import Usermenu from '../usermenu/usermenu';
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import Skeleton from 'react-loading-skeleton'
 
-function NavBar()
-{
-  const [Menu, setMenu] = useState(true)
+import Filters from "../../components/filters/filters"
+
+import {FiLogIn} from "react-icons/fi"
+
+// Files
+import { SearchBar } from "../searchbar/searchbar";
+import { ImageProfile } from "../imageprofile/imageprofile";
+import s from "../navbar/navbar.module.css";
+import {
+  CleanPosts,
+  GetAllPosts,
+  resetPage,
+  SetCategoty,
+} from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import Usermenu from "../usermenu/usermenu";
+
+function NavBar() {
+  const allCategories = useSelector((state) => state.categories);
+  const loader = useSelector((state) => state.loader);
+  const urls = ['http://localhost:3000/feed', 'http://localhost:3000/myfeed', 'http://localhost:3000/']
+  const [Menu, setMenu] = useState(true);
   const loggedUser = window.localStorage.getItem("userData");
   const userDataJson = JSON.parse(loggedUser);
   const id = userDataJson ? userDataJson.id : "";
   const img = userDataJson ? userDataJson.img : "";
-  const dispatch = useDispatch()
-  function handleMenu(e){
-    console.log('a')
-    e.preventDefault()
-    setMenu(!Menu)
+  const dispatch = useDispatch();
+  function handleMenu(e) {
+    console.log("a");
+    e.preventDefault();
+    setMenu(!Menu);
   }
 
   return (
-    <div className={s.container}>
-      {
-        Menu === false?(<Usermenu userID={id}></Usermenu>):(null)
-      }
-      <div className={s.left}>
-        <ul className={s.container_links}>
-          <NavLink onClick={() => {
-            dispatch(resetPage())
-            dispatch(CleanPosts)
-            dispatch(SetCategoty(null))
-            dispatch(GetAllPosts())
-            window.scrollTo(0,0)
-            }} to={'/'}><li>Inicio</li></NavLink>
-          {
-            id ? <div>
-              
-              <NavLink to={'/create'}><li>Publicar</li></NavLink>
-             <NavLink to={'/feed'}><li>Mi feed</li></NavLink>
-              </div>
+    <div className={s.General}>
+      <div className={s.container}>
+        {Menu === false ? <Usermenu userID={id}></Usermenu> : null}
+        <div className={s.left}>
+          <ul className={s.container_links}>
+            <NavLink to="/feed"
+              // href="/feed"
+              className={s.Buttons}
+              onClick={() => {
+                dispatch(resetPage());
+                dispatch(CleanPosts);
+                dispatch(SetCategoty(null));
 
-            :
-            null
-          }
-        </ul>
-      </div>
-      <div className={s.right}>
-        <div className={s.container_searchbar}>
-          <SearchBar/>
+                window.scrollTo(0, 0);
+              }}>Inicio</NavLink>
+            {id ? (
+              <a href="/myfeed" className={s.Buttons}>
+                Mi feed
+              </a>
+            ) : null}
+          </ul>
         </div>
-        <div className={s.container_image}>
-          {
-            id ? <a onClick={handleMenu}><ImageProfile image={img} bigSize={false}/></a> 
-            :
-            <div>
-            <NavLink to="/login">Iniciar sesión</NavLink>
-            <NavLink to="/register">Registarse</NavLink>
-            </div>
-          }
+        <div className={s.right}>
+          <div className={s.container_image}>
+            {id ? (
+              <a onClick={handleMenu}>
+                {allCategories.length || !loader?<ImageProfile image={img} bigSize={false} />:<Skeleton className={s.profile_skeleton} circle width={38} heigth={38}/>}
+              </a>
+            ) : (
+              <div>
+                <NavLink to="/login">Login</NavLink>
+                <NavLink to="/register">Registarse</NavLink>
+              </div>
+            )}
+          </div>
         </div>
+        <div></div>
       </div>
+      {
+        urls.includes(window.location.href)?(<div className={s.LowBar}>
+          <NavLink to="/">
+            {allCategories.length || !loader?<img src={require(`../../img/Logo222.png`)} alt="DigitalizArte"></img>:<Skeleton className={s.Logo_skeleton} baseColor = "#d0a9d0" width={280} heigth={200}/>}
+          </NavLink>
+          <div className={s.Filtros}>
+          <Filters hasorder={false}/>
+          </div>
+          <SearchBar />
+        </div>):(null)
+      }  
     </div>
   );
-};
-
+}
 
 export default NavBar;

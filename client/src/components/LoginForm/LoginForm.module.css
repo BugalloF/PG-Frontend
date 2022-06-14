@@ -12,6 +12,7 @@
   height: 420px;
   width: 550px;
   background-color: hsl(0deg 0% 100% / 78%);
+  border-radius: 15px;
 }
 
 .container_login_form h5 {
@@ -24,10 +25,12 @@
   flex-direction: column;
 }
 
-.container_login_form input {
+.Inputs {
   padding: 10px;
   margin: 10px 0;
   font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid rgb(88, 88, 88);
 }
 
 .options {
@@ -92,4 +95,13 @@
   background: white;
   border: none;
   border-radius: 5px;
+}
+
+.Alert
+{
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid red;
 }
