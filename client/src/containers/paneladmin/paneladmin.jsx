@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import s from "../paneladmin/paneladmin.module.css"
 const {REACT_APP_URL} = process.env;
 
 
@@ -8,6 +9,8 @@ const URL = REACT_APP_URL;
 
 
 const PanelAdm = () => {
+    const loggedUser = window.localStorage.getItem("userData");
+    const userDataJson = JSON.parse(loggedUser);
     const [count,setCount] = useState({
         Publicaciones: null,
         Usuarios: null,
@@ -30,28 +33,33 @@ const PanelAdm = () => {
 
 
 
-    return (
-        <div>
-            <div>
-                <h3>Usuriaros</h3>
-                <p>Usuarios registrados: {count.Usuarios}</p>
-                <NavLink to={'users'}>Ver mas</NavLink>
+    if(userDataJson.is_Admin){
+        return (
+            <div className={s.container}>
+                <div className={s.containerCount}>
+                    <h3>Usuriaros</h3>
+                    <p>Usuarios registrados: {count.Usuarios}</p>
+                    <NavLink className={s.link}  to={'users'}>Ver mas</NavLink>
+                    
+                </div>
+                <div className={s.containerCount}>
+                    <h3>Publicaciones</h3>
+                    <p>Publicaciones totales: {count.Publicaciones}</p>
+                    <NavLink className={s.link} to={'posts'}>Ver mas</NavLink>
+                </div>
+                <div className={s.containerCount}>
+                    <h3>Categorias</h3>
+                    <p>Categorias totales: {count.Categorias}</p>
+                    <NavLink className={s.link} to={'categories'}>Ver mas</NavLink>
+                </div>
+                
                 
             </div>
-            <div>
-                <h3>Publicaciones</h3>
-                <p>Publicaciones totales: {count.Publicaciones}</p>
-                <NavLink to={'posts'}>Ver mas</NavLink>
-            </div>
-            <div>
-                <h3>Categorias</h3>
-                <p>Categorias totales: {count.Categorias}</p>
-                <NavLink to={'categories'}>Ver mas</NavLink>
-            </div>
-            
-            
-        </div>
-    )
+        )
+    }else{
+
+    }
+
 }
 
 

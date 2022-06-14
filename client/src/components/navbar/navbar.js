@@ -43,7 +43,7 @@ function NavBar() {
                 dispatch(resetPage());
                 dispatch(CleanPosts);
                 dispatch(SetCategoty(null));
-                dispatch(GetAllPosts());
+
                 window.scrollTo(0, 0);
               }}>Inicio</a>
             {id ? (

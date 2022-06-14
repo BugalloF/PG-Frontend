@@ -5,10 +5,15 @@ import Filters from "../../../components/filters/filters.js";
 import { CleanPosts, CleanStatus, setPage} from "../../../redux/actions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SearchBar } from "../../../components/searchbar/searchbar.js";
-
+import s from "../posts/posts.module.css"
+import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 
 const Posts = () => {
+    const loggedUser = window.localStorage.getItem("userData");
+    const userDataJson = JSON.parse(loggedUser);
     const allPosts = useSelector((state) => state.posts);
     const status = useSelector((state) => state.status)
     const length = useSelector((state) => state.length)
@@ -28,11 +33,29 @@ const Posts = () => {
     }, [status]);
 
 
-
-    return (
-        <div>
+    if(userDataJson.is_Admin){
+      return (
+        <div className={s.container}>
+        
+            <NavLink to={'/paneladm'}><div className={s.arrow}><FontAwesomeIcon icon={faCircleArrowLeft}/></div></NavLink>
+    
             <Filters hasorder={false}/>
-            <SearchBar/>
+       
+
+            <div>
+        <ul className={s.list}>
+            <li>Perfil</li>
+            <li>Precio</li>
+            <li>Titulo</li>
+            <li>Categoria</li>
+            <li>Like</li>
+            <li>Imagen</li>
+            <li>Borrar</li>
+            
+        </ul>
+       </div>
+
+       <div className={s.searchbar}><SearchBar/></div>
     
 
 
@@ -70,7 +93,12 @@ const Posts = () => {
             
         </div>
     )
-}
+
+    }else{
+
+    }
+
+  }
 
 
 export default Posts

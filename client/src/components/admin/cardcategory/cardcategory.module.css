@@ -1,19 +1,73 @@
+
+
 .list{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
+    background-color:  rgb(246, 246, 246);
 
-   
-    
+  
 
 }
 
 .list li{
   
     margin: 10px;
-    width: 200px;
+    width: 150px;
     list-style: none;
     text-align: center;
+    height: 50px;
+    color: black;
+
+
+  
     
+}
+
+.buttonedit p{
+    color:black;
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+
+.buttonedit{
     
+    color: rgb(213, 180, 243);
+    font-size: 15px;
+    cursor: pointer;
+    
+}
+
+.buttondelete{
+    margin-top: 15px    ;
+    color: rgb(213, 180, 243);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.buttonconfirm{
+    margin-top: 15px;
+    font-size: 15px;
+    background-color: rgb(213, 180, 243);
+    width: 100px;
+    height: 21px;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 10px 0 10px;
+    text-align: center;
+
+
+}
+
+.input{
+    height:16px;
+    border: 1.3px solid  rgb(189, 188, 188);
+
+}
+
+.input:focus{
+
+    outline: none;
 }

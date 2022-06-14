@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { DeleteCategory, UpdateCategory } from "../../../redux/actions";
 import s from "../cardcategory/cardcategory.module.css"
+import { faCircleXmark, faPenSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 
@@ -13,14 +15,16 @@ const CardCategory = ({category, categoryId}) => {
     return (
         <div>
             <ul className={s.list}>
-                <li>{category}</li>
-                <li><button 
+                <li><p>{category}</p></li>
+                <li><div
+                className={s.buttondelete} 
                 onClick={() => {
                     dispatch(DeleteCategory(categoryId))
-                }}>x</button></li>
-                <li><button
-                onClick={()=> setIsEdit(true)}
-                >editar</button></li>
+                }}><FontAwesomeIcon icon={faCircleXmark}/></div></li>
+                <li><div
+                className={s.buttonedit}
+                onClick={()=> setIsEdit(!isEdit)}
+                ><p>editar</p><FontAwesomeIcon icon={faPenSquare}/></div></li>
 
                 {
                     isEdit ? 
@@ -33,14 +37,17 @@ const CardCategory = ({category, categoryId}) => {
                     >
                        
                        <input
+                       className={s.input}
                        value= {input}
                        onChange= {(e) => setInput(e.target.value)}
                        type="text"  />
-                       <button type="submit">confirmar</button>
+                       <div className={s.buttonconfirm} type="submit">confirmar</div>
                       
                     </form> 
-                    :
-                    null
+                    :(
+                        <li></li>
+                       
+                    )
                 } 
             </ul>
         </div>
