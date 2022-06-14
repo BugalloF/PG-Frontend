@@ -28,16 +28,32 @@ export function Detail(props) {
   }
   function handleDelete(e){
     e.preventDefault()
-    dispatch(DeleteArtwork(props.idPost))
+    swal({
+      title: "¿Estás seguro que quieres eliminar tu publicación?",
+      text: "No podrás recuperarla más tarde",
+      icon: "warning",
+      buttons: [
+        'No',
+        'Si'
+      ],
+      dangerMode: true,
+    }).then(function(isConfirm) {
+      if (isConfirm) {
+        dispatch(DeleteArtwork(props.idPost))
+        navigate("/");
+        swal({
+          text: 'Publicación eliminada correctamente!',
+          icon: 'success'
+        })
+      } else {
+        swal("Cancelado", "Tu obra no fue eliminada", "error");
+      }
+    })
   }
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if(status === 200){
-     swal("La obra fue eliminada correctamente!");
-     navigate("/");
-    }
     dispatch(CleanStatus())
   }, [status]);
   
