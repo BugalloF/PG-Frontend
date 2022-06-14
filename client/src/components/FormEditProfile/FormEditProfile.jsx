@@ -277,17 +277,17 @@ function FormEditProfile()
                 errors.description && errors.description
               }
               
-              <input onChange={handleChange} className={errors.facebook ? s.Alert : s.Inputs} type="text" placeholder="Facebook. Ej: www.facebook.com/usuario" name="facebook" value={input.facebook}/>
+              <input onChange={handleChange} className={errors.facebook ? s.Alert : s.Inputs} type="text" placeholder="Facebook. Ej: facebook.com/usuario" name="facebook" value={input.facebook}/>
               {
                 errors.facebook && errors.facebook
               }
               
-              <input onChange={handleChange} className={errors.instagram ? s.Alert : s.Inputs} type="text" placeholder="Instagram Ej: www.instagram.com/usuario" name="instagram" value={input.instagram}/>
+              <input onChange={handleChange} className={errors.instagram ? s.Alert : s.Inputs} type="text" placeholder="Instagram Ej: instagram.com/usuario" name="instagram" value={input.instagram}/>
               {
                 errors.instagram && errors.instagram
               }
               
-              <input onChange={handleChange} className={errors.linkedIn ? s.Alert : s.Inputs} type="text" placeholder="LinkedIn Ej: www.linkedin.com/in/usuario" name="linkedIn" value={input.linkedIn}/>
+              <input onChange={handleChange} className={errors.linkedIn ? s.Alert : s.Inputs} type="text" placeholder="LinkedIn Ej: linkedin.com/in/usuario" name="linkedIn" value={input.linkedIn}/>
               {
                 errors.linkedIn && errors.linkedIn
               }
