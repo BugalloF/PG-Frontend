@@ -24,7 +24,7 @@ import Usermenu from "../usermenu/usermenu";
 function NavBar() {
   const allCategories = useSelector((state) => state.categories);
   const loader = useSelector((state) => state.loader);
-  const urls = ['http://localhost:3000/feed']
+  const urls = ['https://pg-frontend-eight.vercel.app/feed','http://localhost:3000/feed']
   const [Menu, setMenu] = useState(true);
   const loggedUser = window.localStorage.getItem("userData");
   const userDataJson = JSON.parse(loggedUser);
@@ -32,7 +32,7 @@ function NavBar() {
   const img = userDataJson ? userDataJson.img : "";
   const dispatch = useDispatch();
   function handleMenu(e) {
-    console.log("a");
+    // console.log("a");
     e.preventDefault();
     setMenu(!Menu);
   }
@@ -64,7 +64,7 @@ function NavBar() {
           <div className={s.container_image}>
             {id ? (
               <a onClick={handleMenu}>
-                {allCategories.length || !loader?<ImageProfile image={img} bigSize={false} />:<Skeleton className={s.profile_skeleton} circle width={38} heigth={38}/>}
+                {<ImageProfile image={img} bigSize={false} />}
               </a>
             ) : (
               <div>
@@ -78,7 +78,7 @@ function NavBar() {
       </div>
         <div className={s.LowBar}>
           <NavLink to="/">
-            {allCategories.length || !loader?<img src={require(`../../img/Logo222.png`)} alt="DigitalizArte"></img>:<Skeleton className={s.Logo_skeleton} baseColor = "#d0a9d0" width={280} heigth={200}/>}
+            {<img src={'https://firebasestorage.googleapis.com/v0/b/artpage-aa77e.appspot.com/o/aa%2FLogo222.png?alt=media&token=8fa86748-ede3-4a0f-8bf1-e72cd455b1f4'} alt="DigitalizArte"></img>}
           </NavLink>
           {urls.includes(window.location.href)?(
             <div className={s.Filtros}>

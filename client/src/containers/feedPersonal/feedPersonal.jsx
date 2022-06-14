@@ -24,6 +24,7 @@ const MyFeed = () => {
   const page = useSelector((state) => state.page);
   const notFound = useSelector((state) => state.notFound);
 
+
   useEffect(() => {
       dispatch(getFollowedPost(page,loggedUser))
   }, [page])
