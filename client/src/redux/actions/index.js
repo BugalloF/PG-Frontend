@@ -23,7 +23,7 @@ export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
     by = "&by=" + by ;
     type = "&type=" + type;
   }
-  console.log(      `${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
+  // console.log(      `${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
   return async function (dispatch) {
     const allposts = await axios.get(
       `${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
@@ -46,7 +46,7 @@ export const GetRecoPosts = (page = 0,category ,) => {
  const type = "&type=DESC"
 
   category = "&category=" + category
-  console.log(`${URL}/filter/category?from=${page}${category}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
+  // console.log(`${URL}/filter/category?from=${page}${category}${by}${type}&apiKey=${REACT_APP_API_KEY}`)
   return async function (dispatch) {
   const allposts = await axios.get(
     `${URL}/filter/category?from=${page}${category}${by}${type}&apiKey=${REACT_APP_API_KEY}`
@@ -137,11 +137,15 @@ export const Post = (input) => {
       resize: false, // defaults to true, set false if you do not want to resize the image width and height
       rotate: false, // See the rotation section below
     });
-
     const output = post[0];
+    // console.log(output)
     const base64str = output.data;
+    // console.log('DEMIIII',base64str)
     const imgExt = output.ext;
+    // console.log('DEMIIII',imgExt)
+
     const fileCompress = Compress.convertBase64ToFile(base64str, imgExt);
+    // console.log('DEMIIII',fileCompress)
 
     const watermarked = await watermark([fileCompress])
     .blob(watermark.text.center('DigitalizArte', '48px serif', '#fff', 0.6));
@@ -339,7 +343,30 @@ export function resetPassword(id, resetToken, input)
 export function EditProfile(input)
 {
   return async function (dispatch)
-  {
+  { 
+    // console.log('aaaaaaaaaaaaaaa',input)
+
+    // const output = input.img;
+    const base64str = input.img64;
+    // console.log(base64str)
+    const b64= base64str.slice(23)
+    // console.log(b64)
+    const imgExt = input.img.type;
+    // console.log(imgExt)
+    const fileCompress = Compress.convertBase64ToFile(b64, imgExt);
+    // console.log(fileCompress)
+
+    const imageRefCompress = ref(
+      storage,
+      `images/profileImg/${input.img.name}`
+    );
+    const uploadImageCompress = await uploadBytes(
+      imageRefCompress,
+      fileCompress
+    );
+    const urlCompress = await getDownloadURL(uploadImageCompress.ref);
+
+    
     const data = {
       name: input.name,
       lastName: input.lastName,
@@ -348,7 +375,7 @@ export function EditProfile(input)
       password: input.password,
       day_of_birth: input.day_of_birth,
       gender: input.gender,
-      img: input.img,
+      img: urlCompress,
       phone: input.phone,
       description: input.description,
       country: input.country,
@@ -425,7 +452,7 @@ export function deleteLike(userData = null, idPost)
       await axios.delete(`${URL}/art/likes/${idPost}?idUser=${idUser}`, config);
       
       const data = (await axios(`${URL}/art/${idPost}?apiKey=${REACT_APP_API_KEY}`, config2)).data;
-      console.log('soy dataaa',data)
+      // console.log('soy dataaa',data)
       return await dispatch({type: "DELETE_LIKE", payload: data});
     };
   };

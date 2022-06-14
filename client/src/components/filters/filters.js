@@ -7,6 +7,7 @@ import {
   GetCategotyPosts,
   resetPage,
   CleanPosts,
+  profile,
 } from "../../redux/actions";
 import { useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
@@ -19,6 +20,9 @@ const Filters = ({hasorder}) => {
   const allCategories = useSelector((state) => state.categories);
   const page = useSelector((state) => state.page);
   const name = useLocation();
+  const loggedUser = window.localStorage.getItem("userData");
+  const userDataJson = JSON.parse(loggedUser);
+
   const [order,setOrder] = useState({
     by: "",
     type: ""
@@ -39,8 +43,10 @@ const Filters = ({hasorder}) => {
 
       if(category){
         dispatch(GetCategotyPosts(page,category,order.by,order.type));
+        dispatch(profile(loggedUser,userDataJson.id))
       }else {
         dispatch(GetAllPosts(page,name.search, order.by, order.type));
+        dispatch(profile(loggedUser,userDataJson.id))
       }
        
   }, [page,name.search,order,category]);
