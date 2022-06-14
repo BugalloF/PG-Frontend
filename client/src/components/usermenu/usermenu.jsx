@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React from "react";
 import s from "./usermenu.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -6,6 +6,13 @@ import { faUser , faUsers, faBagShopping, faPlus, faRightFromBracket} from "@for
 
 const Usermenu = ({userID}) => {
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
+  const navigate = useNavigate()
+  function handleOnClick(e){
+    e.preventDefault();
+    window.localStorage.clear();
+    navigate("/login");
+  }
+
   return (
     <div className={s.UserMenu}>
      <ul className={s.Lista}>
@@ -29,9 +36,11 @@ const Usermenu = ({userID}) => {
             <FontAwesomeIcon icon={faUsers} className={s.icon}  /> Sobre nosotros
           </li>
         </Link>
+        <Link to={`/login`} onClick={handleOnClick} style={{textDecoration: 'none'}}>
           <li>
-            <FontAwesomeIcon icon={faRightFromBracket} className={s.icon}  /> Desconectarse
+              <FontAwesomeIcon icon={faRightFromBracket} className={s.icon}  /> Desconectarse
           </li>
+        </Link>
      </ul>
     </div>
   );

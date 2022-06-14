@@ -1,0 +1,38 @@
+.list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    background-color: rgb(213, 180, 243);
+    color: #fff
+    
+   
+    
+
+}
+
+.list li{
+  
+    margin: 10px;
+    width: 150px;
+    list-style: none;
+    text-align: center;
+    
+    
+}
+
+.container{
+    width: 95%;
+    margin: auto;;
+}
+
+.searchbar{
+    height: 50px;
+    width: 300px;
+}
+
+.arrow{
+    font-size: 35px;
+    color: rgb(103, 102, 102);
+    margin-top: 10px;
+}

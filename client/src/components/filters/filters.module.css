@@ -3,8 +3,10 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    width: 100vw;
+    width: 50vw;
     gap: 20px;
+    position: absolute;
+    top: -47px;
 }
 
 .CategoryBTN{
@@ -23,13 +25,15 @@
     overflow: hidden;
     border-radius: 5px;
     border: none;
-    background-color: #8d959c
+    background-color: transparent;
+    font-family: Helvetica;
  
 }
 .CategoryBTN:hover {
     border-radius: 5px;
     padding-right: 24px;
     padding-left:8px;
+    background-color: rgba(132, 126, 138, 0.651)
   }
   .CategoryBTN:hover:after {
     opacity: 1;
@@ -49,15 +53,25 @@
 
 .OrderZone{
 	margin: 30px 0;
+
 }
 
 .OrderSelect{
     background-color: #fff;
     border: 1px solid #8f8f8f;
     font-family: Helvetica;
-    font-size: 15px;
-    margin: 0 10px;
-    padding: 4px 15px;		
+    font-size: 12px;
+    margin: -10px 10px;
+
+    padding: 4px 25px;	
+    background-color: transparent;
+    border: 1px solid #AAA;
+    border-radius: 2px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+    color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;	
 }
 
 .OrderZone{
@@ -65,3 +79,4 @@
   align-items: center;
   justify-content: center;
 }
+

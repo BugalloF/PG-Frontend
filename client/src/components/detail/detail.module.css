@@ -99,3 +99,8 @@ button {
 	height: 25px;
 	width: 150px;
 }
+
+.EditButton .a
+{
+	text-decoration: none;
+}

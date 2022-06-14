@@ -28,8 +28,10 @@ function ProfilePage()
     return () => {
       dispatch(CleanProfile());
     };
-  }, []);
+  }, [profileId]);
   
+
+
   function handleLogout(e)
   {
     e.preventDefault();

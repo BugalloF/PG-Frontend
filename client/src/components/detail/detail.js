@@ -6,10 +6,10 @@ import {NavLink,useNavigate} from 'react-router-dom';
 import swal from "sweetalert";
 // Files
 import {ImageProfile} from "../imageprofile/imageprofile";
-import Paypal from "../paypal/paypall";
+import Paypal from "../paypal/paypal";
 import s from "./detail.module.css";
 import { useDispatch,useSelector } from "react-redux";
-import { addLike, CleanStatus, DeleteArtwork, deleteLike } from "../../redux/actions";
+import { addLike, CleanDetail, CleanProfile, CleanStatus, DeleteArtwork, deleteLike } from "../../redux/actions";
 
 export function Detail(props) {
   const dispatch = useDispatch();
@@ -28,18 +28,35 @@ export function Detail(props) {
   }
   function handleDelete(e){
     e.preventDefault()
-    dispatch(DeleteArtwork(props.idPost))
+    swal({
+      title: "¿Estás seguro que quieres eliminar tu publicación?",
+      text: "No podrás recuperarla más tarde",
+      icon: "warning",
+      buttons: [
+        'No',
+        'Si'
+      ],
+      dangerMode: true,
+    }).then(function(isConfirm) {
+      if (isConfirm) {
+        dispatch(DeleteArtwork(props.idPost))
+        navigate("/feed");
+        swal({
+          text: 'Publicación eliminada correctamente!',
+          icon: 'success'
+        })
+      } else {
+        swal("Cancelado", "Tu obra no fue eliminada", "error");
+      }
+    })
   }
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if(status === 200){
-     swal("La obra fue eliminada correctamente!");
-     navigate("/");
-    }
     dispatch(CleanStatus())
   }, [status]);
+
   
   if(props !== undefined){
   return(
@@ -60,7 +77,7 @@ export function Detail(props) {
         <div className={s.buttons_rigth}>
           <div className={s.Paypal}>
             pagar con paypal
-          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title}/>
+          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} idSeller={props.profileId} userSeller={props.user} userPayer={props.userName} email={props.emailSeller} />
           </div>
           { 
             userDataJson!== null ? props.isLiked === false ? 
@@ -84,7 +101,15 @@ export function Detail(props) {
           }
           <div>
             {
-              props.profileId === id ? <div> <NavLink to={`/edit/${props.idPost}`}><button>Editar</button></NavLink> <button onClick={handleDelete}>Eliminar</button> </div>: null
+              props.profileId === id ?
+              <div className={s.EditButton}>
+                <NavLink to={`/edit/${props.idPost}`} style={{textDecoration: "none"}}>
+                  <button>Editar</button>
+                </NavLink>
+                <button onClick={handleDelete}>Eliminar</button>
+              </div>
+              :
+              null
             }
           </div>
         </div>

@@ -3,10 +3,10 @@ import s from "./loginCarousel.module.css";
 
 const LoginCarousel = ({ imgs }) => {
   const images = [
-    "https://rochester.kidsoutandabout.com/sites/default/files/digitalartadvanced.png",
-    "https://as1.ftcdn.net/v2/jpg/01/99/42/28/1000_F_199422875_2RLcAaIQ6S2G0yis7okytByh1SaB2ZNv.jpg",
-    "https://cdnb.artstation.com/p/assets/images/images/031/147/759/large/andz-apilado-06-artfantasy2.jpg?1602741355",
-    "https://wallpaperaccess.com/full/7280506.jpg",
+    "https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/3906112/pexels-photo-3906112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/7120424/pexels-photo-7120424.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/3311473/pexels-photo-3311473.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   ];
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
   return (

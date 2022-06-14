@@ -1,10 +1,11 @@
 const initialState = {
   posts: [],
   followedPosts:[],
+  transactions: [],
   search:[],
   recommended: [],
   status: null ,
-  length: 0,
+  length: null,
   page: 0,
   category: null,
   categories:[],
@@ -19,7 +20,7 @@ const initialState = {
 
 
 function rootReducer(state = initialState, action) {
-  console.log(action)
+  // console.log(action)
   switch (action.type) {
     case "GetPosts":
       if (state.page === 0) {
@@ -154,6 +155,16 @@ function rootReducer(state = initialState, action) {
         ...state,
         profile: {},
       };
+    case "CleanTransactions":
+        return {
+          ...state,
+          transactions: [],
+        };
+      case "CleanUsers":
+        return {
+          ...state,
+          users:[],
+        };
     
     case "CleanPosts":
       return {
@@ -214,6 +225,65 @@ function rootReducer(state = initialState, action) {
         followedPosts: [],
         loader:true
       }
+      case "DeleteUser":
+        return {...state,
+          status:action.payload 
+        }
+
+        
+    case "AdmCategory":
+      return{
+        ...state,
+        status:action.payload,
+
+      }
+      case "AdmTransaction":
+        return{
+          ...state,
+          status:action.payload
+        }
+
+    case "GetTransactions":
+      if(state.page === 0){
+        return {
+          ...state,
+          transactions: action.transactions,
+          length: action.counter,
+          hasMore:true
+        }
+      }else{
+        return {
+          ...state,
+          transactions:  [...state.transactions, ...action.transactions],
+          length: action.counter,
+          hasMore:true
+        }
+      }
+
+    case "GetAdmProfiles":
+      if(state.page === 0){
+        return{
+          ...state,
+          users:action.profiles,
+          length: action.counter,
+          hasMore: true
+        }
+
+      }else{
+        return {
+          ...state,
+          users:[...state.users, ...action.profiles],
+          length: action.counter,
+          hasMore: true
+        }
+      }
+        case "BAN_USER":
+            return {...state, users: action.payload};
+        case "UNBAN_USER":
+              return {...state, users: action.payload};
+        case "GET_BANNED_USERS":
+              return {...state, users: action.payload};  
+
     default:
       return {...state};
   };
