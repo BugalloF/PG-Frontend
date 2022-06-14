@@ -28,7 +28,7 @@ function ProfilePage()
     return () => {
       dispatch(CleanProfile());
     };
-  }, []);
+  }, [profileId]);
   
 
 
