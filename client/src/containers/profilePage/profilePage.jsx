@@ -30,6 +30,8 @@ function ProfilePage()
     };
   }, []);
   
+
+
   function handleLogout(e)
   {
     e.preventDefault();

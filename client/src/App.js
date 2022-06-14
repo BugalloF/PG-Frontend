@@ -18,6 +18,12 @@ import MyFeed from "./containers/feedPersonal/feedPersonal";
 import Update from "./components/formUpdate/Update";
 import FormEditProfile from "./components/FormEditProfile/FormEditProfile";
 
+import PanelAdm from "./containers/paneladmin/paneladmin";
+import Posts from "./containers/paneladmin/posts/posts";
+import Users from "./containers/paneladmin/users/users";
+import BannedUsers from "./containers/paneladmin/users/bannedUsers";
+import Categories from "./containers/paneladmin/categories/categories";
+
 
 
 function App() {
@@ -26,6 +32,12 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path={'/'} element={[<NavBar/>,<LandingPage/>]}/>
+        <Route exact path={'/paneladm/bannedusers'} element={[<NavBar/>,<BannedUsers/>]}/>
+        <Route exact path={'/paneladm/categories'} element={[<NavBar/>,<Categories/>]}/>
+        <Route exact path={'/paneladm/users'} element={[<NavBar/>,<Users/>]}/>
+        <Route exact path={'/paneladm/posts'} element={[<NavBar/>,<Posts/>]}/>
+        <Route exact path={'/paneladm'} element={[<NavBar/>,<PanelAdm/>]}/>
+        <Route exact path={'/'} element={[<NavBar/>,<FeedPage/>]}/>
         <Route exact path={'/profile/:profileId'} element={[<NavBar/>,<ProfilePage/>]}/>
         <Route exact path={'/profile/editProfile/:profileId'} element={[<NavBar/>,<FormEditProfile/>]}/>
         <Route exact path={'/create'} element={[<NavBar/>,<PostForm/>]}/>
