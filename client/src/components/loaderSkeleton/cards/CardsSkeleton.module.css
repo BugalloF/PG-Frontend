@@ -1,0 +1,6 @@
+.container_cards_skeleton{
+	    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+    justify-content: center
+}

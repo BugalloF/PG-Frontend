@@ -97,7 +97,7 @@ function LoginForm()
                     
                     setUser(userData);
                     // ------------------------------------------------------
-                    swal("Loged.");
+                    swal("Sesión iniciada.");
                     navigate("/");
                 };
             }

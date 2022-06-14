@@ -2,15 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
 
 .LandingPage{
+    position: absolute;
+    height: 100vh;
+    top: 0;
     background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
-    
 }
 .LandingImg{
     position: relative;
     width: 80vw;
     background-color: aqua;
     margin: auto;
-    top: 0;
+    top: 140px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -52,25 +54,12 @@
     top: 83%;
     margin: auto;
 }
-/* .LandingImg :nth-child(5){
-    color: white;
-    font-size: 30px;
-    position: absolute;
-    width: fit-content;
-    left: 0;
-    right: 0;
-    top: 96%;
-    margin: auto;
-    background-color: rgb(194, 52, 47);
-    font-family: 'Prata', serif;
-    padding: 10px 20px;
-} */
 
 .LandingImg :nth-child(5):hover{
     opacity: 0.9;
 }
 .Filters{
-    margin-top: 50px;
+    margin-top: 190px;
 }
 
 .LandingImg :nth-child(5){

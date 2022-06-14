@@ -4,7 +4,8 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	align-items: flex-start;
+	height: 650px;
+	width: 1000px;
 }
 
 button {
@@ -14,23 +15,20 @@ button {
 .container_detail{
 	display: flex;
 	flex-direction: row;
-	
-
-
-
 }
 
 .container_detail .img{
-	width: 100%;
-	max-width: 600px;
+	object-fit: scale-down;
+	width: 55vh;
+	height: 55vh;
 }
 
 .container_rigth{
+	background-color: #b0aeae;
+	margin-left: 30px;
 	display: flex;
 	flex-direction: column;
-	padding: 0 50px;
-	
-	
+	padding: 0 50px;	
 }
 
 
@@ -100,4 +98,9 @@ button {
 	background-color: rgb(39, 216, 119);
 	height: 25px;
 	width: 150px;
+}
+
+.EditButton .a
+{
+	text-decoration: none;
 }

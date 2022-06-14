@@ -11,6 +11,7 @@ import {
 import { useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import s from "./filters.module.css";
+import FiltersSkeleton from "../loaderSkeleton/Filters/FiltersSkeleton"
 
 
 const Filters = ({hasorder}) => {
@@ -49,6 +50,8 @@ const Filters = ({hasorder}) => {
 
 
     return (
+      <>
+      {allCategories.length?
       <div className={s.Container_filter}>
 
         <div className={s.FilterZone}>
@@ -108,7 +111,8 @@ const Filters = ({hasorder}) => {
  }
 
       </div>
-      
+      :<FiltersSkeleton/>}
+      </>      
     );
 };
 export default Filters;
