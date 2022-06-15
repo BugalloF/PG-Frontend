@@ -41,12 +41,14 @@ const Card = ({postId, img, userId, userName, userImg, country, price, title}) =
         <h5 className={s.title2}>{title}</h5>
         
       <div className={s.Profile}>
+
       <NavLink 
       style={{textDecoration: "none"}}
       onClick={!loggedUser && handlerOnLogin}
       to={`/profile/${userId}`}>
       <div className={s.name}>{userName}</div>
       </NavLink>
+
       </div>
      
         </div>
