@@ -5,12 +5,13 @@
     margin: 10px;
     display: inline-block;
     position: relative;
-    height: 450px;
+    height: 405px;
     min-width: 150px;
     max-width: 1280px;
     object-fit: contain;
-    overflow: hidden;   
-    background-image: linear-gradient(to top, #a8ede93a 0%, #fed6e354 10%);
+    overflow: hidden;
+ 
+    
     
 }
 .Card:hover {
@@ -19,48 +20,45 @@
 
 .Image{
     height: 350px;
-    text-align: left;
-    opacity: 0.9;
+  
+
 }
 
 .UserName{
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    padding: 8px 5px;
-    height: 40px;
+    align-items: stretch;
+    flex-direction: row-reverse;
+    height: 50px;
+    background-color:#3b4044;
 }
 
 .Name{
     padding: 10px 0px
 }
 
-.Card .Price{
-    background-color: rgb(132, 132, 132);
-    font-size: 15px;
+.Price{
+    display: inline-block;
+
     height: 20px;
     font-weight: 600;
-    color:#fff;
-    padding: 2px 4px;
+    margin: 0 10px 0 0 ;
+    font-size: 14px;
+    font-style: italic;
+    color: white;
 }
 
-.Card .Title{
-    font-size: 28px;
-    color:rgba(149, 147, 147, 0.829);
-}
 
-.Left{
-    display: flex;
-    flex-direction: row;
-}
-.Left ol{
-    text-decoration: none;
-    list-style: none;
-    margin: 0;
-    padding: 0px 8px;
-}
-.Right{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+
+
+.title2, .name {
+    margin:  0 0 0 10px;
+    font-weight: 300;
+    font-size: 14px;
+    color: white;
+ 
+
 }

@@ -1,8 +1,8 @@
 .big_image{
     object-fit: cover;
     overflow: hidden; 
-    width: 55px;
-    height: 55px;
+    width: 30px;
+    height: 30px;
     border-radius: 100%;
 }
 
@@ -20,24 +20,9 @@
     flex-direction: row;
 }
 
-.container .text{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    padding: 8px;
-}
+.container p{
+    margin-left: 7px;
 
-.container .text h1{
-    margin: 0;
-    font-size: 22px;
-    font-weight: 500;
-    color:#000;
-}
-
-.container .text span{
-    font-size: 20px;
-    color:hsl(0deg 1% 61%);
-    
 }
 
 

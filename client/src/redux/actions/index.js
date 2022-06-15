@@ -123,17 +123,15 @@ export const Post = (input) => {
   return async function (dispatch) {
     const post = await compress.compress(input.input, {
       size: 4, // the max size in MB, defaults to 2MB
-      quality: 0.25, // the quality of the image, max is 1,
-      maxWidth: 1280, // the max width of the output image, defaults to 1920px
-      maxHeight: 1280, // the max height of the output image, defaults to 1920px
-      resize: true, // defaults to true, set false if you do not want to resize the image width and height
+      quality: 0.80, // the quality of the image, max is 1,
+
+      resize: false, // defaults to true, set false if you do not want to resize the image width and height
       rotate: false, // See the rotation section below
     });
     const postFull = await compress.compress(input.img, {
       size: 20, // the max size in MB, defaults to 2MB
       quality: 1, // the quality of the image, max is 1,
-      maxWidth: 1280, // the max width of the output image, defaults to 1920px
-      maxHeight: 1280, // the max height of the output image, defaults to 1920px
+
       resize: false, // defaults to true, set false if you do not want to resize the image width and height
       rotate: false, // See the rotation section below
     });

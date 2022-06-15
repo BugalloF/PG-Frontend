@@ -1,7 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Charm:wght@700&display=swap");
 
-.General
-{
+
+.General{
     position: sticky;
     top: 0;
     z-index: 10;
@@ -10,12 +9,12 @@
     gap: 0;
     margin: 0;
     padding: 0;
-    background-color: #fed6e3ce;
-}
+    background-color:   rgba(175, 171, 172, 0.108);
 
-.container
-{
-    background-color: #322d33d0;
+  
+}
+.container {
+    background-color:#3b4044;
     width: 100%;
     height: 100%;
     height: 50px;
@@ -24,8 +23,7 @@
     border-bottom: 1.4px solid rgb(189, 188, 188);
 }
 
-.container_links li
-{
+.container_links li{
     display: inline-block;
     height: 100%;
     padding:2px  9px;
@@ -37,61 +35,52 @@
     font-weight: 500;
 }
 
-.Buttons
-{
+.Buttons{
   text-decoration: none;
   margin-right: 0px;
   font-size: 20px;
   color: white;
   padding: 4px 25px;
-  font-family: "Charm";
+
   cursor: pointer;
+
 }
 
-.Buttons:hover
-{
+.Buttons:hover{
     cursor: pointer;
     border-bottom: 2px solid rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.199);
 }
 
-.container_links
-{
+.container_links{
     font-size: 13px;
     margin-left: -25px;
 }
 
-.searchBar{
+.container_searchbar{
     height: 100%;
-    width: 300px;
-    margin-right: 90px;
-    margin-top: 10px;
+    width: 45%;
 }
 
-.container_image
-{
+.container_image{
     margin: 6px 10px;
-    cursor: pointer;
 }
 
-.left
-{
+.left{
     width: 50%;
     height: 100%;
     display: flex;
     justify-content: flex-start
 }
 
-.right
-{
+.right{
     width: 50%;
     height: 100%;
     display: flex;
     justify-content: flex-end
 }
 
-.LowBar
-{
+.LowBar{
     position: relative;
     padding: 0px 0px;
     display: flex;
@@ -101,36 +90,37 @@
     width: 100vw;
     height: 55px;
     background-color: transparent;
-    box-shadow: 0px 1px 10px  #e7c0ccce;;
+
+
 }
 
-.Filtros
-{
+.Filtros{
     position: absolute;
     top: 0px;
     left: 0;
     right: 0;
     margin: auto;
-    width: 50vw;
+    width: 50vw;   
 }
 
-.LowBar img
-{
+.LowBar img{
     position: absolute;
-    height: 75px;
-    filter: saturate(180%);
-    padding-left: 30px;
-    top: 6px;
+  height: 75px;
+  filter: saturate(180%);
+  padding-left: 30px;
+  top: 6px;
 }
 
-.Logo_skeleton
-{
+.Logo_skeleton{
     min-height: 70px;
     margin-left: 120px;
 }
-
-.profile_skeleton
-{
+.profile_skeleton{
     min-width: 38px;
     min-height: 38px;
+}
+
+.searchbar{
+    width: 300px;
+    margin-right: 20px;
 }
