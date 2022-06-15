@@ -79,7 +79,25 @@ export function Detail(props) {
       <div className={s.container_detail}>
         
         <img src={props.image} alt="IMAGEN" className={s.img} />
-        <div className={s.buttons}>
+
+ 
+        
+        <div className={s.container_rigth}>
+        <div className={s.ProfileZone}>
+        <p>{props.user}</p>
+		        <ImageProfile image={props.profile.img} bigSize={true}/>
+         
+		      </div>
+        <h1 className={s.title}>{props.title}</h1>
+      
+          <div className={s.PriceZone}>
+          <h1>$ {props.price}</h1>
+          </div>
+         
+          <p>{props.description}</p>
+          <div className={s.paypal}>
+          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} idSeller={props.profileId} userSeller={props.user} userPayer={userDataJson?.userName} email={props.emailSeller} />
+          <div className={s.buttons}>
         
 
         { 
@@ -123,22 +141,7 @@ export function Detail(props) {
         </div>
     
     </div>
-        
-        <div className={s.container_rigth}>
-        <div className={s.ProfileZone}>
-        <p>{props.user}</p>
-		        <ImageProfile image={props.profile.img} bigSize={true}/>
-         
-		      </div>
-        <h1>{props.title}</h1>
-      
-          <div className={s.PriceZone}>
-          <h1>$ {props.price}</h1>
-          </div>
-         
-          <p>{props.description}</p>
-          <div >
-          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} idSeller={props.profileId} userSeller={props.user} userPayer={userDataJson?.userName} email={props.emailSeller} />
+
           </div>
 
     

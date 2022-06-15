@@ -21,6 +21,11 @@ button {
 
 }
 
+.title{
+	font-size: 23px;
+	margin-left: 20px;
+}
+
 .container_detail .img{
 	background-color: #ebebeb;
 	object-fit: scale-down;
@@ -33,7 +38,7 @@ button {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	width: 480px;
+	width: 290px;
 	padding: 0 5px;	
 }
 
@@ -61,12 +66,16 @@ button {
 
 .container_rigth p{
 	max-width: 500px;
-	font-size: 20px;
+	font-size: 15px;
+	margin-left: 20px;
 }
 
 
 .buttons{
 	position:absolute;
+	right:45px;
+	bottom: 32px
+
 	
 }
 
@@ -76,13 +85,17 @@ button {
 .icon {
 	font-size: 25px;
 	color: #3b4044;
+	transition: 0.9s all;
+	
 
 
 }
 
-.buttons_rigth button:hover {
-	background-color: #e9e9e9;
+.icon:hover{
+    color: rgb(134, 125, 125);
 }
+
+
 
 .ProfileZone
 {
@@ -108,4 +121,17 @@ button {
 
 	font-size: 25px;
 	color: #651705;
+	transition: 0.9s all;
+
+}
+
+.iconilike:hover{
+	color: rgb(134, 125, 125);
+}
+
+.paypal{
+	height: 300px;
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
 }
