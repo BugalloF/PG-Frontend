@@ -79,25 +79,37 @@ function ChangePassword()
     if(Object.keys(validate(input)).length > 0)
     {
       e.preventDefault();
-      swal("Por favor, complete todos los campos correctamente.");
+      swal({
+        text: "Por favor, complete todos los campos correctamente.",
+        icon: "warning",
+    });
     }
     else
     {
       if(foundPassword)
       {
         e.preventDefault();
-        const data = await dispatch(changePassword(profileId, input)).catch(swal("La contraseña ingresada es incorrecta."));
+        const data = await dispatch(changePassword(profileId, input)).catch(swal({
+          text: "La contraseña ingresada es incorrecta.",
+          icon: "warning",
+        }));
         
         if(data !== true)
         {
-          swal("Su contraseña ha sido actualizada.");
+          swal({
+            text: "Su contraseña ha sido actualizada.",
+            icon: "success",
+          });
           navigate(`/profile/editProfile/${profileId}`);
         };
       }
       else
       {
         e.preventDefault();
-        swal("La contraseña ingresada es incorrecta.");
+        swal({
+          text: "La contraseña ingresada es incorrecta.",
+          icon: "warning",
+        });
       };
     };
   };

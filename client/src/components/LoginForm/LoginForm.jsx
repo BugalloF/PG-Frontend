@@ -61,7 +61,10 @@ function LoginForm()
         if(Object.keys(validate(input)).length > 0)
         {
             e.preventDefault();
-            swal("Por favor, complete todos los campos correctamente.");
+            swal({
+                text: "Por favor, complete todos los campos correctamente.",
+                icon: "warning",
+            });
         }
         else
         {
@@ -72,11 +75,21 @@ function LoginForm()
                 
                 if(data === undefined || data === null)
                 {
-                    swal("Usuario o contraseña incorrectos.");
+                    swal({
+                        text: "Usuario o contraseña incorrectos.",
+                        icon: "warning",
+                    });
                 }
                 else if(data.payload.is_banned)
                 {
-                    swal(`Tu usuario está baneado hasta el día ${data.payload.banned_time}.`);
+                    swal({
+                        text: "Por favor, complete todos los campos correctamente.",
+                        icon: "warning",
+                    });
+                    swal({
+                        text: `Tu usuario está baneado hasta el día ${data.payload.banned_time}.`,
+                        icon: "warning",
+                    });
                 }
                 else
                 {
@@ -102,14 +115,20 @@ function LoginForm()
                     
                     setUser(userData);
                     // ------------------------------------------------------
-                    swal("Sesión iniciada.");
+                    swal({
+                        text: "Sesión iniciada.",
+                        icon: "success",
+                    });
                     navigate("/");
                 };
             }
             else
             {
                 e.preventDefault();
-                swal("Usuario o contraseña incorrectos.");
+                swal({
+                    text: "Usuario o contraseña incorrectos.",
+                    icon: "warning",
+                });
             };
         };
     };
