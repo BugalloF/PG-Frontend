@@ -1,7 +1,7 @@
 // Dependencies
 import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Navigate} from "react-router-dom";
 import swal from "sweetalert";
 import {ThreeDots} from  'react-loader-spinner'
 // Files
@@ -134,68 +134,74 @@ function PostForm()
         };
     };
     
-    
-    return(
-        <div className={s.container}>
-            <form className={s.form} onSubmit={handleSubmit}>
-            <div className={s.container_complete}>
-                <div className={s.container_img}>
-                    <h4>Obra</h4>
-                    <img className={s.icon_upload} src={iconoUp} alt="subir" />
-                    {
-                       input.imguploaded !== null && <img className={s.uploaded} src={input.imguploaded} />
-                    }
-                    <p>Subir una imagen</p>
-                    <input onChange={handleChangeFile} type="file" accept=".jpg, .jpeg, .png, .svg, .bmp" /*value={input.img}*/ name="img" disabled={loadPost}/>
-                    {
-                        errors.img && errors.img
-                    }
+    if(loggedUser)
+    {
+        return(
+            <div className={s.container}>
+                <form className={s.form} onSubmit={handleSubmit}>
+                <div className={s.container_complete}>
+                    <div className={s.container_img}>
+                        <h4>Obra</h4>
+                        <img className={s.icon_upload} src={iconoUp} alt="subir" />
+                        {
+                           input.imguploaded !== null && <img className={s.uploaded} src={input.imguploaded} />
+                        }
+                        <p>Subir una imagen</p>
+                        <input onChange={handleChangeFile} type="file" accept=".jpg, .jpeg, .png, .svg, .bmp" /*value={input.img}*/ name="img" disabled={loadPost}/>
+                        {
+                            errors.img && errors.img
+                        }
+                    </div>
+                    
+                    <div className={s.container_info}>
+                        <h4 className={s.title}>Titulo</h4>
+                        <input className={errors.title ? s.Alert : s.Inputs} placeholder="Máx. 20 carácteres" onChange={handleChange} type="text" value={input.title} maxLength={20} name="title" disabled={loadPost}/>
+                        {
+                            errors.title && errors.title
+                        }
+                        <h4 className={s.title}>Contenido</h4>
+                        <textarea className={errors.content ? s.Alert : s.Inputs} placeholder="Máx. 400 carácteres" onChange={handleChange} cols="30" rows="10" type="text" value={input.content} maxLength={400} name="content" disabled={loadPost}/>
+                        {
+                            errors.content && errors.content
+                        }
+                        <h4 className={s.title}>Categoria</h4>
+                        <div className={s.conteiner_input}>
+                            <select className={errors.category ? s.Alert : s.Inputs} onChange={handleChange} name="category" disabled={loadPost}>
+                                <option hidden>Selecciona una categoria</option>
+                                {
+                                    categories ? categories.map(e => (
+                                        <option value={e.title} key={e.title}>{e.title}</option>
+                                    ))
+                                    :
+                                    null
+                                }
+                            </select>
+                        </div>
+                        {
+                            errors.category && errors.category
+                        }
+                        
+                        <h4 className={s.title}>Precio</h4>
+                        <input className={errors.price ? s.Alert : s.Inputs} onChange={handleChange} type="number" value={input.price} name="price" placeholder="USD" disabled={loadPost}/>
+                        {
+                            errors.price && errors.price
+                        }
+                    </div>
                 </div>
                 
-                <div className={s.container_info}>
-                    <h4 className={s.title}>Titulo</h4>
-                    <input className={errors.title ? s.Alert : s.Inputs} placeholder="Máx. 20 carácteres" onChange={handleChange} type="text" value={input.title} maxLength={20} name="title" disabled={loadPost}/>
-                    {
-                        errors.title && errors.title
-                    }
-                    <h4 className={s.title}>Contenido</h4>
-                    <textarea className={errors.content ? s.Alert : s.Inputs} placeholder="Máx. 400 carácteres" onChange={handleChange} cols="30" rows="10" type="text" value={input.content} maxLength={400} name="content" disabled={loadPost}/>
-                    {
-                        errors.content && errors.content
-                    }
-                    <h4 className={s.title}>Categoria</h4>
-                    <div className={s.conteiner_input}>
-                        <select className={errors.category ? s.Alert : s.Inputs} onChange={handleChange} name="category" disabled={loadPost}>
-                            <option hidden>Selecciona una categoria</option>
-                            {
-                                categories ? categories.map(e => (
-                                    <option value={e.title} key={e.title}>{e.title}</option>
-                                ))
-                                :
-                                null
-                            }
-                        </select>
-                    </div>
-                    {
-                        errors.category && errors.category
-                    }
-                    
-                    <h4 className={s.title}>Precio</h4>
-                    <input className={errors.price ? s.Alert : s.Inputs} onChange={handleChange} type="number" value={input.price} name="price" placeholder="USD" disabled={loadPost}/>
-                    {
-                        errors.price && errors.price
-                    }
-                </div>
+                {
+                    loadPost ? <button className={s.btnLoad} disabled><ThreeDots className={s.loadDots} color="#FFF" height={20} /></button>
+                    :
+                    <button className={s.button} type="submit" >Publicar</button>
+                }
+                </form>
             </div>
-            
-            {
-                loadPost ? <button className={s.btnLoad} disabled><ThreeDots className={s.loadDots} color="#FFF" height={20} /></button>
-                :
-                <button className={s.button} type="submit" >Publicar</button>
-            }
-            </form>
-        </div>
-    );
+        );
+    }
+    else
+    {
+        return(<Navigate to="/login"/>);
+    };
 };
 
 
