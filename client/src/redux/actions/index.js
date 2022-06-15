@@ -393,12 +393,9 @@ export function EditProfile(input)
       linkedIn: input.linkedIn,
     };
   
-    const editProfile = await axios.put(`${URL}/profile/${input.id}?apiKey=${REACT_APP_API_KEY}`,data)
-  
-    dispatch({
-      type: "EDIT_PROFILE",
-      payload: editProfile,
-    });
+    const editProfile = (await axios.put(`${URL}/profile/${input.id}?apiKey=${REACT_APP_API_KEY}`, data)).data;
+    
+    return dispatch({type: "EDIT_PROFILE", payload: editProfile});
   };
 };
 
@@ -687,8 +684,8 @@ export const UpdateCategory = (categoryId,value) => {
   }
 }
 // ------- sumar dias ban -------------
-var fecha= new Date()
-function sumarDias(fecha){
+function sumarDias(){
+  var fecha= new Date()
   let  bantime= fecha.setDate(fecha.getDate() + 4 );
   return bantime;
 }
@@ -717,7 +714,7 @@ export const banUser = (userId,userData) =>{
     if(user.is_banned === false){
       const ban = {
         is_banned: true,
-        banned_time: sumarDias(fecha)
+        banned_time: sumarDias()
 
       };
      await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,ban)

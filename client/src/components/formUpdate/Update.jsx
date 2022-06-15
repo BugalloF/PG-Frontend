@@ -1,7 +1,7 @@
 // Dependencies
 import React, {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate,useParams} from "react-router-dom";
+import {useNavigate,useParams, Navigate} from "react-router-dom";
 import swal from "sweetalert";
 // Files
 import {CleanStatus, EditArtwork, GetAllCategories, GetDetail} from "../../redux/actions";
@@ -117,63 +117,70 @@ function Update()
         };
     };
     
-    return(
-            detail.artWork ?
-            <div className={s.container}>
-                <form className={s.form} onSubmit={handleSubmit}>
-                <div className={s.container_complete}>
-                    <div className={s.container_img}>
-                        {
-                            detail ?
-                                <div className={s.container_img}>
-                                    <img src={detail.artWork[0].imgCompress} />
-                                </div>
-                            :
-                            null
-                        }
-                    </div>
-                    <div className={s.container_info}>
-                        <h4 className={s.title}>Modificar titulo</h4>
-                        <input className={errors.title ? s.Alert : s.Inputs} placeholder="Máx. 20 carácteres" onChange={handleChange} type="text" value={input.title} maxLength={20} name="title"/>
-                        {
-                            errors.title && errors.title
-                        }
-                        
-                        <h4 className={s.title}>Modificar contenido</h4>
-                        <textarea className={errors.content ? s.Alert : s.Inputs} placeholder="Máx. 140 carácteres" onChange={handleChange} cols="30" rows="10" type="text" value={input.content} maxLength={140} name="content"/>
-                        {
-                            errors.content && errors.content
-                        }
-                        <div className={s.conteiner_input}>
-                            <label className={s.title}>Modificar categoria</label>
-                            <select className={errors.category ? s.Alert : s.Inputs} onChange={handleChange} name="category">
-                                <option hidden>Selecciona una categoria</option>
-                                {
-                                    categories ? categories.map(e => (
-                                        <option value={e.title} key={e.title}>{e.title}</option>
-                                    ))
-                                    :
-                                    null
-                                }
-                            </select>
+    if(loggedUser)
+    {
+        return(
+                detail.artWork ?
+                <div className={s.container}>
+                    <form className={s.form} onSubmit={handleSubmit}>
+                    <div className={s.container_complete}>
+                        <div className={s.container_img}>
+                            {
+                                detail ?
+                                    <div className={s.container_img}>
+                                        <img src={detail.artWork[0].imgCompress} />
+                                    </div>
+                                :
+                                null
+                            }
                         </div>
-                        {
-                            errors.category && errors.category
-                        }
-                        
-                        <h4 className={s.title}>Modificar precio</h4>
-                        <input className={errors.price ? s.Alert : s.Inputs} onChange={e => handleChange(e)} type="number" placeholder="USD" value={input.price} name="price"/>
-                        {
-                            errors.price && errors.price
-                        }
+                        <div className={s.container_info}>
+                            <h4 className={s.title}>Modificar titulo</h4>
+                            <input className={errors.title ? s.Alert : s.Inputs} placeholder="Máx. 20 carácteres" onChange={handleChange} type="text" value={input.title} maxLength={20} name="title"/>
+                            {
+                                errors.title && errors.title
+                            }
+                            
+                            <h4 className={s.title}>Modificar contenido</h4>
+                            <textarea className={errors.content ? s.Alert : s.Inputs} placeholder="Máx. 140 carácteres" onChange={handleChange} cols="30" rows="10" type="text" value={input.content} maxLength={140} name="content"/>
+                            {
+                                errors.content && errors.content
+                            }
+                            <div className={s.conteiner_input}>
+                                <label className={s.title}>Modificar categoria</label>
+                                <select className={errors.category ? s.Alert : s.Inputs} onChange={handleChange} name="category">
+                                    <option hidden>Selecciona una categoria</option>
+                                    {
+                                        categories ? categories.map(e => (
+                                            <option value={e.title} key={e.title}>{e.title}</option>
+                                        ))
+                                        :
+                                        null
+                                    }
+                                </select>
+                            </div>
+                            {
+                                errors.category && errors.category
+                            }
+                            
+                            <h4 className={s.title}>Modificar precio</h4>
+                            <input className={errors.price ? s.Alert : s.Inputs} onChange={e => handleChange(e)} type="number" placeholder="USD" value={input.price} name="price"/>
+                            {
+                                errors.price && errors.price
+                            }
+                        </div>
                     </div>
+                        <button className={s.button} type="submit" >Guardar cambios</button>
+                    </form>
                 </div>
-                    <button className={s.button} type="submit" >Guardar cambios</button>
-                </form>
-            </div>
-            :
-            <p>cargando...</p>
-        );
+                :
+                <p>cargando...</p>
+            );
+    }
+    else
+    {
+        return(<Navigate to="/login"/>);
+    };
 };
 
 

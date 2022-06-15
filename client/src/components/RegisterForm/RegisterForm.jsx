@@ -133,6 +133,7 @@ function RegisterForm()
                 email: "",
                 password: "",
             });
+            dispatch(getUsers());
             swal("El usuario fue creado con éxito!");
             navigate("/login");
         };

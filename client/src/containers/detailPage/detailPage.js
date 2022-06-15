@@ -26,6 +26,8 @@ export default function DetailPage() {
   
   useEffect(() => {
     dispatch(GetDetail(loggedUser, idPost))
+    window.scrollTo(0,0); 
+
     return () => {
       dispatch(CleanDetail())
       dispatch(CleanReco())
