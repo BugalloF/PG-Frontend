@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Charm:wght@700&display=swap");
+
 
 .General{
     position: sticky;
@@ -9,11 +9,12 @@
     gap: 0;
     margin: 0;
     padding: 0;
-    background-color:   #fed6e3ce;
+    background-color:   rgba(175, 171, 172, 0.108);
+
   
 }
 .container {
-    background-color: #322d33d0;
+    background-color:#3b4044;
     width: 100%;
     height: 100%;
     height: 50px;
@@ -40,7 +41,7 @@
   font-size: 20px;
   color: white;
   padding: 4px 25px;
-  font-family: "Charm";
+
   cursor: pointer;
 
 }
@@ -89,7 +90,7 @@
     width: 100vw;
     height: 55px;
     background-color: transparent;
-    box-shadow: 0px 1px 10px  #e7c0ccce;;
+
 
 }
 
@@ -117,4 +118,9 @@
 .profile_skeleton{
     min-width: 38px;
     min-height: 38px;
+}
+
+.searchbar{
+    width: 300px;
+    margin-right: 20px;
 }

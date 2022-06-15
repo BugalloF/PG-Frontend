@@ -20,7 +20,8 @@ export function ImageProfile({image,bigSize}) {
      
         <div className={s.container}>
             
-            <img className={size} src={image}/>
+            <img className={size} src={image}/> 
+      
             
         </div>
     )
