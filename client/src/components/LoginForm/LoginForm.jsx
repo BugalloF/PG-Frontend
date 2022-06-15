@@ -74,8 +74,10 @@ function LoginForm()
                 {
                     swal("Usuario o contraseña incorrectos.");
                 }
-                if(data.payload.is_banned)  return swal(`Tu usuario está baneado hasta el día ${data.payload.banned_time} `) 
-
+                else if(data.payload.is_banned)
+                {
+                    swal(`Tu usuario está baneado hasta el día ${data.payload.banned_time}.`);
+                }
                 else
                 {
                     const payload = data.payload;
@@ -86,8 +88,8 @@ function LoginForm()
                         email: payload.foundUser[0].email,
                         token: payload.token,
                         img: payload.foundUser[0].img,
-                         is_Admin: payload.foundUser[0].is_Admin,
-                        is_banned:payload.foundUser[0].is_banned
+                        is_Admin: payload.foundUser[0].is_Admin,
+                        is_banned:payload.foundUser[0].is_banned,
                     };
                     
                     window.localStorage.setItem("userData", JSON.stringify(userData));
