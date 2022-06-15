@@ -1,22 +1,18 @@
-import React from "react";
-import Card from "../../components/cards/card";
-import { useDispatch, useSelector } from "react-redux";
-import s from "../feedpage/feedpage.module.css";
-import {
-  setPage,
-  resetPage,
-  getFollowedPost,
-  cleanFollowedPosts,
-} from "../../redux/actions";
+// Dependencies
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Navigate} from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useEffect } from "react";
-import NotFound from "../../components/notFound/NotFound"
-import CardsSkeleton from "../../components/loaderSkeleton/cards/CardsSkeleton"
+// Files
+import {setPage, resetPage, getFollowedPost, cleanFollowedPosts} from "../../redux/actions";
+import Card from "../../components/cards/card";
+import NotFound from "../../components/notFound/NotFound";
+import CardsSkeleton from "../../components/loaderSkeleton/cards/CardsSkeleton";
+import s from "../feedpage/feedpage.module.css";
 
 
 const MyFeed = () => {
   const loggedUser = window.localStorage.getItem("userData");
-
   const dispatch = useDispatch();
   const followPost = useSelector((state) => state.followedPosts);
   const hasMore = useSelector((state) => state.hasMore);
@@ -38,46 +34,53 @@ const MyFeed = () => {
     };
   }, [dispatch]);
 
-  return (
-    <div>
-
-      <InfiniteScroll
-        dataLength={followPost.length}
-        hasMore={hasMore}
-        next={() => dispatch(setPage())}
-        loader={hasMore || followPost.length>12?<CardsSkeleton oneLine={true}/>:null}
-        endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Wow! Parece que llegaste al fin!</b>
-          </p>
-        }
-      >
-        <div className={s.FeedPage}>
-
-      {loader?
-        <CardsSkeleton oneLine={false}/>
-        :notFound?<NotFound/>:
-          <div className={s.Cards}>
-            
-            {followPost.map((card) => (
-              <Card
-                postId={card.id}
-                img={card.imgCompress}
-                userImg={card.profile?.img}
-                userId={card.profile?.id}
-                userName={card.profile?.userName}
-                country={card.profile?.country}
-                price={card.price}
-                title={card.title}
-              />
-            ))
+  if(loggedUser)
+  {
+    return (
+      <div>
+        <InfiniteScroll
+          dataLength={followPost.length}
+          hasMore={hasMore}
+          next={() => dispatch(setPage())}
+          loader={hasMore || followPost.length>12?<CardsSkeleton oneLine={true}/>:null}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Wow! Parece que llegaste al fin!</b>
+            </p>
           }
+        >
+        <div className={s.FeedPage}>
+        {
+          loader ? <CardsSkeleton oneLine={false}/>
+          :
+          notFound ? <NotFound/>
+          :
+          <div className={s.Cards}>
+            {
+              followPost.map((card) => (
+                <Card
+                  postId={card.id}
+                  img={card.imgCompress}
+                  userImg={card.profile?.img}
+                  userId={card.profile?.id}
+                  userName={card.profile?.userName}
+                  country={card.profile?.country}
+                  price={card.price}
+                  title={card.title}
+                />
+              ))
+            }
           </div>
         }
         </div>
-      </InfiniteScroll>
-    </div>
-  );
+        </InfiniteScroll>
+      </div>
+    );
+  }
+  else
+  {
+    return(<Navigate to="/login"/>);
+  };
 };
 
 export default MyFeed;

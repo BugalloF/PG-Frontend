@@ -1,6 +1,6 @@
 // Dependencies
 import React, {useEffect, useState} from "react";
-import {Link, useParams, useNavigate} from "react-router-dom";
+import {Link, useParams, useNavigate, Navigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import swal from "sweetalert";
 // Files
@@ -320,7 +320,7 @@ function FormEditProfile()
   }
   else
   {
-    return (<EditProfileSkeleton />);
+    return(<Navigate to="/login"/>);
   };
 };
 
