@@ -78,9 +78,9 @@ function NavBar() {
               id ? <a onClick={handleMenu} >{<ImageProfile image={img} bigSize={false} />}</a>
               :
 
-              <div>
-                <NavLink to="/login">Login</NavLink>
-                <NavLink to="/register">Registrarse</NavLink>
+              <div className={s.login}>
+                <NavLink className={s.login} to="/login">Login</NavLink> || 
+                <NavLink className={s.login} to="/register">Registrarse</NavLink>
               </div>
             }
           </div>
@@ -89,17 +89,11 @@ function NavBar() {
         <div></div>
       </div>
         <div className={s.LowBar}>
-        
-    
-      <NavLink
- 
-      to="/">
-            <img src='https://firebasestorage.googleapis.com/v0/b/artpage-aa77e.appspot.com/o/aa%2FLogo222.png?alt=media&token=8fa86748-ede3-4a0f-8bf1-e72cd455b1f4'
- alt="DigitalizArte"></img>
-          </NavLink> 
-    
-          
-     
+
+          <NavLink to="/">
+            {<img src='https://firebasestorage.googleapis.com/v0/b/artpage-aa77e.appspot.com/o/aa%2FLogo222.png?alt=media&token=8fa86748-ede3-4a0f-8bf1-e72cd455b1f4' alt="DigitalizArte"></img>}
+          </NavLink>
+
           {
             urls.includes(window.location.href) ?
             <div className={s.Filtros}>

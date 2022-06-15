@@ -81,7 +81,7 @@ function PostForm()
         {
             errors.content = <font></font>;
         }
-        else if(input.content.length > 140)
+        else if(input.content.length > 400)
         {
             errors.content = <font></font>;
         }
