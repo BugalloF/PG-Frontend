@@ -43,7 +43,6 @@ export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
   };
 };
 
-
 export const GetRecoPosts = (page = 0,category ,) => {
   
  
@@ -629,15 +628,15 @@ export function getFollowedPost(page = 0,userData){
     console.log(followedPost.data)
     console.log(`${URL}/followedfeed?from=${page}&apiKey=${REACT_APP_API_KEY}`)
     
-    // if (followedPost.data.counter !== 0) {
+    if (followedPost.data.counter !== 0) {
       dispatch({
         type: "GET_FOLLOWED_POST",
         artWorks: followedPost.data.arr,
         length: followedPost.data.counter,
       });      
-    // } else {
-    //     dispatch({type: "Not_Found"})
-    // }
+    } else {
+        dispatch({type: "Not_Found"})
+    }
 
     
   };

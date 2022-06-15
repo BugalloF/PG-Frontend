@@ -81,6 +81,17 @@
 	font-weight: 700;
 }
 
+.edit_profile_form .btnLoad {
+	margin-top: 50px;	
+	padding: 10px;
+	border-radius: 25px;
+	min-width: 160px;
+	background-color: hsl(258deg 79% 65%);
+	border: none;
+	color: #ffffff;
+    padding-left: 42px;	
+	font-weight: 700;
+}
 .edit_profile_form .btn_password {
 	border:hsl(258deg 79% 65%) 2px solid;
 	background-color: transparent;

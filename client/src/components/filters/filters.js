@@ -10,8 +10,7 @@ import {
 
   CleanStatus,
 
-  profile,
-loaderTrue
+  profile
 } from "../../redux/actions";
 import { useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
@@ -37,18 +36,13 @@ const Filters = () => {
   useEffect(()=>{
     dispatch(GetAllCategories())
     return () =>{
-      dispatch(CleanPosts())
+      // dispatch(CleanPosts())
       dispatch(SetCategoty(null))
     }
 
   },[])
-  console.log()
 
   useEffect(() => {
-      if (page===0) {
-        dispatch(loaderTrue())
-
-      }    
 
       if(category){
         dispatch(GetCategotyPosts(page,category,order.by,order.type));
