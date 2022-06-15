@@ -70,9 +70,9 @@ function NavBar() {
               id ? <a onMouseOver={handleMenu} onMouseOut={handleQuitMenu} onClick={handleMenu} >{<ImageProfile image={img} bigSize={false} />}</a>
               :
 
-              <div>
-                <NavLink to="/login">Login</NavLink>
-                <NavLink to="/register">Registrarse</NavLink>
+              <div className={s.login}>
+                <NavLink className={s.login} to="/login">Login</NavLink> || 
+                <NavLink className={s.login} to="/register">Registrarse</NavLink>
               </div>
             }
           </div>
