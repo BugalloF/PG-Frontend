@@ -87,7 +87,9 @@ function NavBar() {
           ):null}
           {
             urls.includes(window.location.href)?(
+              <div className={s.searchBar}>
               <SearchBar />
+              </div>
             ):null        
           }
         </div>  
