@@ -2,11 +2,7 @@ import { Link } from "react-router-dom";
 import React from "react";
 import s from "./card.module.css";
 import { ImageProfile } from "../imageprofile/imageprofile";
-import { useDispatch } from "react-redux";
-import { CleanDetail, CleanProfile } from "../../redux/actions";
-
 const Card = ({postId, img, userId, userName, userImg, country, price, title}) => {
-  const dispatch = useDispatch()
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
   return (
     <div className={s.Card}>

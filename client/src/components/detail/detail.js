@@ -9,7 +9,7 @@ import {ImageProfile} from "../imageprofile/imageprofile";
 import Paypal from "../paypal/paypal";
 import s from "./detail.module.css";
 import { useDispatch,useSelector } from "react-redux";
-import { addLike, CleanDetail, CleanProfile, CleanStatus, DeleteArtwork, deleteLike } from "../../redux/actions";
+import { addLike, CleanStatus, DeleteArtwork, deleteLike } from "../../redux/actions";
 
 export function Detail(props) {
   const dispatch = useDispatch();
@@ -50,9 +50,24 @@ export function Detail(props) {
       }
     })
   }
-
   const navigate = useNavigate();
 
+  function handlerOnLogin(e){
+    e.preventDefault()
+    swal({
+      text: "Debes iniciar sesión para realizar esta acción",
+      icon: "warning",
+      buttons: [
+        'Cancelar',
+        'Iniciar sesión'
+      ],
+    }).then(function(isConfirm) {
+      if (isConfirm) {
+        navigate("/login");
+      } 
+    })
+  }
+  
   React.useEffect(() => {
     dispatch(CleanStatus())
   }, [status]);
@@ -81,7 +96,7 @@ export function Detail(props) {
         <div className={s.buttons_rigth}>
           <div className={s.Paypal}>
             pagar con paypal
-          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} idSeller={props.profileId} userSeller={props.user} userPayer={userDataJson.userName} email={props.emailSeller} />
+          <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} idSeller={props.profileId} userSeller={props.user} userPayer={userDataJson?.userName} email={props.emailSeller} />
           </div>
           { 
             userDataJson!== null ? props.isLiked === false ? 
@@ -99,9 +114,11 @@ export function Detail(props) {
                   </button>
                 </div>
               :
-                <div>
-                  NO ESTAS REGISTRADO PARA PONER ME GUSTAS
-                </div>
+              <button onClick={handlerOnLogin}>
+              <span>
+                <FontAwesomeIcon icon={faHeart} className={s.icon}  /> {props.likes}
+              </span>
+            </button>
           }
           <div>
             {
