@@ -122,5 +122,15 @@
 
 .searchbar{
     width: 300px;
-    margin-right: 20px;
+    margin-right: 20px;}
+.login{
+    padding: 10px;
+    color:white;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+.login :hover {
+    border-bottom:2px solid rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.199);
 }
