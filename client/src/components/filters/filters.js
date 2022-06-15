@@ -19,7 +19,7 @@ import s from "./filters.module.css";
 import FiltersSkeleton from "../loaderSkeleton/Filters/FiltersSkeleton"
 
 
-const Filters = ({hasorder}) => {
+const Filters = () => {
   const dispatch = useDispatch();
   const allCategories = useSelector((state) => state.categories);
   const page = useSelector((state) => state.page);
@@ -66,8 +66,8 @@ const Filters = ({hasorder}) => {
 
 
     return (
-      <>
-      {allCategories.length?
+      <div className={s.container}>
+ 
       <div className={s.Container_filter}>
 
         <div className={s.FilterZone}>
@@ -85,8 +85,8 @@ const Filters = ({hasorder}) => {
           }}}>{cat.title}</button>
           ))}            
         </div>
- {
-  hasorder === false?(<div className={s.OrderZone}>
+ 
+  <div className={s.OrderZone}>
           
     <select
     onChange={(e) => {
@@ -107,12 +107,12 @@ const Filters = ({hasorder}) => {
 
 
             
-  </div>):(null)
- }
+  </div>
+ 
 
-      </div>
-      :<FiltersSkeleton/>}
-      </>      
+     </div>
+     
+      </div>      
     );
 };
 export default Filters;

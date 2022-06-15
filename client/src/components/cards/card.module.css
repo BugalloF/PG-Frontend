@@ -5,9 +5,8 @@
     margin: 10px;
     display: inline-block;
     position: relative;
-    height: 405px;
-    min-width: 150px;
-    max-width: 1280px;
+    height: 270px;
+
     object-fit: contain;
     overflow: hidden;
  
@@ -19,14 +18,17 @@
   }
 
 .Image{
-    height: 350px;
+    height: 270px;
+    min-width: 150px;
+    max-width: 400px;
+    object-fit: cover;
   
 
 }
 
 .UserName{
     position: absolute;
-    bottom: 5px;
+    bottom: 0px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -43,12 +45,16 @@
 .Price{
     display: inline-block;
 
-    height: 20px;
+    height: 23px;
+    width: 40px;
+    padding: 0 0 0 10px;
     font-weight: 600;
-    margin: 0 10px 0 0 ;
+  
     font-size: 14px;
     font-style: italic;
     color: white;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%,10% 100%);
+	background-color: rgb(124, 123, 123, 0.301)
 }
 
 
