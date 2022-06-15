@@ -35,17 +35,16 @@ const PrincipalPage = () => {
 
   return (
     <div className={s.container}>
-      {/* <Filters hasorder={false}/> */}
 
       <InfiniteScroll
         dataLength={allPosts.length}
         hasMore={hasMore}
         next={() => dispatch(setPage())}
-        loader={allPosts.length !== length?<CardsSkeleton oneLine={true}/>:null}
-        endMessage={
+        loader={allPosts.length !== length || !notFound?<CardsSkeleton oneLine={true}/>:null}
+        endMessage={allPosts.length == length && allPosts.length>=12?
           <p style={{ textAlign: "center" }}>
             <b>Wow! Parece que llegaste al fin!</b>
-          </p>
+          </p>:null
         }
       >
         <div className={s.FeedPage}>
