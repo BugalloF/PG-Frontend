@@ -27,6 +27,7 @@ const PrincipalPage = () => {
       
       return () => {
         dispatch(CleanPosts());
+        window.scrollTo(0,0); 
       };
     
   }, []);

@@ -27,12 +27,14 @@ const MyFeed = () => {
 
   useEffect(() => {
       dispatch(getFollowedPost(page,loggedUser))
+      window.scrollTo(0,0); 
   }, [page])
 
   useEffect(() => {
     return () => {
       dispatch(resetPage());
       dispatch(cleanFollowedPosts());
+      window.scrollTo(0,0); 
     };
   }, [dispatch]);
 
