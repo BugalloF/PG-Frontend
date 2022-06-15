@@ -20,7 +20,11 @@ const Posts = () => {
     const hasMore = useSelector((state) => state.hasMore);
     const dispatch = useDispatch();
     const page = useSelector((state) => state.page)
-
+    allPosts.sort(function(a,b){
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
     useEffect(() =>{
         return () => {
             dispatch(CleanPosts())

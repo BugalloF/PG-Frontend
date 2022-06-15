@@ -50,9 +50,24 @@ export function Detail(props) {
       }
     })
   }
-
   const navigate = useNavigate();
 
+  function handlerOnLogin(e){
+    e.preventDefault()
+    swal({
+      text: "Debes iniciar sesión para realizar esta acción",
+      icon: "warning",
+      buttons: [
+        'Cancelar',
+        'Iniciar sesión'
+      ],
+    }).then(function(isConfirm) {
+      if (isConfirm) {
+        navigate("/login");
+      } 
+    })
+  }
+  
   React.useEffect(() => {
     dispatch(CleanStatus())
   }, [status]);
@@ -99,9 +114,11 @@ export function Detail(props) {
                   </button>
                 </div>
               :
-                <div>
-                  NO ESTAS REGISTRADO PARA PONER ME GUSTAS
-                </div>
+              <button onClick={handlerOnLogin}>
+              <span>
+                <FontAwesomeIcon icon={faHeart} className={s.icon}  /> {props.likes}
+              </span>
+            </button>
           }
           <div>
             {

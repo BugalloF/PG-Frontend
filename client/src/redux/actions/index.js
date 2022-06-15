@@ -686,8 +686,8 @@ export const UpdateCategory = (categoryId,value) => {
   }
 }
 // ------- sumar dias ban -------------
-var fecha= new Date()
-function sumarDias(fecha){
+function sumarDias(){
+  var fecha= new Date()
   let  bantime= fecha.setDate(fecha.getDate() + 4 );
   return bantime;
 }
@@ -716,7 +716,7 @@ export const banUser = (userId,userData) =>{
     if(user.is_banned === false){
       const ban = {
         is_banned: true,
-        banned_time: sumarDias(fecha)
+        banned_time: sumarDias()
 
       };
      await axios.put(`${URL}/profile/${userId}?apiKey=${REACT_APP_API_KEY}`,ban)
