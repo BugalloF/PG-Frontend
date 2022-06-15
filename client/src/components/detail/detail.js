@@ -3,12 +3,12 @@ import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faHeart , faHeartCrack} from "@fortawesome/free-solid-svg-icons";
 import {NavLink,useNavigate} from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
 import swal from "sweetalert";
 // Files
 import {ImageProfile} from "../imageprofile/imageprofile";
 import Paypal from "../paypal/paypal";
 import s from "./detail.module.css";
-import { useDispatch,useSelector } from "react-redux";
 import { addLike, CleanStatus, DeleteArtwork, deleteLike } from "../../redux/actions";
 
 export function Detail(props) {
@@ -55,7 +55,7 @@ export function Detail(props) {
   function handlerOnLogin(e){
     e.preventDefault()
     swal({
-      text: "Debes iniciar sesión para realizar esta acción",
+      text: "Debes iniciar sesión para realizar esta acción.",
       icon: "warning",
       buttons: [
         'Cancelar',
@@ -94,8 +94,7 @@ export function Detail(props) {
       </div>
       <div className={s.buttons}>
         <div className={s.buttons_rigth}>
-          <div className={s.Paypal}>
-            pagar con paypal
+          <div >
           <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} idSeller={props.profileId} userSeller={props.user} userPayer={userDataJson?.userName} email={props.emailSeller} />
           </div>
           { 

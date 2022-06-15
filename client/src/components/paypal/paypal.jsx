@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import swal from "sweetalert";
 // Files
 import {sendEmail, TransactionsPost} from "../../redux/actions";
+import PayPalFalso from "../PayPalFalso/PayPalFalso";
 
 
 export default function Paypal({price,title,idPost,userSeller,userPayer,email}) {
@@ -77,7 +78,7 @@ export default function Paypal({price,title,idPost,userSeller,userPayer,email}) 
   else
   {
     return(
-      <h4>Para poder comprar, es necesario estar registrado.</h4>
+      <PayPalFalso/>
     );
   };
 }
