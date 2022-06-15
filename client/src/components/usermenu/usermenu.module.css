@@ -43,7 +43,7 @@
     text-decoration: none;
 }
 
-.Lista :nth-child(5):hover
+.Lista :nth-child(4):hover
 {
     cursor: pointer;
 }

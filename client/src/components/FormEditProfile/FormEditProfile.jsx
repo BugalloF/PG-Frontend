@@ -320,7 +320,7 @@ function FormEditProfile()
   }
   else
   {
-    return(<Navigate to="/login"/>);
+    return (<EditProfileSkeleton />);
   };
 };
 
