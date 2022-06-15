@@ -16,16 +16,18 @@ import Usermenu from "../usermenu/usermenu";
 function NavBar() {
   const allCategories = useSelector((state) => state.categories);
   const loader = useSelector((state) => state.loader);
-  const urls = ['https://pg-frontend-eight.vercel.app/feed','http://localhost:3000/feed']
+  const urls = ['http://localhost:3000/feed']
   const [Menu, setMenu] = useState(true);
   const loggedUser = window.localStorage.getItem("userData");
   const userDataJson = JSON.parse(loggedUser);
   const id = userDataJson ? userDataJson.id : "";
   const img = userDataJson ? userDataJson.img : "";
   const dispatch = useDispatch();
+
   
   function handleMenu(e)
   {
+
     e.preventDefault();
     setMenu(!Menu);
   };
@@ -63,12 +65,14 @@ function NavBar() {
         </div>
         <div className={s.right}>
           <div className={s.container_image}>
+
             {
               id ? <a onMouseOver={handleMenu} onMouseOut={handleQuitMenu} onClick={handleMenu} >{<ImageProfile image={img} bigSize={false} />}</a>
               :
-              <div>
-                <NavLink to="/login">Login</NavLink>
-                <NavLink to="/register">Registrarse</NavLink>
+
+              <div className={s.login}>
+                <NavLink className={s.login} to="/login">Login</NavLink> || 
+                <NavLink className={s.login} to="/register">Registrarse</NavLink>
               </div>
             }
           </div>
@@ -77,7 +81,7 @@ function NavBar() {
       </div>
         <div className={s.LowBar}>
           <NavLink to="/">
-            {<img src={'https://firebasestorage.googleapis.com/v0/b/artpage-aa77e.appspot.com/o/aa%2FLogo222.png?alt=media&token=8fa86748-ede3-4a0f-8bf1-e72cd455b1f4'} alt="DigitalizArte"></img>}
+            {allCategories.length || !loader?<img src={require(`../../img/Logo222.png`)} alt="DigitalizArte"></img>:<Skeleton className={s.Logo_skeleton} baseColor = "#d0a9d0" width={280} heigth={200}/>}
           </NavLink>
           {
             urls.includes(window.location.href) ?
@@ -88,9 +92,13 @@ function NavBar() {
             null
           }
           {
-            urls.includes(window.location.href) ? <SearchBar />
-            :
-            null
+            urls.includes(window.location.href)?(
+
+              <div className={s.searchBar}>
+              <SearchBar />
+              </div>
+            ):null        
+
           }
         </div>
     </div>

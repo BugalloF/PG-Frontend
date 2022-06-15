@@ -1,8 +1,6 @@
 import React from "react";
 import s from "../cardtransactions/cardtransactions.module.css"
 import { useDispatch } from "react-redux";
-import { faCashRegister } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  CleanTransactions, PutTransactions } from "../../../redux/actions";
 import { resetPage } from "../../../redux/actions";
 
@@ -13,7 +11,7 @@ const  CardTrans = ({id,userSeller,userPayer,title,email,price,isPayed,createdAt
     return (
         <div className={s.container}>
             <ul className={s.list}>
-                <li><p>{id}</p></li>
+                {/* <li><p>{id}</p></li> */}
                 <li><p>{userSeller}</p></li>
                 <li><p>{userPayer}</p></li>
                 <li><p>${price}</p></li>

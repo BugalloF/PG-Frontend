@@ -68,8 +68,13 @@ const Filters = ({hasorder}) => {
 
         <div className={s.FilterZone}>
           {allCategories?.map((cat) => (
-            <button className={s.CategoryBTN} value={cat.title} onClick={(e) => {
+            <button 
+            
+            className={s.CategoryBTN} 
+            value={cat.title} 
+            onClick={(e) => {
           if(category !== e.target.value){
+            
             dispatch(resetPage())
             dispatch(CleanPosts())  
             dispatch(SetCategoty(e.target.value))
@@ -83,42 +88,21 @@ const Filters = ({hasorder}) => {
     onChange={(e) => {
       dispatch(CleanPosts())
       dispatch(resetPage()) 
-      setOrder({by:'price',type:e.target.value})}} 
+      setOrder({by:e.target.value.split(',')[1],type:e.target.value.split(',')[0]})}} 
     className={s.OrderSelect}>
       <option selected disabled >
-        ORDENAR POR PRECIO
+        ORDENARAMIENTOS
       </option>
-      <option value="DESC">Mayor a menor</option>
-      <option value="ASC">Menor a mayor</option>
+      <option value="DESC,price">Mayor a menor</option>
+      <option value="ASC,price">Menor a mayor</option>
+      <option value="DESC,likes">Mejores valorados</option>
+      <option value="ASC,likes">Peores valorados</option>
+      <option value="DESC,createdAt" >Más recientes</option>
+      <option value="ASC,createdAt">Más antiguos</option>
     </select>
 
 
-    <select
-    onChange={(e) =>{ 
-      dispatch(CleanPosts())
-      dispatch(resetPage()) 
-      setOrder({by:'createdAt',type:e.target.value})
-    }}  
-    className={s.OrderSelect} >
-      <option selected disabled>
-        ORDENAR POR ANTIGUEDAD
-      </option>
-      <option value="DESC" >Más recientes</option>
-      <option value="ASC">Más antiguos</option>
-    </select>
-
-    <select
-     onChange={(e) => {
-      dispatch(CleanPosts())
-      dispatch(resetPage()) 
-      setOrder({by:'likes',type:e.target.value})}} 
-     className={s.OrderSelect}>
-      <option selected disabled>
-        ORDENAR POR LIKES
-      </option>
-      <option value="DESC">Mejores valorados</option>
-      <option value="ASC">Peores valorados</option>
-    </select>          
+            
   </div>):(null)
  }
 

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import React from "react";
 import s from "./card.module.css";
 import { ImageProfile } from "../imageprofile/imageprofile";
@@ -6,25 +6,26 @@ const Card = ({postId, img, userId, userName, userImg, country, price, title}) =
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
   return (
     <div className={s.Card}>
-      <Link
+      <NavLink
       onClick={() => {}}
       to={`/post/${postId}`} className={s.Link}>
         <img src={img} alt="imagen" className={s.Image} />
-      </Link>
+      </NavLink>
       
       <div className={s.UserName}>
         <div className={s.Left}>
-          <Link to={`/profile/${userId}`}>
-            <ImageProfile image={userImg} />{" "}
-          </Link>
-          <ol>
-            <li className={s.Name}>{userName}</li>
-            <li>{country}</li>
-          </ol>
+        <span className={s.Price}>${price}</span>
+
         </div>
         <div className={s.Right}>
-          <span className={s.Price}>${price}</span>
-          <h5>{title}</h5>
+        <h5 className={s.title2}>{title}</h5>
+        
+      <div className={s.Profile}>
+      <NavLink to={`/profile/${userId}`}>
+           <div className={s.name}>{userName}</div>          
+          </NavLink>
+      </div>
+     
         </div>
       </div>
     </div>
