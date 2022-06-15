@@ -2,19 +2,20 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faUser, faUsers, faBagShopping, faPlus, faRightFromBracket} from "@fortawesome/free-solid-svg-icons";
 // Files
-import s from "./usermenu.module.css";
-
+import {faUser, faUsers, faBagShopping, faPlus, faRightFromBracket, faLaptopCode} from "@fortawesome/free-solid-svg-icons";
 
 const Usermenu = ({userID}) => {
   //en el return, vamos a verificar que la constante json del usuario tenga datos, asi renderiza la carta, si no, no la renderiza aun
+  const loggedUser = window.localStorage.getItem("userData");
+  const userDataJson = JSON.parse(loggedUser);
+  
   function handleLogout()
   {
     window.localStorage.clear();
     window.location.reload();
   };
-  
+
   return (
     <div className={s.UserMenu}>
      <ul className={s.Lista}>
@@ -28,11 +29,12 @@ const Usermenu = ({userID}) => {
             <FontAwesomeIcon icon={faPlus} className={s.icon} />Publicar
           </li>
         </Link>
-        <Link to={`/profile/${userID}/compras`} style={{textDecoration: 'none'}}>
+       { userDataJson.is_Admin ?
+       <Link to={`/paneladm`} style={{textDecoration: 'none'}}>
           <li>
-            <FontAwesomeIcon icon={faBagShopping} className={s.icon} />Mis compras
+            <FontAwesomeIcon icon={faLaptopCode} className={s.icon}  /> Panel admin
           </li>
-        </Link>
+        </Link>:null}
         <Link to={`/aboutus`} style={{textDecoration: 'none'}}>
           <li>
             <FontAwesomeIcon icon={faUsers} className={s.icon} />Sobre nosotros

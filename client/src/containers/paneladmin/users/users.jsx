@@ -27,7 +27,7 @@ const Users = () => {
            dispatch(resetPage())
         };
     },[])
-
+    allUsers.sort(function (a, b) { return b.is_banned - a.is_banned; });
 
     useEffect(() => {
         dispatch(GetAdmProfiles(page,name.search))

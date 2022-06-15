@@ -19,7 +19,11 @@ const Transactions = () => {
     const name = useLocation()
     const page = useSelector((state) => state.page)
     const hasMore = useSelector((state) => state.hasMore);
-        
+    transactions.sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      });
     useEffect(()=>{
         return () =>{
             dispatch(CleanTransactions())
