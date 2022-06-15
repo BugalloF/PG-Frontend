@@ -54,7 +54,7 @@ const Transactions = () => {
         <div className={s.cards}>
           <div>
             <ul className={s.list}>
-              <li>Id</li>
+              {/* <li>Id</li> */}
               <li>Vendedor</li>
               <li>Comprador</li>
               <li>Precio</li>
