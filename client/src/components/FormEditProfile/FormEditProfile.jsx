@@ -183,7 +183,10 @@ function FormEditProfile()
     if(Object.keys(validate(input)).length > 0)
     {
       e.preventDefault();
-      swal("Por favor, complete los campos necesarios correctamente.");
+      swal({
+        text: "Por favor, complete todos los campos correctamente.",
+        icon: "warning",
+      });
     }
     else
     {
@@ -208,8 +211,10 @@ function FormEditProfile()
         window.localStorage.setItem("userData", JSON.stringify(userData));
       }
       setInput({...input});
-      
-      swal("Cambios guardados.");
+      swal({
+        text: "Cambios guardados.",
+        icon: "success",
+      });
       navigate(`/profile/${profileId}`);
     };
   };

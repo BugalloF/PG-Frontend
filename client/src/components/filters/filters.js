@@ -11,7 +11,7 @@ import {
   CleanStatus,
 
   profile,
-
+loaderTrue
 } from "../../redux/actions";
 import { useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
@@ -45,6 +45,10 @@ const Filters = () => {
   console.log()
 
   useEffect(() => {
+      if (page===0) {
+        dispatch(loaderTrue())
+
+      }    
 
       if(category){
         dispatch(GetCategotyPosts(page,category,order.by,order.type));

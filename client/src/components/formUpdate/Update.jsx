@@ -59,7 +59,10 @@ function Update()
                 category: "",
                 input: [],
             });
-            swal("La obra fue modificada correctamente!");
+            swal({
+                text: "La obra fue modificada correctamente!",
+                icon: "success",
+            });
             navigate(`/post/${idPost}`);
         };
         dispatch(CleanStatus());
@@ -108,7 +111,10 @@ function Update()
         if(Object.keys(validate(input)).length > 0)
         {
             e.preventDefault();
-            swal("Por favor, complete todos los campos correctamente.");
+            swal({
+                text: "Por favor, complete todos los campos correctamente.",
+                icon: "warning",
+            });
         }
         else
         {

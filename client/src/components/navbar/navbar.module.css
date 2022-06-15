@@ -61,6 +61,7 @@
 
 .container_image{
     margin: 6px 10px;
+    cursor: pointer;
 }
 
 .left{

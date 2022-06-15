@@ -28,13 +28,18 @@ export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
     const allposts = await axios.get(
       `${URL}/art?from=${page}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
     );
+    if (allposts.data.counter !== 0) {
 
       dispatch({
         type: "GetPosts",
         artWorks: allposts.data.artWorks,
         length: allposts.data.counter,
       });
-    
+    } else {
+      dispatch({
+        type: "Not_Found"
+      });
+    }    
   };
 };
 
@@ -241,12 +246,17 @@ const allposts = await axios.get(
   `${URL}/filter/category?from=${page}${category}${name}${by}${type}&apiKey=${REACT_APP_API_KEY}`
 );
 
+  if (allposts.data.counter !== 0) {
   dispatch({
     type: "GetCategoryPosts",
     artWorks: allposts.data.Artworks,
     length: allposts.data.counter,
   });
-
+    } else {
+      dispatch({
+        type: "Not_Found"
+      });
+    } 
 };
 };
 
@@ -538,6 +548,12 @@ export const NotFound = () => {
   };
 };
 
+export const loaderTrue = () => {
+  return{
+   type: "LOADER_TRUE",
+  }
+ }
+
 export function sendEmail(userData, values)
 {
   return async function ()
@@ -610,18 +626,18 @@ export function getFollowedPost(page = 0,userData){
         },
       };
     const followedPost = (await axios.get(`${URL}/followedfeed?from=${page}&apiKey=${REACT_APP_API_KEY}`,config));
+    console.log(followedPost.data)
+    console.log(`${URL}/followedfeed?from=${page}&apiKey=${REACT_APP_API_KEY}`)
     
-    if (followedPost.data.arr.length !== 0) {
+    // if (followedPost.data.counter !== 0) {
       dispatch({
         type: "GET_FOLLOWED_POST",
         artWorks: followedPost.data.arr,
         length: followedPost.data.counter,
       });      
-    } else {
-        return {
-          type: "Not_Found",
-        };
-    }
+    // } else {
+    //     dispatch({type: "Not_Found"})
+    // }
 
     
   };

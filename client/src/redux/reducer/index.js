@@ -30,7 +30,7 @@ function rootReducer(state = initialState, action) {
           posts: action.artWorks,
           length: action.length,
           loader: false,
-          hasMore:true,
+          hasMore: action.artWorks.length<12?false:true,
           notFound:false
         };
       } else {
@@ -49,7 +49,7 @@ function rootReducer(state = initialState, action) {
             posts: action.artWorks,
             length: action.length,
             loader: false,
-            hasMore:true,
+            hasMore:action.artWorks.length<12?false:true,
             notFound:false
           };
         } else {
@@ -126,6 +126,14 @@ function rootReducer(state = initialState, action) {
         ...state,
         page: 0,
       };
+    
+    case "LOADER_TRUE":
+      return {
+        ...state,
+        loader:true
+      }
+
+
     
     case "Post":
       return {
@@ -215,7 +223,7 @@ function rootReducer(state = initialState, action) {
           length: action.length,
           filter: false,
           loader: false,
-          hasMore:true,
+          hasMore:action.artWorks.length<12?false:true,
           notFound:false
         };
       } else {
@@ -293,7 +301,7 @@ function rootReducer(state = initialState, action) {
               return {...state, users: action.payload};  
 
         case "Not_Found":
-          return {...state, notFound:true};  
+          return {...state, notFound:true, posts:[], hasMore: false, loader:false};  
 
 
     default:
