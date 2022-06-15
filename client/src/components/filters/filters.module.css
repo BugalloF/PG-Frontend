@@ -2,31 +2,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
 
-    width: 50vw;
+
     gap: 20px;
-    position: absolute;
-    top: -47px;
+ 
 }
 
 .CategoryBTN{
     position: relative;
   display: block;
+   font-size: 15px;
+   font-weight: 100;
     height: 45px;
     padding: 5px 15px;
     white-space: nowrap;
     min-width: 130px;
     height: 40px;
-    color: #fff;
-    font-weight: bold;
+    color: #555;
     cursor: pointer;
     transition: all 0.3s ease;
     outline: none;
     overflow: hidden;
-    border-radius: 5px;
     border: none;
-    background-color: transparent;
-    font-weight: 500;
+  background-color: transparent;
  
  
 }
@@ -34,7 +33,7 @@
     border-radius: 5px;
     padding-right: 24px;
     padding-left:8px;
-    background-color: rgba(132, 126, 138, 0.651)
+  
   }
   .CategoryBTN:hover:after {
     opacity: 1;
@@ -52,10 +51,7 @@
   }
 
 
-.OrderZone{
-	margin: 30px 0;
 
-}
 
 .OrderSelect{
     background-color: #fff;
@@ -76,8 +72,13 @@
 }
 
 .OrderZone{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-top: 7px;
+  width: 200px;
 }
 
+
+
+.Container_filter{
+  display: flex;
+  justify-content: space-around
+}

@@ -1,5 +1,4 @@
 
-
 .General{
     position: sticky;
     top: 0;
@@ -9,7 +8,7 @@
     gap: 0;
     margin: 0;
     padding: 0;
-    background-color:   rgba(175, 171, 172, 0.108);
+    background-color:   rgb(242, 240, 240);
 
   
 }
@@ -20,19 +19,23 @@
     height: 50px;
     width: 100%;
     display: flex;
-    border-bottom: 1.4px solid rgb(189, 188, 188);
+    border-bottom: 1.4px solid rgb(234, 231, 231);
 }
 
-.container_links li{
+.container_links{
     display: inline-block;
     height: 100%;
-    padding:2px  9px;
-    background-color: black;
-    border-radius:28px;
     color: white;
     text-align: center;
-    margin-left: 10px;
     font-weight: 500;
+    display: flex;
+}
+
+.container_buttons{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: 0.3s all;
 }
 
 .Buttons{
@@ -40,15 +43,13 @@
   margin-right: 0px;
   font-size: 20px;
   color: white;
-  padding: 4px 25px;
-
+  padding: 0px 25px;
   cursor: pointer;
-
 }
 
-.Buttons:hover{
+.container_buttons:hover{
     cursor: pointer;
-    border-bottom: 2px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.199);
 }
 
@@ -57,10 +58,6 @@
     margin-left: -25px;
 }
 
-.container_searchbar{
-    height: 100%;
-    width: 45%;
-}
 
 .container_image{
     margin: 6px 10px;
@@ -70,7 +67,8 @@
     width: 50%;
     height: 100%;
     display: flex;
-    justify-content: flex-start
+    justify-content: flex-start;
+    margin-left: 20px;
 }
 
 .right{
@@ -88,39 +86,27 @@
     align-items: center;
     justify-content: space-between;
     width: 100vw;
-    height: 55px;
+    height: 50px;
     background-color: transparent;
 
 
 }
 
 .Filtros{
-    position: absolute;
-    top: 0px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 50vw;   
+ width: 100%;
+ margin-right: 20px;
+ 
 }
 
 .LowBar img{
-    position: absolute;
-  height: 75px;
+ 
+  height: 50px;
   filter: saturate(180%);
   padding-left: 30px;
-  top: 6px;
+  transform: translateY(15px);
+  width: 200px;
 }
 
-.Logo_skeleton{
-    min-height: 70px;
-    margin-left: 120px;
-}
-.profile_skeleton{
-    min-width: 38px;
-    min-height: 38px;
-}
-
-.searchbar{
-    width: 300px;
-    margin-right: 20px;
+.searchBar{
+    width: 250px;
 }

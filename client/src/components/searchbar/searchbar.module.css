@@ -18,7 +18,7 @@
   -ms-flex-flow: row-reverse nowrap;
   flex-flow: row-reverse nowrap;
   width: 100%;
-  border: 1.3px solid  rgb(189, 188, 188);
+
 }
 .searchwrapper .search {
 
@@ -31,9 +31,10 @@
   width: 100%;
 }
 .searchwrapper .search + .i {
+
   border: none;
-  color: rgb(189, 188, 188);
-  padding: .3rem .3rem;
+  color:#3b4044;
+  padding: .32rem .3rem;
   background-color: rgb(255, 255, 255);
 }
 .searchwrapper .search:focus {
