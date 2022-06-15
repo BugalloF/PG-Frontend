@@ -61,10 +61,11 @@
     margin-left: -25px;
 }
 
-.container_searchbar
-{
+.searchBar{
     height: 100%;
-    width: 45%;
+    width: 300px;
+    margin-right: 90px;
+    margin-top: 10px;
 }
 
 .container_image
@@ -101,7 +102,6 @@
     height: 55px;
     background-color: transparent;
     box-shadow: 0px 1px 10px  #e7c0ccce;;
-
 }
 
 .Filtros
