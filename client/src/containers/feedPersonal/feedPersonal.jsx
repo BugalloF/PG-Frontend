@@ -34,7 +34,7 @@ const MyFeed = () => {
     };
   }, [dispatch]);
 
-  if(loggedUser)
+  if(loggedUser && followPost===[])
   {
     return (
       <div>
@@ -79,7 +79,9 @@ const MyFeed = () => {
   }
   else
   {
-    return(<Navigate to="/login"/>);
+    return(<div>
+      <p>los usuarios a los que sigues no tienen publicaciones aun !</p>
+    </div>);
   };
 };
 
