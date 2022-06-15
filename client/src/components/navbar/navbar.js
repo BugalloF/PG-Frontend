@@ -16,7 +16,7 @@ import Usermenu from "../usermenu/usermenu";
 function NavBar() {
   const allCategories = useSelector((state) => state.categories);
   const loader = useSelector((state) => state.loader);
-  const urls = ['http://localhost:3000/feed']
+  const urls = ['http://localhost:3000/feed','https://pg-frontend-eight.vercel.app/feed']
   const [Menu, setMenu] = useState(true);
   const loggedUser = window.localStorage.getItem("userData");
   const userDataJson = JSON.parse(loggedUser);
