@@ -4,8 +4,8 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	height: 650px;
-	width: 1200px;
+	width: 1000px;
+
 }
 
 button {
@@ -13,15 +13,19 @@ button {
 }
 
 .container_detail{
-	display: flex;
-	flex-direction: row;
+	
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+	height: 70vh;
+
 }
 
 .container_detail .img{
 	background-color: #ebebeb;
 	object-fit: scale-down;
 	width: 700px;
-	height: 700px;
+
 }
 
 .container_rigth{
@@ -34,19 +38,22 @@ button {
 }
 
 .PriceZone{
-	transform: translate(310px);
+
+    transform: translateX(10px);
 	color: white;
 	font-weight: 600;
 	clip-path: polygon(0% 0%, 100% 0%, 100% 100%,10% 100%);
 	background-color: rgb(70, 34, 34);
-	width: 120px;
-	height: 80px;
+	width: fit-content;
+	height: 50px;
 	padding: 0px 30px;
 	align-items: center;
 	justify-content: left;
+	align-self: flex-end;
+	
 }
 .PriceZone h1{
-	font-size: 45px;
+	font-size: 23px;
 	vertical-align: baseline;
     display: inline-block;
     line-height: 20px;
@@ -56,56 +63,21 @@ button {
 	max-width: 500px;
 	font-size: 20px;
 }
-.container_rigth :nth-child(4){
-	color: rgb(65, 65, 65);
-	line-height: 26px;
-	word-wrap: break-word;
-	word-break: break-all;
-	height: 310px;
-}
+
 
 .buttons{
-	position: absolute;
-	bottom: 0;
-	right: 60px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	padding-top: 70px;
-	width: 390px;
+	position:absolute;
+	
 }
 
-.btn_comment{
-	border: none;
-	background-color:#b0aeae;
-}
-
-.buttons button, .buttons span{
-	font-size: 20px;
-	font-weight: 600;
-	display: flex;
-	align-items: center;	
-}
-
-.buttons_rigth button{
-	padding: 10px;
-	background: transparent;
-	border: 1.4px solid rgb(189, 188, 188);
-
-}
-
-.buttons_rigth{
-	min-width: 550px;
-	display: flex;
-	justify-content: space-between;
-	/*align-items: baseline;*/
-}
 
 
 
 .icon {
-	font-size: 40px;
-	padding: 5px;
+	font-size: 25px;
+	color: #3b4044;
+
+
 }
 
 .buttons_rigth button:hover {
@@ -116,20 +88,24 @@ button {
 {
 	display: flex;
 	gap: 10px;
+	align-self: flex-end;
 }
 
-.Paypal :nth-child(1){
-	top: 0;
-	position: absolute;
-}
-.Paypal{
-	position: relative;
-	background-color: rgb(39, 216, 119);
-	height: 25px;
-	width: 150px;
+
+
+.likes{
+	border: none;
+	background:none;
+	justify-content: center;
+	align-items: center;
+	
+	
+
+	
 }
 
-.EditButton .a
-{
-	text-decoration: none;
+.iconilike{
+
+	font-size: 25px;
+	color: #651705;
 }

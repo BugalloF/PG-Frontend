@@ -77,63 +77,75 @@ export function Detail(props) {
   return(
     <div className={s.container}>
       <div className={s.container_detail}>
+        
         <img src={props.image} alt="IMAGEN" className={s.img} />
+        <div className={s.buttons}>
+        
+
+        { 
+          userDataJson!== null ? props.isLiked === false ? 
+            <button
+             className={s.likes}
+             onClick={handlerOnClick}>
+                <FontAwesomeIcon  icon={faHeart} className={s.icon}  /> {props.likes}
+           
+            </button>
+     
+            :
+              <div>
+                <button 
+                className={s.likes}
+                onClick={handlerOnDelete}>
+             
+                    <FontAwesomeIcon icon={faHeart} className={s.iconilike}  /> {props.likes}
+          
+                </button>
+              </div>
+            :
+            <button onClick={handlerOnLogin}>
+            <span>
+              <FontAwesomeIcon icon={faHeart} className={s.icon}  /> {props.likes}
+            </span>
+          </button>
+        }
+        <div>
+          {
+            props.profileId === id ?
+            <div className={s.EditButton}>
+              <NavLink to={`/edit/${props.idPost}`} style={{textDecoration: "none"}}>
+                <button>Editar</button>
+              </NavLink>
+              <button onClick={handleDelete}>Eliminar</button>
+            </div>
+            :
+            null
+          }
+        </div>
+    
+    </div>
+        
         <div className={s.container_rigth}>
-        <h1>{props.title}</h1>
-          <div className={s.ProfileZone}>
+        <div className={s.ProfileZone}>
+        <p>{props.user}</p>
 		        <ImageProfile image={props.profile.img} bigSize={true}/>
-              <p>{props.user}</p>
+         
 		      </div>
+        <h1>{props.title}</h1>
+      
           <div className={s.PriceZone}>
           <h1>$ {props.price}</h1>
           </div>
          
           <p>{props.description}</p>
-          
-        </div>
-      </div>
-      <div className={s.buttons}>
-        <div className={s.buttons_rigth}>
           <div >
           <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} idSeller={props.profileId} userSeller={props.user} userPayer={userDataJson?.userName} email={props.emailSeller} />
           </div>
-          { 
-            userDataJson!== null ? props.isLiked === false ? 
-              <button onClick={handlerOnClick}>
-                <span>
-                  <FontAwesomeIcon icon={faHeart} className={s.icon}  /> {props.likes}
-                </span>
-              </button>
-              :
-                <div>
-                  <button onClick={handlerOnDelete}>
-                    <span>
-                      <FontAwesomeIcon icon={faHeartCrack} className={s.icon}  /> {props.likes}
-                    </span>
-                  </button>
-                </div>
-              :
-              <button onClick={handlerOnLogin}>
-              <span>
-                <FontAwesomeIcon icon={faHeart} className={s.icon}  /> {props.likes}
-              </span>
-            </button>
-          }
-          <div>
-            {
-              props.profileId === id ?
-              <div className={s.EditButton}>
-                <NavLink to={`/edit/${props.idPost}`} style={{textDecoration: "none"}}>
-                  <button>Editar</button>
-                </NavLink>
-                <button onClick={handleDelete}>Eliminar</button>
-              </div>
-              :
-              null
-            }
-          </div>
+
+    
+          
         </div>
       </div>
+
     </div>
   );
   }

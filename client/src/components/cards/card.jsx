@@ -21,7 +21,9 @@ const Card = ({postId, img, userId, userName, userImg, country, price, title}) =
         <h5 className={s.title2}>{title}</h5>
         
       <div className={s.Profile}>
-      <NavLink to={`/profile/${userId}`}>
+      <NavLink
+      style={{textDecoration: 'none'}}
+      to={`/profile/${userId}`}>
            <div className={s.name}>{userName}</div>          
           </NavLink>
       </div>
