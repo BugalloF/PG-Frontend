@@ -52,7 +52,7 @@ function ProfilePage()
   
   if(user && loggedUser)
   {
-    console.log(user)
+    // console.log(user)
     return(
       <>
       {!load?      

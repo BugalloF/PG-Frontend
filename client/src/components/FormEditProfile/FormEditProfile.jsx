@@ -4,7 +4,7 @@ import {Link, useParams, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import swal from "sweetalert";
 // Files
-import {profile, EditProfile, getUsers} from "../../redux/actions/index";
+import {profile, EditProfile, getUsers, login} from "../../redux/actions/index";
 import {ImageProfile} from "../imageprofile/imageprofile";
 import EditProfileSkeleton from "../loaderSkeleton/EditProfile/EditProfileSkeleton";
 import s from "./FormEditProfile.module.css";
@@ -178,7 +178,7 @@ function FormEditProfile()
     };
   };
   
-  function handleSubmit(e)
+  async function handleSubmit(e)
   {
     if(Object.keys(validate(input)).length > 0)
     {
@@ -188,8 +188,27 @@ function FormEditProfile()
     else
     {
       e.preventDefault();
-      dispatch(EditProfile(input));
+      
+      const data = await dispatch(EditProfile(input)).catch(error => console.log(error));
+      console.log(data);
+      if(data !== undefined && data !== null)
+      {
+        const payload = data.payload;
+        const userData =
+        {
+          id: payload.updatedProfile.id,
+          userName: payload.updatedProfile.userName,
+          email: payload.updatedProfile.email,
+          token: payload.token,
+          img: payload.updatedProfile.img,
+          is_Admin: payload.updatedProfile.is_Admin,
+          is_banned:payload.updatedProfile.is_banned,
+        };
+        
+        window.localStorage.setItem("userData", JSON.stringify(userData));
+      }
       setInput({...input});
+      
       swal("Cambios guardados.");
       navigate(`/profile/${profileId}`);
     };

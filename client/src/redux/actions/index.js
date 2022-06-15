@@ -395,12 +395,9 @@ export function EditProfile(input)
       linkedIn: input.linkedIn,
     };
   
-    const editProfile = await axios.put(`${URL}/profile/${input.id}?apiKey=${REACT_APP_API_KEY}`,data)
-  
-    dispatch({
-      type: "EDIT_PROFILE",
-      payload: editProfile,
-    });
+    const editProfile = (await axios.put(`${URL}/profile/${input.id}?apiKey=${REACT_APP_API_KEY}`, data)).data;
+    
+    return dispatch({type: "EDIT_PROFILE", payload: editProfile});
   };
 };
 
