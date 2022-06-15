@@ -44,18 +44,29 @@ function ForgotPassword()
         if(Object.keys(validate(input)).length > 0)
         {
             e.preventDefault();
-            swal("Por favor, ingrese un nombre de usuario o correo electrónico.");
+            swal({
+                text: "Por favor, ingrese un nombre de usuario o correo electrónico.",
+                icon: "warning",
+            });
         }
         else
         {
             if((foundUsername.length || foundEmail.length))
             {
                 e.preventDefault();
-                const data = await dispatch(forgotPassword(input)).catch(e => swal("Ocurrió un error. Por favor, intente de nuevo más tarde."));
+                const data = await dispatch(forgotPassword(input)).catch(e => 
+                    swal({
+                        text: "Ocurrió un error. Por favor, intente de nuevo más tarde.",
+                        icon: "warning",
+                    })
+                );
                 
                 if(data !== undefined && data !== null && data.payload)
                 {
-                    swal("Enviamos un correo a su cuenta.");
+                    swal({
+                        text: "Enviamos un correo a su cuenta.",
+                        icon: "success",
+                    });
                     
                     const resetToken =
                     {
@@ -68,7 +79,10 @@ function ForgotPassword()
             else
             {
                 e.preventDefault();
-                swal("No se encontro nignún usuario con ese nombre o correo electrónico.");
+                swal({
+                    text: "No se encontro nignún usuario con ese nombre o correo electrónico.",
+                    icon: "warning",
+                });
             };
         };
     };

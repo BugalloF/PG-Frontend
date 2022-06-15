@@ -45,30 +45,23 @@ function PostForm()
                 category: "",
                 input: [],
         });
-        swal("La obra fue publicada correctamente!");
+        swal({
+            text: "La obra fue publicada correctamente!",
+            icon: "success",
+        });
         navigate(`/profile/${id}`);
         };
        dispatch(CleanStatus());
     }, [status]);
-     
+    
     function validate(input)
     {
         const errors = {};
-        const image = input.img && input.img[0].type.split("/").pop();
-        console.log(image);
-        // const imageExtension = input.img && input.img[0].type;
-        // const validExtensions = /(.jpg | .jpeg | .png | .svg | .bmp)$/i;
         
         if(!input.img)
         {
             errors.img = <p></p>;
         }
-        // else if(image !== "jpg" || image !== "jpeg" || image !== "png" || image !== "svg" || image !== "bmp")
-        // {
-        //     errors.img = window.alert("Por favor, adjunte una extensión de imagen permitida (jpg, jpeg, png, svg, bmp)");
-        //     setInput({...input, img: "", input: [], imguploaded: null});
-        //     console.log(input);
-        // }
         else if(!input.title)
         {
             errors.title = <font></font>;
@@ -101,7 +94,6 @@ function PostForm()
     {
         setInput({...input, [e.target.name] : e.target.value});
         setErrors(validate({...input, [e.target.name] : e.target.value}));
-        // console.log(input);
     };
     
     function handleChangeFile(e)
@@ -113,24 +105,39 @@ function PostForm()
         
         reader.onloadend = function(event)
         {
-            // console.log(input.imguploaded)
-            // console.log(e.target.files);
             setInput({...input, img: [...e.target.files], input: [...e.target.files], imguploaded: [event.target.result]});
         };
     };
     
     function handleSubmit(e)
     {
+        const image = input.img && input.img[0].type.split("/").pop();
+        
         if(Object.keys(validate(input)).length > 0)
         {
             e.preventDefault();
-            swal("Por favor, complete todos los campos correctamente.");
+            swal({
+                text: "Por favor, complete todos los campos correctamente.",
+                icon: "warning",
+            });
         }
         else
         {
-            e.preventDefault();
-            dispatch(Post(input));
-            setLoadPost(true);
+            if(image !== "jpg" && image !== "jpeg" && image !== "png" && image !== "svg" && image !== "bmp" && image !== "raw" && image !== "tiff" && image !== "JPG" && image !== "JPEG" && image !== "PNG" && image !== "SVG" && image !== "BMP" && image !== "RAW" && image !== "TIFF")
+            {
+                e.preventDefault();
+                swal({
+                    text: "Por favor, adjunte una extensión de imagen permitida (jpg, jpeg, png, svg, bmp, raw, tiff)",
+                    icon: "warning",
+                });
+                setInput({...input, img: "", input: [], imguploaded: null});
+            }
+            else
+            {
+                e.preventDefault();
+                dispatch(Post(input));
+                setLoadPost(true);
+            };
         };
     };
     
@@ -147,7 +154,7 @@ function PostForm()
                            input.imguploaded !== null && <img className={s.uploaded} src={input.imguploaded} />
                         }
                         <p>Subir una imagen</p>
-                        <input onChange={handleChangeFile} type="file" accept=".jpg, .jpeg, .png, .svg, .bmp" /*value={input.img}*/ name="img" disabled={loadPost}/>
+                        <input onChange={handleChangeFile} type="file" accept=".jpg, .jpeg, .png, .svg, .bmp, .raw, .tiff" /*value={input.img}*/ name="img" disabled={loadPost}/>
                         {
                             errors.img && errors.img
                         }

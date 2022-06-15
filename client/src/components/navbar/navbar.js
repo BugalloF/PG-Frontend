@@ -1,17 +1,15 @@
 // Dependencies
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-
 import {NavLink} from "react-router-dom";
-import Skeleton from 'react-loading-skeleton';
 import Filters from "../../components/filters/filters";
-
 // Files
 import {SearchBar} from "../searchbar/searchbar";
 import {ImageProfile} from "../imageprofile/imageprofile";
 import s from "../navbar/navbar.module.css";
 import {CleanPosts, resetPage, SetCategoty} from "../../redux/actions";
 import Usermenu from "../usermenu/usermenu";
+
 
 function NavBar() {
   const allCategories = useSelector((state) => state.categories);
@@ -23,11 +21,9 @@ function NavBar() {
   const id = userDataJson ? userDataJson.id : "";
   const img = userDataJson ? userDataJson.img : "";
   const dispatch = useDispatch();
-
   
   function handleMenu(e)
   {
-
     e.preventDefault();
     setMenu(!Menu);
   };
@@ -75,9 +71,8 @@ function NavBar() {
           <div className={s.container_image}>
 
             {
-              id ? <a onClick={handleMenu} >{<ImageProfile image={img} bigSize={false} />}</a>
+              id ? <a onMouseOver={handleMenu} >{<ImageProfile image={img} bigSize={false} />}</a>
               :
-
               <div className={s.login}>
                 <NavLink className={s.login} to="/login">Login</NavLink> || 
                 <NavLink className={s.login} to="/register">Registrarse</NavLink>
@@ -93,7 +88,6 @@ function NavBar() {
           <NavLink to="/">
             {<img src='https://firebasestorage.googleapis.com/v0/b/artpage-aa77e.appspot.com/o/aa%2FLogo222.png?alt=media&token=8fa86748-ede3-4a0f-8bf1-e72cd455b1f4' alt="DigitalizArte"></img>}
           </NavLink>
-
 
            {
             urls.includes(window.location.href) ?

@@ -45,8 +45,6 @@ export function Detail(props) {
           text: 'Publicación eliminada correctamente!',
           icon: 'success'
         })
-      } else {
-        swal("Cancelado", "Tu obra no fue eliminada", "error");
       }
     })
   }
