@@ -20,7 +20,6 @@ function NavBar() {
   const id = userDataJson ? userDataJson.id : "";
   const img = userDataJson ? userDataJson.img : "";
   const dispatch = useDispatch();
-  const url = useLocation();
   
   
   function handleMenu(e)
@@ -65,9 +64,16 @@ function NavBar() {
           </div>
         </div>
         <div className={s.right}>
-      {url.pathname !== "/"?   <div className={s.searchBar}>
-             <SearchBar />
-               </div>: null} 
+        <div className={s.searchBar}>
+        {
+            urls.includes(window.location.href) ?
+            <div className={s.Filtros}>
+              <SearchBar />
+            </div>
+            :
+            null
+          }
+               </div>
 
           <div className={s.container_image}>
 

@@ -6,7 +6,7 @@ function EditProfileSkeleton() {
 		<div className={s.container_edit}>
 			<Skeleton className={s.title} width={200} height={40}/>
 			<Skeleton circle width={38} height={38}/>
-			<Skeleton width={200} height={30}/>
+			<Skeleton width={260} height={21}/>
 			<div className={s.form}>
 				<div className={s.left}>
 					<Skeleton className={s.input} width={300}/>
