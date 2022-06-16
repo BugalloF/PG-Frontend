@@ -67,7 +67,7 @@
     width: 100%;
     resize: none;
     font-size: 16px;
-    font-family: 'Helvetica';
+
 }
 
 .button {
@@ -82,6 +82,11 @@
     color: #fff;
     border-radius: 11px;
     transition: 0.9s all;
+}
+
+.profile1{
+    display: flex;
+    flex-direction: row;
 }
 
 .button:hover{
@@ -116,8 +121,7 @@
 
 .select {
     font-size: 15px;
-    font-family: 'Helvetica';
-    border: 1px solid rgb(143, 143, 143);
+   border: 1px solid rgb(143, 143, 143);
     background-color: white;
     padding: 8px 25px;
     margin-bottom: 50px;
@@ -126,6 +130,7 @@
 .container_complete {
     display: flex;
     flex-direction: row;
+    margin: auto;
 }
 
 .input_price {

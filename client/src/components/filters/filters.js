@@ -58,9 +58,9 @@ const Filters = () => {
 
 
 
-
+   
     return (
-      <div className={s.container}>
+     !name.search ? (<div className={s.container}>
  
       <div className={s.Container_filter}>
 
@@ -106,7 +106,8 @@ const Filters = () => {
 
      </div>
      
-      </div>      
+      </div>      ) : null
     );
+   
 };
 export default Filters;
