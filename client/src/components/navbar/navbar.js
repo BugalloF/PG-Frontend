@@ -65,7 +65,14 @@ function NavBar() {
         </div>
         <div className={s.right}>
         <div className={s.searchBar}>
-             <SearchBar />
+        {
+            urls.includes(window.location.href) ?
+            <div className={s.Filtros}>
+              <SearchBar />
+            </div>
+            :
+            null
+          }
                </div>
 
           <div className={s.container_image}>

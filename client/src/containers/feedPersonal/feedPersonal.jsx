@@ -34,7 +34,7 @@ const MyFeed = () => {
     };
   }, [dispatch]);
 
-  if(loggedUser && followPost===[])
+  if(loggedUser && followPost!==[])
   {
     return (
       <div>

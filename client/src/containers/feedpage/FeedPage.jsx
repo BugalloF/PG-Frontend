@@ -26,7 +26,7 @@ const PrincipalPage = () => {
       dispatch(resetPage());
       
       return () => {
-        // dispatch(CleanPosts());
+        dispatch(CleanPosts());
         window.scrollTo(0,0); 
       };
     
