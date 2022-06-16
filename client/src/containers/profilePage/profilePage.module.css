@@ -1,15 +1,23 @@
 .container_info_profile{
-	border-bottom: 1.4px solid rgb(189, 188, 188);
+	border-top: 2px solid rgb(189, 188, 188);
 	padding: 20px 40px;
+	display: flex;
+	justify-content: space-between;
+	background-image: linear-gradient(to top, #c6b4b3 0%, #f5efef 100%);
+	height: 200px;
 }
 
 .follows{
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	/* background-color: blue; */
 }
 
 .follows p{
 	font-size: 25px;
-	margin:25px;
+	/* margin:25px; */
 }
 
 .top{
@@ -17,10 +25,16 @@
 	justify-content: space-between;
 	flex-direction: row;
 	align-items: center;
+	gap: 10px;
 }
 
 .description{
 	font-size: 25px;
+	word-wrap: break-word;
+	word-break: break-all;
+	width:  40vw;
+	margin-left: -300px;
+	/* position: absolute; */
 }
 
 
@@ -30,6 +44,8 @@
 	gap: 15px;
 	display: flex;
 	justify-content: space-between;
+	/* justify-self: end; */
+	margin-top: 20px;
 }
 
 	.facebook{
@@ -37,7 +53,12 @@
 		min-height: 45px;
 	  	color: #0165E1;
 	}
-
+	.edit{
+		min-width: 35px;
+		min-height: 35px;
+	  	color: black;
+		margin-top: 15px;
+	}
 	.devianArt {
 		background: #05cc47;
 		color: #fff;
@@ -83,5 +104,65 @@
 .profile
 {
 	display: flex;
-	gap: 10px;
+	flex-direction: column;
+	gap: 5px;
+	align-items: center;
+	/* background-color: red; */
+	font-size: 15px;	
 }
+.profile img{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	margin-top: 10px;
+}
+.ola{
+	background-color: grey;
+	padding: 5px 10px;
+	color: white;
+
+
+}
+a{
+	text-decoration: none;
+}
+.followbutton {
+	color: black;
+	font-size: 20px;
+	background-color:rgb(205, 194, 194);
+	border: 1px solid;
+	border-color: rgb(59,64,68);
+	padding: 5px 10px;
+	cursor: hand;	
+	width: 111px;	
+	    
+  }
+  .followbutton2 {
+	color: black;
+	font-size: 20px;
+	/* background-color: white; */
+	background-color:rgb(205, 194, 194);
+
+	border: 1px solid;
+	border-color: rgb(59,64,68);
+	padding: 5px 10px;
+	cursor: hand;
+	width: 111px;	    
+
+  }
+
+  .LandingImg {
+    padding: 5px 10px;
+    color: #fff;
+    /* font-weight: bold; */
+    cursor: pointer;
+    transition: all 0.3s ease;  
+    border: 2px solid #212529;
+    background: rgb(59,64,68);
+    font-size: 25px;
+  }
+  
+  .LandingImg:hover{
+    background: #fff;
+    color: rgb(59,64,68)
+  }

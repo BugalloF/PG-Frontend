@@ -29,26 +29,15 @@ const MyFeed = () => {
   useEffect(() => {
     return () => {
       dispatch(resetPage());
-      dispatch(cleanFollowedPosts());
+      // dispatch(cleanFollowedPosts());
       window.scrollTo(0,0); 
     };
   }, [dispatch]);
 
-  if(loggedUser)
+  if(loggedUser && followPost!==[])
   {
     return (
       <div>
-        <InfiniteScroll
-          dataLength={followPost.length}
-          hasMore={hasMore}
-          next={() => dispatch(setPage())}
-          loader={hasMore || followPost.length>12?<CardsSkeleton oneLine={true}/>:null}
-          endMessage={
-            <p style={{ textAlign: "center" }}>
-              <b>Wow! Parece que llegaste al fin!</b>
-            </p>
-          }
-        >
         <div className={s.FeedPage}>
         {
           loader ? <CardsSkeleton oneLine={false}/>
@@ -73,13 +62,14 @@ const MyFeed = () => {
           </div>
         }
         </div>
-        </InfiniteScroll>
       </div>
     );
   }
   else
   {
-    return(<Navigate to="/login"/>);
+    return(<div>
+      <p>los usuarios a los que sigues no tienen publicaciones aun !</p>
+    </div>);
   };
 };
 

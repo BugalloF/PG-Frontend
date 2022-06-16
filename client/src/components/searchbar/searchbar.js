@@ -12,6 +12,7 @@ export function SearchBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+
   return (
     <form
       className={s.container}

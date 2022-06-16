@@ -69,16 +69,26 @@ function ResetPassword()
         if(Object.keys(validate(input)).length > 0)
         {
             e.preventDefault();
-            swal("Por favor, ingrese una contraseña correctamente.");
+            swal({
+                text: "Por favor, ingrese una contraseña correctamente.",
+                icon: "warning",
+            });
         }
         else
         {
             e.preventDefault();
-            const data = await dispatch(resetPassword(id, resetToken, input)).catch(swal("El id ingresado no es válido y/o el token ha expirado. Vuelva a intentarlo.").then(navigate("/forgot")));
+            const data = await dispatch(resetPassword(id, resetToken, input)).catch(swal({
+                text: "El id ingresado no es válido y/o el token ha expirado. Vuelva a intentarlo.",
+                icon: "warning",
+            })
+            .then(navigate("/forgot")));
             
             if(data !== true)
             {
-                swal("Su contraseña ha sido actualizada.");
+                swal({
+                    text: "Su contraseña ha sido actualizada.",
+                    icon: "success",
+                });
                 navigate("/login");
             };
         };

@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {Link, useParams, useNavigate, Navigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import swal from "sweetalert";
+import {ThreeDots} from  'react-loader-spinner';
 // Files
 import {profile, EditProfile, getUsers, login} from "../../redux/actions/index";
 import {ImageProfile} from "../imageprofile/imageprofile";
@@ -37,6 +38,7 @@ function FormEditProfile()
     instagram: "",
     linkedIn: "",
   });
+  const [loadChanges, setLoadChanges] = useState(false)
   const [photo, setPhoto] = useState();
   const navigate = useNavigate();
   
@@ -183,11 +185,15 @@ function FormEditProfile()
     if(Object.keys(validate(input)).length > 0)
     {
       e.preventDefault();
-      swal("Por favor, complete los campos necesarios correctamente.");
+      swal({
+        text: "Por favor, complete todos los campos correctamente.",
+        icon: "warning",
+      });
     }
     else
     {
       e.preventDefault();
+      setLoadChanges(true);
       
       const data = await dispatch(EditProfile(input)).catch(error => console.log(error));
       console.log(data);
@@ -208,8 +214,10 @@ function FormEditProfile()
         window.localStorage.setItem("userData", JSON.stringify(userData));
       }
       setInput({...input});
-      
-      swal("Cambios guardados.");
+      swal({
+        text: "Cambios guardados.",
+        icon: "success",
+      });
       navigate(`/profile/${profileId}`);
     };
   };
@@ -222,41 +230,41 @@ function FormEditProfile()
         <form className={s.edit_profile_form} onSubmit={handleSubmit}>
           <div className={s.edit_profile_photo}>
             <ImageProfile image={photo} />
-            <input onChange={handleChangeFile} type="file" accept=".jpg, .jpeg, .png" name="img"/>
+            <input onChange={handleChangeFile} type="file" accept=".jpg, .jpeg, .png" name="img" disabled={loadChanges}/>
           </div>
           
           <div className={s.edit_profile_inputs}>
             <div className={s.edit_profile_left}>
-              <input onChange={handleChange} className={errors.name ? s.Alert : s.Inputs} type="text" placeholder="Nombre" maxLength="20" name="name" value={input.name}/>
+              <input onChange={handleChange} className={errors.name ? s.Alert : s.Inputs} type="text" placeholder="Nombre" maxLength="20" name="name" value={input.name} disabled={loadChanges}/>
               {
                 errors.name && errors.name
               }
               
-              <input onChange={handleChange} className={errors.lastName ? s.Alert : s.Inputs} type="text" placeholder="Apellido" maxLength="30" name="lastName" value={input.lastName}/>
+              <input onChange={handleChange} className={errors.lastName ? s.Alert : s.Inputs} type="text" placeholder="Apellido" maxLength="30" name="lastName" value={input.lastName} disabled={loadChanges}/>
               {
                 errors.lastName && errors.lastName
               }
               
-              <input onChange={handleChange} className={errors.userName ? s.Alert : s.Inputs} type="text" placeholder="Nombre de usuario" maxLength="20" name="userName" value={input.userName}/>
+              <input onChange={handleChange} className={errors.userName ? s.Alert : s.Inputs} type="text" placeholder="Nombre de usuario" maxLength="20" name="userName" value={input.userName} disabled={loadChanges}/>
               {
                 errors.userName && errors.userName
               }
               
-              <input onChange={handleChange} className={errors.email ? s.Alert : s.Inputs} type="email" placeholder="Correo electrónico" name="email" value={input.email}/>
+              <input onChange={handleChange} className={errors.email ? s.Alert : s.Inputs} type="email" placeholder="Correo electrónico" name="email" value={input.email} disabled={loadChanges}/>
               {
                 errors.email && errors.email
               }
               
               <Link to={`/profile/changePassword/${profileId}`}>
-                <button type="button" className={s.btn_password}>CAMBIAR CONTRASEÑA</button>
+                <button type="button" className={s.btn_password} disabled={loadChanges}>CAMBIAR CONTRASEÑA</button>
               </Link>
               
-              <input onChange={handleChange} className={errors.day_of_birth ? s.Alert : s.Inputs} type="date" placeholder="Fecha de nacimiento" maxLength="10" name="day_of_birth" value={input.day_of_birth} onFocus={e => e.currentTarget.type = "date"} onBlur={e => e.currentTarget.type = "text"}/>
+              <input onChange={handleChange} className={errors.day_of_birth ? s.Alert : s.Inputs} type="date" placeholder="Fecha de nacimiento" maxLength="10" name="day_of_birth" value={input.day_of_birth} onFocus={e => e.currentTarget.type = "date"} onBlur={e => e.currentTarget.type = "text"} disabled={loadChanges}/>
               {
                 errors.day_of_birth && errors.day_of_birth
               }
               
-              <select className={errors.gender ? s.Alert : s.Inputs} onChange={handleChange} name="gender">
+              <select className={errors.gender ? s.Alert : s.Inputs} onChange={handleChange} name="gender" disabled={loadChanges}>
                 {
                   input.gender === "" ? <option value="Género" key="Género" selected disabled>Género</option>
                   :
@@ -279,41 +287,43 @@ function FormEditProfile()
                 }
               </select>
               
-              <input onChange={handleChange} className={errors.phone ? s.Alert : s.Inputs} type="text" placeholder="Teléfono. Ej.(AR): 541122223333" name="phone" value={input.phone}/>
+              <input onChange={handleChange} className={errors.phone ? s.Alert : s.Inputs} type="text" placeholder="Teléfono. Ej.(AR): 541122223333" name="phone" value={input.phone} disabled={loadChanges}/>
               {
                 errors.phone && errors.phone
               }
               
-              <input onChange={handleChange} className={errors.country ? s.Alert : s.Inputs} type="text" placeholder="País" maxLength="30" name="country" value={input.country}/>
+              <input onChange={handleChange} className={errors.country ? s.Alert : s.Inputs} type="text" placeholder="País" maxLength="30" name="country" value={input.country} disabled={loadChanges}/>
               {
                 errors.country && errors.country
               }
             </div>
             
             <div className={s.edit_profile_rigth}>
-              <textarea onChange={handleChange} className={errors.description ? s.Alert : s.Inputs} type="text" placeholder="Descripción" maxLength="500" name="description" value={input.description}/>
+              <textarea onChange={handleChange} className={errors.description ? s.Alert : s.Inputs} type="text" placeholder="Descripción" maxLength="500" name="description" value={input.description} disabled={loadChanges}/>
               {
                 errors.description && errors.description
               }
               
-              <input onChange={handleChange} className={errors.facebook ? s.Alert : s.Inputs} type="text" placeholder="Facebook. Ej: facebook.com/usuario" name="facebook" value={input.facebook}/>
+              <input onChange={handleChange} className={errors.facebook ? s.Alert : s.Inputs} type="text" placeholder="Facebook. Ej: facebook.com/usuario" name="facebook" value={input.facebook} disabled={loadChanges}/>
               {
                 errors.facebook && errors.facebook
               }
               
-              <input onChange={handleChange} className={errors.instagram ? s.Alert : s.Inputs} type="text" placeholder="Instagram Ej: instagram.com/usuario" name="instagram" value={input.instagram}/>
+              <input onChange={handleChange} className={errors.instagram ? s.Alert : s.Inputs} type="text" placeholder="Instagram Ej: instagram.com/usuario" name="instagram" value={input.instagram} disabled={loadChanges}/>
               {
                 errors.instagram && errors.instagram
               }
               
-              <input onChange={handleChange} className={errors.linkedIn ? s.Alert : s.Inputs} type="text" placeholder="LinkedIn Ej: linkedin.com/in/usuario" name="linkedIn" value={input.linkedIn}/>
+              <input onChange={handleChange} className={errors.linkedIn ? s.Alert : s.Inputs} type="text" placeholder="LinkedIn Ej: linkedin.com/in/usuario" name="linkedIn" value={input.linkedIn} disabled={loadChanges}/>
               {
                 errors.linkedIn && errors.linkedIn
               }
             </div>
           </div>
           
-          <button className={s.btnSubmit} type="submit">Guardar cambios</button>
+          {loadChanges?<button className={s.btnLoad} disabled><ThreeDots className={s.loadDots} color="#FFF" height={15} /></button> :
+            <button className={s.btnSubmit} type="submit">Guardar cambios</button>
+          }
         </form>
       </div>
     );

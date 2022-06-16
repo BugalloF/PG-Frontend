@@ -10,12 +10,10 @@
     object-fit: contain;
     overflow: hidden;
  
-    
+
     
 }
-.Card:hover {
-    filter: saturate(180%);
-  }
+
 
 .Image{
     height: 270px;
@@ -36,6 +34,11 @@
     flex-direction: row-reverse;
     height: 50px;
     background-color:#3b4044;
+    transition: 0.9s all;
+}
+
+.UserName:hover{
+    opacity: 0.8;
 }
 
 .Name{
@@ -44,27 +47,32 @@
 
 .Price{
     display: inline-block;
-
     height: 23px;
     width: 40px;
-    padding: 0 0 0 10px;
-    font-weight: 600;
-  
-    font-size: 14px;
-    font-style: italic;
+    padding: 3px 0 0 10px;
+    font-weight: 300;
+    font-size: 17px;
     color: white;
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%,10% 100%);
-	background-color: rgb(124, 123, 123, 0.301)
+	background-color: rgb(158, 156, 159);
 }
 
 
 
 
-.title2, .name {
+.title2 {
+    margin:  3px 0 0 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(191, 188, 192);
+    font-style: oblique;
+
+}
+
+
+.name{
     margin:  0 0 0 10px;
     font-weight: 300;
-    font-size: 14px;
+    font-size: 16px;
     color: white;
- 
-
 }

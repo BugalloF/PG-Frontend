@@ -11,7 +11,7 @@ import {
   CleanStatus,
 
   profile,
-loaderTrue
+  loaderTrue
 } from "../../redux/actions";
 import { useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
@@ -37,19 +37,13 @@ const Filters = () => {
   useEffect(()=>{
     dispatch(GetAllCategories())
     return () =>{
-      dispatch(CleanPosts())
+      // dispatch(CleanPosts())
       dispatch(SetCategoty(null))
     }
 
   },[])
-  console.log()
 
   useEffect(() => {
-      if (page===0) {
-        dispatch(loaderTrue())
-
-      }    
-
       if(category){
         dispatch(GetCategotyPosts(page,category,order.by,order.type));
       }else {
@@ -64,9 +58,9 @@ const Filters = () => {
 
 
 
-
+   
     return (
-      <div className={s.container}>
+     !name.search ? (<div className={s.container}>
  
       <div className={s.Container_filter}>
 
@@ -112,7 +106,8 @@ const Filters = () => {
 
      </div>
      
-      </div>      
+      </div>      ) : null
     );
+   
 };
 export default Filters;

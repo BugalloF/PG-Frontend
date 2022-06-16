@@ -39,7 +39,7 @@
     margin: 0;
     background: 0;
     border: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
     text-transform: none;
     font-weight: 500;
     /* font-smoothing: antialiased; */
@@ -67,7 +67,6 @@
 }
 
 .paypal-button-container.paypal-button-env-test .paypal-button-text {
-    font-family: Arial !important;
     background: rgba(0, 0, 0, 0.5) !important;
     color: transparent !important;
     text-shadow: none !important;
