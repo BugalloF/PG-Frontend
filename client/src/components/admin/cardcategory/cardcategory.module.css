@@ -1,5 +1,3 @@
-
-
 .list{
     display: flex;
     justify-content: space-between;
@@ -34,7 +32,7 @@
 
 .buttonedit{
     
-    color: rgb(213, 180, 243);
+    color: rgb(76, 189, 174);
     font-size: 15px;
     cursor: pointer;
     
@@ -42,7 +40,7 @@
 
 .buttondelete{
     margin-top: 15px    ;
-    color: rgb(213, 180, 243);
+    color: rgb(76, 189, 174);
     font-size: 20px;
     cursor: pointer;
 }
@@ -50,7 +48,7 @@
 .buttonconfirm{
     margin-top: 15px;
     font-size: 15px;
-    background-color: rgb(213, 180, 243);
+    background-color: rgb(76, 189, 174);
     width: 100px;
     height: 21px;
     display: inline-block;

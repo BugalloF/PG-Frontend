@@ -299,7 +299,7 @@ function FormEditProfile()
             </div>
             
             <div className={s.edit_profile_rigth}>
-              <textarea onChange={handleChange} className={errors.description ? s.Alert : s.Inputs} type="text" placeholder="Descripción" maxLength="230" name="description" value={input.description} disabled={loadChanges}/>
+              <textarea onChange={handleChange} className={errors.description ? s.Alert : s.Inputs} type="text" placeholder="Descripción" maxLength="500" name="description" value={input.description} disabled={loadChanges}/>
               {
                 errors.description && errors.description
               }

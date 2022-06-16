@@ -17,7 +17,7 @@
 
 .Image{
     height: 270px;
-    min-width: 150px;
+    min-width: 170px;
     max-width: 400px;
     object-fit: cover;
   
@@ -48,7 +48,7 @@
 .Price{
     display: inline-block;
     height: 23px;
-    width: 40px;
+    width: 43px;
     padding: 3px 0 0 10px;
     font-weight: 300;
     font-size: 17px;
@@ -62,9 +62,9 @@
 
 .title2 {
     margin:  3px 0 0 10px;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 500;
-    color: rgb(191, 188, 192);
+    color: white;
     font-style: oblique;
 
 }
@@ -74,5 +74,9 @@
     margin:  0 0 0 10px;
     font-weight: 300;
     font-size: 16px;
+    color: rgb(191, 188, 192);
+}
+.name:hover{
     color: white;
+
 }

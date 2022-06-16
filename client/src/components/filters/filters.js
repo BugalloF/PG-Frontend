@@ -89,14 +89,14 @@ const Filters = () => {
       setOrder({by:e.target.value.split(',')[1],type:e.target.value.split(',')[0]})}} 
     className={s.OrderSelect}>
       <option selected disabled >
-        ORDENARAMIENTOS
+        ORDENAR POR...
       </option>
-      <option value="DESC,price">Mayor a menor</option>
-      <option value="ASC,price">Menor a mayor</option>
-      <option value="DESC,likes">Mejores valorados</option>
-      <option value="ASC,likes">Peores valorados</option>
-      <option value="DESC,createdAt" >Más recientes</option>
-      <option value="ASC,createdAt">Más antiguos</option>
+      <option value="DESC,price">$:Mayor a menor</option>
+      <option value="ASC,price">$:Menor a mayor</option>
+      <option value="DESC,likes">♥:Mejores valorados</option>
+      <option value="ASC,likes">♥:Peores valorados</option>
+      <option value="DESC,createdAt">+:Más recientes</option>
+      <option value="ASC,createdAt">  -:Más antiguos</option>
     </select>
 
 

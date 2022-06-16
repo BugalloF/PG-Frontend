@@ -26,11 +26,13 @@ button {
 
 }
 
+
 .title{
 	font-size: 25px;
 	font-weight: 500;
 	color:#3b4044;
 	margin-left: 20px;
+	line-height: 0px
 }
 
 .container_detail .img{
@@ -78,7 +80,7 @@ button {
 	font-size: 19px;
 	margin-left: 20px;
 	color:#3b4044;
-
+	word-wrap: break-all;
 }
 
 
@@ -97,13 +99,13 @@ button {
 	font-size: 25px;
 	color: #3b4044;
 	transition: 0.9s all;
-	
-
+	margin-right:5px ;
+	/* gap:5px */
 
 }
 
 .icon:hover{
-    color: rgb(134, 125, 125);
+    color: rgb(138,76,76);
 }
 
 
@@ -122,9 +124,6 @@ button {
 	background:none;
 	justify-content: center;
 	align-items: center;
-	
-	
-
 	
 }
 
@@ -146,3 +145,9 @@ button {
 	display: flex;
 	align-items: flex-end;
 }
+.row{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
