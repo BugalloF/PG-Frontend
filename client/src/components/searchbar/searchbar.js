@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { resetPage,CleanPosts, CleanTransactions, CleanUsers } from "../../redux/actions";
+import swal from "sweetalert";
 
 export function SearchBar() {
   const [artWork, setArtWork] = useState('');
@@ -18,7 +19,10 @@ export function SearchBar() {
       className={s.container}
       onSubmit={(e) => {
         e.preventDefault();
-        if(!artWork) return alert('Debes inlcuir un nombre')
+        if(!artWork) return swal({
+          title: "Debes inlcuir un nombre",
+          icon: "warning",
+        });
         dispatch(resetPage());
         // dispatch(CleanPosts()); 
         dispatch(CleanTransactions())

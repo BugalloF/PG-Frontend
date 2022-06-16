@@ -28,12 +28,6 @@ function NavBar() {
     setMenu(!Menu);
   };
   
-  function handleQuitMenu(e)
-  {
-    e.preventDefault();
-    setMenu(!Menu);
-  };
-  
   return (
     <div className={s.General}>
       <div className={s.container}>
@@ -78,7 +72,7 @@ function NavBar() {
           <div className={s.container_image}>
 
             {
-              id ? <a onMouseOver={handleMenu} >{<ImageProfile image={img} bigSize={false} />}</a>
+              id ? <a onClick={handleMenu} >{<ImageProfile image={img} bigSize={false} />}</a>
               :
               <div className={s.login}>
                 <NavLink className={s.login} to="/login">Login</NavLink> || 

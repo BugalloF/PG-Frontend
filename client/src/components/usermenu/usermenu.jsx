@@ -41,11 +41,6 @@ const Usermenu = ({userID}) => {
           :
           null
         }
-        <Link to={`/aboutus`} style={{textDecoration: 'none'}}>
-          <li>
-            <FontAwesomeIcon icon={faUsers} className={s.icon} />Sobre nosotros
-          </li>
-        </Link>
           <li onClick={handleLogout}>
             <FontAwesomeIcon icon={faRightFromBracket} className={s.icon} />Desconectarse
           </li>
