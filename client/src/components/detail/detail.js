@@ -1,7 +1,7 @@
 // Dependencies
 import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faHeart , faHeartCrack} from "@fortawesome/free-solid-svg-icons";
+import { faHeart , faHeartCrack,faPenToSquare,faTrashCan} from "@fortawesome/free-solid-svg-icons";
 import {NavLink,useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import swal from "sweetalert";
@@ -82,14 +82,25 @@ export function Detail(props) {
         
         <div className={s.container_rigth}>
         <div className={s.ProfileZone}>
-        
+        {
+          userDataJson ? 
        <NavLink
        className={s.profile1}
-        to={`/profile/`}
+        to={`/profile/${props.profileId}`}
+       >
+       <p>{props.user}</p>
+       <ImageProfile image={props.profile.img} />
+       </NavLink>:
+       <NavLink
+       className={s.profile1}
+       onClick={handlerOnLogin}
+        to={`/profile/${props.profileId}`}
        >
        <p>{props.user}</p>
        <ImageProfile image={props.profile.img} />
        </NavLink>
+       
+      }
      
         
          
@@ -102,18 +113,36 @@ export function Detail(props) {
          
           <p>{props.description}</p>
           <div className={s.paypal}>
+          {props.profileId !== id ?
           <Paypal idPost={props.idPost} price={props.price} description={props.description} title={props.title} idSeller={props.profileId} userSeller={props.user} userPayer={userDataJson?.userName} email={props.emailSeller} />
+          :
+          null
+        }
           <div className={s.buttons}>
         
 
         { 
           userDataJson!== null ? props.isLiked === false ? 
+            <div className={s.row}>
             <button
              className={s.likes}
              onClick={handlerOnClick}>
                 <FontAwesomeIcon  icon={faHeart} className={s.icon}  /> {props.likes}
            
             </button>
+            {
+            props.profileId === id ?
+            <div className={s.likes}>
+              <NavLink to={`/edit/${props.idPost}`} style={{textDecoration: "none"}}>
+              <FontAwesomeIcon icon={faPenToSquare} className={s.icon}  />
+              </NavLink>
+              <FontAwesomeIcon icon={faTrashCan} onClick={handleDelete} className={s.icon}  />
+
+            </div>
+            :
+            null
+          }
+            </div>
      
             :
               <div>
@@ -121,7 +150,7 @@ export function Detail(props) {
                 className={s.likes}
                 onClick={handlerOnDelete}>
              
-                    <FontAwesomeIcon icon={faHeart} className={s.iconilike}  /> {props.likes}
+                    <FontAwesomeIcon icon={faHeart} className={s.icon}  /> {props.likes}
           
                 </button>
               </div>
@@ -132,19 +161,9 @@ export function Detail(props) {
             </span>
           </button>
         }
-        <div>
-          {
-            props.profileId === id ?
-            <div className={s.EditButton}>
-              <NavLink to={`/edit/${props.idPost}`} style={{textDecoration: "none"}}>
-                <button>Editar</button>
-              </NavLink>
-              <button onClick={handleDelete}>Eliminar</button>
-            </div>
-            :
-            null
-          }
-        </div>
+        
+         
+        
     
     </div>
 

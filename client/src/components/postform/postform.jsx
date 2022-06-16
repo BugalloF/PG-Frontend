@@ -74,7 +74,7 @@ function PostForm()
         {
             errors.content = <font></font>;
         }
-        else if(input.content.length > 400)
+        else if(input.content.length > 240)
         {
             errors.content = <font></font>;
         }
@@ -167,7 +167,7 @@ function PostForm()
                             errors.title && errors.title
                         }
                         <h4 className={s.title}>Contenido</h4>
-                        <textarea className={errors.content ? s.Alert : s.Inputs} placeholder="Máx. 400 carácteres" onChange={handleChange} cols="30" rows="10" type="text" value={input.content} maxLength={400} name="content" disabled={loadPost}/>
+                        <textarea className={errors.content ? s.Alert : s.Inputs} placeholder="Máx. 240 carácteres" onChange={handleChange} cols="30" rows="10" type="text" value={input.content} maxLength={240} name="content" disabled={loadPost}/>
                         {
                             errors.content && errors.content
                         }

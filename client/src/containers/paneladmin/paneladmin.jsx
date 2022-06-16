@@ -38,6 +38,7 @@ const PanelAdm = () => {
     if(isAdmin)
     {
         return (
+            <div className={s.background}>
             <div className={s.container}>
                 <div className={s.containerCount}>
                     <h3>Usuriaros</h3>
@@ -62,6 +63,7 @@ const PanelAdm = () => {
                     <p>Transacciones totales: {count.Transacciones}</p>
                     <NavLink className={s.link} to={'transactions'}>Ver mas</NavLink>
                 </div>
+            </div>
             </div>
         );
     }
