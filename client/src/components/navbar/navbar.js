@@ -75,7 +75,7 @@ function NavBar() {
               id ? <a onClick={handleMenu} >{<ImageProfile image={img} bigSize={false} />}</a>
               :
               <div className={s.login}>
-                <NavLink className={s.login} to="/login">Login</NavLink> || 
+                <NavLink className={s.login} to="/login">Inicar sesión</NavLink> || 
                 <NavLink className={s.login} to="/register">Registrarse</NavLink>
               </div>
             }

@@ -6,14 +6,32 @@ import { ImageProfile } from "../../imageprofile/imageprofile";
 import s from "../cardprofile/cardprofile.module.css"
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import swal from 'sweetalert'
 const loggedUser = window.localStorage.getItem("userData");
 let ahora = new Date().toISOString().slice(0, 10)
-
-
 const CardProfile = ({userId, userName, userImg, firstName, lastName, email, ban,banTime}) => {
-
-    // console.log('ahoraaaa',ahora)
     const dispatch = useDispatch()
+    function handleDelete(e){
+        swal({
+          title: "¿Estás seguro que quieres eliminar el perfil?",
+          text: "No podrás recuperarlo más tarde",
+          icon: "warning",
+          buttons: [
+            'No',
+            'Si'
+          ],
+          dangerMode: true,
+        }).then(function(isConfirm) {
+          if (isConfirm) {
+            dispatch(DeleteUser(userId))
+            swal({
+              text: 'Usuario eliminado correctamente!',
+              icon: 'success'
+            })
+          }
+        })
+      }
+    // console.log('ahoraaaa',ahora)
     // console.log('holaaaa',banTime)
     return (
         <div>
@@ -23,9 +41,7 @@ const CardProfile = ({userId, userName, userImg, firstName, lastName, email, ban
                 <li><p>{email}</p></li>
                 <li><div className={s.button} 
                 onClick={() => {
-                    dispatch(resetPage())
-                    dispatch(CleanUsers())
-                    dispatch(DeleteUser(userId))
+                    handleDelete()
                 }} ><FontAwesomeIcon icon={faCircleXmark}/></div></li>
                 
                 { ban === false ?<li><div
