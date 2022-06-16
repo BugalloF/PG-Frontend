@@ -23,3 +23,8 @@
     align-items: center;
     overflow-x: hidden;
 }
+
+.notf{
+    display: flex;
+    justify-content: center;
+}

@@ -34,7 +34,7 @@ const MyFeed = () => {
     };
   }, [dispatch]);
 
-  if(loggedUser && followPost!==[])
+  if(loggedUser && followPost.length> 0)
   {
     return (
       <div>
@@ -67,8 +67,8 @@ const MyFeed = () => {
   }
   else
   {
-    return(<div>
-      <p>los usuarios a los que sigues no tienen publicaciones aun !</p>
+    return(<div className={s.notf}>
+      <h2>....Oh, algo salió mal. ¿Sigues a algún usuario? En caso de ser afirmativo, puede que no tengan publicaciones aún.</h2>
     </div>);
   };
 };
