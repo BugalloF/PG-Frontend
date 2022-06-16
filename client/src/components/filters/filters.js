@@ -96,7 +96,7 @@ const Filters = () => {
       <option value="DESC,likes">♥:Mejores valorados</option>
       <option value="ASC,likes">♥:Peores valorados</option>
       <option value="DESC,createdAt">+:Más recientes</option>
-      <option value="ASC,createdAt">  -:Más antiguos</option>
+      <option value="ASC,createdAt">    -:Más antiguos</option>
     </select>
 
 
