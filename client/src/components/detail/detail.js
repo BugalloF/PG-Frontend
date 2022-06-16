@@ -155,7 +155,9 @@ export function Detail(props) {
                 </button>
               </div>
             :
-            <button onClick={handlerOnLogin}>
+            <button 
+            className={s.likes}
+            onClick={handlerOnLogin}>
             <span>
               <FontAwesomeIcon icon={faHeart} className={s.icon}  /> {props.likes}
             </span>
