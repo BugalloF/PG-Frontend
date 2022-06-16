@@ -34,7 +34,7 @@
     background-color: rgba(12, 13, 26, 0.438);
 }
 .LandingImg :nth-child(3){
-    font-family: 'Limelight', cursive;
+
     color: white;
     font-size: 50px;
     position: absolute;
@@ -47,7 +47,6 @@
 .LandingImg :nth-child(4){
     color: white;
     font-size: 30px;
-    font-family: 'Prata', serif;
     position: absolute;
     width: fit-content;
     left: 0;
@@ -75,13 +74,14 @@
     min-width: 110px;
     color: #fff;
     font-weight: bold;
+    text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;  
     outline: none;
     border: 2px solid #212529;
     background: #212529;
     font-size: 25px;
-    font-family: 'Prata', serif;
+
   }
   
   .LandingImg :nth-child(5):hover {

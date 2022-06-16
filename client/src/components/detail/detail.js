@@ -82,8 +82,16 @@ export function Detail(props) {
         
         <div className={s.container_rigth}>
         <div className={s.ProfileZone}>
-        <p>{props.user}</p>
-		        <ImageProfile image={props.profile.img} bigSize={true}/>
+        
+       <NavLink
+       className={s.profile1}
+        to={`/profile/`}
+       >
+       <p>{props.user}</p>
+       <ImageProfile image={props.profile.img} />
+       </NavLink>
+     
+        
          
 		      </div>
         <h1 className={s.title}>{props.title}</h1>

@@ -1,7 +1,7 @@
 // Dependencies
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import Filters from "../../components/filters/filters";
 // Files
 import {SearchBar} from "../searchbar/searchbar";
@@ -12,8 +12,7 @@ import Usermenu from "../usermenu/usermenu";
 
 
 function NavBar() {
-  const allCategories = useSelector((state) => state.categories);
-  const loader = useSelector((state) => state.loader);
+
   const urls = ['http://localhost:3000/feed','https://pg-frontend-eight.vercel.app/feed']
   const [Menu, setMenu] = useState(true);
   const loggedUser = window.localStorage.getItem("userData");
@@ -21,6 +20,8 @@ function NavBar() {
   const id = userDataJson ? userDataJson.id : "";
   const img = userDataJson ? userDataJson.img : "";
   const dispatch = useDispatch();
+  const url = useLocation();
+  
   
   function handleMenu(e)
   {
@@ -51,7 +52,7 @@ function NavBar() {
               className={s.Buttons}
               onClick={() => {
                 dispatch(resetPage());
-                dispatch(CleanPosts);
+                dispatch(CleanPosts());
                 dispatch(SetCategoty(null));
                 window.scrollTo(0, 0);
               }}>Inicio</NavLink>
@@ -64,9 +65,9 @@ function NavBar() {
           </div>
         </div>
         <div className={s.right}>
-        <div className={s.searchBar}>
+      {url.pathname !== "/"?   <div className={s.searchBar}>
              <SearchBar />
-               </div>
+               </div>: null} 
 
           <div className={s.container_image}>
 
