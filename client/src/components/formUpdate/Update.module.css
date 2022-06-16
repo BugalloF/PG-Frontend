@@ -72,7 +72,7 @@
     width: 100%;
     resize: none;
     font-size: 16px;
-    font-family: 'Helvetica';
+  
 }
 
 .button {
@@ -112,7 +112,7 @@
 
 .select {
     font-size: 15px;
-    font-family: 'Helvetica';
+
     border: 1px solid rgb(143, 143, 143);
     background-color: white;
     padding: 8px 25px;
