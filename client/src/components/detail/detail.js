@@ -145,7 +145,7 @@ export function Detail(props) {
             </div>
      
             :
-              <div>
+            <div className={s.row}>
                 <button 
                 className={s.likes}
                 onClick={handlerOnDelete}>
@@ -153,6 +153,18 @@ export function Detail(props) {
                     <FontAwesomeIcon icon={faHeart} className={s.icon}  /> {props.likes}
           
                 </button>
+                {
+            props.profileId === id ?
+            <div className={s.likes}>
+              <NavLink to={`/edit/${props.idPost}`} style={{textDecoration: "none"}}>
+              <FontAwesomeIcon icon={faPenToSquare} className={s.icon}  />
+              </NavLink>
+              <FontAwesomeIcon icon={faTrashCan} onClick={handleDelete} className={s.icon}  />
+
+            </div>
+            :
+            null
+          }
               </div>
             :
             <button 

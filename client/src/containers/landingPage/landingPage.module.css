@@ -43,6 +43,7 @@
     right: 0;
     top: 74%;
     margin: auto;
+    font-family: 'Limelight', cursive;
 }
 .LandingImg :nth-child(4){
     color: white;
@@ -53,6 +54,7 @@
     right: 0;
     top: 83%;
     margin: auto;
+    font-family: 'Prata', serif;
 }
 
 .LandingImg :nth-child(5):hover{
