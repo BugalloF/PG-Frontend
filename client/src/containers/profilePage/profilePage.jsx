@@ -97,10 +97,10 @@ function ProfilePage()
               </div>
 
             <div className={s.social_media}>
-              {user?.found?.facebook?(<a href={`https://www.${user.found.facebook}`} target="_blank"><FontAwesomeIcon className={s.facebook} icon={faFacebook} /></a>):null}
-              {user?.found?.instagram?(<a href={`https://www.${user.found.instagram}`} target="_blank"><FontAwesomeIcon className={s.instagram} icon={faInstagram} /></a>):null}
-              {user?.found?.linkedIn?(<a href={`https://www.${user.found.linkedIn}`} target="_blank"><FontAwesomeIcon className={s.linkedin} icon={faLinkedin} /></a>):null}
-              {user?.found?.deviantart?(<a href={`https://www.${user.found.deviantart}`} target="_blank"><FontAwesomeIcon className={s.deviantart} icon={faDeviantart} /></a>):null}
+              {user?.found?.facebook?(<a href={user.found.facebook} target="_blank"><FontAwesomeIcon className={s.facebook} icon={faFacebook} /></a>):null}
+              {user?.found?.instagram?(<a href={user.found.instagram} target="_blank"><FontAwesomeIcon className={s.instagram} icon={faInstagram} /></a>):null}
+              {user?.found?.linkedIn?(<a href={user.found.linkedIn} target="_blank"><FontAwesomeIcon className={s.linkedin} icon={faLinkedin} /></a>):null}
+              {/* {user?.found?.deviantart?(<a href={`https://www.${user.found.deviantart}`} target="_blank"><FontAwesomeIcon className={s.deviantart} icon={faDeviantart} /></a>):null} */}
             </div>
             </div>
           </div>
