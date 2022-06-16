@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 .container_detailPage{
 
 	display: flex;
@@ -29,12 +30,15 @@
 	margin:auto;
 	text-align: center;
 	max-width: 1200px;
+	border-top: 2px solid rgb(138,76,76);
 }
 
 .container_recommendation h2{
 	font-size: 30px;
-	font-weight: 600;
+	font-weight: 200px;
 	padding-bottom: 30px;
+	font-family: 'Bebas Neue', cursive;
+	color: rgb(59,64,68);
 }
 
 

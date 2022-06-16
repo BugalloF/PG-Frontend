@@ -7,7 +7,7 @@
 }
 
 .container_notFound h2{
-	font-size: 40px;
+	font-size: 25px;
 	margin-top: 30px;
 	letter-spacing: 0.05em;
 	padding-right: 40px;
@@ -17,6 +17,6 @@
 
 
 .imgg{
-	width: 100%;
-	max-width: 550px;
+	width: 50%;
+	max-width: 350px;
 }

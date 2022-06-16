@@ -1,7 +1,16 @@
+.background
+{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+}
+
 .containerCount{
     height: 200px;
     width: 300px;
-    background-color: rgb(185, 143, 224);
+    background-color: rgb(76, 189, 174);
     text-align: center;
     color: #fff;
 }

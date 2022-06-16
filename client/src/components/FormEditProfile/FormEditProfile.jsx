@@ -304,17 +304,17 @@ function FormEditProfile()
                 errors.description && errors.description
               }
               
-              <input onChange={handleChange} className={errors.facebook ? s.Alert : s.Inputs} type="text" placeholder="Facebook. Ej: facebook.com/usuario" name="facebook" value={input.facebook} disabled={loadChanges}/>
+              <input onChange={handleChange} className={errors.facebook ? s.Alert : s.Inputs} type="text" placeholder="Facebook. Ej: https://www.facebook.com/usuario" name="facebook" value={input.facebook} disabled={loadChanges}/>
               {
                 errors.facebook && errors.facebook
               }
               
-              <input onChange={handleChange} className={errors.instagram ? s.Alert : s.Inputs} type="text" placeholder="Instagram Ej: instagram.com/usuario" name="instagram" value={input.instagram} disabled={loadChanges}/>
+              <input onChange={handleChange} className={errors.instagram ? s.Alert : s.Inputs} type="text" placeholder="Instagram Ej: https://www.instagram.com/usuario" name="instagram" value={input.instagram} disabled={loadChanges}/>
               {
                 errors.instagram && errors.instagram
               }
               
-              <input onChange={handleChange} className={errors.linkedIn ? s.Alert : s.Inputs} type="text" placeholder="LinkedIn Ej: linkedin.com/in/usuario" name="linkedIn" value={input.linkedIn} disabled={loadChanges}/>
+              <input onChange={handleChange} className={errors.linkedIn ? s.Alert : s.Inputs} type="text" placeholder="LinkedIn Ej: https://www.linkedin.com/in/usuario" name="linkedIn" value={input.linkedIn} disabled={loadChanges}/>
               {
                 errors.linkedIn && errors.linkedIn
               }

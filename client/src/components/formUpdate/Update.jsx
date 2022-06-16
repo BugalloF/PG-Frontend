@@ -84,7 +84,7 @@ function Update()
         {
             errors.content = <font></font>;
         }
-        else if(input.content.length > 140)
+        else if(input.content.length > 240)
         {
             errors.content = <font></font>;
         }
@@ -148,7 +148,7 @@ function Update()
                             }
                             
                             <h4 className={s.title}>Modificar contenido</h4>
-                            <textarea className={errors.content ? s.Alert : s.Inputs} placeholder="Máx. 140 carácteres" onChange={handleChange} cols="30" rows="10" type="text" value={input.content} maxLength={140} name="content"/>
+                            <textarea className={errors.content ? s.Alert : s.Inputs} placeholder="Máx. 240 carácteres" onChange={handleChange} cols="30" rows="10" type="text" value={input.content} maxLength={240} name="content"/>
                             {
                                 errors.content && errors.content
                             }
