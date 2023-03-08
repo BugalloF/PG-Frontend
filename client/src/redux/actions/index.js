@@ -12,7 +12,7 @@ const {REACT_APP_URL, REACT_APP_API_KEY} = process.env;
 const URL = REACT_APP_URL;
 
 const compress = new Compress();
-
+console.log(URL,'BACKEND URL');
 //GETS----------------------------------------------------------------------------------------
 
 export const GetAllPosts = (page = 0, name = "", by = "", type = "") => {
