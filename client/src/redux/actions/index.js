@@ -568,7 +568,7 @@ export function sendEmail(userData, values)
           authorization: `Bearer ${token}`,
         }
       };
-      await axios.post(`https://artpage.herokuapp.com/emails/send-email`, values, config);
+      await axios.post(`${URL}/emails/send-email`, values, config);
     };
   };
 };
