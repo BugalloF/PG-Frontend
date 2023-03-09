@@ -12,7 +12,6 @@ import {ImageProfile} from "../../components/imageprofile/imageprofile";
 import {addFollower, CleanProfile, deleteFollower, profile} from "../../redux/actions/index";
 import Card from "../../components/cards/card";
 import ProfileSkeleton from "../../components/loaderSkeleton/Profile/ProfileSkeleton"
-// console.log(faSolidFaUserPen)
 function ProfilePage()
 {
   const dispatch = useDispatch();

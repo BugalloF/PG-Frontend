@@ -48,7 +48,6 @@ export default function Paypal({price,title,idPost,userSeller,userPayer,email}) 
         },
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
-          // console.log(order)
           swal('Pago exitoso, a continuación recibirás un correo con tu obra.')
           if(order.status === 'COMPLETED'){
             let payer = order.payer.name.given_name;
@@ -61,7 +60,6 @@ export default function Paypal({price,title,idPost,userSeller,userPayer,email}) 
         },
         onError: (err) => {
             swal('Ocurrió un error!')
-            // console.log(err);
         },
       })
       .render(paypal.current);

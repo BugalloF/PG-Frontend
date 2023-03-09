@@ -11,7 +11,6 @@ const Categories = (title) => {
 
     function catFilter(e){
       e.preventDefault();
-      // console.log(e.target.value)
       dispatch(categoryFilter(e.target.value))
     }
 	
