@@ -27,13 +27,9 @@ const BannedUsers = () => {
         dispatch(getBannedUsers(loggedUser))
         dispatch(CleanStatus())
     }, [page,status,allUsers]);
-console.log(allUsers)
 // const fechita = new Date(allUsers[0].banned_time)
 allUsers ? allUsers.sort((a, b) => new Date(a.banned_time) - new Date(b.banned_time)) : console.log('no')
-// console.log('aaaaaaaa',orde);
-// console.log('aaaaaaaabbbb',fechita);
-    // console.log(orde,'aaaaaaaa');
-    // console.log(allUsers)
+
 
 
 

@@ -21,7 +21,6 @@ const initialState = {
 
 
 function rootReducer(state = initialState, action) {
-  // console.log(action)
   switch (action.type) {
     case "GetPosts":
       if (state.page === 0) {
@@ -206,7 +205,6 @@ function rootReducer(state = initialState, action) {
       return {...state, detail: action.payload};
     
     case 'DELETE_LIKE':
-      // console.log('soy delete like',action.payload)
       return {...state, detail: action.payload};
 
     case "ADD_FOLLOWER":

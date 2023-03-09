@@ -196,7 +196,6 @@ function FormEditProfile()
       setLoadChanges(true);
       
       const data = await dispatch(EditProfile(input)).catch(error => console.log(error));
-      console.log(data);
       if(data !== undefined && data !== null)
       {
         const payload = data.payload;

@@ -31,8 +31,7 @@ const CardProfile = ({userId, userName, userImg, firstName, lastName, email, ban
           }
         })
       }
-    // console.log('ahoraaaa',ahora)
-    // console.log('holaaaa',banTime)
+
     return (
         <div>
              <ul className={s.list}>
